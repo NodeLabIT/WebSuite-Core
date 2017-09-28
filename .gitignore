@@ -1,0 +1,6 @@
+.idea
+WebSuite-Core.iml
+dist
+config.json
+package-lock.json
+node_modules
