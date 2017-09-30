@@ -6,19 +6,41 @@ const os = require('os');
 const config = require('./config.json');
 
 if(cluster.isMaster) {
+    // Check for worker-amount (need to be higher than 0)
     if(config.worker <= 0) {
         console.log(`WARNING | Number of workers cannot be less than 1 (${config.worker}). Setting it to ${os.cpus().length}`);
         config.worker = os.cpus().length;
     }
 
+    // Start a special amount of workers
     for(let i = 0; i < config.worker; i++) {
         cluster.fork();
     }
 
+    // If crash then log it and restart one worker
     cluster.on('exit', (worker, code, signal) => {
         console.log(`Worker ${worker.process.pid} died. Restarting...`);
         cluster.fork();
     });
+
+    //socket.io-Server
+    const io = require('socket.io');
+    const ioWildcard = require('socketio-wildcard')();
+
+    // Use ioWildcard to send every packet from Master to one Worker
+    io.use(ioWildcard);
+
+    io.on('connection', (socket) => {
+        socket.on('*', (packet) => {
+            //TODO: Send packet to one random Worker
+        });
+    });
+
+    cluster.on('message', (worker, message, handle) => {
+        // TODO: Handle messages from Worker
+    });
+
+    io.listen(8080);
 }
 
 if(cluster.isWorker) {
