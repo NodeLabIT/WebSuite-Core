@@ -1,11 +1,10 @@
 'use strict';
 
 const WebSocketHandler = require('./websocket/WebSocketHandler.class');
-
-require('./webserver/Webserver.class');
+const Webserver  = require('./webserver/Webserver.class');
 
 /**
- * Core class of module 'core'
+ * Class of core-module
  * */
 class WebSuite {
 
@@ -20,6 +19,16 @@ class WebSuite {
      * */
     getWebSocketHandler() {
         return WebSocketHandler;
+    }
+
+    /**
+     * Get the Webserver to let him listen, when system is started
+     *
+     * @returns Webserver
+     * @private
+     * */
+    _getWebserver() {
+        return Webserver;
     }
 
 }

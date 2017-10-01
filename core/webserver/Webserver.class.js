@@ -8,9 +8,13 @@ const http = require('http');
 
 const config = require('../../config.json');
 
+/**
+ * Class for creating and managing the webserver
+ * */
 class Webserver {
 
     constructor() {
+        this.listening = false;
         this.app = express();
 
         // Add compression to express-app
@@ -39,9 +43,14 @@ class Webserver {
 
         // initialize webserver and start it
         this.webserver = http.Server(this.app);
-        this.webserver.listen(config.server.webserver, () => {
-            console.log("Webserver listening on port " + this.webserver.address().port);
-        });
+    }
+
+    listen() {
+        if(!this.listening) {
+            this.webserver.listen(config.server.webserver, () => {
+                console.log("Webserver listening on port " + this.webserver.address().port);
+            });
+        }
     }
 
 }

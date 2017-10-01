@@ -4,6 +4,9 @@
 const Event = require('events');
 class EventEmitter extends Event {}
 
+/**
+ * Class to work with packets in socket.io
+ * */
 class WebSocketHandler {
 
     constructor() {

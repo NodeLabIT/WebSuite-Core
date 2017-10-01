@@ -6,7 +6,7 @@ const config = require('../config.json');
 const packageFile = require('../package.json');
 
 /**
- * Used for basic checks before the application starts
+ * Class for basic checks before the application starts
  * */
 class Check {
 
@@ -37,6 +37,8 @@ class Check {
             if(config.server.socketio === config.server.webserver) {
                 reject('socket.io can\'t listen on the same port as the webserver'); return;
             }
+
+            // resolve when all checks passed
             resolve();
         });
     }
