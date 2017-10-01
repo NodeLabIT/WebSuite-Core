@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>WebSuite Development - Testwebsite</title>
+    </head>
+    <body>
+        This page is only for dev-tests
+    </body>
+
+    <script src="/socket.io.js"></script>
+    <script>
+        var socket = io("localhost:8081");
+
+        socket.on('data', (data) => {
+            console.log(data);
+        });
+        socket.emit('cp-test', {leto: "ABC"});
+    </script>
+</html>

@@ -2,6 +2,8 @@
 
 const WebSocketHandler = require('./websocket/WebSocketHandler.class');
 
+require('./webserver/Webserver.class');
+
 /**
  * Core class of module 'core'
  * */

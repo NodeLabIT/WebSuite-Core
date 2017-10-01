@@ -44,7 +44,7 @@ if(cluster.isMaster) {
         console.log(message);
     });
 
-    io.listen(8080);
+    io.listen(config.server.socketio);
 }
 
 if(cluster.isWorker) {

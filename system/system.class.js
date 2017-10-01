@@ -5,7 +5,7 @@ const WebSuite = require('../core/WebSuite.class');
 class SystemLoader {
 
     constructor() {
-        // TEST
+        // TODO: TEST
         WebSuite.getWebSocketHandler().registerCpEvent('cp-test', (clientID, data) => {
             console.log(clientID);
             console.log(data);
