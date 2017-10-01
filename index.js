@@ -6,14 +6,15 @@ const os = require('os');
 const config = require('./config.json');
 
 if(cluster.isMaster) {
+    // TODO: Check for undefined types to highly prevent crashes and uncaughtError-shutdowns
     // Check for worker-amount (need to be higher than 0)
-    if(config.worker <= 0) {
+    if(config.workers <= 0) {
         console.log(`WARNING | Number of workers cannot be less than 1 (${config.worker}). Setting it to ${os.cpus().length}`);
-        config.worker = os.cpus().length;
+        config.workers = os.cpus().length;
     }
 
     // Start a special amount of workers
-    for(let i = 0; i < config.worker; i++) {
+    for(let i = 0; i < config.workers; i++) {
         cluster.fork();
     }
 
@@ -24,7 +25,7 @@ if(cluster.isMaster) {
     });
 
     //socket.io-Server
-    const io = require('socket.io');
+    const io = require('socket.io')();
     const ioWildcard = require('socketio-wildcard')();
 
     // Use ioWildcard to send every packet from Master to one Worker
@@ -32,12 +33,15 @@ if(cluster.isMaster) {
 
     io.on('connection', (socket) => {
         socket.on('*', (packet) => {
-            //TODO: Send packet to one random Worker
+            randomWorker(worker => {
+                worker.send(JSON.stringify({type: 'sioPacket', clientID: socket.conn.id, packet: packet}));
+            })
         });
     });
 
     cluster.on('message', (worker, message, handle) => {
         // TODO: Handle messages from Worker
+        console.log(message);
     });
 
     io.listen(8080);
@@ -45,8 +49,10 @@ if(cluster.isMaster) {
 
 if(cluster.isWorker) {
     console.log(`Starting worker ${process.pid}...`);
-    require('./system/websuite.class');
+    require('./system/system.class');
 }
+
+
 
 /**
  * Go through all workers
