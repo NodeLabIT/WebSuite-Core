@@ -4,3 +4,5 @@ dist
 config.json
 package-lock.json
 node_modules
+.flooignore
+.floo
