@@ -45,6 +45,9 @@ class Webserver {
         this.webserver = http.Server(this.app);
     }
 
+    /**
+     * Make the webserver listen on specified port
+     * */
     listen() {
         if(!this.listening) {
             this.webserver.listen(config.server.webserver, () => {
