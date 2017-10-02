@@ -32,7 +32,7 @@ class Check {
 
             // Check for config-conflicts
             if(config.workers <= 0) {
-                reject('amount of workers less than 0'); return;
+                reject('amount of workers less than 1'); return;
             }
             if(config.server.socketio === config.server.webserver) {
                 reject('socket.io can\'t listen on the same port as the webserver'); return;

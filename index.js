@@ -8,14 +8,10 @@ const config = require('./config.json');
 const Check = require('./system/check.class');
 
 if(cluster.isMaster) {
+    const Logger = require('./core/logger/Logger.class');
     // TODO: Check for required settings and dependencies
     new Check().then(() => {
         // TODO: Check for undefined types to highly prevent crashes and uncaughtError-shutdowns
-        // Check for worker-amount (need to be higher than 0)
-        if(config.workers <= 0) {
-            WebSuite.getLogger().warn(`Number of workers cannot be less than 1 (currently: ${config.worker}). Setting it to ${os.cpus().length}`);
-            config.workers = os.cpus().length;
-        }
 
         // Start a special amount of workers
         for(let i = 0; i < config.workers; i++) {
@@ -24,7 +20,7 @@ if(cluster.isMaster) {
 
         // If crash then log it and restart one worker
         cluster.on('exit', (worker, code, signal) => {
-            WebSuite.getLogger().error(`Worker ${worker.process.pid} died. Restarting...`);
+            Logger.error(`Worker ${worker.process.pid} died. Restarting...`, true);
             cluster.fork();
         });
 
@@ -45,14 +41,13 @@ if(cluster.isMaster) {
 
         cluster.on('message', (worker, message, handle) => {
             // TODO: Handle messages from Worker
-            WebSuite.getLogger().debug(message);
+            Logger.debug(message, true);
         });
 
         io.listen(config.server.socketio);
     }, (err) => {
-        WebSuite.getLogger().error(err);
+        Logger.error(err, true);
     });
-
 
 }
 
