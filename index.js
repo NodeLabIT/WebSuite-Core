@@ -13,7 +13,7 @@ if(cluster.isMaster) {
         // TODO: Check for undefined types to highly prevent crashes and uncaughtError-shutdowns
         // Check for worker-amount (need to be higher than 0)
         if(config.workers <= 0) {
-            console.log(`WARNING | Number of workers cannot be less than 1 (${config.worker}). Setting it to ${os.cpus().length}`);
+            WebSuite.getLogger().warn(`Number of workers cannot be less than 1 (currently: ${config.worker}). Setting it to ${os.cpus().length}`);
             config.workers = os.cpus().length;
         }
 
@@ -24,7 +24,7 @@ if(cluster.isMaster) {
 
         // If crash then log it and restart one worker
         cluster.on('exit', (worker, code, signal) => {
-            console.log(`Worker ${worker.process.pid} died. Restarting...`);
+            WebSuite.getLogger().error(`Worker ${worker.process.pid} died. Restarting...`);
             cluster.fork();
         });
 
@@ -45,19 +45,18 @@ if(cluster.isMaster) {
 
         cluster.on('message', (worker, message, handle) => {
             // TODO: Handle messages from Worker
-            console.log(message);
+            WebSuite.getLogger().debug(message);
         });
 
         io.listen(config.server.socketio);
     }, (err) => {
-        console.log(err);
+        WebSuite.getLogger().error(err);
     });
 
 
 }
 
 if(cluster.isWorker) {
-    console.log(`Starting worker ${process.pid}...`);
     require('./system/system.class');
 }
 

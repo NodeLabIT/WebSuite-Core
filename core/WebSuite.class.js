@@ -1,7 +1,9 @@
 'use strict';
 
+const Logger = require('./logger/Logger.class');
+
 const WebSocketHandler = require('./websocket/WebSocketHandler.class');
-const Webserver  = require('./webserver/Webserver.class');
+const WebServer  = require('./webserver/WebServer.class');
 
 const Database = require('./database/Database.class');
 
@@ -17,27 +19,36 @@ class WebSuite {
     /**
      * Get WebSocketHandler to register new Socket-Events
      *
-     * @returns WebSocketHandler
+     * @returns WebSocketHandler-class
      * */
     getWebSocketHandler() {
         return WebSocketHandler;
     }
 
     /**
-     * Get the Webserver to let him listen, when system is started
+     * Get the web-server to let him listen, when system is started
      *
-     * @returns Webserver
+     * @returns WebServer-class
      *
      * @private
      * */
-    _getWebserver() {
-        return Webserver;
+    _getWebServer() {
+        return WebServer;
+    }
+
+    /**
+     * Get the Logger to log information, errors, warnings and debug
+     *
+     * @returns Logger Logger-class
+     * */
+    getLogger() {
+        return Logger;
     }
 
     /**
      * Get Database-Class to send database-queries
      *
-     * @returns Database
+     * @returns Database-class
      * */
     getDatabase() {
         return Database;

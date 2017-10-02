@@ -11,7 +11,7 @@ const config = require('../../config.json');
 /**
  * Class for creating and managing the webserver
  * */
-class Webserver {
+class WebServer {
 
     constructor() {
         this.listening = false;
@@ -42,7 +42,7 @@ class Webserver {
         });
 
         // initialize webserver and start it
-        this.webserver = http.Server(this.app);
+        this.webServer = http.Server(this.app);
     }
 
     /**
@@ -50,12 +50,12 @@ class Webserver {
      * */
     listen() {
         if(!this.listening) {
-            this.webserver.listen(config.server.webserver, () => {
-                console.log("Webserver listening on port " + this.webserver.address().port);
+            this.webServer.listen(config.server.webserver, () => {
+                WebSuite.getLogger().info(`Webserver listening on port ${this.webServer.address().port}`);
             });
         }
     }
 
 }
 
-module.exports = new Webserver();
+module.exports = new WebServer();

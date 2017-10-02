@@ -1,6 +1,6 @@
 'use strict';
 
-const WebSuite = require('../core/WebSuite.class');
+global.WebSuite = require('../core/WebSuite.class');
 
 /**
  * Class to load the whole system
@@ -14,11 +14,12 @@ class SystemLoader {
      * */
     constructor() {
         // TODO: TEST
+        WebSuite.getLogger().info(`Starting worker ${process.pid}`);
         WebSuite.getWebSocketHandler().registerCpEvent('cp-test', (clientID, data) => {
-            console.log(clientID);
-            console.log(data);
+            WebSuite.getLogger().debug(clientID);
+            WebSuite.getLogger().debug(data);
         });
-        WebSuite._getWebserver().listen();
+        WebSuite._getWebServer().listen();
     }
 
 }

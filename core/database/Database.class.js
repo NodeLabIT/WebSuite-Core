@@ -7,7 +7,14 @@ const config = require('../../config.json');
 class Database {
 
     constructor() {
-        this._connect();
+        this._connect(connected => {
+            if(connected) {
+                WebSuite.getLogger().info("Connected to MySQL-Database successfully");
+                return;
+            }
+
+            WebSuite.getLogger().error("Cannot connect to MySQL-Database");
+        });
     }
 
     /**
@@ -31,7 +38,8 @@ class Database {
         // Get connection to get information about successful connection-establishment
         this._pool.getConnection((err, connection) => {
             connection.release();
-            if(!err) {
+            if(err) {
+                console.log(err);
                 success(false);
                 return;
             }
