@@ -7,6 +7,9 @@ class Logger {
 
     /**
      * send info-message (green console-color)
+     *
+     * @param message message to send
+     * @param master boolean whether sending from master or not (undefined when worker)
      * */
     info(message, master) {
         if(master) {
@@ -18,6 +21,9 @@ class Logger {
 
     /**
      * send debug-message (cyan console-color)
+     *
+     * @param message message to send
+     * @param master boolean whether sending from master or not (undefined when worker)
      * */
     debug(message, master) {
         if(master) {
@@ -29,6 +35,9 @@ class Logger {
 
     /**
      * send error-message (red console-color)
+     *
+     * @param message message to send
+     * @param master boolean whether sending from master or not (undefined when worker)
      * */
     error(message, master) {
         if(master) {
@@ -40,6 +49,9 @@ class Logger {
 
     /**
      * send warn-message (yellow console-color)
+     *
+     * @param message message to send
+     * @param master boolean whether sending from master or not (undefined when worker)
      * */
     warn(message, master) {
         if(master) {
