@@ -10,3 +10,7 @@ Der Core ist das Heiligtum der gesamten Software und stellt somit den Kern der g
 Neben den genannten Funktionen für Entwickler, verfügt der Core auch über Funktionen zur einfachen Bedienbarkeit der Anwendung. Dazu gehört insbesondere ein Control Panel, ein Installer, ein Updater für Module.
 
 Der Core generell wird im Clusterbetrieb laufen. So ist es einfach im laufenden Betrieb das System neuzustarten, ohne, dass der Nutzer davon etwas mitbekommt. Ebenfalls kann so garantiert werden, dass im Falle eines Fehlers, ein "Subsystem" vernünftig den Fehler loggen und sich neustarten kann.
+
+# Discord
+
+Du möchtest über alles informiert werden? Dann trete noch heute unserem Discord-Server bei: https://discord.gg/AmBnFbA
