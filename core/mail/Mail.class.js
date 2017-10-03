@@ -26,7 +26,7 @@ class Mail {
      * */
     _connect(success) {
         // TODO: Read file to get "new" values after configuration-changes (File-Utils)
-        this._transport = nodemailer.createTransport({
+        /*this._transport = nodemailer.createTransport({
             host: config.mail.host,
             port: config.mail.port,
             opportunisticTLS: true,
@@ -35,6 +35,13 @@ class Mail {
                 user: config.mail.auth.user,
                 pass: config.mail.auth.password
             }
+        });*/
+        // DEVELOPMENT!
+        this._transport = nodemailer.createTransport({
+            host: "localhost",
+            port: 1025,
+            secure: false,
+            tls: { rejectUnauthorized: false }
         });
 
         this._transport.verify(err => {
