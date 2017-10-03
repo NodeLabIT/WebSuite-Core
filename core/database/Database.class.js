@@ -13,7 +13,7 @@ class Database {
                 return;
             }
 
-            WebSuite.getLogger().error("Cannot connect to MySQL-Database");
+            WebSuite.getLogger().error("Connection to MySQL-Database can not be established!");
         });
     }
 
