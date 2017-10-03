@@ -55,8 +55,6 @@ if(cluster.isWorker) {
     require('./system/system.class');
 }
 
-
-
 /**
  * Go through all workers
  * @param callback returns one worker
