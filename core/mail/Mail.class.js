@@ -39,7 +39,7 @@ class Mail {
 
         this._transport.verify(err => {
             if(err) {
-                WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
+                WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
                 success(false);
                 return;
             }

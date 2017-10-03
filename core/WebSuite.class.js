@@ -6,6 +6,7 @@ const WebSocketHandler = require('./websocket/WebSocketHandler.class');
 const WebServer  = require('./webserver/WebServer.class');
 
 const Database = require('./database/Database.class');
+const Mail = require('./mail/Mail.class');
 
 /**
  * Class of core-module
@@ -52,6 +53,15 @@ class WebSuite {
      * */
     getDatabase() {
         return Database;
+    }
+
+    /**
+     * Get Mail-Class to send emails
+     *
+     * @returns Mail-class
+     * */
+    getMail() {
+        return Mail;
     }
 
 }
