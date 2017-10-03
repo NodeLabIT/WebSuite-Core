@@ -13,7 +13,7 @@ class Database {
                 return;
             }
 
-            WebSuite.getLogger().error("Connection to MySQL-Database can not be established!");
+            WebSuite.getLogger().warn("Connection to MySQL-Database can not be established!");
         });
     }
 
@@ -39,7 +39,7 @@ class Database {
         this._pool.getConnection((err, connection) => {
             connection.release();
             if(err) {
-                console.log(err);
+                WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
                 success(false);
                 return;
             }
@@ -58,6 +58,7 @@ class Database {
         // Disconnect all connections from database
         this._pool.end((err) => {
             if(err) {
+                WebSuite.getLogger().error(`An error occurred while trying to disconnect from Database: \n${err.message}`);
                 success(false);
                 return;
             }
@@ -109,6 +110,7 @@ class Database {
                     // release connection and reject on error
                     connection.release();
                     reject(err);
+                    WebSuite.getLogger().error(`An error occurred while performing query '${query}':\n${err.message}`);
                     return;
                 }
 
