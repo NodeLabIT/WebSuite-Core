@@ -32,16 +32,15 @@ class Mail {
             opportunisticTLS: true,
             connectionTimeout: 2500,
             auth: {
-                user: config.mail.auth.user,
-                pass: config.mail.auth.password
+                user: config.mail.sender.user,
+                pass: config.mail.sender.password
             }
         });*/
         // DEVELOPMENT!
         this._transport = nodemailer.createTransport({
             host: "localhost",
             port: 1025,
-            secure: false,
-            tls: { rejectUnauthorized: false }
+            ignoreTLS: true
         });
 
         this._transport.verify(err => {
@@ -52,6 +51,8 @@ class Mail {
             }
             success(true);
         });
+
+        this.sendHTMLMail('Hall Welt', 'noreply@dev.de', 'Test');
     }
 
     /**
@@ -87,6 +88,33 @@ class Mail {
             })
         })
     }
+
+    /**
+     * Send HTML-Mail
+     *
+     * @param message message you want to send (can include HTML)
+     * @param to recipient-address where the mail is supposed to be sent to
+     * @param subject Subject of the email
+     * */
+    sendHTMLMail(message, to, subject) {
+        let mailOptions = {
+            from: `"${config.mail.sender.displayName}" <${config.mail.sender.user}>`,
+            to,
+            subject,
+            html: `${message}`
+        };
+
+        this._transport.sendMail(mailOptions, (error, info) => {
+            if(error) {
+                // TODO: Handle error
+                console.log(error);
+            } else {
+                // TODO: Handle success
+                console.log(info);
+            }
+        });
+    }
+
 
 }
 
