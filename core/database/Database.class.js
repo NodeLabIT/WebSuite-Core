@@ -6,13 +6,15 @@ const config = require('../../config.json');
 
 class Database {
 
-    constructor() {
+    constructor(callback) {
         this._connect(connected => {
             if(connected) {
                 WebSuite.getLogger().info("Connected to MySQL-Database successfully");
+                callback(true);
                 return;
             }
 
+            callback(false);
             WebSuite.getLogger().warn("Connection to MySQL-Database can not be established!");
         });
     }
@@ -134,4 +136,4 @@ class Database {
 
 }
 
-module.exports = new Database();
+module.exports = Database;

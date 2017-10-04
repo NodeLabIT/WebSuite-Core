@@ -6,13 +6,15 @@ const config = require('../../config.json');
 
 class Mail {
 
-    constructor() {
+    constructor(callback) {
         this._connect(connected => {
             if(connected) {
                 WebSuite.getLogger().info("Connected to Mail-Server successfully");
+                callback(true);
                 return;
             }
 
+            callback(false);
             WebSuite.getLogger().warn("Connection to Mail-Server can not be established!");
         });
     }
@@ -118,4 +120,4 @@ class Mail {
 
 }
 
-module.exports = new Mail();
+module.exports = Mail;
