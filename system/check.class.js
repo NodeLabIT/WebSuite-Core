@@ -26,7 +26,7 @@ class Check {
             }
 
             // Check for Node-Version higher 4
-            if(process.versions.node.split(".")[0] < 4) {
+            if(process.versions.node.split(".")[0] < 6) {
                 reject('node-version not sufficient to run this system'); return;
             }
 
