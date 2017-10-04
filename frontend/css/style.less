@@ -1,7 +1,84 @@
+@import url(components);
+
 body, html {
   padding: 0;
   margin: 0;
   min-height: 100%;
   width: 100%;
   font-family: 'Open Sans', 'Arial', 'sans-serif';
+}
+
+* {
+  position: relative;
+}
+
+header {
+  background: url(../images/header_background.png) no-repeat top;
+  background-size: cover;
+  overflow-y: auto;
+
+  #hero {
+    margin: 120px auto;
+  }
+
+  #main-nav {
+    width: 1280px;
+    margin: auto;
+    height: auto;
+
+    .container {
+      margin: 50px auto;
+
+      a {
+        color: white;
+        -webkit-transition: .3s;
+        -moz-transition: .3s;
+        -ms-transition: .3s;
+        -o-transition: .3s;
+        transition: .3s;
+        margin: 0 20px;
+
+        &:hover {
+          color: rgba(255, 255, 255, .8);
+        }
+
+        &.active:hover {
+          color: white;
+        }
+
+        i {
+          font-size: 25px;
+        }
+
+        .notification-badge {
+          width: 15px;
+          height: 15px;
+          background: #c63f41;
+          color: white;
+          font-size: 12px;
+          text-align: center;
+          line-height: 15px;
+          position: absolute;
+          right: -5px;
+          top: -5px;
+          border-radius: 100px;
+        }
+      }
+    }
+  }
+
+  #sub-nav {
+    background: rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    padding: 10px 0;
+
+    .container {
+      margin: 0 auto;
+      color: white;
+    }
+
+    a {
+      font-size: 14px;
+    }
+  }
 }
