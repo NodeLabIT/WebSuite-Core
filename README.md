@@ -14,3 +14,7 @@ Der Core generell wird im Clusterbetrieb laufen. So ist es einfach im laufenden 
 # Discord
 
 Du möchtest über alles informiert werden? Dann trete noch heute unserem Discord-Server bei: https://discord.gg/AmBnFbA
+
+# Milestones
+
+Alle Milestones des Projektes sind hier einsehbar: https://github.com/NodeLabIT/WebSuite-Core/milestones
