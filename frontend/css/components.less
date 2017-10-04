@@ -1,0 +1,89 @@
+/* Colors */
+@main_text: #545454;
+
+/* Container 1280px */
+.container {
+  width: 1280px;
+  height: auto;
+  margin: 80px auto;
+
+  &.right {
+    float: right;
+    width: auto;
+    display: inline-block;
+  }
+
+  &.left {
+    float: left;
+    width: auto;
+    display: inline-block;
+  }
+
+  &.align_right {
+    text-align: right;
+  }
+
+  &.align_center {
+    text-align: center;
+  }
+}
+
+/* Headings */
+h1,h2,h3,h4,h5,h6 {
+  margin: 0 0 10px 0;
+  color: @main_text;
+
+  &.white {
+    color: white;
+  }
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 300;
+}
+
+/* Maintext */
+.maintext {
+  font-size: 16px;
+  line-height: 24px;
+  color: @main_text;
+
+  &.white {
+    color: white;
+  }
+}
+
+/* A */
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+
+  &.margin15vert {
+    margin: 0 15px;
+  }
+
+  &.margin15hor {
+    margin: 15px 0;
+  }
+
+  &.marginAll {
+    margin: 15px;
+  }
+
+  i {
+    &.left {
+      margin-right: 10px;
+    }
+
+    &.right {
+      margin-left: 10px;
+    }
+  }
+}

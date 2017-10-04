@@ -1,3 +1,82 @@
+/* Colors */
+/* Container 1280px */
+.container {
+  width: 1280px;
+  height: auto;
+  margin: 80px auto;
+}
+.container.right {
+  float: right;
+  width: auto;
+  display: inline-block;
+}
+.container.left {
+  float: left;
+  width: auto;
+  display: inline-block;
+}
+.container.align_right {
+  text-align: right;
+}
+.container.align_center {
+  text-align: center;
+}
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 10px 0;
+  color: #545454;
+}
+h1.white,
+h2.white,
+h3.white,
+h4.white,
+h5.white,
+h6.white {
+  color: white;
+}
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+h2 {
+  font-size: 40px;
+  font-weight: 300;
+}
+/* Maintext */
+.maintext {
+  font-size: 16px;
+  line-height: 24px;
+  color: #545454;
+}
+.maintext.white {
+  color: white;
+}
+/* A */
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+a.margin15vert {
+  margin: 0 15px;
+}
+a.margin15hor {
+  margin: 15px 0;
+}
+a.marginAll {
+  margin: 15px;
+}
+a i.left {
+  margin-right: 10px;
+}
+a i.right {
+  margin-left: 10px;
+}
 body,
 html {
   padding: 0;
@@ -5,4 +84,66 @@ html {
   min-height: 100%;
   width: 100%;
   font-family: 'Open Sans', 'Arial', 'sans-serif';
+}
+* {
+  position: relative;
+}
+header {
+  background: url(../images/header_background.png) no-repeat top;
+  background-size: cover;
+  overflow-y: auto;
+}
+header #hero {
+  margin: 120px auto;
+}
+header #main-nav {
+  width: 1280px;
+  margin: auto;
+  height: auto;
+}
+header #main-nav .container {
+  margin: 50px auto;
+}
+header #main-nav .container a {
+  color: white;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  margin: 0 20px;
+}
+header #main-nav .container a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+header #main-nav .container a.active:hover {
+  color: white;
+}
+header #main-nav .container a i {
+  font-size: 25px;
+}
+header #main-nav .container a .notification-badge {
+  width: 15px;
+  height: 15px;
+  background: #c63f41;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  line-height: 15px;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  border-radius: 100px;
+}
+header #sub-nav {
+  background: rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 10px 0;
+}
+header #sub-nav .container {
+  margin: 0 auto;
+  color: white;
+}
+header #sub-nav a {
+  font-size: 14px;
 }
