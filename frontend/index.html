@@ -1,17 +1,29 @@
 <!DOCTYPE HTML>
 <html lang="de">
     <head>
-        <title>Willkommen :: Websuite 2</title>
+        <title>Willkommen :: Websuite 2 © Nodelab IT</title>
 
         <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/mobile.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="javascript/main.js"></script>
     </head>
 
     <body>
+        <div class="dark-overlay"></div>
+
         <header>
+            <i id="open-menu" class="fa fa-bars mobile-hidden"></i>
+
             <nav id="main-nav">
                 <div class="container right">
+                    <i id="close-menu" class="fa fa-times mobile-hidden"></i>
+
+                    <h3 class="white mobile-hidden">Websuite 2</h3>
+
                     <a class="active">Startseite</a>
                     <a href="#">Forum</a>
                     <a href="#">Filebase</a>
@@ -20,10 +32,12 @@
                     <a href="#">
                         <i class="fa fa-bell"></i>
                         <span class="notification-badge">1</span>
+                        <span class="mobile-hidden">Benachrichtigungen</span>
                     </a>
                     <a href="#">
                         <i class="fa fa-comments"></i>
                         <span class="notification-badge">3</span>
+                        <span class="mobile-hidden">Nachrichten</span>
                     </a>
                 </div>
             </nav>
