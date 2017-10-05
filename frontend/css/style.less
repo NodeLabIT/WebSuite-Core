@@ -12,10 +12,45 @@ body, html {
   position: relative;
 }
 
+.dark-overlay {
+  background: rgba(0, 0, 0, .3);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+
+  &.visible {
+    opacity: 1;
+    z-index: 50;
+  }
+}
+
+.mobile-hidden {
+  display: none !important;
+}
+
 header {
   background: url(../images/header_background.png) no-repeat top;
   background-size: cover;
   overflow-y: auto;
+
+  #open-menu {
+    color: white;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 100px;
+    text-align: center;
+    background: rgba(255, 255, 255, .3);
+    position: fixed;
+  }
 
   #hero {
     margin: 120px auto;
