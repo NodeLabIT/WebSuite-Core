@@ -8,10 +8,34 @@ const WebServer  = require('./webserver/WebServer.class');
 const Database = require('./database/Database.class');
 const Mail = require('./mail/Mail.class');
 
+const User = require('./user/User.class');
+
 /**
  * Class of core-module
  * */
 class WebSuite {
+
+    constructor(callback) {
+        this.getLogger().info(`Starting worker ${process.pid}`);
+        this._database = new Database(databaseConnected => {
+            if(!databaseConnected) {
+                callback(false);
+                return;
+            }
+
+            this._mail = new Mail(mailConnected => {
+                if(!mailConnected) {
+                    callback(false);
+                    return;
+                }
+
+                callback(true);
+
+                // TODO: Remove test when tests ready
+                this.getUser(1);
+            })
+        });
+    }
 
     /**
      * Get WebSocketHandler to register new Socket-Events
@@ -60,23 +84,15 @@ class WebSuite {
         return this._mail;
     }
 
-    constructor(callback) {
-        this.getLogger().info(`Starting worker ${process.pid}`);
-        this._database = new Database(databaseConnected => {
-            if(!databaseConnected) {
-                callback(false);
-                return;
-            }
-
-            this._mail = new Mail(mailConnected => {
-                if(!mailConnected) {
-                    callback(false);
-                    return;
-                }
-
-                callback(true);
-            })
-        })
+    /**
+     * Get User-Class to work with the User
+     *
+     * @param userID userID of the User
+     *
+     * @returns User
+     * */
+    getUser(userID) {
+        return new User(userID);
     }
 
 }

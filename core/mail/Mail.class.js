@@ -54,7 +54,7 @@ class Mail {
             success(true);
         });
 
-        this.sendHTMLMail('Hall Welt', 'noreply@dev.de', 'Test');
+        //this.sendHTMLMail('Hall Welt', 'noreply@dev.de', 'Test');
     }
 
     /**

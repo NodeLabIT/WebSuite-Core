@@ -108,7 +108,7 @@ class Database {
 
             // Get new connection from pool
             this._pool.getConnection((err, connection) => {
-                if(!err) {
+                if(err) {
                     // release connection and reject on error
                     connection.release();
                     reject(err);
@@ -124,6 +124,11 @@ class Database {
                     // reject on error
                     if(error) {
                         reject(error);
+                        return;
+                    }
+
+                    if(!results[0]) {
+                        reject(new Error('no data found'));
                         return;
                     }
 
