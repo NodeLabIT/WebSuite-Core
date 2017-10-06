@@ -21,6 +21,28 @@
 .container.align_center {
   text-align: center;
 }
+/* Grid */
+.grid {
+  margin: -15px;
+}
+.grid .row {
+  display: flex;
+}
+.grid .col {
+  margin: 15px;
+  background: white;
+  padding: 15px;
+  white-space: nowrap;
+}
+.grid .col.col1 {
+  flex: 1;
+}
+.grid .col.col2 {
+  flex: 2;
+}
+.grid .col.col3 {
+  flex: 3;
+}
 /* Headings */
 h1,
 h2,
@@ -88,9 +110,13 @@ html {
   min-height: 100%;
   width: 100%;
   font-family: 'Open Sans', 'Arial', 'sans-serif';
+  background: #F3F3F3;
 }
 * {
   position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .dark-overlay {
   background: rgba(0, 0, 0, 0.3);
