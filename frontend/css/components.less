@@ -28,6 +28,34 @@
   }
 }
 
+/* Grid */
+.grid {
+  margin: -15px;
+
+  .row {
+    display: flex;
+  }
+
+  .col {
+    margin: 15px;
+    background: white;
+    padding: 15px;
+    white-space: nowrap;
+
+    &.col1 {
+      flex: 1;
+    }
+
+    &.col2 {
+      flex: 2;
+    }
+
+    &.col3 {
+      flex: 3;
+    }
+  }
+}
+
 /* Headings */
 h1,h2,h3,h4,h5,h6 {
   margin: 0 0 10px 0;
