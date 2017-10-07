@@ -8,7 +8,7 @@ const WebServer  = require('./webserver/WebServer.class');
 const Database = require('./database/Database.class');
 const Mail = require('./mail/Mail.class');
 
-const User = require('./user/User.class');
+const UserHandler = require('./user/UserHandler.class');
 
 /**
  * Class of core-module
@@ -32,7 +32,16 @@ class WebSuite {
                 callback(true);
 
                 // TODO: Remove test when tests ready
-                this.getUser(1);
+                this.getUserHandler().getUserByUserID(1).then(user => {
+                    this.getLogger().debug(user.getUsername() + " / " + user.getUserID() + " / " + user.getUserMail());
+                }).catch(err => {
+                    console.log(err);
+                    if(err.message === 'no data found') {
+
+                    } else {
+
+                    }
+                });
             })
         });
     }
@@ -87,12 +96,10 @@ class WebSuite {
     /**
      * Get User-Class to work with the User
      *
-     * @param userID userID of the User
-     *
-     * @returns User
+     * @returns UserHandler
      * */
-    getUser(userID) {
-        return new User(userID);
+    getUserHandler() {
+        return UserHandler;
     }
 
 }

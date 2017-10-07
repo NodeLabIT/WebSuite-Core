@@ -2,20 +2,27 @@
 
 class User {
 
-    /**
-     * @param userID userID of User you want tot work with
-     * */
-    constructor(userID) {
+    constructor(userID, callback) {
+        this.userID = userID;
         WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(result => {
-            WebSuite.getLogger().debug("USER EXISTS");
-            this._userID = userID;
+            this.userAccountInformation = result[0];
+            callback(true);
         }).catch(err => {
-            if(err.message !== "no data found") {
-                WebSuite.getLogger().error(err);
-            } else {
-                WebSuite.getLogger().debug("USER DOESN'T EXIST");
-            }
+            // TODO: Handle error
+            callback(false);
         });
+    }
+
+    getUserID() {
+        return this.userAccountInformation.userID;
+    }
+
+    getUsername() {
+        return this.userAccountInformation.username;
+    }
+
+    getUserMail() {
+        return this.userAccountInformation.email;
     }
 
 }

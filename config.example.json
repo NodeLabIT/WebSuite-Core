@@ -1,0 +1,23 @@
+{
+  "workers": 1,
+  "server": {
+    "socketio": 8081,
+    "webserver": 8080
+  },
+  "mail": {
+    "host": "host.domain.tld",
+    "port": 587,
+    "sender": {
+      "user": "noreply@domain.tld",
+      "password": "password",
+      "displayName": "Name - Domain.tld"
+    }
+  },
+  "database": {
+    "connections": 10,
+    "host": "localhost",
+    "user": "websuite",
+    "password": "websuite",
+    "database": "websuite"
+  }
+}
