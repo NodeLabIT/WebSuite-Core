@@ -1,4 +1,17 @@
 /* Colors */
+/* NoMargin */
+.noMarginTop {
+  margin-top: 0 !important;
+}
+.noMarginBottom {
+  margin-bottom: 0 !important;
+}
+.noMarginLeft {
+  margin-left: 0 !important;
+}
+.noMarginRight {
+  margin-right: 0 !important;
+}
 /* Container 1280px */
 .container {
   width: 1280px;
@@ -22,16 +35,12 @@
   text-align: center;
 }
 /* Grid */
-.grid {
-  margin: -15px;
-}
 .grid .row {
   display: flex;
+  margin: 45px -15px;
 }
 .grid .col {
-  margin: 15px;
-  background: white;
-  padding: 15px;
+  margin: 0 15px;
   white-space: nowrap;
 }
 .grid .col.col1 {

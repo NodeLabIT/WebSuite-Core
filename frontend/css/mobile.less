@@ -88,14 +88,31 @@
   }
 
   .grid {
-    margin: 0;
+    .forum-box {
+      display: block !important;
+      width: calc(~'100% - 35px') !important;
+      margin-left: 35px !important;
+
+      &.noMarginLeft {
+        margin-left: 35px !important;
+      }
+    }
 
     .row {
       display: block;
+      margin: 10px 0;
 
       .col {
-        margin: 15px 0;
+        margin: 0;
       }
+    }
+  }
+
+  .cat-row {
+    border: 0 !important;
+
+    .forum-box {
+      border-bottom: #E4E4E4 solid 1px;
     }
   }
 }
@@ -180,14 +197,31 @@
   }
 
   .grid {
-    margin: 0;
+    .forum-box {
+      display: block !important;
+      width: calc(~'100% - 35px') !important;
+      margin-left: 35px !important;
+
+      &.noMarginLeft {
+        margin-left: 35px !important;
+      }
+    }
 
     .row {
       display: block;
+      margin: 10px 0;
 
       .col {
-        margin: 15px 0;
+        margin: 0;
       }
+    }
+  }
+
+  .cat-row {
+    border: 0 !important;
+
+    .forum-box {
+      border-bottom: #E4E4E4 solid 1px;
     }
   }
 }
@@ -280,11 +314,12 @@
   }
 
   .grid {
-    margin: -15px;
-
     .row {
-      .col {
-        flex: 2;
+      display: block;
+
+      .col2 {
+        display: inline-block;
+        width: 48%;
       }
     }
   }
@@ -304,8 +339,6 @@
   }
 
   .grid {
-    margin: -15px;
-
     .row {
       .col {
         flex: 2;
