@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+        <title>Willkommen :: Websuite 2</title>
+
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/mobile.css" rel="stylesheet" type="text/css">
+        <link href="css/preview.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="javascript/main.js"></script>
+    </head>
+
+    <body class="dark-body">
+        <div class="dark-overlay"></div>
+
+        <header>
+            <i id="open-menu" class="fa fa-bars mobile-hidden"></i>
+
+            <nav id="main-nav">
+                <div class="container right">
+                    <i id="close-menu" class="fa fa-times mobile-hidden"></i>
+
+                    <h3 class="white mobile-hidden">Websuite 2</h3>
+
+                    <a class="active">Startseite</a>
+                    <a href="#">Forum</a>
+                    <a href="#">Filebase</a>
+                    <a href="#">Lexikon</a>
+                    <a hreF="#">Hilfe</a>
+                    <a href="#">
+                        <i class="fa fa-bell"></i>
+                        <span class="notification-badge">1</span>
+                        <span class="mobile-hidden">Benachrichtigungen</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-comments"></i>
+                        <span class="notification-badge">3</span>
+                        <span class="mobile-hidden">Nachrichten</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div id="hero" class="container">
+                <h2 class="white">Websuite 2</h2>
+                <div class="maintext white">Willkommen zur zweiten Version der Websuite.</div>
+            </div>
+
+            <div id="sub-nav">
+                <div class="container">
+                    <a hreF="#">
+                        <i class="fa fa-user-circle-o left"></i>
+                        Marcel Reif
+                    </a>
+
+                    <div class="container right align_right">
+                        <a href="#" class="margin15vert">Benachrichtigungseinstellungen</a>
+                        <a href="#" class="margin15vert">Datenschutzeinstellungen</a>
+                        <a href="#" class="margin15vert">Avatar</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <section id="grid">
+                    <h2>Grid-System</h2>
+                    <div class="maintext">Das Grid-System basiert auf den Flex-Attributen von CSS. Die Breite der
+                        Container innerhalb einer Reihe ist flexibel, lässt sich jedoch durch Klassen anpassen. Sofern
+                        ein der Inhalt in meinem Container mehr Platz benötigt, holt er sich diesen, in Rücksicht auf
+                        die anderen.
+                    </div>
+                    <br>
+                    <h4>Beispiel</h4>
+                    <div class="grid preview">
+                        <div class="row">
+                            <div class="col col1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col2"></div>
+                            <div class="col col2"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col3"></div>
+                            <div class="col col3"></div>
+                            <div class="col col3"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col4"></div>
+                            <div class="col col4"></div>
+                            <div class="col col4"></div>
+                            <div class="col col4"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col5"></div>
+                            <div class="col col5"></div>
+                            <div class="col col5"></div>
+                            <div class="col col5"></div>
+                            <div class="col col5"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col6"></div>
+                            <div class="col col6"></div>
+                            <div class="col col6"></div>
+                            <div class="col col6"></div>
+                            <div class="col col6"></div>
+                            <div class="col col6"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col7"></div>
+                            <div class="col col7"></div>
+                            <div class="col col7"></div>
+                            <div class="col col7"></div>
+                            <div class="col col7"></div>
+                            <div class="col col7"></div>
+                            <div class="col col7"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col8"></div>
+                            <div class="col col8"></div>
+                            <div class="col col8"></div>
+                            <div class="col col8"></div>
+                            <div class="col col8"></div>
+                            <div class="col col8"></div>
+                            <div class="col col8"></div>
+                            <div class="col col8"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                            <div class="col col9"></div>
+                        </div>
+                    </div>
+
+                    <h4>Verfügbare Klassen</h4>
+                    <div class="maintext">Um einen Container im Grid erstellen zu können, muss erst .col an das Element
+                        angefügt werden. Anschließend wird die Größe des Containers mit folgenden Klassen bestimmt:
+                    </div>
+                    <ul class="maintext">
+                        <li>col1</li>
+                        <li>col2</li>
+                        <li>col3</li>
+                        <li>col4</li>
+                        <li>col5</li>
+                        <li>col6</li>
+                        <li>col7</li>
+                        <li>col8</li>
+                        <li>col9</li>
+                    </ul>
+                </section>
+
+                <section id="forum-box">
+                    <h2>Foren-Boxen</h2>
+                    <div class="maintext">Der wichtigste Teil eines Forums ist logischerweise die Übersicht der Kategorien. Um einen Container dieser Art zu erstellen ist es wichtig, das Grid-System richtig anzuwenden. Es wird zuerst ein Grid-Parent geöffnet, welcher standardmäßig eine Row enthält. In dieser Row kommt anschließend ein Container, egal mit welcher Größe, mit der Klasse .forums. Anschließend wird der Parent .categorie geöffnet, in welchem sich nun eine weitere Reihe mit den Klassen .noMarginTop und .noMarginBottom befindet. Innerhalb dieser Reihe befindet sich .panel-head. In diesen Container wird anschließend mit der vierten Überschrift der Titel bestimmt. Sofern dies geschehen ist wird .cat-row geöffnet. Innerhalb diesem Container befindet sich .forums-posts, worin anschließend die eigentlichen Boxen mit Titel, Themen und letzten Post zu finden sind.</div>
+                    <br>
+                    <h4>Beispiel</h4>
+                    <div class="grid">
+                        <div class="row">
+                            <div class="col col5 forums">
+                                <div class="categorie">
+                                    <div class="row noMarginTop noMarginBottom">
+                                        <div class="col col1">
+                                            <div class="panel-head">
+                                                <h4>Allgemeines</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cat-row">
+                                        <div class="forum-posts">
+                                            <div class="forum-box">
+                                                <h4>Neuigkeiten</h4>
+                                                <div class="forum-info">
+                                                    <i class="fa fa-comments-o"></i>
+                                                    <h6>16 Themen</h6>
+                                                </div>
+                                                <div class="latest-post">
+                                                    <img src="images/profileimg.png" alt="Marcel Reif">
+                                                    <div class="content">
+                                                        <h5>Software-Update</h5>
+                                                        <h6>Von Marcel Reif</h6>
+                                                        <h6 class="date">Vom 07.10.2017</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="forum-box noMarginLeft">
+                                                <h4>Ankündigungen</h4>
+                                                <div class="forum-info">
+                                                    <i class="fa fa-comments-o"></i>
+                                                    <h6>5 Themen</h6>
+                                                </div>
+                                                <div class="latest-post">
+                                                    <img src="images/profileimg.png" alt="Marcel Reif">
+                                                    <div class="content">
+                                                        <h5>Bevorstehende Wartungsarbeiten am 10.10.2017 um 00:00 Uhr</h5>
+                                                        <h6>Von Marcel Reif</h6>
+                                                        <h6 class="date">Vom 07.10.2017</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="forms">
+                    <h2>Formulare</h2>
+                    <div class="maintext">Formulare - eine der schlimmsten Dinge in CSS - like a pain in the ass. Die Größe der Inputs lässt sich ebenfalls durch das Grid-System mit den Columns bestimmen.</div>
+                    <br>
+                    <h4>Beispiel</h4>
+                    <form>
+                        <div class="grid">
+                            <div class="row">
+                                <div class="col col3">
+                                    <input type="text" placeholder="Vorname">
+                                    <span></span>
+                                </div>
+                                <div class="col col3">
+                                    <input type="text" placeholder="Nachname">
+                                    <span></span>
+                                </div>
+                                <div class="col col3">
+                                    <input type="email" placeholder="E-Mailadresse">
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col4">
+                                    <input type="text" placeholder="Ort">
+                                    <span></span>
+                                </div>
+
+                                <div class="col col4">
+                                    <input type="text" placeholder="Straße">
+                                    <span></span>
+                                </div>
+
+                                <div class="col col1">
+                                    <input type="text" placeholder="Hausnummer">
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col3">
+                                    <input type="checkbox" id="check1">
+                                    <label for="check1" class="checkbox">Cookies, bitte!</label><br>
+                                    <input type="checkbox" id="check2">
+                                    <label for="check2" class="checkbox">Gummibärchen ebenfalls.</label>
+                                </div>
+
+                                <div class="col col3">
+                                    <input type="radio" id="radio1" name="radiogroup1">
+                                    <label for="radio1" class="radio">Chips</label><br>
+                                    <input type="radio" id="radio2" name="radiogroup1">
+                                    <label for="radio2" class="radio">Chips & Cola</label>
+                                </div>
+
+                                <div class="col col3">
+                                    <label for="range1">Wähle aus:</label>
+                                    <input type="range" id="range1">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>
