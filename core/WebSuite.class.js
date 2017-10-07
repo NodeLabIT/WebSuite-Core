@@ -10,6 +10,9 @@ const Mail = require('./mail/Mail.class');
 
 const UserHandler = require('./user/UserHandler.class');
 
+// Utils
+require('./utils/UserUtil.class');
+
 /**
  * Class of core-module
  * */
@@ -34,15 +37,15 @@ class WebSuite {
                 // TODO: Remove test when tests ready
                 this.getUserHandler().getUserByUserID(2).then(user => {
                     user.getUserInformation().then(test => {
-                        console.log(test.username);
+                        this.getLogger().debug(test.username);
                     }).catch(err => {
                         if(err.message === 'no data found') {
-                            console.log("User doesn't have profile-information");
+                            this.getLogger().debug("User doesn't have profile-information");
                         }
                     });
                 }).catch(err => {
                     if(err.message === 'no data found') {
-                        console.log("User doesn't exist");
+                        this.getLogger().debug("User doesn't exist");
                     } else {
 
                     }
