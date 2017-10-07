@@ -2,27 +2,47 @@
 
 class User {
 
-    constructor(userID, callback) {
+    constructor(userID) {
         this.userID = userID;
-        WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(result => {
-            this.userAccountInformation = result[0];
-            callback(true);
-        }).catch(err => {
-            // TODO: Handle error
-            callback(false);
+    }
+
+    /**
+     * Get userID of user
+     *
+     * @returns userID
+     * */
+    getUserID() {
+        return this.userID;
+    }
+
+    /**
+     * Get list of user account-information (e.g. username, email-address, birthday, registration-time)
+     *
+     * @returns Promise Resolves with
+     * */
+    getUserInformation() {
+        return new Promise((resolve, reject) => {
+            WebSuite.getDatabase().query("SELECT * FROM wsUser, wsUserProfile WHERE wsUser.userID=? AND wsUser.userID = wsUserProfile.userID", [this.userID]).then(result => {
+                resolve(result[0]);
+            }).catch(err => {
+                reject(err);
+            });
         });
     }
 
-    getUserID() {
-        return this.userAccountInformation.userID;
-    }
-
-    getUsername() {
-        return this.userAccountInformation.username;
-    }
-
-    getUserMail() {
-        return this.userAccountInformation.email;
+    /**
+     * Get list of user profile-fields
+     *
+     * @returns Promise
+     * */
+    getUserProfileFields() {
+        return new Promise((resolve, reject) => {
+            WebSuite.getDatabase().query("SELECT wsConfigurationUserProfileInformation.informationName, wsUserProfileInformation.value FROM wsConfigurationUserProfileInformation, wsUserProfileInformation WHERE wsUserProfileInformation.userID = ? AND wsUserProfileInformation.informationID = wsConfigurationUserProfileInformation.informationID", [this.userID]).then(results => {
+                resolve(results);
+            }).catch(err => {
+                reject(err);
+            });
+        });
     }
 
 }

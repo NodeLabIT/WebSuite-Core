@@ -32,12 +32,17 @@ class WebSuite {
                 callback(true);
 
                 // TODO: Remove test when tests ready
-                this.getUserHandler().getUserByUserID(1).then(user => {
-                    this.getLogger().debug(user.getUsername() + " / " + user.getUserID() + " / " + user.getUserMail());
+                this.getUserHandler().getUserByUserID(2).then(user => {
+                    user.getUserInformation().then(test => {
+                        console.log(test.username);
+                    }).catch(err => {
+                        if(err.message === 'no data found') {
+                            console.log("User doesn't have profile-information");
+                        }
+                    });
                 }).catch(err => {
-                    console.log(err);
                     if(err.message === 'no data found') {
-
+                        console.log("User doesn't exist");
                     } else {
 
                     }

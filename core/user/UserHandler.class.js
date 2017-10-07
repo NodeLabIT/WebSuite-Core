@@ -10,13 +10,7 @@ class UserHandler {
     getUserByUserID(userID) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(result => {
-                const user = new User(result[0].userID, success => {
-                    if(success) {
-                        resolve(user);
-                    } else {
-                        reject();
-                    }
-                });
+                resolve(new User(result[0].userID));
             }).catch(err => {
                 reject(err);
             });
@@ -29,13 +23,7 @@ class UserHandler {
     getUserByUserName(userName) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [userName]).then(result => {
-                const user = new User(result[0].userID, success => {
-                    if(success) {
-                        resolve(user);
-                    } else {
-                        reject();
-                    }
-                });
+                resolve(new User(result[0].userID));
             }).catch(err => {
                 reject(err);
             });
@@ -48,13 +36,7 @@ class UserHandler {
     getUserByEMail(email) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then(result => {
-                const user = new User(result[0].userID, success => {
-                    if(success) {
-                        resolve(user);
-                    } else {
-                        reject();
-                    }
-                });
+                resolve(new User(result[0].userID));
             }).catch(err => {
                 reject(err);
             });
