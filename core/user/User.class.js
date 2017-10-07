@@ -9,7 +9,7 @@ class User {
     /**
      * Get userID of user
      *
-     * @returns userID
+     * @returns number userID
      * */
     getUserID() {
         return this.userID;
