@@ -71,14 +71,26 @@
     position: relative !important;
     margin-left: 25px;
   }
-  .grid {
-    margin: 0;
+  .grid .forum-box {
+    display: block !important;
+    width: calc(100% - 35px) !important;
+    margin-left: 35px !important;
+  }
+  .grid .forum-box.noMarginLeft {
+    margin-left: 35px !important;
   }
   .grid .row {
     display: block;
+    margin: 10px 0;
   }
   .grid .row .col {
-    margin: 15px 0;
+    margin: 0;
+  }
+  .cat-row {
+    border: 0 !important;
+  }
+  .cat-row .forum-box {
+    border-bottom: #E4E4E4 solid 1px;
   }
 }
 @media only screen and (min-width: 481px) and (max-width: 720px) {
@@ -146,14 +158,26 @@
     position: relative !important;
     margin-left: 25px;
   }
-  .grid {
-    margin: 0;
+  .grid .forum-box {
+    display: block !important;
+    width: calc(100% - 35px) !important;
+    margin-left: 35px !important;
+  }
+  .grid .forum-box.noMarginLeft {
+    margin-left: 35px !important;
   }
   .grid .row {
     display: block;
+    margin: 10px 0;
   }
   .grid .row .col {
-    margin: 15px 0;
+    margin: 0;
+  }
+  .cat-row {
+    border: 0 !important;
+  }
+  .cat-row .forum-box {
+    border-bottom: #E4E4E4 solid 1px;
   }
 }
 @media only screen and (min-width: 721px) and (max-width: 960px) {
@@ -229,11 +253,12 @@
   #sub-nav .right {
     width: auto !important;
   }
-  .grid {
-    margin: -15px;
+  .grid .row {
+    display: block;
   }
-  .grid .row .col {
-    flex: 2;
+  .grid .row .col2 {
+    display: inline-block;
+    width: 48%;
   }
 }
 @media only screen and (min-width: 961px) and (max-width: 1024px) {
@@ -242,9 +267,6 @@
   }
   #sub-nav .right {
     width: auto !important;
-  }
-  .grid {
-    margin: -15px;
   }
   .grid .row .col {
     flex: 2;
