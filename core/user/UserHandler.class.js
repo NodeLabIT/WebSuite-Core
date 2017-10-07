@@ -5,6 +5,8 @@ const User = require('./User.class');
 class UserHandler {
 
     /**
+     * Get a user by his userID
+     *
      * @param userID userID of User you want tot work with
      * */
     getUserByUserID(userID) {
@@ -18,6 +20,8 @@ class UserHandler {
     }
 
     /**
+     * Get a user by his username
+     *
      * @param userName user-name of User you want tot work with
      * */
     getUserByUserName(userName) {
@@ -31,6 +35,8 @@ class UserHandler {
     }
 
     /**
+     * Get a user by his email-address
+     *
      * @param email email-address of User you want tot work with
      * */
     getUserByEMail(email) {
