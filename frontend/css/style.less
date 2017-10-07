@@ -7,6 +7,7 @@ body, html {
   width: 100%;
   font-family: 'Open Sans', 'Arial', 'sans-serif';
   background: #F3F3F3;
+  overflow-y: auto;
 }
 
 * {
@@ -132,7 +133,7 @@ header {
   }
 }
 
-#main {
+.forums {
   .categorie {
     background: white;
   }
@@ -143,7 +144,7 @@ header {
 
   .panel-head {
     padding: 30px;
-    border-top: @main_blue 2px solid;
+    border-top: var(--main_blue) 2px solid;
     border-bottom: 1px #E4E4E4 solid;
 
     h4 {
@@ -180,7 +181,7 @@ header {
       transform: translate(0, -50%);
       content: '';
       display: block;
-      background: #12539F;
+      background: var(--main_blue);
       box-shadow: 0 0 0 1px #E4E4E4;
     }
 
@@ -222,7 +223,7 @@ header {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      width: calc(~'100% - 50px');
+      width: calc(~'100% - 55px');
 
       h5,h6 {
         margin-bottom: 4px;
@@ -238,7 +239,7 @@ header {
 #sidebar {
   .panel-head {
     padding: 30px 30px 10px 30px;
-    border-top: @main_blue 2px solid;
+    border-top: var(--main_blue) 2px solid;
 
     h4 {
       margin: 0;
@@ -272,9 +273,9 @@ header {
 
     table {
       display: inline-table;
-      width: calc(~'100% - 72px');
+      width: calc(~'100% - 79px');
       font-size: 11px;
-      color: @main_text;
+      color: var(--main_text);
       vertical-align: middle;
     }
   }
