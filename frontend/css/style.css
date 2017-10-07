@@ -312,6 +312,37 @@ header #sub-nav a {
 #main .latest-post .content .date {
   color: #989898;
 }
-#sidebar .col {
+#sidebar .panel-head {
+  padding: 30px 30px 10px 30px;
+  border-top: #12539F 2px solid;
+}
+#sidebar .panel-head h4 {
+  margin: 0;
+}
+#sidebar .cat-sidebar {
   background: white;
+  margin-top: 45px;
+}
+#sidebar .cat-sidebar:first-of-type {
+  margin-top: 0;
+}
+#sidebar .content {
+  padding: 0 30px 30px 30px;
+}
+#sidebar #user-account img {
+  width: 65px;
+  height: 65px;
+  border-radius: 100px;
+  object-fit: cover;
+  object-position: center;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+#sidebar #user-account table {
+  display: inline-table;
+  width: calc(100% - 72px);
+  font-size: 11px;
+  color: #545454;
+  vertical-align: middle;
 }

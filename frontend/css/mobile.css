@@ -92,6 +92,12 @@
   .cat-row .forum-box {
     border-bottom: #E4E4E4 solid 1px;
   }
+  .cat-row .forum-box:nth-last-child(1) {
+    border-bottom: 0;
+  }
+  #sidebar {
+    margin-top: 10px;
+  }
 }
 @media only screen and (min-width: 481px) and (max-width: 720px) {
   .mobile-hidden {
@@ -179,6 +185,9 @@
   .cat-row .forum-box {
     border-bottom: #E4E4E4 solid 1px;
   }
+  #sidebar {
+    margin-top: 10px;
+  }
 }
 @media only screen and (min-width: 721px) and (max-width: 960px) {
   #open-menu {
@@ -260,19 +269,37 @@
     display: inline-block;
     width: 48%;
   }
+  #sidebar {
+    margin-top: 10px;
+  }
+  #sidebar .cat-sidebar {
+    display: inline-table;
+    width: 50%;
+  }
 }
-@media only screen and (min-width: 961px) and (max-width: 1024px) {
+@media only screen and (min-width: 961px) and (max-width: 1110px) {
   #main-nav .right {
     text-align: right;
   }
   #sub-nav .right {
     width: auto !important;
   }
-  .grid .row .col {
-    flex: 2;
+  .grid .row {
+    display: block;
+  }
+  .grid .row .col2 {
+    display: inline-block;
+    width: 48%;
+  }
+  #sidebar {
+    margin-top: 10px;
+  }
+  #sidebar .cat-sidebar {
+    display: inline-table;
+    width: 50%;
   }
 }
-@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+@media only screen and (min-width: 1111px) and (max-width: 1366px) {
   #main-nav .right {
     text-align: right;
   }

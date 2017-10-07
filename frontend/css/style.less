@@ -235,6 +235,47 @@ header {
   }
 }
 
-#sidebar .col {
-  background: white;
+#sidebar {
+  .panel-head {
+    padding: 30px 30px 10px 30px;
+    border-top: @main_blue 2px solid;
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  .cat-sidebar {
+    background: white;
+    margin-top: 45px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  .content {
+    padding: 0 30px 30px 30px;
+  }
+
+  #user-account {
+    img {
+      width: 65px;
+      height: 65px;
+      border-radius: 100px;
+      object-fit: cover;
+      object-position: center;
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    table {
+      display: inline-table;
+      width: calc(~'100% - 72px');
+      font-size: 11px;
+      color: @main_text;
+      vertical-align: middle;
+    }
+  }
 }

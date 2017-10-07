@@ -113,7 +113,15 @@
 
     .forum-box {
       border-bottom: #E4E4E4 solid 1px;
+
+      &:nth-last-child(1) {
+        border-bottom: 0;
+      }
     }
+  }
+
+  #sidebar {
+    margin-top: 10px;
   }
 }
 
@@ -224,6 +232,10 @@
       border-bottom: #E4E4E4 solid 1px;
     }
   }
+
+  #sidebar {
+    margin-top: 10px;
+  }
 }
 
 @media only screen and (min-width: 721px) and (max-width: 960px) {
@@ -323,9 +335,18 @@
       }
     }
   }
+
+  #sidebar {
+    margin-top: 10px;
+
+    .cat-sidebar {
+      display: inline-table;
+      width: 50%;
+    }
+  }
 }
 
-@media only screen and (min-width: 961px) and (max-width: 1024px) {
+@media only screen and (min-width: 961px) and (max-width: 1110px) {
   #main-nav {
     .right {
       text-align: right;
@@ -340,14 +361,27 @@
 
   .grid {
     .row {
-      .col {
-        flex: 2;
+      display: block;
+
+      .col2 {
+        display: inline-block;
+        width: 48%;
       }
+    }
+  }
+
+  #sidebar {
+    margin-top: 10px;
+
+    .cat-sidebar {
+      display: inline-table;
+      width: 50%;
     }
   }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+
+@media only screen and (min-width: 1111px) and (max-width: 1366px) {
   #main-nav {
     .right {
       text-align: right;
