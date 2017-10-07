@@ -8,4 +8,16 @@ $(document).ready(function () {
       $('#main-nav').removeClass('visible');
       $('.dark-overlay').removeClass('visible');
    });
+
+    $(window).on('scroll', function() {
+        var headerHeight = $('header').height();
+
+        if ($(document).scrollTop() > headerHeight) {
+            $('#open-menu').addClass('dark');
+        }
+
+        else {
+            $('#open-menu').removeClass('dark');
+        }
+    });
 });
