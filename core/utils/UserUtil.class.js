@@ -106,7 +106,7 @@ class UserUtil {
             }
 
             // check for full whitespace email-address
-            if(email.trim()) {
+            if(email.length < email.trim().length) {
                 reject(new Error('email whitespace mismatch'));
                 return;
             }

@@ -35,12 +35,6 @@ class WebSuite {
 
                 callback(true);
 
-                UserUtil.usernameValid("").then(() => {
-                    console.log("VALID!");
-                }).catch(err => {
-                    console.log(err.message);
-                });
-
                 // TODO: Remove test when tests ready
                 this.getUserHandler().getUserByUserID(1).then(user => {
                     user.getUserInformation().then(test => {
