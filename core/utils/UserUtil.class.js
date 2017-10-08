@@ -37,19 +37,19 @@ class UserUtil {
     static usernameValid(username) {
         return new Promise((resolve, reject) => {
             // Check for valid length
-            if(username.length > 3 && username.length <= 25) {
+            if(username.length < 3 || username.length > 25) {
                 reject(new Error('username length mismatch'));
                 return;
             }
 
             // check for invalid characters
-            if(!username.match(/^[a-zA-Z0-9 _.-]/)) {
+            if(!username.match(/^([a-zA-Z0-9][\s_.-]?)+$/)) {
                 reject(new Error('username character mismatch'));
                 return;
             }
 
             // check for full whitespace name
-            if(username.replace(/ /g, '').length === 0) {
+            if(username.length > username.trim().length) {
                 reject(new Error('username whitespace mismatch'));
                 return;
             }
@@ -93,20 +93,20 @@ class UserUtil {
     static emailValid(email) {
         return new Promise((resolve, reject) => {
             // Check for valid length to save it in the database
-            if(email.length <= 64) {
+            if(email.length > 64) {
                 reject(new Error('email length mismatch'));
                 return;
             }
 
             // check for invalid characters
             // TODO: Check for valid email-address
-            if(!email.match(/^[a-zA-Z0-9_.-]/)) {
+            if(!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
                 reject(new Error('email character mismatch'));
                 return;
             }
 
             // check for full whitespace email-address
-            if(email.replace(/ /g, '').length === 0) {
+            if(email.trim()) {
                 reject(new Error('email whitespace mismatch'));
                 return;
             }
