@@ -12,7 +12,7 @@ class CryptoUtil {
      *
      * @returns String double salted, hashed password
      * */
-    hashPassword(raw, salt) {
+    static hashPassword(raw, salt) {
         return crypto.createHmac('sha512', salt).update(raw).digest('hex');
     }
 
@@ -25,7 +25,7 @@ class CryptoUtil {
      *
      * @returns boolean true, when matches, otherwise false
      * */
-    matchPassword(raw, hashed, salt) {
+    static matchPassword(raw, hashed, salt) {
         return this.hashPassword(raw, salt) === hashed;
     }
 
@@ -36,7 +36,7 @@ class CryptoUtil {
      *
      * @returns String random salt
      * */
-    generateSalt(length) {
+    static generateSalt(length) {
         return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
     }
 
