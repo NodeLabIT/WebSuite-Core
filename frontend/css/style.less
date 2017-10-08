@@ -10,6 +10,11 @@ body, html {
   overflow-y: auto;
 }
 
+.maintext a {
+  color: var(--main_blue);
+  text-decoration: none;
+}
+
 * {
   position: relative;
   -webkit-box-sizing: border-box;
@@ -273,10 +278,45 @@ header {
 
     table {
       display: inline-table;
-      width: calc(~'100% - 79px');
+      width: calc(~'100% - 90px');
       font-size: 11px;
       color: var(--main_text);
       vertical-align: middle;
     }
   }
+}
+
+footer {
+  background: #e4e4e4;
+  overflow-y: auto;
+
+  .container {
+    margin: 20px auto;
+
+    a {
+      color: #5a5a5a;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 25px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+#user-rules {
+  max-height: 500px;
+  overflow-y: hidden;
+}
+
+#loadmore {
+  width: 60px;
+  height: 60px;
+  background: white;
+  bottom: -60px;
+  border-radius: 100px;
+  margin: auto;
 }
