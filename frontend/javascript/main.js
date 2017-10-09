@@ -21,7 +21,15 @@ $(document).ready(function () {
         }
     });
 
-    $('.dropdown').on('click', function () {
+    $('.dropdown').on('click', function (e) {
         $(this).closest('.dropdown').find('.dropdown-content').stop().toggleClass('visible');
+        return false;
+    });
+    $(document).on('click', function() {
+        $('.dropdown-content.visible').toggleClass('visible');
+    });
+    $('.dropdown-content').on('click', function(e) {
+        e.stopPropagation();
+        return false;
     });
 });

@@ -36,9 +36,9 @@ class WebServer {
         });
 
         // add public-directive
-        this.app.use(serveStatic(__dirname + '/../../public/'));
+        this.app.use(serveStatic(__dirname + '/../../frontend/'));
         this.app.use((req, res) => {
-            res.send(fs.readFileSync(__dirname + '/../../public/index.html', {encoding: 'utf-8'}));
+            res.send(fs.readFileSync(__dirname + '/../../frontend/index.html', {encoding: 'utf-8'}));
         });
 
         // initialize webserver and start it
