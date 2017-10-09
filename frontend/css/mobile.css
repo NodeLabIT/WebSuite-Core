@@ -42,6 +42,9 @@
   header #main-nav.visible {
     left: 0;
   }
+  header #main-nav .notification {
+    display: none;
+  }
   header #main-nav .right {
     float: none;
     margin: 0;
@@ -55,6 +58,10 @@
     float: right;
     color: white;
     font-size: 24px;
+  }
+  header #main-nav .dropdown {
+    display: block !important;
+    margin-top: 10px;
   }
   header #main-nav a {
     display: table;
@@ -99,6 +106,10 @@
   }
   .cat-row .forum-box {
     border-bottom: #E4E4E4 solid 1px;
+  }
+  .cat-row .forum-box:before {
+    top: -10px;
+    height: 105%;
   }
   .cat-row .forum-box:nth-last-child(1) {
     border-bottom: 0;
@@ -139,6 +150,9 @@
   header #main-nav.visible {
     left: 0;
   }
+  header #main-nav .notification {
+    display: none;
+  }
   header #main-nav .right {
     float: none;
     margin: 0;
@@ -152,6 +166,10 @@
     float: right;
     color: white;
     font-size: 24px;
+  }
+  header #main-nav .dropdown {
+    display: block !important;
+    margin-top: 10px;
   }
   header #main-nav a {
     display: table;
@@ -197,6 +215,13 @@
   .cat-row .forum-box {
     border-bottom: #E4E4E4 solid 1px;
   }
+  .cat-row .forum-box:before {
+    top: -10px;
+    height: 105%;
+  }
+  .cat-row .forum-box:nth-last-child(1) {
+    border-bottom: 0;
+  }
   #sidebar {
     margin-top: 10px;
   }
@@ -234,6 +259,9 @@
   #main-nav.visible {
     left: 0;
   }
+  #main-nav .notification {
+    display: none;
+  }
   #main-nav .right {
     float: none;
     margin: 0 !important;
@@ -247,6 +275,10 @@
     float: right;
     color: white;
     font-size: 24px;
+  }
+  #main-nav .dropdown {
+    display: block !important;
+    margin-top: 10px;
   }
   #main-nav a {
     display: table;
@@ -295,6 +327,9 @@
 @media only screen and (min-width: 961px) and (max-width: 1110px) {
   #main-nav .right {
     text-align: right;
+  }
+  #main-nav .notification .row {
+    display: flex;
   }
   #sub-nav .right {
     width: auto !important;
