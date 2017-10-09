@@ -54,6 +54,13 @@ body {
 .dark-body h6 {
   color: #dadada;
 }
+.dark-body .notification .content {
+  background: var(--main_accent) !important;
+  border: 0 !important;
+}
+.dark-body .notification .content .row:nth-child(odd) {
+  background: #646873 !important;
+}
 /* NoMargin */
 .noMarginTop {
   margin-top: 0 !important;

@@ -20,4 +20,8 @@ $(document).ready(function () {
             $('#open-menu').removeClass('dark');
         }
     });
+
+    $('.dropdown').on('click', function () {
+        $(this).closest('.dropdown').find('.dropdown-content').stop().toggleClass('visible');
+    });
 });
