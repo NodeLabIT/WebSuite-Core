@@ -96,10 +96,10 @@
   }
   .grid .row {
     display: block;
-    margin: 25px 0;
+    margin: 0 0;
   }
   .grid .row .col {
-    margin: 10px 0;
+    margin: 15px 0;
   }
   .cat-row {
     border: 0 !important;
@@ -204,10 +204,10 @@
   }
   .grid .row {
     display: block;
-    margin: 25px 0;
+    margin: 0;
   }
   .grid .row .col {
-    margin: 10px 0;
+    margin: 15px 0;
   }
   .cat-row {
     border: 0 !important;
