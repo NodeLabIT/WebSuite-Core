@@ -71,8 +71,6 @@ class TimeUtil {
         return pastTime;
     }
 
-    // TODO: Add function to read time as formatted String (e.g. to set a cookie)
-
 }
 
 global.TimeUtil = TimeUtil;

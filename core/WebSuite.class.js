@@ -24,12 +24,14 @@ class WebSuite {
         this.getLogger().info(`Starting worker ${process.pid}`);
         this._database = new Database(databaseConnected => {
             if(!databaseConnected) {
+                this.getLogger().info("Please check your database-setup! WebSuite cannot be started");
                 callback(false);
                 return;
             }
 
             this._mail = new Mail(mailConnected => {
                 if(!mailConnected) {
+                    this.getLogger().info("Please check your mail-setup! WebSuite cannot be started");
                     callback(false);
                     return;
                 }
