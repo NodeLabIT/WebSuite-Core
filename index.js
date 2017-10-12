@@ -35,7 +35,7 @@ if(cluster.isMaster) {
             socket.on('*', (packet) => {
                 randomWorker(worker => {
                     worker.send(JSON.stringify({type: 'sioPacket', clientID: socket.conn.id, packet: packet}));
-                })
+                });
             });
         });
 

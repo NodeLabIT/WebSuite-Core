@@ -87,8 +87,8 @@ class Mail {
                     return;
                 }
                 success(true);
-            })
-        })
+            });
+        });
     }
 
     /**
