@@ -462,6 +462,36 @@ form button {
 .mainbutton i.left {
   margin-right: 10px;
 }
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table tr {
+  border-bottom: 1px #ddd solid;
+}
+table tr:last-of-type {
+  border-bottom: 0;
+}
+table th,
+table td {
+  padding: 15px;
+  border-right: 1px #ddd solid;
+  color: var(--main_text);
+  text-align: left;
+}
+table th i.left,
+table td i.left {
+  margin-right: 10px;
+}
+table th i.right,
+table td i.right {
+  margin-left: 10px;
+}
+table th:last-of-type,
+table td:last-of-type {
+  border-right: 0;
+}
 body,
 html {
   padding: 0;

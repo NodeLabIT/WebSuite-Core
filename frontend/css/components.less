@@ -519,3 +519,38 @@ form {
     }
   }
 }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px #ddd solid;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+
+  th,td {
+    padding: 15px;
+    border-right: 1px #ddd solid;
+    color: var(--main_text);
+    text-align: left;
+
+    i {
+      &.left {
+        margin-right: 10px;
+      }
+
+      &.right {
+        margin-left: 10px;
+      }
+    }
+
+    &:last-of-type {
+      border-right: 0;
+    }
+  }
+}
