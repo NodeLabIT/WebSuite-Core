@@ -14,6 +14,10 @@ body {
 .dark-body footer a {
   color: #dadada !important;
 }
+.dark-body td,
+.dark-body th {
+  color: #dadada;
+}
 .dark-body .maintext {
   color: #dadada;
 }
@@ -808,6 +812,14 @@ header #sub-nav a {
   font-size: 11px;
   color: var(--main_text);
   vertical-align: middle;
+}
+#sidebar #user-account table tr {
+  border: 0;
+}
+#sidebar #user-account table th,
+#sidebar #user-account table td {
+  padding: 0;
+  border: 0;
 }
 footer {
   background: #e4e4e4;
