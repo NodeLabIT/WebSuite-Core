@@ -12,6 +12,7 @@ const UserHandler = require('./user/UserHandler.class');
 
 // Utils
 require('./utils/CryptoUtil.class');
+require('./utils/DirectoryUtil.class');
 require('./utils/TimeUtil.class');
 require('./utils/UserUtil.class');
 
@@ -38,7 +39,6 @@ class WebSuite {
 
                 callback(true);
 
-                // TODO: Remove test when tests ready
                 this.getUserHandler().getUserByUserID(1).then(user => {
                     user.getUserInformation().then(test => {
                         this.getLogger().debug(test.username);
