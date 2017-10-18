@@ -13,6 +13,11 @@ class DirectoryUtil {
      * */
     static directoryExists(path) {
         return new Promise((resolve, reject) => {
+            if(!path) {
+                reject(new Error('undefined param'));
+                return;
+            }
+
             fs.stat(path, (err) => {
                 if(err) {
                     reject(err);
@@ -33,6 +38,11 @@ class DirectoryUtil {
      * */
     static files(path) {
         return new Promise((resolve, reject) => {
+            if(!path) {
+                reject(new Error('undefined param'));
+                return;
+            }
+
             fs.readdir(path, (err, files) => {
                 if(err) {
                     reject(err);
@@ -54,6 +64,11 @@ class DirectoryUtil {
      * */
     static createDirectory(path, directoryName) {
         return new Promise((resolve, reject) => {
+            if(!path || !directoryName) {
+                reject(new Error('undefined param'));
+                return;
+            }
+
             if(!path.endsWith("/"))
                 path = path + "/";
 
@@ -77,6 +92,11 @@ class DirectoryUtil {
      * */
     static removeDirectory(path) {
         return new Promise((resolve, reject) => {
+            if(!path) {
+                reject(new Error('undefined param'));
+                return;
+            }
+
             fs.rmdir(path, (err) => {
                 if(err) {
                     reject(err);
