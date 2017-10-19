@@ -21,7 +21,6 @@ class LogFile {
             const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
             let message = this._queue.shift();
-            console.log(message);
 
             // TODO: Improve dequeue
 

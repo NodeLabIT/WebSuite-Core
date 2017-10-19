@@ -10,6 +10,8 @@ const Mail = require('./mail/Mail.class');
 
 const UserHandler = require('./user/UserHandler.class');
 
+const EventHandler = require('./event/EventHandler.class');
+
 // Utils
 require('./utils/CryptoUtil.class');
 require('./utils/DirectoryUtil.class');
@@ -66,6 +68,15 @@ class WebSuite {
      * */
     getWebSocketHandler() {
         return WebSocketHandler;
+    }
+
+    /**
+     * Get EventHandler to listen and emit system-events
+     *
+     * @returns EventHandler-class
+     * */
+    getEventHandler() {
+        return EventHandler;
     }
 
     /**

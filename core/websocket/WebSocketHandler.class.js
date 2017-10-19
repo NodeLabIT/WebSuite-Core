@@ -1,8 +1,7 @@
 'use strict';
 
 // Create EventEmitter to proxy packets through the system
-const Event = require('events');
-class EventEmitter extends Event {}
+const EventEmitter = require('../event/EventEmitter.class');
 
 /**
  * Class to work with packets in socket.io
