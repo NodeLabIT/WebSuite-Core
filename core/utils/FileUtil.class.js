@@ -29,6 +29,55 @@ class FileUtil {
         });
     }
 
+    /**
+     * Reads a file
+     *
+     * @param path path to the file
+     *
+     * @returns Promise resolves on success with file-content, rejects on failure with error
+     * */
+    readFile(path) {
+        return new Promise((resolve, reject) => {
+            if(path === undefined) {
+                reject(new Error('undefined param'));
+            }
+
+            fs.readFile(path, 'utf-8', (err, content) => {
+                if(err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve(content);
+            });
+        });
+    }
+
+    /**
+     * Saves a file
+     *
+     * @param path path to the file
+     * @param content content to save in the file
+     *
+     * @returns Promise resolves on success, rejects on failure with error
+     * */
+    saveFile(path, content) {
+        return new Promise((resolve, reject) => {
+            if(path === undefined) {
+                reject(new Error('undefined param'));
+            }
+
+            fs.writeFile(path, content, 'utf-8', (err) => {
+                if(err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve();
+            });
+        });
+    }
+
 }
 
 global.FileUtil = FileUtil;
