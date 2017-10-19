@@ -5,6 +5,7 @@ class Logger {
     // TODO: Change format for logging-prefix
 
     logToFile(message) {
+        // TODO: add queue to prevent errors in reading and saving the file
         DirectoryUtil.directoryExists(__dirname + '/../../logs/').then(() => {
             const date = new Date();
             const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
