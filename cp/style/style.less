@@ -1,4 +1,5 @@
-@background-header: #393D5C;
+@color-discord-dark: #445282;
+@color-discord: #7289DA;
 @background-page: #F4F4F4;
 
 @color-white: #FFFFFF;
@@ -11,29 +12,86 @@ html, body {
 }
 
 .header {
-  background: @background-header;
+  background: @color-discord-dark;
   nav {
+    &.primary {
+      line-height: 60px;
+      a {
+        font-size: 14px;
+        color: fade(@color-white, 40%);
+        text-decoration: none;
+
+        &:hover, &:active {
+          color: fade(@color-white, 70%);
+        }
+
+        &.active {
+          color: @color-white;
+        }
+
+        &:not(:first-child) {
+          margin-left: 64px;
+        }
+
+        box-sizing: border-box;
+        display: inline-block;
+      }
+    }
+    &.secondary {
+      line-height: 40px;
+      font-weight: 500;
+      a {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: fade(@color-white, 40%);
+        text-decoration: none;
+        padding: 0 12px;
+
+        &:hover, &:active {
+          color: fade(@color-white, 70%);
+        }
+
+        &.active {
+          color: @color-white;
+          border-bottom: 3px solid @color-discord;
+        }
+
+        &:not(:first-child) {
+          margin-left: 32px;
+        }
+
+        box-sizing: border-box;
+        display: inline-block;
+
+        .badge {
+          color: @color-white;
+          background: @color-discord;
+          margin-left: 6px;
+          padding: 5px 8px;
+          border-radius: 13px;
+        }
+      }
+    }
     @media all and (min-width: 1081px) {
       width: 82%;
       min-width: 1000px;
       margin: 0 auto;
-
-      line-height: 60px;
     }
-    a {
-      color: fade(@color-white, 40%);
-      text-decoration: none;
 
-      &:hover, &:active {
-        color: fade(@color-white, 70%);
-      }
-
-      &:not(:first-child) {
-        margin-left: 64px;
-      }
-
-      box-sizing: border-box;
-      display: inline-block;
+  }
+  .page-title {
+    box-sizing: border-box;
+    display: block;
+    @media all and (min-width: 1081px) {
+      width: 82%;
+      min-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-weight: 100;
+      color: @color-white;
+      margin: 0;
+      line-height: 96px;
     }
   }
 }

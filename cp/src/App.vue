@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="header">
-            <nav>
+            <nav class="primary">
                 <router-link to="/dashboard">
                     {{ 'dashboard' | translate }}
                 </router-link>
@@ -15,9 +15,25 @@
                     {{ 'dashboard' | translate }}
                 </router-link>
             </nav>
-            <h1>
-
-            </h1>
+            <div class="page-title">
+                <h1>
+                    Mitgliederverwaltung
+                </h1>
+            </div>
+            <nav class="secondary">
+                <router-link to="/dashboard" class="active">
+                    {{ 'dashboard' | translate }} <span class="badge">4.6k</span>
+                </router-link>
+                <router-link to="/dashboard">
+                    {{ 'dashboard' | translate }} <span class="badge">4.6k</span>
+                </router-link>
+                <router-link to="/dashboard">
+                    {{ 'dashboard' | translate }} <span class="badge">4.6k</span>
+                </router-link>
+                <router-link to="/dashboard">
+                    {{ 'dashboard' | translate }} <span class="badge">4.6k</span>
+                </router-link>
+            </nav>
         </header>
     </div>
 </template>

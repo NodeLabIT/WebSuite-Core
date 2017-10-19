@@ -5,26 +5,80 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .header {
-  background: #393D5C;
+  background: #445282;
+}
+.header nav.primary {
+  line-height: 60px;
+}
+.header nav.primary a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.header nav.primary a:hover,
+.header nav.primary a:active {
+  color: rgba(255, 255, 255, 0.7);
+}
+.header nav.primary a.active {
+  color: #FFFFFF;
+}
+.header nav.primary a:not(:first-child) {
+  margin-left: 64px;
+}
+.header nav.secondary {
+  line-height: 40px;
+  font-weight: 500;
+}
+.header nav.secondary a {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  padding: 0 12px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.header nav.secondary a:hover,
+.header nav.secondary a:active {
+  color: rgba(255, 255, 255, 0.7);
+}
+.header nav.secondary a.active {
+  color: #FFFFFF;
+  border-bottom: 3px solid #7289DA;
+}
+.header nav.secondary a:not(:first-child) {
+  margin-left: 32px;
+}
+.header nav.secondary a .badge {
+  color: #FFFFFF;
+  background: #7289DA;
+  margin-left: 6px;
+  padding: 5px 8px;
+  border-radius: 13px;
 }
 @media all and (min-width: 1081px) {
   .header nav {
     width: 82%;
     min-width: 1000px;
     margin: 0 auto;
-    line-height: 60px;
   }
 }
-.header nav a {
-  color: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
+.header .page-title {
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
 }
-.header nav a:hover,
-.header nav a:active {
-  color: rgba(255, 255, 255, 0.7);
+@media all and (min-width: 1081px) {
+  .header .page-title {
+    width: 82%;
+    min-width: 1000px;
+    margin: 0 auto;
+  }
 }
-.header nav a:not(:first-child) {
-  margin-left: 64px;
+.header .page-title h1 {
+  font-weight: 100;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 96px;
 }
