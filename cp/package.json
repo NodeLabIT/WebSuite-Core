@@ -1,6 +1,6 @@
 {
   "name": "cp",
-  "description": "Vue.js Control Panel for NodeLab DynMC",
+  "description": "Vue.js Control Panel for NodeLab WebSuite",
   "version": "1.0.0",
   "author": "Marc <marc.troll@nodelab-it.de>",
   "private": true,
