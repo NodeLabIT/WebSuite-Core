@@ -1,6 +1,24 @@
 <template>
     <div>
+        <header class="header">
+            <nav>
+                <router-link to="/dashboard">
+                    {{ 'dashboard' | translate }}
+                </router-link>
+                <router-link to="/dashboard">
+                    {{ 'dashboard' | translate }}
+                </router-link>
+                <router-link to="/dashboard">
+                    {{ 'dashboard' | translate }}
+                </router-link>
+                <router-link to="/dashboard">
+                    {{ 'dashboard' | translate }}
+                </router-link>
+            </nav>
+            <h1>
 
+            </h1>
+        </header>
     </div>
 </template>
 

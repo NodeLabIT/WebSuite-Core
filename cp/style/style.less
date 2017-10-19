@@ -1,3 +1,39 @@
-html {
+@background-header: #393D5C;
+@background-page: #F4F4F4;
 
+@color-white: #FFFFFF;
+
+html, body {
+  margin: 0;
+  background: @background-page;
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.header {
+  background: @background-header;
+  nav {
+    @media all and (min-width: 1081px) {
+      width: 82%;
+      min-width: 1000px;
+      margin: 0 auto;
+
+      line-height: 60px;
+    }
+    a {
+      color: fade(@color-white, 40%);
+      text-decoration: none;
+
+      &:hover, &:active {
+        color: fade(@color-white, 70%);
+      }
+
+      &:not(:first-child) {
+        margin-left: 64px;
+      }
+
+      box-sizing: border-box;
+      display: inline-block;
+    }
+  }
 }

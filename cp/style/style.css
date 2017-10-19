@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  background: #F4F4F4;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.header {
+  background: #393D5C;
+}
+@media all and (min-width: 1081px) {
+  .header nav {
+    width: 82%;
+    min-width: 1000px;
+    margin: 0 auto;
+    line-height: 60px;
+  }
+}
+.header nav a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.header nav a:hover,
+.header nav a:active {
+  color: rgba(255, 255, 255, 0.7);
+}
+.header nav a:not(:first-child) {
+  margin-left: 64px;
+}
