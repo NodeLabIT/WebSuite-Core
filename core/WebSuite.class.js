@@ -12,6 +12,8 @@ const UserHandler = require('./user/UserHandler.class');
 
 const EventHandler = require('./event/EventHandler.class');
 
+const Cronjob = require('./cronjob/Cronjob.class');
+
 // Utils
 require('./utils/CryptoUtil.class');
 require('./utils/DirectoryUtil.class');
@@ -77,6 +79,15 @@ class WebSuite {
      * */
     getEventHandler() {
         return EventHandler;
+    }
+
+    /**
+     * Get CronjobHandler to register new cronjobs
+     *
+     * @returns Cronjob-class
+     * */
+    getCrons() {
+        return Cronjob;
     }
 
     /**
