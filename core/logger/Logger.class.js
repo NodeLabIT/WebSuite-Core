@@ -2,8 +2,41 @@
 
 class Logger {
 
-    // TODO: Save logs in file and stop printing them in the console (File-Utils)
     // TODO: Change format for logging-prefix
+
+    logToFile(message) {
+        DirectoryUtil.directoryExists(__dirname + '/../../logs/').then(() => {
+            const date = new Date();
+            const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+            FileUtil.fileExists(`${__dirname}/../../logs/${dateString}.txt`).then(() => {
+                FileUtil.readFile(`${__dirname}/../../logs/${dateString}.txt`).then(content => {
+                    content += "\n" + message;
+                    FileUtil.saveFile(`${__dirname}/../../logs/${dateString}.txt`, content).then(() => {
+                        console.err("added!");
+                    }).catch(err => {
+                        // TODO: Handle error
+                    });
+                }).catch(err => {
+                    // TODO: Handle error
+                });
+            }).catch(err => {
+                FileUtil.saveFile(`${__dirname}/../../logs/${dateString}.txt`, message).then(() => {
+                    console.log("added!");
+                }).catch(err2 => {
+                    // TODO: Handle error
+                });
+            });
+        }).catch(err => {
+            if(err.code === 'ENOENT') {
+                DirectoryUtil.createDirectory(__dirname + '/../../', 'logs').then(() => {
+                    this.logToFile(message);
+                }).catch(err => {
+                    // TODO: Handle error
+                });
+            }
+        });
+    }
 
     /**
      * send info-message (green console-color)
@@ -12,6 +45,7 @@ class Logger {
      * @param master boolean whether sending from master or not (undefined when worker)
      * */
     info(message, master) {
+        this.logToFile("Test");
         if(master) {
             console.log(`\x1b[32m[MASTER | ${process.pid}] \x1b[0m${message}`);
             return;

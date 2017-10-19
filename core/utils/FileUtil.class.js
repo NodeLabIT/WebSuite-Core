@@ -36,7 +36,7 @@ class FileUtil {
      *
      * @returns Promise resolves on success with file-content, rejects on failure with error
      * */
-    readFile(path) {
+    static readFile(path) {
         return new Promise((resolve, reject) => {
             if(path === undefined) {
                 reject(new Error('undefined param'));
@@ -61,7 +61,7 @@ class FileUtil {
      *
      * @returns Promise resolves on success, rejects on failure with error
      * */
-    saveFile(path, content) {
+    static saveFile(path, content) {
         return new Promise((resolve, reject) => {
             if(path === undefined) {
                 reject(new Error('undefined param'));

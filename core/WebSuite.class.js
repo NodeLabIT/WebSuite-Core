@@ -13,6 +13,7 @@ const UserHandler = require('./user/UserHandler.class');
 // Utils
 require('./utils/CryptoUtil.class');
 require('./utils/DirectoryUtil.class');
+require('./utils/FileUtil.class');
 require('./utils/TimeUtil.class');
 require('./utils/UserUtil.class');
 
