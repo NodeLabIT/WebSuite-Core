@@ -1,42 +1,14 @@
 'use strict';
 
+const LogFile = require('./LogFile.class');
+
 class Logger {
 
     // TODO: Change format for logging-prefix
 
     logToFile(message) {
-        // TODO: add queue to prevent errors in reading and saving the file
-        DirectoryUtil.directoryExists(__dirname + '/../../logs/').then(() => {
-            const date = new Date();
-            const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-
-            FileUtil.fileExists(`${__dirname}/../../logs/${dateString}.txt`).then(() => {
-                FileUtil.readFile(`${__dirname}/../../logs/${dateString}.txt`).then(content => {
-                    content += "\n" + message;
-                    FileUtil.saveFile(`${__dirname}/../../logs/${dateString}.txt`, content).then(() => {
-                        console.err("added!");
-                    }).catch(err => {
-                        // TODO: Handle error
-                    });
-                }).catch(err => {
-                    // TODO: Handle error
-                });
-            }).catch(err => {
-                FileUtil.saveFile(`${__dirname}/../../logs/${dateString}.txt`, message).then(() => {
-                    console.log("added!");
-                }).catch(err2 => {
-                    // TODO: Handle error
-                });
-            });
-        }).catch(err => {
-            if(err.code === 'ENOENT') {
-                DirectoryUtil.createDirectory(__dirname + '/../../', 'logs').then(() => {
-                    this.logToFile(message);
-                }).catch(err => {
-                    // TODO: Handle error
-                });
-            }
-        });
+        const date = new Date();
+        LogFile.enqueue(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + " | " + message);
     }
 
     /**
@@ -46,7 +18,7 @@ class Logger {
      * @param master boolean whether sending from master or not (undefined when worker)
      * */
     info(message, master) {
-        this.logToFile("Test");
+        this.logToFile("INFO " + message);
         if(master) {
             console.log(`\x1b[32m[MASTER | ${process.pid}] \x1b[0m${message}`);
             return;
@@ -75,6 +47,7 @@ class Logger {
      * @param master boolean whether sending from master or not (undefined when worker)
      * */
     error(message, master) {
+        this.logToFile("ERROR " + message);
         if(master) {
             console.log(`\x1b[31m[MASTER | ${process.pid}] \x1b[0m${message}`);
             return;
@@ -89,6 +62,7 @@ class Logger {
      * @param master boolean whether sending from master or not (undefined when worker)
      * */
     warn(message, master) {
+        this.logToFile("WARNING " + message);
         if(master) {
             console.log(`\x1b[33m[MASTER | ${process.pid}] \x1b[0m${message}`);
             return;
