@@ -16,25 +16,47 @@ html, body {
   nav {
     &.primary {
       line-height: 60px;
-      a {
-        font-size: 14px;
-        color: fade(@color-white, 40%);
-        text-decoration: none;
-
-        &:hover, &:active {
-          color: fade(@color-white, 70%);
-        }
-
-        &.active {
-          color: @color-white;
-        }
-
-        &:not(:first-child) {
-          margin-left: 64px;
-        }
-
-        box-sizing: border-box;
+      .left {
         display: inline-block;
+        width: ~"calc(100% - 60px)";
+        a {
+          font-size: 14px;
+          color: fade(@color-white, 40%);
+          text-decoration: none;
+
+          &:hover, &:active {
+            color: fade(@color-white, 70%);
+          }
+
+          &.active {
+            color: @color-white;
+          }
+
+          &:not(:first-child) {
+            margin-left: 64px;
+          }
+
+          box-sizing: border-box;
+          display: inline-block;
+        }
+      }
+      .right {
+        width: 60px;
+        text-align: center;
+        display: inline-block;
+        float: right;
+        a#dropdown {
+          cursor: pointer;
+          color: fade(@color-white, 40%);
+
+          &:hover, &:active {
+            color: fade(@color-white, 70%);
+          }
+
+          &.active {
+            color: @color-white;
+          }
+        }
       }
     }
     &.secondary {
@@ -53,7 +75,7 @@ html, body {
 
         &.active {
           color: @color-white;
-          border-bottom: 3px solid @color-discord;
+          border-bottom: 4px solid @color-discord;
         }
 
         &:not(:first-child) {
@@ -94,4 +116,9 @@ html, body {
       line-height: 96px;
     }
   }
+}
+
+.material-icons {
+  display: inline-flex;
+  vertical-align: middle;
 }

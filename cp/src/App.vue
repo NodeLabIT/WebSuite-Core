@@ -2,18 +2,23 @@
     <div>
         <header class="header">
             <nav class="primary">
-                <router-link to="/dashboard">
-                    {{ 'dashboard' | translate }}
-                </router-link>
-                <router-link to="/dashboard">
-                    {{ 'dashboard' | translate }}
-                </router-link>
-                <router-link to="/dashboard">
-                    {{ 'dashboard' | translate }}
-                </router-link>
-                <router-link to="/dashboard">
-                    {{ 'dashboard' | translate }}
-                </router-link>
+                <div class="left">
+                    <router-link to="/dashboard" class="active">
+                        {{ 'dashboard' | translate }}
+                    </router-link>
+                    <router-link to="/dashboard">
+                        {{ 'dashboard' | translate }}
+                    </router-link>
+                    <router-link to="/dashboard">
+                        {{ 'dashboard' | translate }}
+                    </router-link>
+                    <router-link to="/dashboard">
+                        {{ 'dashboard' | translate }}
+                    </router-link>
+                </div>
+                <div class="right">
+                    <a id="dropdown"><i class="material-icons">keyboard_arrow_down</i></a>
+                </div>
             </nav>
             <div class="page-title">
                 <h1>
