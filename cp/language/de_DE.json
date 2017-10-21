@@ -1,3 +1,8 @@
 {
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "configuration": "Konfiguration",
+  "users": "Mitglieder",
+  "applications": "Anwendungen",
+  "appearance": "Darstellung",
+  "other": "Sonstiges"
 }

@@ -3,12 +3,15 @@
 @background-page: #F4F4F4;
 
 @color-white: #FFFFFF;
+@color-black: #000000;
 
 html, body {
   margin: 0;
   background: @background-page;
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 .header {
@@ -46,6 +49,7 @@ html, body {
         display: inline-block;
         float: right;
         a#dropdown {
+          margin-left: 4px;
           cursor: pointer;
           color: fade(@color-white, 40%);
 
@@ -56,6 +60,10 @@ html, body {
           &.active {
             color: @color-white;
           }
+        }
+        img {
+          vertical-align: middle;
+          border-radius: 16px;
         }
       }
     }
@@ -116,6 +124,80 @@ html, body {
       line-height: 96px;
     }
   }
+}
+
+.main {
+  @media all and (min-width: 1081px) {
+    width: 82%;
+    min-width: 1000px;
+    margin: 0 auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    thead {
+      color: fade(@color-black, 33%);
+      border-bottom: 1px solid fade(@color-black, 33%);
+      line-height: 60px;
+    }
+    tbody {
+      tr {
+        height: 64px;
+        &:not(:last-child) {
+          border-bottom: 1px solid fade(@color-black, 10%);
+        }
+        img, .inliner {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        img {
+          border-radius: 24px;
+        }
+        .inliner {
+          span {
+            display: block;
+            padding-left: 16px;
+            line-height: 20px;
+          }
+        }
+        .material-icons {
+          color: fade(@color-black, 20%);
+          &:hover, &.active {
+            color: @color-discord;
+          }
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+a {
+  &.floating-button {
+    text-align: center;
+    background: @color-discord;
+    position: absolute;
+    right: 9%;
+    margin-top: -32px;
+    padding: 12px;
+    border-radius: 32px;
+    color: @color-white;
+    box-shadow: 0 4px 4px fade(@color-black, 20%);
+
+    i {
+      font-size: 40px;
+    }
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.primary-text {
+  color: @color-discord;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .material-icons {

@@ -3,6 +3,8 @@ body {
   margin: 0;
   background: #F4F4F4;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
 }
 .header {
   background: #445282;
@@ -38,6 +40,7 @@ body {
   float: right;
 }
 .header nav.primary .right a#dropdown {
+  margin-left: 4px;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.4);
 }
@@ -47,6 +50,10 @@ body {
 }
 .header nav.primary .right a#dropdown.active {
   color: #FFFFFF;
+}
+.header nav.primary .right img {
+  vertical-align: middle;
+  border-radius: 16px;
 }
 .header nav.secondary {
   line-height: 40px;
@@ -102,6 +109,71 @@ body {
   color: #FFFFFF;
   margin: 0;
   line-height: 96px;
+}
+@media all and (min-width: 1081px) {
+  .main {
+    width: 82%;
+    min-width: 1000px;
+    margin: 0 auto;
+  }
+}
+.main table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.main table thead {
+  color: rgba(0, 0, 0, 0.33);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.33);
+  line-height: 60px;
+}
+.main table tbody tr {
+  height: 64px;
+}
+.main table tbody tr:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.main table tbody tr img,
+.main table tbody tr .inliner {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main table tbody tr img {
+  border-radius: 24px;
+}
+.main table tbody tr .inliner span {
+  display: block;
+  padding-left: 16px;
+  line-height: 20px;
+}
+.main table tbody tr .material-icons {
+  color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.main table tbody tr .material-icons:hover,
+.main table tbody tr .material-icons.active {
+  color: #7289DA;
+}
+a.floating-button {
+  text-align: center;
+  background: #7289DA;
+  position: absolute;
+  right: 9%;
+  margin-top: -32px;
+  padding: 12px;
+  border-radius: 32px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+a.floating-button i {
+  font-size: 40px;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.primary-text {
+  color: #7289DA;
+  font-weight: 500;
+  font-size: 16px;
 }
 .material-icons {
   display: inline-flex;
