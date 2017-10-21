@@ -107,7 +107,6 @@ html, body {
       min-width: 1000px;
       margin: 0 auto;
     }
-
   }
   .page-title {
     box-sizing: border-box;
@@ -182,11 +181,29 @@ a {
     padding: 12px;
     border-radius: 32px;
     color: @color-white;
-    box-shadow: 0 4px 4px fade(@color-black, 20%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      border-radius: 16px;
+    }
 
     i {
       font-size: 40px;
     }
+  }
+}
+
+aside {
+  &.footer-information {
+    background: @color-discord;
+    color: @color-white;
+    padding: 12px 36px;
+    border-radius: 6px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 }
 

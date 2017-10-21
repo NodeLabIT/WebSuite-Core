@@ -162,10 +162,24 @@ a.floating-button {
   padding: 12px;
   border-radius: 32px;
   color: #FFFFFF;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+a.floating-button:hover {
+  border-radius: 16px;
 }
 a.floating-button i {
   font-size: 40px;
+}
+aside.footer-information {
+  background: #7289DA;
+  color: #FFFFFF;
+  padding: 12px 36px;
+  border-radius: 6px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 .uppercase {
   text-transform: uppercase;

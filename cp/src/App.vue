@@ -49,7 +49,7 @@
                 <thead class="uppercase">
                     <tr>
                         <td style="width: 48px;"><i class="material-icons">indeterminate_check_box</i></td>
-                        <td style="width: calc(40% - 48);">3 Mitglieder ausgewählt</td>
+                        <td style="width: calc(40% - 48);"></td>
                         <td style="width: 12.5%;">Rang</td>
                         <td style="width: 7.5%;">Punkte</td>
                         <td style="width: calc(20% - 24px);">registriert</td>
@@ -181,6 +181,9 @@
                 </tbody>
             </table>
         </main>
+        <aside class="footer-information uppercase">
+            3 Mitglieder ausgewählt
+        </aside>
     </div>
 </template>
 
