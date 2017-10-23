@@ -41,7 +41,17 @@ if(cluster.isMaster) {
 
         cluster.on('message', (worker, message, handle) => {
             // TODO: Handle messages from Worker
-            Logger.debug(message, true);
+            const json = JSON.parse(message);
+
+            if(json.type && json.type === 'sioPacket') {
+                if(json.clientID && json.packet && json.packet.packetName && json.packet.packetData) {
+                    if(json.clientID === 'broadcast') {
+                        io.emit(json.packet.packetName, json.packet.packetData);
+                    } else {
+                        io.to(json.clientID).emit(json.packet.packetName, json.packet.packetData);
+                    }
+                }
+            }
         });
 
         io.listen(config.server.socketio);

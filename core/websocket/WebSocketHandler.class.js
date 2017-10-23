@@ -38,6 +38,12 @@ class WebSocketHandler {
         });
     }
 
+    sendToClient(clientID, packetName, packetData) {
+        if(clientID && packetName && packetData) {
+            process.send(JSON.stringify({type: 'sioPacket', clientID, packet: {packetName, packetData}}));
+        }
+    }
+
     /**
      * Register a handler for a socket.io-packet sent from the control panel
      *

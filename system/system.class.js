@@ -18,6 +18,8 @@ class SystemLoader {
                 return;
             }
 
+            require('../core/websocket/eventListener/cp/UserList.class').listen();
+
             global.WebSuite._getWebServer().listen();
         });
     }
