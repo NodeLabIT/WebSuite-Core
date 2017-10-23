@@ -18,7 +18,7 @@ class Logger {
      * @param master boolean whether sending from master or not (undefined when worker)
      * */
     info(message, master) {
-        this.logToFile("INFO " + message);
+        this.logToFile("INFO : " + message);
         if(master) {
             console.log(`\x1b[32m[MASTER | ${process.pid}] \x1b[0m${message}`);
             return;
@@ -47,7 +47,7 @@ class Logger {
      * @param master boolean whether sending from master or not (undefined when worker)
      * */
     error(message, master) {
-        this.logToFile("ERROR " + message);
+        this.logToFile("ERROR: " + message);
         if(master) {
             console.log(`\x1b[31m[MASTER | ${process.pid}] \x1b[0m${message}`);
             return;
@@ -62,7 +62,7 @@ class Logger {
      * @param master boolean whether sending from master or not (undefined when worker)
      * */
     warn(message, master) {
-        this.logToFile("WARNING " + message);
+        this.logToFile("WARN : " + message);
         if(master) {
             console.log(`\x1b[33m[MASTER | ${process.pid}] \x1b[0m${message}`);
             return;
