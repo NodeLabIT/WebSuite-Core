@@ -1,6 +1,6 @@
 <template>
     <div>
-        Test
+
     </div>
 </template>
 
@@ -17,7 +17,7 @@
 
         },
         created() {
-
+            this.$root.$data.title = "Test";
         }
     }
 </script>

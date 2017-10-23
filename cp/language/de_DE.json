@@ -4,5 +4,10 @@
   "users": "Mitglieder",
   "applications": "Anwendungen",
   "appearance": "Darstellung",
-  "other": "Sonstiges"
+  "other": "Sonstiges",
+
+  "users-overview": "Mitgliederübersicht",
+
+  "error": "Fehler",
+  "404-description": "Entschuldigung. Wir können die angegebene Seite nicht finden."
 }

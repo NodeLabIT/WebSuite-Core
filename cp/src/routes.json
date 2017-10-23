@@ -1,14 +1,22 @@
 [
   {
-    "path": "/dashboard",
-    "component": "dashboard"
+    "path": "*",
+    "component": "core-404"
+  },
+  {
+    "path": "/",
+    "component": "core-dashboard"
+  },
+  {
+    "path": "/users/",
+    "component": "core-users"
+  },
+  {
+    "path": "/users/:pageID",
+    "component": "core-users"
   },
   {
     "path": "/test",
     "component": "test"
-  },
-  {
-    "path": "*",
-    "component": "error-404"
   }
 ]

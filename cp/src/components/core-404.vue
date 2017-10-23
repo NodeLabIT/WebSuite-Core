@@ -1,6 +1,7 @@
 <template>
     <div>
-        Dashboard
+        <h2>{{ 'error' | translate }}: 404</h2>
+        <p>{{ '404-description' | translate }} :(</p>
     </div>
 </template>
 
@@ -16,7 +17,7 @@
 
         },
         created() {
-
+            this.$root.$data.title = this.$options.filters.translate('error');
         }
     }
 </script>

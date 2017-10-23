@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h2>404</h2>
-        <p>Sorry. We couldn't find that page :(</p>
+
     </div>
 </template>
 
@@ -17,7 +16,7 @@
 
         },
         created() {
-
+            this.$root.$data.title = this.$options.filters.translate('dashboard');
         }
     }
 </script>

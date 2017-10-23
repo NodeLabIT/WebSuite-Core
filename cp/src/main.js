@@ -51,7 +51,8 @@ function init() {
         router,
         render: h => h(App),
         data: {
-            loggedIn: false
+            loggedIn: false,
+            title: "..."
         },
         methods: {
             isValid: function(input) {
