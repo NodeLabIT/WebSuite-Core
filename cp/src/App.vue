@@ -23,7 +23,7 @@
                     </router-link>
                 </div>
                 <div class="right">
-                    <a id="dropdown"><img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="32" height="32"><i class="material-icons">keyboard_arrow_down</i></a>
+                    <a id="dropdown"><img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="32" height="32"><i class="material-icons">keyboard_arrow_down</i></a>
                 </div>
             </nav>
             <div class="page-title">
@@ -61,7 +61,7 @@
                     <tr>
                         <td><i class="material-icons">check_box_outline_blank</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -76,7 +76,7 @@
                     <tr>
                         <td><i class="material-icons">check_box_outline_blank</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -91,7 +91,7 @@
                     <tr>
                         <td><i class="material-icons active">check_box</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -106,7 +106,7 @@
                     <tr>
                         <td><i class="material-icons active">check_box</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -121,7 +121,7 @@
                     <tr>
                         <td><i class="material-icons">check_box_outline_blank</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -136,7 +136,7 @@
                     <tr>
                         <td><i class="material-icons">check_box_outline_blank</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -151,7 +151,7 @@
                     <tr>
                         <td><i class="material-icons">check_box_outline_blank</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -166,7 +166,7 @@
                     <tr>
                         <td><i class="material-icons active">check_box</i></td>
                         <td>
-                            <img src="https://dev-talk.net/images/avatars/44/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
+                            <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                             <div class="inliner">
                                 <span class="primary-text">ilou</span>
                                 <span>info@nodelab-it.de</span>
@@ -176,10 +176,11 @@
                         <td>6132</td>
                         <td>am 04.01.2017, 13:57 Uhr</td>
                         <td>vor 17 Minuten</td>
-                        <td><i class="material-icons">more_horiz</i></td>
+                        <td><a><i class="material-icons">more_horiz</i></a></td>
                     </tr>
                 </tbody>
             </table>
+            <router-view></router-view>
         </main>
         <aside class="footer-information uppercase">
             3 Mitglieder ausgewählt

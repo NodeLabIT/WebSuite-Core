@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/dashboard",
+    "component": "dashboard"
+  },
+  {
+    "path": "/test",
+    "component": "test"
+  },
+  {
+    "path": "*",
+    "component": "error-404"
+  }
+]

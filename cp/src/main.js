@@ -5,15 +5,21 @@ import VueCookies from 'vue-cookies';
 import App from './App.vue';
 
 import Config from './config.json';
+const routesConfig = require('./routes.json');
 
 // Components
 
 Vue.use(VueRouter);
 Vue.use(VueCookies);
 
-const routes = [
-    // Routes
-];
+let routes = [];
+
+for(let route of routesConfig) {
+    routes.push({
+        path: route.path,
+        component: require('./components/' + route.component + ".vue")
+    });
+}
 
 const router = new VueRouter({
     routes,
@@ -53,7 +59,7 @@ function init() {
             }
         },
         created() {
-
+            //this.$router.push('/login');
         }
     });
 }
