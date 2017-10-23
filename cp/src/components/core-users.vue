@@ -31,6 +31,13 @@
                 </tr>
             </tbody>
         </table>
+        <div class="pagination">
+            <router-link :to="`/users/${pageID - 1}`" v-if="pageID > 1"><i class="material-icons">navigate_before</i></router-link>
+            <a v-if="pageID === 1" class="inactive"><i class="material-icons">navigate_before</i></a>
+            Seite {{ pageID }}
+            <router-link :to="`/users/${pageID + 1}`" v-if="pageID * 30 < 33"><i class="material-icons">navigate_next</i></router-link>
+            <a v-if="pageID * 30 > 33" class="inactive"><i class="material-icons">navigate_next</i></a>
+        </div>
     </div>
 </template>
 
@@ -50,7 +57,11 @@
             },
             updatePageID() {
                 if(this.$route.params.pageID) {
-                    this.pageID = this.$route.params.pageID;
+                    if(parseInt(this.$route.params.pageID)) {
+                        this.pageID = parseInt(this.$route.params.pageID);
+                    } else {
+                        this.pageID = 1;
+                    }
                 } else {
                     this.pageID = 1;
                 }
@@ -68,8 +79,8 @@
             this.getUserList();
 
             sio().on('cp-user-list', data => {
-                if(data.err && data.err === 'page-not-found') {
-                    this.$router.push('/404');
+                if(data.err || data.users === undefined) {
+                    this.$router.push('/users');
                     return;
                 }
                 console.log(JSON.stringify(data.users));

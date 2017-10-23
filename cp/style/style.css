@@ -110,6 +110,9 @@ body {
   margin: 0;
   line-height: 96px;
 }
+.main {
+  padding-bottom: 100px;
+}
 @media all and (min-width: 1081px) {
   .main {
     width: 82%;
@@ -170,6 +173,27 @@ a.floating-button:hover {
 }
 a.floating-button i {
   font-size: 40px;
+}
+.pagination {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+.pagination a {
+  color: #FFFFFF;
+  background: #7289DA;
+  padding: 17px 15px;
+  line-height: 50px;
+  box-sizing: border-box;
+}
+.pagination a:first-child {
+  margin-right: 32px;
+}
+.pagination a:last-child {
+  margin-left: 32px;
+}
+.pagination a.inactive {
+  background: rgba(0, 0, 0, 0.05);
 }
 aside.footer-information {
   background: #7289DA;

@@ -169,6 +169,7 @@ html, body {
       }
     }
   }
+  padding-bottom: 100px;
 }
 
 a {
@@ -190,6 +191,29 @@ a {
 
     i {
       font-size: 40px;
+    }
+  }
+}
+
+.pagination {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  a {
+    color: @color-white;
+    background: @color-discord;
+    padding: 17px 15px;
+    line-height: 50px;
+    box-sizing: border-box;
+    &:first-child {
+      margin-right: 32px;
+    }
+    &:last-child {
+      margin-left: 32px;
+    }
+
+    &.inactive {
+      background: fade(@color-black, 5%);
     }
   }
 }
