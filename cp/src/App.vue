@@ -9,7 +9,7 @@
                     <router-link to="/configuration" active-class="active">
                         {{ 'configuration' | translate }}
                     </router-link>
-                    <router-link to="/users" active-class="active">
+                    <router-link to="/user" active-class="active">
                         {{ 'users' | translate }}
                     </router-link>
                     <router-link to="/applications" active-class="active">
@@ -33,13 +33,13 @@
             </div>
             <nav class="secondary">
                 <router-link to="/dashboard" class="active">
-                    Mitglieder <span class="badge">4.6k</span>
+                    Mitglieder
                 </router-link>
                 <router-link to="/dashboard">
-                    Gruppen <span class="badge">47</span>
+                    Gruppen
                 </router-link>
                 <router-link to="/dashboard">
-                    Sanktionen <span class="badge">713</span>
+                    Sanktionen
                 </router-link>
             </nav>
         </header>

@@ -10,13 +10,19 @@ class UserList {
             }
 
             WebSuite.getDatabase().query('SELECT * FROM wsUser ORDER BY userID LIMIT ?,?', [((page-1) * 30), ((page)) * 30])
-                .then(result => {
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-user-list', {users: result});
+            .then(result => {
+                WebSuite.getDatabase().query('SELECT COUNT(*) AS count FROM wsUser', [])
+                .then(count => {
+                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-user-list', {users: result, userCount: count[0].count});
                 }). catch(err => {
-                console.log(err);
+                    console.log(err);
                     WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-user-list', {err: err.message});
-            })
-        })
+                });
+            }). catch(err => {
+                console.log(err);
+                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-user-list', {err: err.message});
+            });
+        });
     }
 
 }

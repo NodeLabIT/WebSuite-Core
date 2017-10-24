@@ -8,12 +8,16 @@
     "component": "core-dashboard"
   },
   {
-    "path": "/users/",
-    "component": "core-users"
+    "path": "/user",
+    "component": "core-user"
   },
   {
-    "path": "/users/:pageID",
-    "component": "core-users"
+    "path": "/user/user-list",
+    "component": "core-user-list"
+  },
+  {
+    "path": "/user/user-list/:pageID",
+    "component": "core-user-list"
   },
   {
     "path": "/test",
