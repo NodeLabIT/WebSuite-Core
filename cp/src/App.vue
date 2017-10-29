@@ -49,6 +49,20 @@
         <aside class="footer-information uppercase">
             3 Mitglieder ausgewählt
         </aside>
+
+        <div class="dialog-container closed" id="sio-no-connection">
+            <div class="dialog small">
+                <div class="dialog-header">
+                    <span class="uppercase">{{ 'no-connection' | translate }}</span>
+                </div>
+                <div class="dialog-body">
+                    {{ 'trying-reconnect' | translate }}
+                    <div class="center-text" style="margin-top: 14px;">
+                        <i class="material-icons spin large">refresh</i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -73,6 +87,18 @@
                     $(dialogId).removeClass('fade');
                 });
             },
+            loadSubNavigation() {
+                const section = this.$route.path.split('/')[1];
+
+                switch(section) {
+
+                }
+            }
+        },
+        watch: {
+            '$route' (to, from) {
+                this.loadSubNavigation();
+            }
         },
         created() {
             sio().on('disconnect', (reason) => {
@@ -81,6 +107,7 @@
                     this.closeDialog('#sio-no-connection');
                 });
             });
+            this.loadSubNavigation();
         }
     }
 </script>

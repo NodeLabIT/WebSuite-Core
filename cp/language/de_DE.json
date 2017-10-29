@@ -9,5 +9,8 @@
   "users-overview": "Mitgliederübersicht",
 
   "error": "Fehler",
-  "404-description": "Entschuldigung. Wir können die angegebene Seite nicht finden."
+  "404-description": "Entschuldigung. Wir können die angegebene Seite nicht finden.",
+
+  "no-connection": "Keine Verbindung",
+  "trying-reconnect": "Es wird versucht, die Verbindung erneut aufzubauen. Dies kann unter Umständen einige Zeit in Anspruch nehmen."
 }

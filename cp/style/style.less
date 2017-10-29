@@ -218,6 +218,79 @@ a {
   }
 }
 
+.dialog-container {
+  &:not(.closed) {
+    &:before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    &.fade {
+      .dialog {
+        animation: dialogFadeOut 0.3s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+  &.closed {
+    display: none;
+  }
+  display: flex;
+
+  .dialog {
+    animation: dialogFadeIn 0.3s;
+    animation-fill-mode: forwards;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+    z-index: 1010;
+
+    position: fixed;
+
+    &:not(.small) {
+      top: 0;
+      left: 50%;
+
+      width: 97%;
+      height: 92%;
+    }
+    &.small {
+      top: 0;
+      left: 50%;
+
+      width: 500px;
+      max-width: 95%;
+    }
+    background: @color-white;
+
+    .dialog-header {
+      background: @color-discord-dark;
+      color: @color-white;
+      padding: 20px 40px;
+      font-weight: bold;
+      .description {
+        margin-top: 7px;
+        display: block;
+        font-weight: normal;
+        font-size: 11pt;
+      }
+      .close-dialog {
+        float: right;
+      }
+    }
+    .dialog-body {
+      padding: 20px;
+    }
+    .dialog-footer {
+      padding: 20px 40px;
+    }
+  }
+}
+
 aside {
   &.footer-information {
     background: @color-discord;
@@ -241,7 +314,31 @@ aside {
   font-size: 16px;
 }
 
+.center-text {
+  text-align: center;
+}
+
 .material-icons {
   display: inline-flex;
   vertical-align: middle;
+
+  &.spin {
+    animation: spin 1.5s linear infinite;
+  }
+  &.large {
+    font-size: 42px;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes dialogFadeIn {
+  0% { transform: translate(-50%, 80px) scale(0); }
+  100% { transform: translate(-50%, 80px) scale(1); }
+}
+@keyframes dialogFadeOut {
+  0% { transform: translate(-50%, 80px) scale(1); }
+  100% { transform: translate(-50%, 80px) scale(0); }
 }
