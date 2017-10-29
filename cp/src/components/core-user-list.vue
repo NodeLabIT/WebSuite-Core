@@ -15,8 +15,11 @@
             </thead>
             <tbody>
                 <tr v-for="user in users">
-                    <td><i class="material-icons">check_box_outline_blank</i></td>
                     <td>
+                        <i class="material-icons" v-if="!isSelected(user.userID)" @click="toggleSelection(user.userID)">check_box_outline_blank</i>
+                        <i class="material-icons active" v-if="isSelected(user.userID)" @click="toggleSelection(user.userID)">check_box</i>
+                    </td>
+                    <td @click="$router.push(`/user/user/${user.userID}`)" class="pointer">
                         <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                         <div class="inliner">
                             <span class="primary-text">{{ user.username }}</span>
@@ -38,6 +41,10 @@
             <router-link :to="`/user/user-list/${pageID + 1}`" v-if="pageID * 30 < userCount"><i class="material-icons">navigate_next</i></router-link>
             <a v-if="pageID * 30 > userCount" class="inactive"><i class="material-icons">navigate_next</i></a>
         </div>
+
+        <aside class="footer-information uppercase">
+            {{ selectedUsers.length }} Mitglieder ausgewählt
+        </aside>
     </div>
 </template>
 
@@ -49,7 +56,8 @@
             return {
                 pageID: 0,
                 userCount: 0,
-                users: {}
+                users: {},
+                selectedUsers: [1, 4, 5, 9, 11, 29]
             }
         },
         methods: {
@@ -66,6 +74,16 @@
                 } else {
                     this.pageID = 1;
                 }
+            },
+            isSelected(userID) {
+                return this.selectedUsers.includes(userID);
+            },
+            toggleSelection(userID) {
+                if(this.isSelected(userID)) {
+                    this.selectedUsers.splice(this.selectedUsers.indexOf(userID), 1);
+                } else {
+                    this.selectedUsers.push(userID);
+                }
             }
         },
         watch: {
@@ -75,7 +93,7 @@
             }
         },
         created() {
-            this.$root.$data.title = this.$options.filters.translate('users-overview');
+            this.$root.$data.title = this.$options.filters.translate('users-management');
             this.updatePageID();
             this.getUserList();
 

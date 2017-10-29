@@ -1,0 +1,25 @@
+{
+  "dashboard": [
+
+  ],
+  "configuration": [
+    {
+      "path": "general",
+      "selector": "general"
+    }
+  ],
+  "user": [
+    {
+      "path": "/user/user-list/",
+      "selector": "users"
+    },
+    {
+      "path": "/user/group-list/",
+      "selector": "groups"
+    },
+    {
+      "path": "/user/penalty-list/",
+      "selector": "penalties"
+    }
+  ]
+}

@@ -269,6 +269,9 @@ aside.footer-information {
 .uppercase {
   text-transform: uppercase;
 }
+.pointer {
+  cursor: pointer;
+}
 .primary-text {
   color: #7289DA;
   font-weight: 500;

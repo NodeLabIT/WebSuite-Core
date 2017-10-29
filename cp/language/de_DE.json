@@ -6,7 +6,11 @@
   "appearance": "Darstellung",
   "other": "Sonstiges",
 
-  "users-overview": "Mitgliederübersicht",
+  "general": "Allgemein",
+
+  "users-management": "Mitgliederverwaltung",
+  "groups": "Gruppen",
+  "penalties": "Sanktionen",
 
   "error": "Fehler",
   "404-description": "Entschuldigung. Wir können die angegebene Seite nicht finden.",

@@ -32,23 +32,14 @@
                 </h1>
             </div>
             <nav class="secondary">
-                <router-link to="/dashboard" class="active">
-                    Mitglieder
-                </router-link>
-                <router-link to="/dashboard">
-                    Gruppen
-                </router-link>
-                <router-link to="/dashboard">
-                    Sanktionen
+                <router-link v-for="item in subMenu" :to="`${item.path}`" active-class="active">
+                    {{ item.selector | translate }}
                 </router-link>
             </nav>
         </header>
         <main class="main">
             <router-view></router-view>
         </main>
-        <aside class="footer-information uppercase">
-            3 Mitglieder ausgewählt
-        </aside>
 
         <div class="dialog-container closed" id="sio-no-connection">
             <div class="dialog small">
@@ -68,11 +59,17 @@
 
 <script>
     import { sio } from './main';
+
+    import menus from './menus.json';
+
     export default {
         data() {
             return {
                 user: {
                     username: 'ilou'
+                },
+                subMenu: {
+
                 }
             }
         },
@@ -90,8 +87,10 @@
             loadSubNavigation() {
                 const section = this.$route.path.split('/')[1];
 
-                switch(section) {
-
+                if(menus[section]) {
+                    this.subMenu = menus[section];
+                } else {
+                    this.subMenu = {};
                 }
             }
         },
