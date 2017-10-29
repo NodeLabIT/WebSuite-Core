@@ -46,7 +46,7 @@ class WebSuite {
 
                 this.getUserHandler().getUserByUserID(1).then(user => {
                     user.getUserInformation().then(test => {
-                        this.getLogger().debug(test.username);
+                        //this.getLogger().debug(test.username);
                     }).catch(err => {
                         if(err.message === 'no data found') {
                             this.getLogger().debug("User doesn't have profile-information");

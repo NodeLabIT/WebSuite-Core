@@ -1,3 +1,6 @@
+html {
+  overflow-y: scroll;
+}
 html,
 body {
   margin: 0;
@@ -117,10 +120,11 @@ body {
   .main {
     width: 82%;
     min-width: 1000px;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
   }
 }
 .main table {
+  margin-top: -20px !important;
   width: 100%;
   border-collapse: collapse;
 }
@@ -170,9 +174,25 @@ a.floating-button {
 }
 a.floating-button:hover {
   border-radius: 16px;
+  background: #445282;
 }
 a.floating-button i {
   font-size: 40px;
+}
+a.button {
+  text-align: center;
+  background: #7289DA;
+  padding: 12px;
+  border-radius: 4px;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: 500;
+}
+a.button:hover {
+  background: #445282;
 }
 .pagination {
   display: block;

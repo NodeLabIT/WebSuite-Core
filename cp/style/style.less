@@ -5,6 +5,10 @@
 @color-white: #FFFFFF;
 @color-black: #000000;
 
+html {
+  overflow-y: scroll;
+}
+
 html, body {
   margin: 0;
   background: @background-page;
@@ -129,9 +133,10 @@ html, body {
   @media all and (min-width: 1081px) {
     width: 82%;
     min-width: 1000px;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
   }
   table {
+    margin-top: -20px !important;
     width: 100%;
     border-collapse: collapse;
     thead {
@@ -187,10 +192,28 @@ a {
 
     &:hover {
       border-radius: 16px;
+      background: @color-discord-dark;
     }
 
     i {
       font-size: 40px;
+    }
+  }
+
+  &.button {
+    text-align: center;
+    background: @color-discord;
+    padding: 12px;
+    border-radius: 4px;
+    color: @color-white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: 500;
+
+    &:hover {
+      background: @color-discord-dark;
     }
   }
 }

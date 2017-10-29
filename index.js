@@ -20,8 +20,10 @@ if(cluster.isMaster) {
 
         // If crash then log it and restart one worker
         cluster.on('exit', (worker, code, signal) => {
-            Logger.error(`Worker ${worker.process.pid} died. Restarting...`, true);
-            cluster.fork();
+            if(code !== 0) {
+                Logger.error(`Worker ${worker.process.pid} died. Restarting...`, true);
+                cluster.fork();
+            }
         });
 
         //socket.io-Server
@@ -40,7 +42,6 @@ if(cluster.isMaster) {
         });
 
         cluster.on('message', (worker, message, handle) => {
-            // TODO: Handle messages from Worker
             const json = JSON.parse(message);
 
             if(json.type && json.type === 'sioPacket') {
@@ -50,6 +51,28 @@ if(cluster.isMaster) {
                     } else {
                         io.to(json.clientID).emit(json.packet.packetName, json.packet.packetData);
                     }
+                }
+            }
+            if(json.type && json.type === 'system') {
+                if(json.action && json.action === 'soft-restart') {
+                    delete require.cache[require.resolve("./system/system.class")];
+
+                    let i = 0;
+                    const workers = Object.keys(cluster.workers);
+                    const f = () => {
+                        if(i === workers.length)
+                            return;
+
+                        cluster.workers[workers[i]].disconnect();
+
+                        const worker = cluster.fork();
+                        worker.on('listening', () => {
+                            console.log("Restart (" + i + ") complete. Restarting next worker...");
+                            i++;
+                            f();
+                        });
+                    };
+                    f();
                 }
             }
         });

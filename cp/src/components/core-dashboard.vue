@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <a class="button" @click="restart()">Neu Starten</a>
     </div>
 </template>
 
@@ -13,7 +13,9 @@
             }
         },
         methods: {
-
+            restart() {
+                sio().emit('cp-restart-system', {});
+            }
         },
         created() {
             this.$root.$data.title = this.$options.filters.translate('dashboard');
