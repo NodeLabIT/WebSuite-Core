@@ -36,6 +36,7 @@ if(cluster.isMaster) {
         io.on('connection', (socket) => {
             socket.on('*', (packet) => {
                 randomWorker(worker => {
+                    console.log(worker.id);
                     worker.send(JSON.stringify({type: 'sioPacket', clientID: socket.conn.id, packet: packet}));
                 });
             });
@@ -102,10 +103,11 @@ function eachWorker(callback) {
  * Get random worker
  * @param callback returns one worker
  * */
+let x = 1;
 function randomWorker(callback) {
-    let workerIDs = [];
-    for(const id in cluster.workers) {
-        workerIDs.push(id);
-    }
-    callback(cluster.workers[Math.ceil(Math.random() * workerIDs.length)]);
+    // TODO: cleanup and bug-fix:
+    const workers = Object.keys(cluster.workers);
+    console.log(cluster.workers[x]);
+    x++;
+    callback(cluster.workers[(x - 2) + (Math.ceil(Math.random() * workers.length))]);
 }
