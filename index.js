@@ -103,11 +103,7 @@ function eachWorker(callback) {
  * Get random worker
  * @param callback returns one worker
  * */
-let x = 1;
 function randomWorker(callback) {
-    // TODO: cleanup and bug-fix:
     const workers = Object.keys(cluster.workers);
-    console.log(cluster.workers[x]);
-    x++;
-    callback(cluster.workers[(x - 2) + (Math.ceil(Math.random() * workers.length))]);
+    callback(cluster.workers[workers[Math.ceil(Math.random() * workers.length) - 1]]);
 }
