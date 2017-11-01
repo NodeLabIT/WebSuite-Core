@@ -36,8 +36,11 @@ if(cluster.isMaster) {
         io.on('connection', (socket) => {
             socket.on('*', (packet) => {
                 randomWorker(worker => {
-                    console.log(worker.id);
-                    worker.send(JSON.stringify({type: 'sioPacket', clientID: socket.conn.id, packet: packet}));
+                    worker.send(JSON.stringify({
+                        type: 'sioPacket',
+                        clientID: socket.conn.id,
+                        packet: packet
+                    }));
                 });
             });
         });
@@ -55,20 +58,21 @@ if(cluster.isMaster) {
                 }
             }
             if(json.type && json.type === 'system') {
-                if(json.action && json.action === 'soft-restart') {
+                if(json.action && json.action === 'restart') {
                     delete require.cache[require.resolve("./system/system.class")];
 
                     let i = 0;
                     const workers = Object.keys(cluster.workers);
                     const f = () => {
-                        if(i === workers.length)
+                        if(i === workers.length) {
+                            io.emit('restart-finished', {});
                             return;
+                        }
 
                         cluster.workers[workers[i]].disconnect();
 
                         const worker = cluster.fork();
                         worker.on('listening', () => {
-                            console.log("Restart (" + i + ") complete. Restarting next worker...");
                             i++;
                             f();
                         });
