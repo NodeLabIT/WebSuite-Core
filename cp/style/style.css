@@ -194,6 +194,53 @@ a.button {
 a.button:hover {
   background: #445282;
 }
+form > div {
+  margin-top: 32px;
+  position: relative;
+}
+form > div > label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+form > div > label,
+form > div > input {
+  padding: 10px 12px;
+  cursor: pointer;
+}
+form > div > input {
+  background: none;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+form > div > input:focus,
+form > div > input.valid {
+  border-color: #7289DA;
+}
+form > div > input:focus + label,
+form > div > input.valid + label {
+  margin-top: -20px;
+  margin-left: -10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #7289DA;
+}
+form > div > input.valid {
+  border-color: #445282;
+}
+form > div > input.valid + label {
+  color: #445282;
+}
+form > div > input.tiny {
+  width: 40%;
+}
+form > div > input.large {
+  width: 100%;
+}
 .pagination {
   display: block;
   text-align: center;

@@ -4,7 +4,7 @@
   ],
   "configuration": [
     {
-      "path": "general",
+      "path": "/configuration/general/",
       "selector": "general"
     }
   ],
