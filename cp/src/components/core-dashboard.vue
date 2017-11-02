@@ -31,6 +31,9 @@
             sio().on('restart-finished', () => {
                 $('#restart').hide();
             });
+            sio().on('recompile-finished', () => {
+                $('#recompile').hide();
+            });
         }
     }
 </script>

@@ -3,7 +3,6 @@
 class Dashboard {
 
     static listen() {
-        console.log("DEBUG");
         WebSuite.getWebSocketHandler().registerCpEvent('cp-restart-system', (socket, data) => {
             process.send(JSON.stringify({type: "system", action: "restart"}));
         });

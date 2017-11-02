@@ -8,6 +8,14 @@
     "component": "core-dashboard"
   },
   {
+    "path": "/configuration",
+    "component": "core-configuration"
+  },
+  {
+    "path": "/configuration/general",
+    "component": "core-configuration-general"
+  },
+  {
     "path": "/user",
     "component": "core-user"
   },
