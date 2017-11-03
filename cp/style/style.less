@@ -228,33 +228,27 @@ form {
       bottom: 0;
       left: 0;
       width: 100%;
-      transition: all 0.2s ease;
     }
     > label, > input {
       padding: 10px 12px;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
     > input {
       background: none;
       outline: none;
       border: 0;
       border-bottom: 1px solid fade(@color-black, 12.5%);
-      &:focus, &.valid {
+      &:focus {
         border-color: @color-discord;
-
+      }
+      &:focus, &.valid {
         + label {
           margin-top: -20px;
           margin-left: -10px;
           font-size: 12px;
           font-weight: 500;
           color: @color-discord;
-        }
-      }
-      &.valid {
-        border-color: @color-discord-dark;
-
-        +label {
-          color: @color-discord-dark;
         }
       }
 

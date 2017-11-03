@@ -204,12 +204,12 @@ form > div > label {
   bottom: 0;
   left: 0;
   width: 100%;
-  transition: all 0.2s ease;
 }
 form > div > label,
 form > div > input {
   padding: 10px 12px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 form > div > input {
   background: none;
@@ -217,8 +217,7 @@ form > div > input {
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
-form > div > input:focus,
-form > div > input.valid {
+form > div > input:focus {
   border-color: #7289DA;
 }
 form > div > input:focus + label,
@@ -228,12 +227,6 @@ form > div > input.valid + label {
   font-size: 12px;
   font-weight: 500;
   color: #7289DA;
-}
-form > div > input.valid {
-  border-color: #445282;
-}
-form > div > input.valid + label {
-  color: #445282;
 }
 form > div > input.tiny {
   width: 40%;
