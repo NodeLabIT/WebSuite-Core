@@ -220,32 +220,35 @@ a {
 
 form {
   > div {
-    margin-top: 32px;
+    margin-top: 40px;
     position: relative;
     > label {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
-      width: 100%;
+      z-index: 0;
     }
     > label, > input {
       padding: 10px 12px;
-      cursor: pointer;
+      cursor: text;
       transition: all 0.2s ease;
     }
     > input {
+      position: relative;
+      z-index: 1;
       background: none;
       outline: none;
       border: 0;
       border-bottom: 1px solid fade(@color-black, 12.5%);
+      font-size: 14px;
       &:focus {
         border-color: @color-discord;
       }
       &:focus, &.valid {
         + label {
-          margin-top: -20px;
-          margin-left: -10px;
+          top: -20px;
+          left: -10px;
           font-size: 12px;
           font-weight: 500;
           color: @color-discord;
@@ -258,6 +261,13 @@ form {
       &.large {
         width: 100%;
       }
+    }
+
+    span.helper {
+      font-size: 12px;
+      margin-left: 12px;
+      margin-top: 4px;
+      display: block;
     }
   }
 }

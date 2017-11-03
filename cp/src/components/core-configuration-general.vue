@@ -2,20 +2,23 @@
     <div>
         <form>
             <div>
-                <input type="text" id="input" v-model="username" class="tiny" v-bind:class="{ valid: $root.isValid(username) }" />
-                <label for="input">Titel der Seite</label>
+                <input type="text" id="title" v-model="page.title" class="tiny" v-bind:class="{ valid: $root.isValid(page.title) }" />
+                <label for="title">Titel der Seite</label>
             </div>
             <div>
-                <input type="text" id="input2" v-model="username2" class="tiny" v-bind:class="{ valid: $root.isValid(username2) }" />
-                <label for="input2">Slogan der Seite</label>
+                <input type="text" id="subtitle" v-model="page.subtitle" class="tiny" v-bind:class="{ valid: $root.isValid(page.subtitle) }" />
+                <label for="subtitle">Untertitel der Seite</label>
             </div>
             <div>
-                <input type="text" id="input3" class="large" v-model="username3" v-bind:class="{ valid: $root.isValid(username3) }" />
-                <label for="input3">Beschreibung der Seite</label>
+                <input type="text" id="description" class="large" v-model="page.description" v-bind:class="{ valid: $root.isValid(page.description) }" />
+                <label for="description">Beschreibung der Seite</label>
             </div>
             <div>
-                <input type="text" id="input4" class="large" v-model="username4" v-bind:class="{ valid: $root.isValid(username4) }" />
-                <label for="input4">Test</label>
+                <input type="text" id="keywords" class="large" v-model="page.keywords" v-bind:class="{ valid: $root.isValid(page.keywords) }" />
+                <label for="keywords">Schlüsselwörter der Seite</label>
+                <span class="helper">
+                    Einzelne Schlüsselwörter müssen mit Kommatas getrennt werden
+                </span>
             </div>
         </form>
     </div>
@@ -26,10 +29,12 @@
     export default {
         data() {
             return {
-                username: "",
-                username2: "",
-                username3: "",
-                username4: ""
+                page: {
+                    title: "NodeLab IT",
+                    subtitle: "deutsches Unternehmen",
+                    description: "NodeLab IT ist ein deutsches Unternehmen, das sich auf die Entwicklung eines CMS festgesetzt hat",
+                    keywords: "nodelab, it, informationstechnologie, deutsch"
+                }
             }
         },
         methods: {
