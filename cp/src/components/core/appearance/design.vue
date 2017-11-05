@@ -5,8 +5,7 @@
 </template>
 
 <script>
-    import { sio } from '../main';
-
+    import { sio } from '../../../main';
     export default {
         data() {
             return {
@@ -17,7 +16,7 @@
 
         },
         created() {
-            this.$root.$data.title = "Test";
+            this.$root.$data.title = this.$options.filters.translate('appearance');
         }
     }
 </script>

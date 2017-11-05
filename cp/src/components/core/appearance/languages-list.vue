@@ -1,13 +1,11 @@
 <template>
     <div>
-        <form>
 
-        </form>
     </div>
 </template>
 
 <script>
-    import { sio } from '../main';
+    import { sio } from '../../../main';
     export default {
         data() {
             return {
@@ -18,8 +16,7 @@
 
         },
         created() {
-            this.$root.$data.title = this.$options.filters.translate('configuration');
-
+            this.$root.$data.title = this.$options.filters.translate('appearance');
         }
     }
 </script>

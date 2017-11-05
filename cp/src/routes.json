@@ -1,38 +1,50 @@
 [
   {
     "path": "*",
-    "component": "core-404"
+    "component": "404"
   },
   {
     "path": "/",
-    "component": "core-dashboard"
+    "component": "dashboard"
   },
   {
     "path": "/configuration",
-    "component": "core-configuration"
+    "component": "core/configuration"
   },
   {
     "path": "/configuration/general",
-    "component": "core-configuration-general"
+    "component": "core/configuration/general"
   },
   {
     "path": "/configuration/access",
-    "component": "core-configuration-access"
+    "component": "core/configuration/access"
   },
   {
     "path": "/user",
-    "component": "core-user"
+    "component": "core/user"
   },
   {
     "path": "/user/user-list",
-    "component": "core-user-list"
+    "component": "core/user/user-list"
   },
   {
     "path": "/user/user-list/:pageID",
-    "component": "core-user-list"
+    "component": "core/user/user-list"
   },
   {
-    "path": "/test",
-    "component": "test"
+    "path": "/appearance",
+    "component": "core/appearance"
+  },
+  {
+    "path": "/appearance/design",
+    "component": "core/appearance/design"
+  },
+  {
+    "path": "/appearance/templates-list/",
+    "component": "core/appearance/templates-list"
+  },
+  {
+    "path": "/appearance/languages-list/",
+    "component": "core/appearance/languages-list"
   }
 ]

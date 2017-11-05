@@ -25,5 +25,19 @@
       "path": "/user/penalty-list/",
       "selector": "penalties"
     }
+  ],
+  "appearance": [
+    {
+      "path": "/appearance/design/",
+      "selector": "design"
+    },
+    {
+      "path": "/appearance/templates-list/",
+      "selector": "templates"
+    },
+    {
+      "path": "/appearance/languages-list/",
+      "selector": "languages"
+    }
   ]
 }

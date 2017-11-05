@@ -49,7 +49,7 @@
 </template>
 
 <script>
-    import { sio } from '../main';
+    import { sio } from '../../../main';
 
     export default {
         data() {

@@ -36,7 +36,13 @@ $.ajax({
     }
 });
 
-const socket = io();
+let socket;
+
+if(Config.connectionUrl !== "") {
+    socket = io(Config.connectionUrl);
+} else {
+    socket = io();
+}
 export function sio() {
     return socket;
 }
