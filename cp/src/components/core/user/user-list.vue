@@ -4,7 +4,10 @@
         <table>
             <thead class="uppercase">
                 <tr>
-                    <td style="width: 48px;"><i class="material-icons">indeterminate_check_box</i></td>
+                    <td style="width: 48px;">
+                        <i class="material-icons" v-if="selectedUsers.length === 0" @click="selectAll()">check_box_outline_blank</i>
+                        <i class="material-icons" v-if="selectedUsers.length > 0" @click="deselectAll()">indeterminate_check_box</i>
+                    </td>
                     <td style="width: calc(40% - 48);"></td>
                     <td style="width: 12.5%;">Rang</td>
                     <td style="width: 7.5%;">Punkte</td>
@@ -83,6 +86,17 @@
                     this.selectedUsers.splice(this.selectedUsers.indexOf(userID), 1);
                 } else {
                     this.selectedUsers.push(userID);
+                }
+            },
+            selectAll() {
+                for(const user of this.users)
+                    this.selectedUsers.push(user.userID);
+            },
+            deselectAll() {
+                for(const user of this.users) {
+                    if(this.isSelected(user.userID)) {
+                        this.selectedUsers.splice(this.selectedUsers.indexOf(user.userID), 1);
+                    }
                 }
             }
         },
