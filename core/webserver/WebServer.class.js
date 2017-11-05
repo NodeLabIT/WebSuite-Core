@@ -26,6 +26,7 @@ class WebServer {
 
         // serve socket.io-File
         this.app.get('/socket.io.js', (req, res) => {
+            res.header("Content-Type", "application/javascript");
             res.send(fs.readFileSync(__dirname + "/../../node_modules/socket.io-client/dist/socket.io.js"));
         });
 
