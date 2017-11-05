@@ -1,0 +1,25 @@
+<template>
+    <div>
+        <form>
+
+        </form>
+    </div>
+</template>
+
+<script>
+    import { sio } from '../main';
+    export default {
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+
+        },
+        created() {
+            this.$root.$data.title = this.$options.filters.translate('configuration');
+
+        }
+    }
+</script>

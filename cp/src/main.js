@@ -36,7 +36,7 @@ $.ajax({
     }
 });
 
-const socket = io(`//${$(location).attr('hostname')}:${Config.socket}`);
+const socket = io();
 export function sio() {
     return socket;
 }

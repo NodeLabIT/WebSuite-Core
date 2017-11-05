@@ -16,6 +16,10 @@
     "component": "core-configuration-general"
   },
   {
+    "path": "/configuration/access",
+    "component": "core-configuration-access"
+  },
+  {
     "path": "/user",
     "component": "core-user"
   },

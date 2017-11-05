@@ -42,7 +42,7 @@
             <a v-if="pageID * 30 > userCount" class="inactive"><i class="material-icons">navigate_next</i></a>
         </div>
 
-        <aside class="footer-information uppercase">
+        <aside class="footer-information uppercase" v-if="selectedUsers.length > 0">
             {{ selectedUsers.length }} Mitglieder ausgewählt
         </aside>
     </div>
@@ -57,7 +57,7 @@
                 pageID: 0,
                 userCount: 0,
                 users: {},
-                selectedUsers: [1, 4, 5, 9, 11, 29]
+                selectedUsers: []
             }
         },
         methods: {

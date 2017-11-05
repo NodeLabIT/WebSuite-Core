@@ -6,6 +6,10 @@
     {
       "path": "/configuration/general/",
       "selector": "general"
+    },
+    {
+      "path": "/configuration/access/",
+      "selector": "access"
     }
   ],
   "user": [
