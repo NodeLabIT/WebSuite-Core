@@ -56,7 +56,7 @@ body {
     width: 100%;
     height: calc(100% - 60px);
     overflow-y: scroll;
-    z-index: 1000;
+    z-index: 101;
   }
 }
 .header nav.primary .left a {
@@ -191,8 +191,14 @@ body {
     margin-top: 20px !important;
   }
 }
+.main .table-container {
+  display: block;
+  max-width: 100%;
+  overflow-x: scroll;
+}
 .main table {
-  width: 100%;
+  width: 96%;
+  margin: 0 auto;
   border-collapse: collapse;
 }
 .main table thead {
@@ -230,14 +236,41 @@ body {
 a.floating-button {
   text-align: center;
   background: #7289DA;
-  position: absolute;
-  right: 9%;
-  margin-top: -32px;
+  z-index: 0;
   padding: 12px;
   border-radius: 32px;
   color: #FFFFFF;
   transition: all 0.3s ease;
   cursor: pointer;
+}
+@media all and (min-width: 1081px) {
+  a.floating-button {
+    position: absolute;
+    right: 9%;
+    margin-top: -32px;
+  }
+  a.floating-button i {
+    display: inline;
+  }
+  a.floating-button .text {
+    display: none;
+  }
+}
+@media all and (max-width: 1080px) {
+  a.floating-button {
+    position: static;
+    display: block;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 20px auto 0;
+  }
+  a.floating-button i {
+    display: none;
+  }
+  a.floating-button .text {
+    font-size: 16px;
+    font-weight: bold;
+  }
 }
 a.floating-button.extra-margin {
   margin-top: -72px;
@@ -246,7 +279,7 @@ a.floating-button:hover {
   border-radius: 16px;
 }
 a.floating-button i {
-  font-size: 40px;
+  font-size: 30px;
 }
 a.button {
   text-align: center;
@@ -406,6 +439,13 @@ aside.footer-information {
   left: 50%;
   transform: translate(-50%, 0);
 }
+@media all and (max-width: 1080px) {
+  aside.footer-information {
+    width: 94%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}
 .uppercase {
   text-transform: uppercase;
 }
@@ -419,6 +459,11 @@ aside.footer-information {
 }
 .center-text {
   text-align: center;
+}
+@media all and (max-width: 1080px) {
+  .hidden-tiny {
+    display: none;
+  }
 }
 .material-icons {
   display: inline-flex;

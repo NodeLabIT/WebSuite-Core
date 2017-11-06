@@ -62,7 +62,7 @@ html, body {
           width: 100%;
           height: ~"calc(100% - 60px)";
           overflow-y: scroll;
-          z-index: 1000;
+          z-index: 101;
         }
         a {
           @media all and (max-width: 1080px) {
@@ -196,8 +196,14 @@ html, body {
       }
     }
   }
+  .table-container {
+    display: block;
+    max-width: 100%;
+    overflow-x: scroll;
+  }
   table {
-    width: 100%;
+    width: 96%;
+    margin: 0 auto;
     border-collapse: collapse;
     thead {
       color: fade(@color-black, 33%);
@@ -241,9 +247,32 @@ a {
   &.floating-button {
     text-align: center;
     background: @color-discord;
-    position: absolute;
-    right: 9%;
-    margin-top: -32px;
+    @media all and (min-width: 1081px) {
+      position: absolute;
+      right: 9%;
+      margin-top: -32px;
+      i {
+        display: inline;
+      }
+      .text {
+        display: none;
+      }
+    }
+    z-index: 0;
+    @media all and (max-width: 1080px) {
+      position: static;
+      display: block;
+      width: 90%;
+      box-sizing: border-box;
+      margin: 20px auto 0;
+      i {
+        display: none;
+      }
+      .text {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
     padding: 12px;
     border-radius: 32px;
     color: @color-white;
@@ -259,7 +288,7 @@ a {
     }
 
     i {
-      font-size: 40px;
+      font-size: 30px;
     }
   }
 
@@ -443,6 +472,11 @@ aside {
     bottom: 20px;
     left: 50%;
     transform: translate(-50%, 0);
+    @media all and (max-width: 1080px) {
+      width: 94%;
+      text-align: center;
+      box-sizing: border-box;
+    }
   }
 }
 
@@ -462,6 +496,12 @@ aside {
 
 .center-text {
   text-align: center;
+}
+
+.hidden-tiny {
+  @media all and (max-width: 1080px) {
+    display: none;
+  }
 }
 
 .material-icons {
