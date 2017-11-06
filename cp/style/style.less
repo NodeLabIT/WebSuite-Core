@@ -133,10 +133,15 @@ html, body {
   @media all and (min-width: 1081px) {
     width: 82%;
     min-width: 1000px;
-    margin: 20px auto 0 auto;
+    margin: 0 auto;
+
+    >div {
+      &.extra-margin {
+        margin-top: 20px !important;
+      }
+    }
   }
   table {
-    margin-top: -20px !important;
     width: 100%;
     border-collapse: collapse;
     thead {
@@ -190,9 +195,12 @@ a {
     transition: all 0.3s ease;
     cursor: pointer;
 
+    &.extra-margin {
+      margin-top: -72px;
+    }
+
     &:hover {
       border-radius: 16px;
-      background: @color-discord-dark;
     }
 
     i {

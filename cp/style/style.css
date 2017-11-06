@@ -120,11 +120,13 @@ body {
   .main {
     width: 82%;
     min-width: 1000px;
-    margin: 20px auto 0 auto;
+    margin: 0 auto;
+  }
+  .main > div.extra-margin {
+    margin-top: 20px !important;
   }
 }
 .main table {
-  margin-top: -20px !important;
   width: 100%;
   border-collapse: collapse;
 }
@@ -172,9 +174,11 @@ a.floating-button {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+a.floating-button.extra-margin {
+  margin-top: -72px;
+}
 a.floating-button:hover {
   border-radius: 16px;
-  background: #445282;
 }
 a.floating-button i {
   font-size: 40px;

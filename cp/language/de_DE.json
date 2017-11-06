@@ -7,6 +7,11 @@
   "other": "Sonstiges",
 
   "general": "Allgemein",
+  "page-title": "Titel der Seite",
+  "page-subtitle": "Untertitel der Seite",
+  "page-description": "Beschreibung der Seite",
+  "page-keywords": "Schlüsselwörter für Suchmaschinen",
+  "page-keywords-helper": "Einzelne Schlüsselwörter müssen mit Kommatas getrennt werden",
   "access": "Zugang",
 
   "users-management": "Mitgliederverwaltung",

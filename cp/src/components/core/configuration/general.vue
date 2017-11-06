@@ -1,23 +1,24 @@
 <template>
     <div>
+        <a class="floating-button extra-margin"><i class="material-icons">save</i></a>
         <form>
             <div>
                 <input type="text" id="title" v-model="page.title" class="tiny" v-bind:class="{ valid: $root.isValid(page.title) }" />
-                <label for="title">Titel der Seite</label>
+                <label for="title">{{ 'page-title' | translate }}</label>
             </div>
             <div>
                 <input type="text" id="subtitle" v-model="page.subtitle" class="tiny" v-bind:class="{ valid: $root.isValid(page.subtitle) }" />
-                <label for="subtitle">Untertitel der Seite</label>
+                <label for="subtitle">{{ 'page-subtitle' | translate }}</label>
             </div>
             <div>
                 <input type="text" id="description" class="large" v-model="page.description" v-bind:class="{ valid: $root.isValid(page.description) }" />
-                <label for="description">Beschreibung der Seite</label>
+                <label for="description">{{ 'page-description' | translate }}</label>
             </div>
             <div>
                 <input type="text" id="keywords" class="large" v-model="page.keywords" v-bind:class="{ valid: $root.isValid(page.keywords) }" />
-                <label for="keywords">Schlüsselwörter der Seite</label>
+                <label for="keywords">{{ 'page-keywords' | translate }}</label>
                 <span class="helper">
-                    Einzelne Schlüsselwörter müssen mit Kommatas getrennt werden
+                    {{ 'page-keywords-helper' | translate }}
                 </span>
             </div>
         </form>
@@ -42,7 +43,6 @@
         },
         created() {
             this.$root.$data.title = this.$options.filters.translate('configuration');
-
         }
     }
 </script>

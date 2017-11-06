@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="extra-margin">
         <a class="button" @click="restart()">System neu Starten</a><i class="material-icons spin" id="restart" style="display: none;">refresh</i>
         <br/>
         <br/>
