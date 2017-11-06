@@ -12,6 +12,11 @@ body {
 }
 .header {
   background: #445282;
+  position: relative;
+  z-index: 100;
+}
+.header nav {
+  background: #445282;
 }
 .header nav.primary {
   line-height: 60px;
@@ -56,7 +61,7 @@ body {
     width: 100%;
     height: calc(100% - 60px);
     overflow-y: scroll;
-    z-index: 101;
+    z-index: 10001;
   }
 }
 .header nav.primary .left a {
@@ -95,6 +100,11 @@ body {
   display: inline-block;
   float: right;
 }
+@media all and (max-width: 1080px) {
+  .header nav.primary .right {
+    margin-right: 20px;
+  }
+}
 .header nav.primary .right a#dropdown {
   margin-left: 4px;
   cursor: pointer;
@@ -112,8 +122,15 @@ body {
   border-radius: 16px;
 }
 .header nav.secondary {
-  line-height: 40px;
+  line-height: 36px;
   font-weight: 500;
+}
+@media all and (max-width: 1080px) {
+  .header nav.secondary {
+    margin-left: 20px;
+    width: auto;
+    overflow-x: scroll;
+  }
 }
 .header nav.secondary a {
   font-size: 14px;
@@ -121,6 +138,7 @@ body {
   color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
   padding: 0 12px;
+  border-bottom: 4px solid #445282;
   box-sizing: border-box;
   display: inline-block;
 }
@@ -151,7 +169,7 @@ body {
 }
 @media all and (max-width: 1080px) {
   .header nav {
-    width: 94%;
+    width: 100%;
     margin: 0 auto;
   }
 }
@@ -176,7 +194,17 @@ body {
   font-weight: 100;
   color: #FFFFFF;
   margin: 0;
-  line-height: 96px;
+}
+@media all and (max-width: 1080px) {
+  .header .page-title h1 {
+    font-size: 25px;
+    line-height: 48px;
+  }
+}
+@media all and (min-width: 1081px) {
+  .header .page-title h1 {
+    line-height: 96px;
+  }
 }
 .main {
   padding-bottom: 100px;
@@ -188,7 +216,16 @@ body {
     margin: 0 auto;
   }
   .main > div.extra-margin {
-    margin-top: 20px !important;
+    margin-top: 20px;
+  }
+}
+@media all and (max-width: 1080px) {
+  .main {
+    width: 96%;
+    margin: 0 auto;
+  }
+  .main > div.extra-margin {
+    margin-top: 20px;
   }
 }
 .main .table-container {
@@ -299,6 +336,7 @@ a.button:hover {
 form > div {
   margin-top: 40px;
   position: relative;
+  z-index: 0;
 }
 form > div > label {
   position: absolute;
@@ -321,6 +359,7 @@ form > div > input {
   border: 0;
   border-bottom: 1px solid rgba(33, 33, 33, 0.125);
   font-size: 14px;
+  box-sizing: border-box;
 }
 form > div > input:focus {
   border-color: #7289DA;
@@ -336,6 +375,14 @@ form > div > input.valid + label {
 @media all and (min-width: 1081px) {
   form > div > input.tiny {
     width: 40%;
+  }
+  form > div > input.large {
+    width: 100%;
+  }
+}
+@media all and (max-width: 1080px) {
+  form > div > input.tiny {
+    width: 80%;
   }
   form > div > input.large {
     width: 100%;

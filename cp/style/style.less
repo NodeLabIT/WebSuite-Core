@@ -23,7 +23,10 @@ html, body {
 
 .header {
   background: @color-discord-dark;
+  position: relative;
+  z-index: 100;
   nav {
+    background: @color-discord-dark;
     &.primary {
       @media all and (max-width: 1080px) {
         position: fixed;
@@ -62,7 +65,7 @@ html, body {
           width: 100%;
           height: ~"calc(100% - 60px)";
           overflow-y: scroll;
-          z-index: 101;
+          z-index: 10001;
         }
         a {
           @media all and (max-width: 1080px) {
@@ -95,6 +98,9 @@ html, body {
         }
       }
       .right {
+        @media all and (max-width: 1080px) {
+          margin-right: 20px;
+        }
         width: 60px;
         text-align: center;
         display: inline-block;
@@ -119,7 +125,12 @@ html, body {
       }
     }
     &.secondary {
-      line-height: 40px;
+      @media all and (max-width: 1080px) {
+        margin-left: 20px;
+        width: auto;
+        overflow-x: scroll;
+      }
+      line-height: 36px;
       font-weight: 500;
       a {
         font-size: 14px;
@@ -127,6 +138,7 @@ html, body {
         color: fade(@color-white, 40%);
         text-decoration: none;
         padding: 0 12px;
+        border-bottom: 4px solid @color-discord-dark;
 
         &:hover, &:active {
           color: fade(@color-white, 70%);
@@ -159,7 +171,7 @@ html, body {
       margin: 0 auto;
     }
     @media all and (max-width: 1080px) {
-      width: 94%;
+      width: 100%;
       margin: 0 auto;
     }
   }
@@ -179,7 +191,13 @@ html, body {
       font-weight: 100;
       color: @color-white;
       margin: 0;
-      line-height: 96px;
+      @media all and (max-width: 1080px) {
+        font-size: 25px;
+        line-height: 48px;
+      }
+      @media all and (min-width: 1081px) {
+        line-height: 96px;
+      }
     }
   }
 }
@@ -190,12 +208,23 @@ html, body {
     min-width: 1000px;
     margin: 0 auto;
 
-    >div {
+    > div {
       &.extra-margin {
-        margin-top: 20px !important;
+        margin-top: 20px;
       }
     }
   }
+  @media all and (max-width: 1080px) {
+    width: 96%;
+    margin: 0 auto;
+
+    > div {
+      &.extra-margin {
+        margin-top: 20px;
+      }
+    }
+  }
+
   .table-container {
     display: block;
     max-width: 100%;
@@ -314,6 +343,7 @@ form {
   > div {
     margin-top: 40px;
     position: relative;
+    z-index: 0;
     > label {
       position: absolute;
       top: 0;
@@ -355,6 +385,15 @@ form {
           width: 100%;
         }
       }
+      @media all and (max-width: 1080px) {
+        &.tiny {
+          width: 80%;
+        }
+        &.large {
+          width: 100%;
+        }
+      }
+      box-sizing: border-box;
     }
 
     span.helper {

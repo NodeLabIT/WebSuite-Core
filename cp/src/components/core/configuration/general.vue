@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <a class="floating-button extra-margin"><i class="material-icons">save</i></a>
+    <div class="extra-margin">
+        <a class="floating-button">
+            <i class="material-icons">save</i>
+            <span class="text">Änderungen speichern</span>
+        </a>
         <form>
             <div>
                 <input type="text" id="title" v-model="page.title" class="tiny" v-bind:class="{ valid: $root.isValid(page.title) }" />
