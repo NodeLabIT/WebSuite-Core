@@ -2,7 +2,8 @@
     <div>
         <header class="header">
             <nav class="primary">
-                <div class="left">
+                <a class="toggle" @click="toggleNav()"><i class="material-icons">menu</i></a>
+                <div class="left" id="navigation">
                     <router-link to="/" active-class="active" exact>
                         {{ 'dashboard' | translate }}
                     </router-link>
@@ -92,6 +93,9 @@
                 } else {
                     this.subMenu = {};
                 }
+            },
+            toggleNav() {
+                $('#navigation').slideToggle();
             }
         },
         watch: {

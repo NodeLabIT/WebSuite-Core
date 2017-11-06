@@ -3,7 +3,8 @@
 @background-page: #F4F4F4;
 
 @color-white: #FFFFFF;
-@color-black: #000000;
+@color-grey: #404040;
+@color-black: #212121;
 
 html {
   overflow-y: scroll;
@@ -16,17 +17,61 @@ html, body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-weight: 300;
   font-size: 14px;
+
+  width: 100%;
 }
 
 .header {
   background: @color-discord-dark;
   nav {
     &.primary {
+      @media all and (max-width: 1080px) {
+        position: fixed;
+      }
       line-height: 60px;
+      .toggle {
+        @media all and (min-width: 1081px) {
+          display: none;
+        }
+
+        @media  all and (max-width: 1080px) {
+          display: inline;
+          margin-left: 20px;
+          color: fade(@color-white, 40%);
+
+          &:hover, &:active {
+            color: fade(@color-white, 70%);
+          }
+
+          &.active {
+            color: @color-white;
+          }
+        }
+      }
       .left {
-        display: inline-block;
-        width: ~"calc(100% - 60px)";
+        @media all and (min-width: 1081px) {
+          display: inline-block;
+          width: ~"calc(100% - 60px)";
+        }
+        @media all and (max-width: 1080px) {
+          display: none;
+          position: fixed;
+          background: @color-grey;
+          left: 0;
+          top: 60px;
+          width: 100%;
+          height: ~"calc(100% - 60px)";
+          overflow-y: scroll;
+          z-index: 1000;
+        }
         a {
+          @media all and (max-width: 1080px) {
+            display: block;
+            margin-left: 20px;
+          }
+          @media all and (min-width: 1081px) {
+            display: inline;
+          }
           font-size: 14px;
           color: fade(@color-white, 40%);
           text-decoration: none;
@@ -39,8 +84,10 @@ html, body {
             color: @color-white;
           }
 
-          &:not(:first-child) {
-            margin-left: 64px;
+          @media all and (min-width: 1081px) {
+            &:not(:first-child) {
+              margin-left: 64px;
+            }
           }
 
           box-sizing: border-box;
@@ -111,6 +158,10 @@ html, body {
       min-width: 1000px;
       margin: 0 auto;
     }
+    @media all and (max-width: 1080px) {
+      width: 94%;
+      margin: 0 auto;
+    }
   }
   .page-title {
     box-sizing: border-box;
@@ -119,6 +170,10 @@ html, body {
       width: 82%;
       min-width: 1000px;
       margin: 0 auto;
+    }
+    @media all and (max-width: 1080px) {
+      padding-top: 50px;
+      margin-left: 20px;
     }
     h1 {
       font-weight: 100;
@@ -263,11 +318,13 @@ form {
         }
       }
 
-      &.tiny {
-        width: 40%;
-      }
-      &.large {
-        width: 100%;
+      @media all and (min-width: 1081px) {
+        &.tiny {
+          width: 40%;
+        }
+        &.large {
+          width: 100%;
+        }
       }
     }
 
