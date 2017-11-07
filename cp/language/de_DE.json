@@ -12,6 +12,8 @@
   "page-description": "Beschreibung der Seite",
   "page-keywords": "Schlüsselwörter für Suchmaschinen",
   "page-keywords-helper": "Einzelne Schlüsselwörter müssen mit Kommatas getrennt werden",
+  "page-footer-script": "Footerscript",
+  "page-footer-script-helper": "Dieser Code wird auf der Webseite im Footer eingebunden",
   "access": "Zugang",
 
   "users-management": "Mitgliederverwaltung",

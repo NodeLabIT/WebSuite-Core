@@ -25,8 +25,11 @@
                 </span>
             </div>
             <div>
-                <label for="footerScript">{{ 'page-description' | translate }}</label>
+                <label for="footerScript">{{ 'page-footer-script' | translate }}</label>
                 <textarea id="footerScript" v-model="page.footerScript"></textarea>
+                <span class="helper">
+                    {{ 'page-footer-script-helper' | translate }}
+                </span>
             </div>
         </form>
     </div>

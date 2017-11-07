@@ -14,7 +14,6 @@ class GeneralConfiguration {
         WebSuite.getWebSocketHandler().registerCpEvent('cp-save-general-configuration', (socket, data) => {
             if(data.title && data.subtitle && data.description && data.keywords && data.footerScript) {
                 FileUtil.saveFile(_dir + '/data/page.json', JSON.stringify(data, null, 2)).then(() => {
-                    console.log("success");
                 }).catch(err => {
                     console.log(err);
                 });
