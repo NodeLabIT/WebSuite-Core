@@ -110,8 +110,7 @@ body {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.4);
 }
-.header nav.primary .right a#dropdown:hover,
-.header nav.primary .right a#dropdown:active {
+.header nav.primary .right a#dropdown:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 .header nav.primary .right a#dropdown.active {
@@ -129,7 +128,6 @@ body {
   .header nav.secondary {
     margin-left: 20px;
     width: auto;
-    overflow-x: scroll;
   }
 }
 .header nav.secondary a {
@@ -273,7 +271,6 @@ body {
 a.floating-button {
   text-align: center;
   background: #7289DA;
-  z-index: 0;
   padding: 12px;
   border-radius: 32px;
   color: #FFFFFF;
@@ -284,13 +281,17 @@ a.floating-button {
   a.floating-button {
     position: absolute;
     right: 9%;
-    margin-top: -32px;
+    margin-top: -27px;
+    z-index: 10000;
   }
   a.floating-button i {
     display: inline;
   }
   a.floating-button .text {
     display: none;
+  }
+  a.floating-button.extra-margin {
+    margin-top: -66px;
   }
 }
 @media all and (max-width: 1080px) {
@@ -309,9 +310,6 @@ a.floating-button {
     font-size: 16px;
     font-weight: 500;
   }
-}
-a.floating-button.extra-margin {
-  margin-top: -72px;
 }
 a.floating-button:hover {
   border-radius: 16px;
@@ -339,14 +337,14 @@ form > div {
   position: relative;
   z-index: 0;
 }
-form > div > label {
+form > div > label.floating-label {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   z-index: 0;
 }
-form > div > label,
+form > div > label.floating-label,
 form > div > input {
   padding: 10px 12px;
   cursor: text;
@@ -365,8 +363,8 @@ form > div > input {
 form > div > input:focus {
   border-color: #7289DA;
 }
-form > div > input:focus + label,
-form > div > input.valid + label {
+form > div > input:focus + label.floating-label,
+form > div > input.valid + label.floating-label {
   top: -20px;
   left: -10px;
   font-size: 12px;
@@ -394,6 +392,13 @@ form > div span.helper {
   margin-left: 12px;
   margin-top: 4px;
   display: block;
+}
+form > div textarea {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 240px;
 }
 .pagination {
   display: block;
@@ -478,7 +483,6 @@ form > div span.helper {
   padding: 20px 40px;
 }
 aside.footer-information {
-  background: #7289DA;
   color: #FFFFFF;
   padding: 12px 36px;
   border-radius: 6px;
@@ -512,6 +516,21 @@ aside.footer-information {
   .hidden-tiny {
     display: none;
   }
+}
+.bg-primary {
+  background: #7289DA;
+}
+.bg-error {
+  background: #F44336;
+}
+.bg-warning {
+  background: #FF9800;
+}
+.bg-success {
+  background: #4CAF50;
+}
+.bg-info {
+  background: #2196F3;
 }
 .material-icons {
   display: inline-flex;

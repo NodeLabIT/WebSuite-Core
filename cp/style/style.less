@@ -6,6 +6,11 @@
 @color-grey: #404040;
 @color-black: #212121;
 
+@color-error: #F44336;
+@color-warning: #FF9800;
+@color-success: #4CAF50;
+@color-info: #2196F3;
+
 html {
   overflow-y: scroll;
 }
@@ -110,7 +115,7 @@ html, body {
           cursor: pointer;
           color: fade(@color-white, 40%);
 
-          &:hover, &:active {
+          &:hover {
             color: fade(@color-white, 70%);
           }
 
@@ -128,7 +133,6 @@ html, body {
       @media all and (max-width: 1080px) {
         margin-left: 20px;
         width: auto;
-        overflow-x: scroll;
       }
       line-height: 36px;
       font-weight: 500;
@@ -279,15 +283,19 @@ a {
     @media all and (min-width: 1081px) {
       position: absolute;
       right: 9%;
-      margin-top: -32px;
+      margin-top: -27px;
       i {
         display: inline;
       }
       .text {
         display: none;
       }
+      z-index: 10000;
+
+      &.extra-margin {
+        margin-top: -66px;
+      }
     }
-    z-index: 0;
     @media all and (max-width: 1080px) {
       position: static;
       display: block;
@@ -308,10 +316,6 @@ a {
     color: @color-white;
     transition: all 0.3s ease;
     cursor: pointer;
-
-    &.extra-margin {
-      margin-top: -72px;
-    }
 
     &:hover {
       border-radius: 16px;
@@ -345,14 +349,14 @@ form {
     margin-top: 40px;
     position: relative;
     z-index: 0;
-    > label {
+    > label.floating-label {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       z-index: 0;
     }
-    > label, > input {
+    > label.floating-label, > input {
       padding: 10px 12px;
       cursor: text;
       transition: all 0.2s ease;
@@ -369,7 +373,7 @@ form {
         border-color: @color-discord;
       }
       &:focus, &.valid {
-        + label {
+        + label.floating-label {
           top: -20px;
           left: -10px;
           font-size: 12px;
@@ -402,6 +406,14 @@ form {
       margin-left: 12px;
       margin-top: 4px;
       display: block;
+    }
+
+    textarea {
+      margin-top: 10px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      min-height: 240px;
     }
   }
 }
@@ -504,7 +516,6 @@ form {
 
 aside {
   &.footer-information {
-    background: @color-discord;
     color: @color-white;
     padding: 12px 36px;
     border-radius: 6px;
@@ -542,6 +553,26 @@ aside {
   @media all and (max-width: 1080px) {
     display: none;
   }
+}
+
+.bg-primary {
+  background: @color-discord;
+}
+
+.bg-error {
+  background: @color-error;
+}
+
+.bg-warning {
+  background: @color-warning;
+}
+
+.bg-success {
+  background: @color-success;
+}
+
+.bg-info {
+  background: @color-info;
 }
 
 .material-icons {

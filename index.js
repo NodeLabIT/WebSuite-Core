@@ -7,6 +7,8 @@ const config = require('./config.json');
 
 const Check = require('./system/check.class');
 
+global._dir = __dirname;
+
 if(cluster.isMaster) {
     const Logger = require('./core/logger/Logger.class');
     // TODO: Check for required settings and dependencies
