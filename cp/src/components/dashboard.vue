@@ -1,9 +1,20 @@
 <template>
     <div class="extra-margin">
-        <a class="button" @click="restart()">System neu Starten</a><i class="material-icons spin" id="restart" style="display: none;">refresh</i>
+        <a class="button" @click="restart()">{{ 'restart-system' | translate }}</a>
         <br/>
         <br/>
-        <a class="button" @click="recompile()">System neu compilen</a><i class="material-icons spin" id="recompile" style="display: none;">refresh</i>
+        <a class="button" @click="recompile()">{{ 'recompile-system' | translate }}</a><i class="material-icons spin" id="recompile" style="display: none;">refresh</i>
+
+        <div class="dialog-container closed" id="system-restart">
+            <div class="dialog small">
+                <div class="dialog-header">
+                    <span class="uppercase">{{ 'restarting' | translate }}</span>
+                </div>
+                <div class="dialog-body">
+                    {{ 'restart' | translate }}
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -18,7 +29,7 @@
         methods: {
             restart() {
                 sio().emit('cp-restart-system', {});
-                $('#restart').show();
+                this.$root.openDialog('#system-restart');
             },
             recompile() {
                 sio().emit('cp-recompile-system', {});
@@ -29,7 +40,7 @@
             this.$root.$data.title = this.$options.filters.translate('dashboard');
 
             sio().on('restart-finished', () => {
-                $('#restart').hide();
+                this.$root.closeDialog('#system-restart');
             });
             sio().on('recompile-finished', () => {
                 $('#recompile').hide();

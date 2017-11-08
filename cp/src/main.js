@@ -58,11 +58,27 @@ function init() {
         render: h => h(App),
         data: {
             loggedIn: false,
-            title: "..."
+            title: "...",
+            openedDialog: undefined
         },
         methods: {
             isValid: function(input) {
                 return input !== undefined && input !== "";
+            },
+            openDialog(dialogId) {
+                if(this.openedDialog !== undefined) {
+                    this.closeDialog(this.openedDialog)
+                }
+                $(dialogId).removeClass('closed');
+                this.openedDialog = dialogId;
+            },
+            closeDialog(dialogId) {
+                $(dialogId).addClass("fade");
+                $(dialogId).one('webkitAnimationEnd onanimationend msAnimationEnd', (event) => {
+                    $(dialogId).addClass('closed');
+                    $(dialogId).removeClass('fade');
+                });
+                this.openedDialog = undefined;
             }
         },
         created() {

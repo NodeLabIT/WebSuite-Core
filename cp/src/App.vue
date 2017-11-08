@@ -75,16 +75,6 @@
             }
         },
         methods: {
-            openDialog(dialogId) {
-                $(dialogId).removeClass('closed');
-            },
-            closeDialog(dialogId) {
-                $(dialogId).addClass("fade");
-                $(dialogId).one('webkitAnimationEnd onanimationend msAnimationEnd', (event) => {
-                    $(dialogId).addClass('closed');
-                    $(dialogId).removeClass('fade');
-                });
-            },
             loadSubNavigation() {
                 const section = this.$route.path.split('/')[1];
 
@@ -105,9 +95,9 @@
         },
         created() {
             sio().on('disconnect', (reason) => {
-                this.openDialog('#sio-no-connection');
+                this.$root.openDialog('#sio-no-connection');
                 sio().on('reconnect', (attemptNumber) => {
-                    this.closeDialog('#sio-no-connection');
+                    this.$root.closeDialog('#sio-no-connection');
                 });
             });
             this.loadSubNavigation();

@@ -20,6 +20,9 @@ if(cluster.isMaster) {
             cluster.fork();
         }
 
+        let restarting = false;
+        let unhandledPackets = [];
+
         // If crash then log it and restart one worker
         cluster.on('exit', (worker, code, signal) => {
             if(code !== 0) {
@@ -37,15 +40,33 @@ if(cluster.isMaster) {
 
         io.on('connection', (socket) => {
             socket.on('*', (packet) => {
-                randomWorker(worker => {
-                    worker.send(JSON.stringify({
+                if(restarting) {
+                    unhandledPackets.push({
                         type: 'sioPacket',
                         clientID: socket.conn.id,
                         packet: packet
-                    }));
-                });
+                    });
+                } else {
+                    randomWorker(worker => {
+                        worker.send(JSON.stringify({
+                            type: 'sioPacket',
+                            clientID: socket.conn.id,
+                            packet: packet
+                        }));
+                    });
+                }
             });
         });
+
+        let handleUnhandledPackets = () => {
+            if(unhandledPackets.length > 0) {
+                unhandledPackets.forEach(packet => {
+                    randomWorker(worker => {
+                        worker.send(JSON.stringify(packet));
+                    });
+                });
+            }
+        };
 
         cluster.on('message', (worker, message, handle) => {
             const json = JSON.parse(message);
@@ -61,25 +82,31 @@ if(cluster.isMaster) {
             }
             if(json.type && json.type === 'system') {
                 if(json.action && json.action === 'restart') {
-                    delete require.cache[require.resolve("./system/system.class")];
+                    restarting = true;
+                    // TODO: broadcast restart to everyone
+                    setTimeout(() => {
+                        delete require.cache[require.resolve("./system/system.class")];
 
-                    let i = 0;
-                    const workers = Object.keys(cluster.workers);
-                    const f = () => {
-                        if(i === workers.length) {
-                            io.emit('restart-finished', {});
-                            return;
-                        }
+                        let i = 0;
+                        const workers = Object.keys(cluster.workers);
+                        const f = () => {
+                            if(i === workers.length) {
+                                io.emit('restart-finished', {});
+                                restarting = false;
+                                handleUnhandledPackets();
+                                return;
+                            }
 
-                        cluster.workers[workers[i]].disconnect();
+                            cluster.workers[workers[i]].disconnect();
 
-                        const worker = cluster.fork();
-                        worker.on('listening', () => {
-                            i++;
-                            f();
-                        });
-                    };
-                    f();
+                            const worker = cluster.fork();
+                            worker.on('listening', () => {
+                                i++;
+                                f();
+                            });
+                        };
+                        f();
+                    }, 7000);
                 }
             }
         });
