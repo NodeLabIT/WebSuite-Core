@@ -8,7 +8,7 @@
 
   "restart-system": "System neu starten",
   "restarting": "System-Neustart",
-  "restart": "System wird in wenigen Sekunden neugestartet. Alle Systeme werden damm heruntergefahren und erneut gestartet. Dies kann unter Umständen einige Zeit in Anspruch nehmen.",
+  "restart": "System wird in wenigen Sekunden neugestartet. Alle Systeme werden dann heruntergefahren und erneut gestartet. Dies kann unter Umständen einige Zeit in Anspruch nehmen.",
   "recompile-system": "System neu compilen",
 
   "general": "Allgemein",
