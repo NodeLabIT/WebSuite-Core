@@ -19,15 +19,26 @@
   "maintenance-helper": "Gib hier einen Grund für Wartungsarbeiten an. Sobald ein Grund eingetragen ist, ist der Wartungsmodus aktiviert. Lösche den Grund wieder, um den Wartungsmodus zu deaktivieren.",
 
   "users-management": "Mitgliederverwaltung",
+  "add-member": "Mitglied hinzufügen",
+  "rank": "Rang",
+  "points": "Punkte",
+  "registered": "Registriert",
+  "member-chosen": "Mitglieder ausgewählt",
   "groups": "Gruppen",
+  "add-group": "Gruppe hinzufügen",
+  "member-count": "Mitgliederanzahl",
   "penalties": "Sanktionen",
 
   "design": "Stil",
   "templates": "Templates",
   "languages": "Sprachen",
 
+  "save-changes": "Änderungen speichern",
+
   "error": "Fehler",
   "404-description": "Entschuldigung. Wir können die angegebene Seite nicht finden.",
+  "204-description": "Die Antwort deiner Anfrage enthielt keinen Inhalt.",
+  "500-description": "Bei der Ausführung der Anfrage trat ein unerwarteter Serverfehler auf.",
 
   "no-connection": "Keine Verbindung",
   "trying-reconnect": "Es wird versucht, die Verbindung erneut aufzubauen. Dies kann unter Umständen einige Zeit in Anspruch nehmen."

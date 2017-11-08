@@ -1,24 +1,16 @@
 <template>
     <div>
-        <a class="floating-button"><i class="material-icons">add</i><span class="text">Mitglied hinzufügen</span></a>
+        <a class="floating-button"><i class="material-icons">add</i><span class="text">{{ 'add-member' | translate }}</span></a>
         <div class="table-container">
             <table>
                 <thead class="uppercase">
                 <tr>
-                    <td class="row-1">
-                        <a v-if="selectedUsers.length === 0" @click="selectAll()">
-                            <i class="material-icons">check_box_outline_blank</i>
-                        </a>
-                        <a v-if="selectedUsers.length > 0" @click="deselectAll()">
-                            <i class="material-icons">indeterminate_check_box</i>
-                        </a>
-                    </td>
-                    <td class="row-2"></td>
-                    <td class="hidden-tiny row-3">Rang</td>
-                    <td class="hidden-tiny row-4">Punkte</td>
-                    <td class="hidden-tiny row-5">registriert</td>
-                    <td class="hidden-tiny row-6">letzte aktivität</td>
-                    <td class="row-7"></td>
+                    <td class="row-user-1"></td>
+                    <td class="row-user-2"></td>
+                    <td class="hidden-tiny row-user-3">{{ 'rank' | translate }}Rang</td>
+                    <td class="hidden-tiny row-user-4">{{ 'points' | translate }}Punkte</td>
+                    <td class="hidden-tiny row-user-5">{{ 'registered' | translate }}registriert</td>
+                    <td class="row-user-6"></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,7 +19,7 @@
                         <i class="material-icons" v-if="!isSelected(user.userID)" @click="toggleSelection(user.userID)">check_box_outline_blank</i>
                         <i class="material-icons active" v-if="isSelected(user.userID)" @click="toggleSelection(user.userID)">check_box</i>
                     </td>
-                    <td @click="$router.push(`/user/user/${user.userID}`)" class="pointer">
+                    <td @click="$router.push(`/user/user/edit/${user.userID}`)" class="pointer">
                         <img src="/images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" width="44" height="44">
                         <div class="inliner">
                             <span class="primary-text">{{ user.username }}</span>
@@ -36,8 +28,7 @@
                     </td>
                     <td class="hidden-tiny">Administrator</td>
                     <td class="hidden-tiny">6132</td>
-                    <td class="hidden-tiny">am 04.01.2017, 13:57 Uhr</td>
-                    <td class="hidden-tiny">vor 17 Minuten</td>
+                    <td class="hidden-tiny">04.01.2017, 13:57</td>
                     <td><i class="material-icons">more_horiz</i></td>
                 </tr>
                 </tbody>
@@ -52,34 +43,31 @@
         </div>
 
         <aside class="footer-information uppercase bg-primary" v-if="selectedUsers.length > 0">
-            {{ selectedUsers.length }} Mitglieder ausgewählt
+            {{ selectedUsers.length }} {{ 'member-chosen' | translate }}
         </aside>
     </div>
 </template>
 
 <style>
-    .row-1, .row-7 {
+    .row-user-1, .row-user-6 {
         width: 48px;
     }
     @media all and (min-width: 1081px) {
-        .row-2 {
-            width: calc(40% - 48);
+        .row-user-2 {
+            width: calc(45% - 48);
         }
-        .row-3 {
-            width: 12.5%;
+        .row-user-3 {
+            width: 15%;
         }
-        .row-4 {
-            width: 7.5%;
+        .row-user-4 {
+            width: 10%;
         }
-        .row-5 {
-            width: calc(20% - 24px);
-        }
-        .row-6 {
-            width: calc(20% - 24px);
+        .row-user-5 {
+            width: calc(30% - 24px);
         }
     }
     @media all and (max-width: 1081px) {
-        .row-2 {
+        .row-user-2 {
             width: calc(100% - 96px);
         }
     }
@@ -121,17 +109,6 @@
                 } else {
                     this.selectedUsers.push(userID);
                 }
-            },
-            selectAll() {
-                for(const user of this.users)
-                    this.selectedUsers.push(user.userID);
-            },
-            deselectAll() {
-                for(const user of this.users) {
-                    if(this.isSelected(user.userID)) {
-                        this.selectedUsers.splice(this.selectedUsers.indexOf(user.userID), 1);
-                    }
-                }
             }
         },
         watch: {
@@ -146,10 +123,16 @@
             this.getUserList();
 
             sio().on('cp-user-list', data => {
-                if(data.err || data.users === undefined) {
-                    this.$router.push('/users');
+                if(data.err) {
+                    this.$router.push('/error/500');
                     return;
                 }
+
+                if(data.users === undefined) {
+                    this.$router.push('/error/204');
+                    return;
+                }
+
                 this.userCount = parseInt(data.userCount);
                 this.users = data.users;
             });

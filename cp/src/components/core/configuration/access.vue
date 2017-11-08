@@ -2,7 +2,7 @@
     <div class="extra-margin">
         <a class="floating-button extra-margin" @click="save()">
             <i class="material-icons">save</i>
-            <span class="text">Änderungen speichern</span>
+            <span class="text">{{ 'save-changes' | translate }}</span>
         </a>
         <form>
             <div>

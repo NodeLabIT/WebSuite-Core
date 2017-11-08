@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2>{{ 'error' | translate }}: 404</h2>
-        <p>{{ '404-description' | translate }} :(</p>
+        <h2>{{ 'error' | translate }}: 500</h2>
+        <p>{{ '500-description' | translate }} :(</p>
     </div>
 </template>
 

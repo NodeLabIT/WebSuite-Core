@@ -4,6 +4,14 @@
     "component": "404"
   },
   {
+    "path": "/error/204",
+    "component": "204"
+  },
+  {
+    "path": "/error/500",
+    "component": "500"
+  },
+  {
     "path": "/",
     "component": "dashboard"
   },
@@ -26,6 +34,10 @@
   {
     "path": "/user/user-list",
     "component": "core/user/user-list"
+  },
+  {
+    "path": "/user/group-list",
+    "component": "core/user/group-list"
   },
   {
     "path": "/user/user-list/:pageID",
