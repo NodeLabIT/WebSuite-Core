@@ -21,6 +21,7 @@ class SystemLoader {
             require('../core/websocket/eventListener/cp/UserList.class').listen();
             require('../core/websocket/eventListener/cp/Dashboard.class').listen();
             require('../core/websocket/eventListener/cp/configuration.general.class').listen();
+            require('../core/websocket/eventListener/cp/configuration.access.class').listen();
 
             global.WebSuite._getWebServer().listen();
         });

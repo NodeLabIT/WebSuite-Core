@@ -15,6 +15,8 @@
   "page-footer-script": "Footerscript",
   "page-footer-script-helper": "Dieser Code wird auf der Webseite im Footer eingebunden",
   "access": "Zugang",
+  "maintenance": "Grund für Wartungsarbeiten",
+  "maintenance-helper": "Gib hier einen Grund für Wartungsarbeiten an. Sobald ein Grund eingetragen ist, ist der Wartungsmodus aktiviert. Lösche den Grund wieder, um den Wartungsmodus zu deaktivieren.",
 
   "users-management": "Mitgliederverwaltung",
   "groups": "Gruppen",

@@ -127,11 +127,6 @@ class Database {
                         return;
                     }
 
-                    if(!results[0]) {
-                        reject(new Error('no data found'));
-                        return;
-                    }
-
                     // resolve on success
                     resolve(results);
                 });
