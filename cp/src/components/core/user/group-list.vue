@@ -18,7 +18,7 @@
                             <span class="hidden-tiny">{{ group.groupDescription }}</span>
                         </div>
                     </td>
-                    <td class="hidden-tiny">...</td>
+                    <td class="hidden-tiny">{{ getUserCount(group.groupID) }}</td>
                     <td><i class="material-icons">more_horiz</i></td>
                 </tr>
                 </tbody>
@@ -55,7 +55,13 @@
     export default {
         data() {
             return {
+                counts: [],
                 groups: {}
+            }
+        },
+        methods: {
+            getUserCount(groupID) {
+                return this.counts[groupID].count;
             }
         },
         created() {
@@ -67,6 +73,7 @@
                     this.$router.push('/error/204');
                     return;
                 }
+                this.counts = data.counts;
                 this.groups = data.groups;
             });
         }
