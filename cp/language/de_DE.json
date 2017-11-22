@@ -24,7 +24,9 @@
   "maintenance-helper": "Gib hier einen Grund für Wartungsarbeiten an. Sobald ein Grund eingetragen ist, ist der Wartungsmodus aktiviert. Lösche den Grund wieder, um den Wartungsmodus zu deaktivieren.",
 
   "users-management": "Mitgliederverwaltung",
+  "no-user-exists": "Bisher wurde noch kein Nutzer erstellt.",
   "add-member": "Mitglied hinzufügen",
+  "edit-user": "Mitglied bearbeiten",
   "rank": "Rang",
   "points": "Punkte",
   "registered": "Registriert",

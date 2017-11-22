@@ -36,12 +36,12 @@
     "component": "core/user/user-list"
   },
   {
-    "path": "/user/group-list",
-    "component": "core/user/group-list"
-  },
-  {
     "path": "/user/user-list/:pageID",
     "component": "core/user/user-list"
+  },
+  {
+    "path": "/user/group-list",
+    "component": "core/user/group-list"
   },
   {
     "path": "/appearance",

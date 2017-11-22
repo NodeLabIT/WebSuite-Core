@@ -1,15 +1,15 @@
 <template>
     <div>
-        <a class="floating-button"><i class="material-icons">add</i><span class="text">{{ 'add-member' | translate }}</span></a>
+        <!--a class="floating-button"><i class="material-icons">add</i><span class="text">{{ 'add-member' | translate }}</span></a-->
         <div class="table-container">
             <table>
                 <thead class="uppercase">
                 <tr>
                     <td class="row-user-1"></td>
                     <td class="row-user-2"></td>
-                    <td class="hidden-tiny row-user-3">{{ 'rank' | translate }}Rang</td>
-                    <td class="hidden-tiny row-user-4">{{ 'points' | translate }}Punkte</td>
-                    <td class="hidden-tiny row-user-5">{{ 'registered' | translate }}registriert</td>
+                    <td class="hidden-tiny row-user-3">{{ 'rank' | translate }}</td>
+                    <td class="hidden-tiny row-user-4">{{ 'points' | translate }}</td>
+                    <td class="hidden-tiny row-user-5">{{ 'registered' | translate }}</td>
                     <td class="row-user-6"></td>
                 </tr>
                 </thead>
@@ -29,10 +29,16 @@
                     <td class="hidden-tiny">Administrator</td>
                     <td class="hidden-tiny">6132</td>
                     <td class="hidden-tiny">04.01.2017, 13:57</td>
-                    <td><i class="material-icons">more_horiz</i></td>
+                    <td @click="dropDown(user.userID);">
+                        <i class="material-icons">more_horiz</i>
+                        <div class="dropdown" v-bind:id="'dropdown-' + user.userID"></div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
+            <div class="center-text" v-if="users.length === 0">
+                {{ 'no-user-exists' | translate }}
+            </div>
         </div>
         <div class="pagination">
             <router-link :to="`/user/user-list/${pageID - 1}`" v-if="pageID > 1"><i class="material-icons">navigate_before</i></router-link>
@@ -45,6 +51,17 @@
         <aside class="footer-information uppercase bg-primary" v-if="selectedUsers.length > 0">
             {{ selectedUsers.length }} {{ 'member-chosen' | translate }}
         </aside>
+
+        <div class="dialog-container closed" id="user-edit">
+            <div class="dialog small">
+                <div class="dialog-header">
+                    <span class="uppercase">{{ 'edit-user' | translate }}</span>
+                </div>
+                <div class="dialog-body">
+
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -82,7 +99,8 @@
                 pageID: 0,
                 userCount: 0,
                 users: {},
-                selectedUsers: []
+                selectedUsers: [],
+                edit: {}
             }
         },
         methods: {
@@ -109,6 +127,13 @@
                 } else {
                     this.selectedUsers.push(userID);
                 }
+            },
+            dropDown(userID) {
+                $(`#dropdown-${userID}`).toggle();
+            },
+            userEdit(userID) {
+                sio().emit('user-edit', {userID});
+                this.$root.openDialog('#user-edit');
             }
         },
         watch: {
@@ -123,11 +148,6 @@
             this.getUserList();
 
             sio().on('cp-user-list', data => {
-                if(data.err) {
-                    this.$router.push('/error/500');
-                    return;
-                }
-
                 if(data.users === undefined) {
                     this.$router.push('/error/204');
                     return;
