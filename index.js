@@ -10,7 +10,6 @@ const Check = require('./system/check.class');
 global._dir = __dirname;
 
 if(cluster.isMaster) {
-    const Logger = require('./core/logger/Logger.class');
     // TODO: Check for required settings and dependencies
     new Check().then(() => {
         // TODO: Check for undefined types to highly prevent crashes and uncaughtError-shutdowns
@@ -26,7 +25,7 @@ if(cluster.isMaster) {
         // If crash then log it and restart one worker
         cluster.on('exit', (worker, code, signal) => {
             if(code !== 0) {
-                Logger.error(`Worker ${worker.process.pid} died. Restarting...`, true);
+                console.error(`Worker ${worker.process.pid} died. Restarting...`);
                 cluster.fork();
             }
         });
@@ -113,7 +112,7 @@ if(cluster.isMaster) {
 
         io.listen(config.server.socketio);
     }, (err) => {
-        Logger.error(err, true);
+        console.error(err, true);
     });
 
 }
