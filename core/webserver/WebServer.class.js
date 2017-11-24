@@ -9,8 +9,8 @@ const { spawn } = require('child_process');
 
 const config = require(_dir + '/config.json');
 
-const bots = ["googlebot", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36"];
-const url = "http://localhost:8080";
+const bots = config.crawler;
+const url = "http://localhost:" + config.server.webserver;
 const webpage = /\/(.*?)\./i;
 
 /**
@@ -31,7 +31,7 @@ class WebServer {
 
         // TODO: Add prerender
         this.app.use((req, res, next) => {
-            if(bots.indexOf(req.headers['user-agent']) === -1) {
+            if(bots.some(e => req.headers['user-agent'].contains(e)).length === 0) {
                 next();
                 return;
             }
@@ -48,12 +48,10 @@ class WebServer {
 
             let output = "";
             cmd.stdout.on('data', (data) => {
-                console.log(this.Uint8ArrToString(data));
                 output = data;
             });
             cmd.stderr.on('data', (data) => {
-                console.log(this.Uint8ArrToString(data));
-                console.log(`Error: ${data}`);
+                console.log(`Error: ${this.Uint8ArrToString(data)}`);
             });
             cmd.on('close', (code) => {
                 console.log(`child process exited with code ${code}`);

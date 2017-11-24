@@ -16,7 +16,6 @@ page.open(url, function(status) {
     }, 1000);
 
     setTimeout(function() {
-        console.error("err - prerendering failed");
         phantom.exit();
     }, 15000);
 });
