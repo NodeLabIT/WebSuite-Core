@@ -27,34 +27,38 @@ class Mail {
      * @private
      * */
     _connect(success) {
-        // TODO: Read file to get "new" values after configuration-changes (File-Utils)
-        /*this._transport = nodemailer.createTransport({
-            host: config.mail.host,
-            port: config.mail.port,
-            opportunisticTLS: true,
-            connectionTimeout: 2500,
-            auth: {
-                user: config.mail.sender.user,
-                pass: config.mail.sender.password
-            }
-        });*/
-        // DEVELOPMENT!
-        this._transport = nodemailer.createTransport({
-            host: "localhost",
-            port: 1025,
-            ignoreTLS: true
-        });
+        FileUtil.readFile(_dir + '/config.json').then(content => {
+            /*content = JSON.parse(content);
+            this._transport = nodemailer.createTransport({
+                host: content.mail.host,
+                port: content.mail.port,
+                opportunisticTLS: true,
+                connectionTimeout: 2500,
+                auth: {
+                    user: content.mail.sender.user,
+                    pass: content.mail.sender.password
+                }
+            });*/
 
-        this._transport.verify(err => {
-            if(err) {
-                WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
-                success(false);
-                return;
-            }
-            success(true);
-        });
+            // DEVELOPMENT!
+            this._transport = nodemailer.createTransport({
+                host: "localhost",
+                port: 1025,
+                ignoreTLS: true
+            });
 
-        //this.sendHTMLMail('Hall Welt', 'noreply@dev.de', 'Test');
+            this._transport.verify(err => {
+                if(err) {
+                    WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
+                    success(false);
+                    return;
+                }
+                success(true);
+            });
+        }).catch(err => {
+            WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
+            success(false);
+        });
     }
 
     /**

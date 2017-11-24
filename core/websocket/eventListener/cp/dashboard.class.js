@@ -11,7 +11,7 @@ class Dashboard {
             // TODO: Compile LESS and Vue-Templates from Filesystem
 
             // TODO: success: deploy to webserver and let all Clients reconnect to the system
-            //       failure: log error and send information to user
+            // TODO: failure: log error and send information to user
         });
     }
 

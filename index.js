@@ -10,7 +10,6 @@ const Check = require('./system/check.class');
 global._dir = __dirname;
 
 if(cluster.isMaster) {
-    // TODO: Check for required settings and dependencies
     new Check().then(() => {
         // TODO: Check for undefined types to highly prevent crashes and uncaughtError-shutdowns
 
@@ -82,7 +81,7 @@ if(cluster.isMaster) {
             if(json.type && json.type === 'system') {
                 if(json.action && json.action === 'restart') {
                     restarting = true;
-                    // TODO: broadcast restart to everyone
+                    io.emit('restart', {});
                     setTimeout(() => {
                         delete require.cache[require.resolve("./system/system.class")];
 

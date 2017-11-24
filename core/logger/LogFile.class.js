@@ -16,52 +16,63 @@ class LogFile {
 
     dequeue() {
         this._running = true;
-        DirectoryUtil.directoryExists(__dirname + '/../../logs/').then(() => {
+        DirectoryUtil.directoryExists(_dir + '/logs/').then(() => {
             const date = new Date();
-            const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+            const dateString = `${(date.getFullYear() < 10 ? "0" : "") + date.getFullYear()}-${(date.getMonth() + 1 < 10 ? "0" : "") + date.getMonth() + 1}-${(date.getDate() < 10 ? "0" : "") + date.getDate()}`;
 
             let message = this._queue.shift();
 
-            // TODO: Improve dequeue
-
-            FileUtil.fileExists(`${__dirname}/../../logs/${dateString}.txt`).then(() => {
-                FileUtil.readFile(`${__dirname}/../../logs/${dateString}.txt`).then(content => {
+            FileUtil.fileExists(`${_dir}/logs/${dateString}.txt`).then(() => {
+                FileUtil.readFile(`${_dir}/logs/${dateString}.txt`).then(content => {
                     content += message + "\n";
-                    FileUtil.saveFile(`${__dirname}/../../logs/${dateString}.txt`, content).then(() => {
-                        this._running = false;
+                    FileUtil.saveFile(`${_dir}/logs/${dateString}.txt`, content).then(() => {
                         if(this._queue.length > 0)
                             this.dequeue();
+
+                        this._running = false;
                     }).catch(err => {
-                        this._running = false;
+                        if(err)
+                            console.error(err);
+
                         if(this._queue.length > 0)
                             this.dequeue();
-                        // TODO: Handle error
+
+                        this._running = false;
                     });
                 }).catch(err => {
-                    this._running = false;
+                    if(err)
+                        console.error(err);
+
                     if(this._queue.length > 0)
                         this.dequeue();
-                    // TODO: Handle error
+
+                    this._running = false;
                 });
             }).catch(err => {
-                FileUtil.saveFile(`${__dirname}/../../logs/${dateString}.txt`, message + "\n").then(() => {
-                    this._running = false;
+                FileUtil.saveFile(`${_dir}/logs/${dateString}.txt`, message + "\n").then(() => {
                     if(this._queue.length > 0)
                         this.dequeue();
+
+                    this._running = false;
                 }).catch(err2 => {
-                    // TODO: Handle error
-                    this._running = false;
+                    if(err2)
+                        console.error(err2);
+
                     if(this._queue.length > 0)
                         this.dequeue();
+
+                    this._running = false;
                 });
             });
         }).catch(err => {
             if(err.code === 'ENOENT') {
-                DirectoryUtil.createDirectory(__dirname + '/../../', 'logs').then(() => {
+                DirectoryUtil.createDirectory(_dir + '/', 'logs').then(() => {
                     this.dequeue();
                     this._running = false;
                 }).catch(err => {
-                    // TODO: Handle error
+                    if(err) {
+                        console.error(err);
+                    }
                     this._running = false;
                 });
             }

@@ -11,7 +11,11 @@ class UserUtil {
      * */
     static usernameAvailable(username) {
         return new Promise((resolve, reject) => {
-            // TODO: Check for whitespace mismatch (e.g. 'Hallo Du Da    ' != "Hallo Du Da"
+            if(username.length > username.trim().length) {
+                reject(new Error('username whitespace mismatch'));
+                return;
+            }
+
             WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE username = ?", [username]).then(result => {
                 // reject on result
                 reject(new Error('username not available'));
@@ -99,7 +103,6 @@ class UserUtil {
             }
 
             // check for invalid characters
-            // TODO: Check for valid email-address
             if(!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
                 reject(new Error('email character mismatch'));
                 return;

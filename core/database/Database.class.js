@@ -2,8 +2,6 @@
 
 const mysql = require('mysql');
 
-const config = require('../../config.json');
-
 class Database {
 
     constructor(callback) {
@@ -27,25 +25,30 @@ class Database {
      * @private
      * */
     _connect(success) {
-        // TODO: Read file to read "new" values after configuration-changes (File-Utils)
-        // create new connection-pool
-        this._pool = mysql.createPool({
-            connectionsLimit: config.database.connections,
-            host: config.database.host,
-            user: config.database.user,
-            password: config.database.password,
-            database: config.database.database
-        });
+        FileUtil.readFile(_dir + '/config.json').then(content => {
+            content = JSON.parse(content);
+            // create new sql-connection-pool
+            this._pool = mysql.createPool({
+                connectionsLimit: content.database.connections,
+                host: content.database.host,
+                user: content.database.user,
+                password: content.database.password,
+                database: content.database.database
+            });
 
-        // Get connection to get information about successful connection-establishment
-        this._pool.getConnection((err, connection) => {
-            connection.release();
-            if(err) {
-                WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
-                success(false);
-                return;
-            }
-            success(true);
+            // Get connection to get information about successful connection-establishment
+            this._pool.getConnection((err, connection) => {
+                connection.release();
+                if(err) {
+                    WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
+                    success(false);
+                    return;
+                }
+                success(true);
+            });
+        }).catch(err => {
+            WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
+            success(false);
         });
     }
 
@@ -103,9 +106,7 @@ class Database {
      * @returns Promise rejects on error, resolves on success
      * */
     query(query, values) {
-        // TODO: Check whether more or less values than query-params are defined
         return new Promise((resolve, reject) => {
-
             // Get new connection from pool
             this._pool.getConnection((err, connection) => {
                 if(err) {

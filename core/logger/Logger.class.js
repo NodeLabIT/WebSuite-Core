@@ -4,8 +4,6 @@ const LogFile = require('./LogFile.class');
 
 class Logger {
 
-    // TODO: Change format for logging-prefix
-
     logToFile(message) {
         const date = new Date();
         LogFile.enqueue((date.getHours() < 10 ? "0" : "") + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes() + ":" + (date.getSeconds() < 10 ? "0" : "") + date.getSeconds() + " | " + message);

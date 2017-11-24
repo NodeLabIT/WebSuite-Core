@@ -20,19 +20,23 @@ class WebSocketHandler {
 
             // Check, if type of sent message from master is 'sioPacket'
             if(message.type === "sioPacket") {
-                // Check, if packet-name starts with 'cp-'
-                if(message.packet.data[0].startsWith('cp-')) {
-                    if(message.packet.data[0] && message.clientID && message.packet.data[1]) {
-                        this._cpSocketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1]);
+                if(message.packet.data[0] && message.clientID) {
+                    // Check, if packet-name starts with 'cp-'
+                    if(message.packet.data[0].startsWith('cp-')) {
+                        if(message.packet.data[1]) {
+                            this._cpSocketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1]);
+                        } else {
+                            // TODO: Error on undefined data
+                        }
                     } else {
-                        // TODO: Error on undefined data
+                        if(message.packet.data[1]) {
+                            this._socketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1]);
+                        } else {
+                            // TODO: Error on undefined data
+                        }
                     }
                 } else {
-                    if(message.packet.data[0] && message.clientID && message.packet.data[1]) {
-                        this._socketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1]);
-                    } else {
-                        // TODO: Error on undefined data
-                    }
+                    // TODO: Error on undefined data
                 }
             }
         });
@@ -51,7 +55,6 @@ class WebSocketHandler {
      * @param handler(clientID, packet) Handler for the packet
      * */
     registerCpEvent(packetName, handler) {
-        // TODO : Remove cp-prefix in packetName
         if(packetName && handler) {
             this._cpSocketEvents.on(packetName, handler);
         }

@@ -3,6 +3,7 @@
 const fs = require('fs');
 
 const config = require('../config.json');
+const data = require('../data.json');
 const packageFile = require('../package.json');
 
 /**
@@ -19,14 +20,21 @@ class Check {
         return new Promise((resolve, reject) => {
             // Check for required dependencies
             for(let dependency in packageFile.dependencies) {
-                // TODO: Add check for plugin-dependencies
                 if(!fs.existsSync(__dirname + "/../node_modules/" + dependency + "/")) {
                     reject('missing dependencies. run \'npm install\' to install them'); return;
                 }
             }
+            for(let plugin in data.plugins) {
+                let pluginPackage = require(_dir + "/plugins/" + plugin + "/package.json");
+                for(let dependency in pluginPackage.dependencies) {
+                    if(!fs.existsSync(_dir + "/node_modules/" + dependency + "/")) {
+                        reject('missing plugin-dependency \'' + dependency + '\'. run \'npm install ' + dependency +'\' to install it'); return;
+                    }
+                }
+            }
 
             // Check for Node-Version higher 4
-            if(process.versions.node.split(".")[0] < 6) {
+            if(process.versions.node.split(".")[0] < 4) {
                 reject('node-version not sufficient to run this system'); return;
             }
 

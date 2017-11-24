@@ -42,13 +42,17 @@ class FileUtil {
                 reject(new Error('undefined param'));
             }
 
-            fs.readFile(path, 'utf-8', (err, content) => {
-                if(err) {
-                    reject(err);
-                    return;
-                }
+            this.fileExists(path).then(() => {
+                fs.readFile(path, 'utf-8', (err, content) => {
+                    if(err) {
+                        reject(err);
+                        return;
+                    }
 
-                resolve(content);
+                    resolve(content);
+                });
+            }).catch((err) => {
+                reject(err);
             });
         });
     }
@@ -63,7 +67,7 @@ class FileUtil {
      * */
     static saveFile(path, content) {
         return new Promise((resolve, reject) => {
-            if(path === undefined) {
+            if(path === undefined || content === undefined) {
                 reject(new Error('undefined param'));
             }
 
