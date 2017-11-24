@@ -101,7 +101,7 @@
                 });
             });
             this.loadSubNavigation();
-            //document.rendered = true;
+            document.rendered = true;
         }
     }
 </script>

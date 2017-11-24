@@ -69,8 +69,7 @@
             sio().emit('cp-group-list', {});
 
             sio().on('cp-group-list', data => {
-                if(data.err) {
-                    this.$router.push('/error/204');
+                if(data.groups === undefined) {
                     return;
                 }
                 this.counts = data.counts;

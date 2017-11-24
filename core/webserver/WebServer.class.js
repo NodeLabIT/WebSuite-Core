@@ -30,7 +30,7 @@ class WebServer {
         });
 
         // TODO: Add prerender
-        /*this.app.use((req, res, next) => {
+        this.app.use((req, res, next) => {
             if(bots.indexOf(req.headers['user-agent']) !== -1) {
                 next();
                 return;
@@ -44,7 +44,7 @@ class WebServer {
             }
 
             let pageUrl = url + req.path;
-            let cmd = spawn('phantomjs', ['prerender.js', pageUrl], {cwd: __dirname + "/prerender"});
+            let cmd = spawn('phantomjs', ['prerender.js', pageUrl], {cwd: __dirname + "/prerender/"});
 
             console.log("a");
 
@@ -63,7 +63,7 @@ class WebServer {
                 res.send(output.toString());
                 console.log("Prerendering successful");
             });
-        });*/
+        });
 
         // serve socket.io-File
         this.app.get('/socket.io.js', (req, res) => {

@@ -31,7 +31,9 @@
                     <td class="hidden-tiny">04.01.2017, 13:57</td>
                     <td @click="dropDown(user.userID);">
                         <i class="material-icons">more_horiz</i>
-                        <div class="dropdown" v-bind:id="'dropdown-' + user.userID"></div>
+                        <div class="dropdown" v-bind:id="'dropdown-' + user.userID">
+                            test
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -149,7 +151,6 @@
 
             sio().on('cp-user-list', data => {
                 if(data.users === undefined) {
-                    this.$router.push('/error/204');
                     return;
                 }
 

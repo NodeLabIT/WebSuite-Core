@@ -13,7 +13,6 @@ class GroupList {
                         WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsGroupUser WHERE wsGroupUser.groupID = ?", [groupID])
                             .then(count => {
                                 i ++;
-                                console.log(count[0]);
                                 counts[groupID] = count[0];
 
                                 if(i === result.length) {
