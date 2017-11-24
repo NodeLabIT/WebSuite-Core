@@ -5,8 +5,13 @@ const serveStatic = require('serve-static');
 const compression = require('compression');
 const fs = require('fs');
 const http = require('http');
+const { spawn } = require('child_process');
 
-const config = require('../../config.json');
+const config = require(_dir + '/config.json');
+
+const bots = ["googlebot"];
+const url = "http://localhost:8080";
+const webpage = /\/(.*?)\./i;
 
 /**
  * Class for creating and managing the webserver
@@ -24,22 +29,58 @@ class WebServer {
             next();
         });
 
+        // TODO: Add prerender
+        /*this.app.use((req, res, next) => {
+            if(bots.indexOf(req.headers['user-agent']) !== -1) {
+                next();
+                return;
+            }
+
+            let isWebpage = webpage.exec(req.path) === null || req.path === "/";
+
+            if(!isWebpage) {
+                next();
+                return;
+            }
+
+            let pageUrl = url + req.path;
+            let cmd = spawn('phantomjs', ['prerender.js', pageUrl], {cwd: __dirname + "/prerender"});
+
+            console.log("a");
+
+            let output = "";
+            cmd.stdout.on('data', (data) => {
+                console.log("b");
+                output = data;
+            });
+            cmd.stderr.on('data', (data) => {
+                console.log("c");
+                console.log(`Error: ${data}`);
+            });
+            cmd.on('close', (code) => {
+                console.log("d");
+                console.log(`child process exited with code ${code}`);
+                res.send(output.toString());
+                console.log("Prerendering successful");
+            });
+        });*/
+
         // serve socket.io-File
         this.app.get('/socket.io.js', (req, res) => {
             res.header("Content-Type", "application/javascript");
-            res.send(fs.readFileSync(__dirname + "/../../node_modules/socket.io-client/dist/socket.io.js"));
+            res.send(fs.readFileSync(_dir + '/node_modules/socket.io-client/dist/socket.io.js'));
         });
 
         // add cp-directive
-        this.app.use('/cp/', serveStatic(__dirname + '/../../cp/'));
+        this.app.use('/cp/', serveStatic(_dir + '/cp/'));
         this.app.use("/cp/", (req, res) => {
-            res.send(fs.readFileSync(__dirname + '/../../cp/index.html', {encoding: 'utf-8'}));
+            res.send(fs.readFileSync(_dir + '/cp/index.html', {encoding: 'utf-8'}));
         });
 
         // add public-directive
-        this.app.use(serveStatic(__dirname + '/../../frontend/'));
+        this.app.use(serveStatic(_dir + '/frontend/'));
         this.app.use((req, res) => {
-            res.send(fs.readFileSync(__dirname + '/../../frontend/index.html', {encoding: 'utf-8'}));
+            res.send(fs.readFileSync(_dir + '/frontend/index.html', {encoding: 'utf-8'}));
         });
 
         // initialize webserver and start it
