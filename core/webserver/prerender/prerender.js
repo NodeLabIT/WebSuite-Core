@@ -1,13 +1,10 @@
-const url = require('system').args[1];
+var url = require('system').args[1];
 
-console.log("hi");
-
-const page = require('webpage').create();
-page.open(url, function() {
-    let seconds = 0;
+var page = require('webpage').create();
+page.open(url, function(status) {
+    var seconds = 0;
     setInterval(function() {
-        console.log(seconds);
-        let rendered = page.evaluate(function() {
+        var rendered = page.evaluate(function() {
             return document.rendered;
         });
         if(rendered) {
@@ -19,6 +16,7 @@ page.open(url, function() {
     }, 1000);
 
     setTimeout(function() {
+        console.error("err - prerendering failed");
         phantom.exit();
-    }, 30000);
+    }, 15000);
 });

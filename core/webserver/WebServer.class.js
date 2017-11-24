@@ -9,7 +9,7 @@ const { spawn } = require('child_process');
 
 const config = require(_dir + '/config.json');
 
-const bots = ["googlebot"];
+const bots = ["googlebot", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36"];
 const url = "http://localhost:8080";
 const webpage = /\/(.*?)\./i;
 
@@ -31,7 +31,7 @@ class WebServer {
 
         // TODO: Add prerender
         this.app.use((req, res, next) => {
-            if(bots.indexOf(req.headers['user-agent']) !== -1) {
+            if(bots.indexOf(req.headers['user-agent']) === -1) {
                 next();
                 return;
             }
@@ -46,22 +46,19 @@ class WebServer {
             let pageUrl = url + req.path;
             let cmd = spawn('phantomjs', ['prerender.js', pageUrl], {cwd: __dirname + "/prerender/"});
 
-            console.log("a");
-
             let output = "";
             cmd.stdout.on('data', (data) => {
-                console.log("b");
+                console.log(this.Uint8ArrToString(data));
                 output = data;
             });
             cmd.stderr.on('data', (data) => {
-                console.log("c");
+                console.log(this.Uint8ArrToString(data));
                 console.log(`Error: ${data}`);
             });
             cmd.on('close', (code) => {
-                console.log("d");
                 console.log(`child process exited with code ${code}`);
                 res.send(output.toString());
-                console.log("Prerendering successful");
+                console.log("Prerendering finished");
             });
         });
 
@@ -85,6 +82,10 @@ class WebServer {
 
         // initialize webserver and start it
         this.webServer = http.Server(this.app);
+    }
+
+    Uint8ArrToString(myUint8Arr){
+        return String.fromCharCode.apply(null, myUint8Arr);
     }
 
     /**
