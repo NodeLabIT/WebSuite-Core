@@ -38,11 +38,15 @@ $.ajax({
 
 let socket;
 
-if(Config.connectionUrl !== "") {
-    socket = io(Config.connectionUrl);
-} else {
-    socket = io();
+// TODO: Disallow connection for Bots to prevent crawling-errors
+if(!navigator.userAgent.includes("Googlebot")) {
+    if(Config.connectionUrl !== "") {
+        socket = io(Config.connectionUrl);
+    } else {
+        socket = io();
+    }
 }
+
 export function sio() {
     return socket;
 }
