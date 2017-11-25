@@ -31,7 +31,7 @@ class WebServer {
 
         // TODO: Add prerender
         this.app.use((req, res, next) => {
-            if(bots.some(e => req.headers['user-agent'].contains(e)).length === 0) {
+            if(!bots.some(e => req.headers['user-agent'].toString().includes(e))) {
                 next();
                 return;
             }
@@ -51,12 +51,10 @@ class WebServer {
                 output = data;
             });
             cmd.stderr.on('data', (data) => {
-                console.log(`Error: ${this.Uint8ArrToString(data)}`);
+                WebSUite.getLogger().error(`Error while rendering: ${this.Uint8ArrToString(data)}`);
             });
             cmd.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
                 res.send(output.toString());
-                console.log("Prerendering finished");
             });
         });
 

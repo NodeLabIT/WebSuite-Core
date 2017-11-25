@@ -156,6 +156,7 @@
 
                 this.userCount = parseInt(data.userCount);
                 this.users = data.users;
+                document.rendered = true;
             });
         }
     }
