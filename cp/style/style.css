@@ -269,6 +269,7 @@ body {
   color: #7289DA;
 }
 a.floating-button {
+  text-decoration: none;
   text-align: center;
   background: #7289DA;
   padding: 12px;

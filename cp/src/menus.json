@@ -14,15 +14,15 @@
   ],
   "user": [
     {
-      "path": "/user/user-list/",
+      "path": "/user/user/",
       "selector": "users"
     },
     {
-      "path": "/user/group-list/",
+      "path": "/user/group/",
       "selector": "groups"
     },
     {
-      "path": "/user/penalty-list/",
+      "path": "/user/penalty/",
       "selector": "penalties"
     }
   ],

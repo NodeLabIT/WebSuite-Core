@@ -29,8 +29,12 @@ class WebServer {
             next();
         });
 
-        // TODO: Add prerender
         this.app.use((req, res, next) => {
+            if(!req.headers || !req.headers['user-agent']) {
+                next();
+                return;
+            }
+
             if(!bots.some(e => req.headers['user-agent'].toString().includes(e))) {
                 next();
                 return;
@@ -39,6 +43,11 @@ class WebServer {
             let isWebpage = webpage.exec(req.path) === null || req.path === "/";
 
             if(!isWebpage) {
+                next();
+                return;
+            }
+
+            if(req.path.startsWith('/cp')) {
                 next();
                 return;
             }

@@ -43,10 +43,10 @@
             </div>
         </div>
         <div class="pagination">
-            <router-link :to="`/user/user-list/${pageID - 1}`" v-if="pageID > 1"><i class="material-icons">navigate_before</i></router-link>
+            <router-link :to="`/user/user/list/${pageID - 1}`" v-if="pageID > 1"><i class="material-icons">navigate_before</i></router-link>
             <a v-if="pageID === 1" class="inactive"><i class="material-icons">navigate_before</i></a>
             Seite {{ pageID }}
-            <router-link :to="`/user/user-list/${pageID + 1}`" v-if="pageID * 30 < userCount"><i class="material-icons">navigate_next</i></router-link>
+            <router-link :to="`/user/user/list/${pageID + 1}`" v-if="pageID * 30 < userCount"><i class="material-icons">navigate_next</i></router-link>
             <a v-if="pageID * 30 > userCount" class="inactive"><i class="material-icons">navigate_next</i></a>
         </div>
 
@@ -156,7 +156,6 @@
 
                 this.userCount = parseInt(data.userCount);
                 this.users = data.users;
-                document.rendered = true;
             });
         }
     }

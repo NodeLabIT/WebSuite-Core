@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a class="floating-button"><i class="material-icons">add</i><span class="text">{{ 'add-group' | translate }}</span></a>
+        <router-link to="/user/group/add" class="floating-button"><i class="material-icons">add</i><span class="text">{{ 'add-group' | translate }}</span></router-link>
         <div class="table-container">
             <table>
                 <thead class="uppercase">

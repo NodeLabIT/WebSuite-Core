@@ -32,16 +32,28 @@
     "component": "core/user"
   },
   {
-    "path": "/user/user-list",
+    "path": "/user/user",
+    "component": "core/user/user"
+  },
+  {
+    "path": "/user/user/list",
     "component": "core/user/user-list"
   },
   {
-    "path": "/user/user-list/:pageID",
+    "path": "/user/user/list/:pageID",
     "component": "core/user/user-list"
   },
   {
-    "path": "/user/group-list",
+    "path": "/user/group",
+    "component": "core/user/group"
+  },
+  {
+    "path": "/user/group/list",
     "component": "core/user/group-list"
+  },
+  {
+    "path": "/user/group/add",
+    "component": "core/user/group-add"
   },
   {
     "path": "/appearance",
