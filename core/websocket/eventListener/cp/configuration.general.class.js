@@ -7,15 +7,16 @@ class GeneralConfiguration {
             FileUtil.readFile(_dir + '/data/page.json').then(content => {
                 WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-general-configuration', JSON.parse(content));
             }).catch(err => {
-                console.log(err);
+                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-general-configuration', {err});
             });
         });
 
         WebSuite.getWebSocketHandler().registerCpEvent('cp-save-general-configuration', (socket, data) => {
-            if(data.title && data.subtitle && data.description && data.keywords && data.footerScript) {
+            if(data.title !== undefined && data.subtitle !== undefined && data.description !== undefined && data.keywords !== undefined && data.footerScript !== undefined) {
                 FileUtil.saveFile(_dir + '/data/page.json', JSON.stringify(data, null, 2)).then(() => {
+                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-general-configuration', {});
                 }).catch(err => {
-                    console.log(err);
+                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-general-configuration', {err});
                 });
             }
         });

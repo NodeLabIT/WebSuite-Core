@@ -33,6 +33,10 @@
   "member-chosen": "Mitglieder ausgewählt",
   "groups": "Gruppen",
   "add-group": "Gruppe hinzufügen",
+  "group-name": "Name der Gruppe",
+  "group-description": "Beschreibung der Gruppe",
+  "group-displayname": "Anzeigename der Gruppe",
+  "group-displaycolor": "Farbe der Gruppe (Hex)",
   "member-count": "Mitgliederanzahl",
   "penalties": "Sanktionen",
 
