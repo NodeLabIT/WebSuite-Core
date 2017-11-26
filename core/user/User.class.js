@@ -51,6 +51,25 @@ class User {
         });
     }
 
+    /**
+     * Check, whether User has a specific permission
+     *
+     * @param permission Permission you want to check for
+     *
+     * @returns Promise resolves with boolean, whether user has permissions or not. Rejects on failure with error
+     * */
+    hasPermission(permission) {
+        return new Promise((resolve, reject) => {
+            WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsGroupPermissions, wsGroupUser WHERE wsGroupPermissions.groupID = wsGroupUser.groupID AND wsGroupUser.userID = ? AND wsGroupPermissions.permission = ?", [this.userID, permission]).then(result => {
+                // resolve on result
+                resolve(parseInt(result[0].count) > 0);
+            }).catch(err => {
+                // reject on error
+                reject(err);
+            });
+        });
+    }
+
 }
 
 module.exports = User;
