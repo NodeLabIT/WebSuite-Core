@@ -21,6 +21,13 @@
                 <input type="text" id="group-displaycolor" v-model="defaults.displaycolor" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.displaycolor) }" />
                 <label for="group-displaycolor" class="floating-label">{{ 'group-displaycolor' | translate }}</label>
             </div>
+
+            <div v-for="(value, category) in aPermissions">
+                {{ category | translate }}
+                <ul style="list-style-type: none;" v-for="(vl, permission) in value">
+                    <li><input type="checkbox" v-model="permissions" :value="permission"> {{ permission | translate }}</li>
+                </ul>
+            </div>
         </form>
     </div>
 </template>
@@ -36,15 +43,26 @@
         data() {
             return {
                 defaults: {},
-                permissions: {}
+                aPermissions: {},
+                permissions: []
             }
         },
         methods: {
-
+            save() {
+                sio().emit('cp-group-add', {defaults, permissions});
+            }
         },
         created() {
             this.$root.$data.title = this.$options.filters.translate('users-management');
+            sio().emit('cp-group-add-permissions', {});
 
+            sio().on('cp-group-add-permissions', data => {
+                this.aPermissions = JSON.parse(data);
+            });
+
+            sio().on('cp-group-add', data => {
+
+            });
         }
     }
 </script>
