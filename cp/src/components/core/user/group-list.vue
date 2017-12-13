@@ -4,19 +4,23 @@
         <div class="table-container">
             <table>
                 <thead class="uppercase">
-                <tr>
-                    <td class="row-group-1"></td>
-                    <td class="hidden-tiny row-group-2">{{ 'member-count' | translate }}</td>
-                    <td class="row-group-3"></td>
-                </tr>
+                    <tr>
+                        <td class="row-group-1"></td>
+                        <td class="hidden-tiny row-group-2"></td>
+                        <td class="hidden-tiny row-group-3">{{ 'member-count' | translate }}</td>
+                        <td class="row-group-4"></td>
+                    </tr>
                 </thead>
                 <tbody>
                 <tr v-for="group in groups">
                     <td @click="$router.push(`/user/group/edit/${group.groupID}`)" class="pointer">
                         <div class="inliner">
                             <span class="primary-text">{{ group.groupName }}</span>
-                            <span class="hidden-tiny">{{ group.groupDescription }}</span>
+                            <span class="hidden-tiny" id="description">{{ group.groupDescription }}</span>
                         </div>
+                    </td>
+                    <td style="text-align: center;" class="hidden-tiny">
+                        <span class="badge" v-bind:style="{ 'background-color': group.displayColor, color: group.fontColor }" style="padding: 6px 10px; border-radius: 3px;">{{ group.displayName }}</span>
                     </td>
                     <td class="hidden-tiny">{{ getUserCount(group.groupID) }}</td>
                     <td><i class="material-icons">more_horiz</i></td>
@@ -33,17 +37,24 @@
     }
     @media all and (min-width: 1081px) {
         .row-group-1 {
-            width: calc(100% - 198px);
+            width: calc(100% - 498px);
         }
         .row-group-2 {
+            width: 300px;
+        }
+        .row-group-3 {
             width: 150px;
+        }
+        #description {
+            height: 20px;
+            overflow-y: hidden;
         }
     }
     @media all and (max-width: 1081px) {
         .row-group-1 {
             width: calc(100% - 48px);
         }
-        .row-group-2 {
+        .row-group-2, .row-group-3 {
             display: none;
         }
     }

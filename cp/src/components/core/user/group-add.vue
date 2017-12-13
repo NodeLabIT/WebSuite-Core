@@ -21,8 +21,12 @@
                 <input type="text" id="group-displaycolor" v-model="defaults.displaycolor" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.displaycolor) }" />
                 <label for="group-displaycolor" class="floating-label">{{ 'group-displaycolor' | translate }}</label>
             </div>
+            <div>
+                <input type="text" id="group-fontcolor" v-model="defaults.fontcolor" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.fontcolor) }" />
+                <label for="group-fontcolor" class="floating-label">{{ 'group-fontcolor' | translate }}</label>
+            </div>
 
-            <div v-for="(value, category) in aPermissions">
+            <div v-for="(value, category) in availablePermissions.cp">
                 {{ category | translate }}
                 <ul style="list-style-type: none;" v-for="(vl, permission) in value">
                     <li><input type="checkbox" v-model="permissions" :value="permission"> {{ permission | translate }}</li>
@@ -43,13 +47,13 @@
         data() {
             return {
                 defaults: {},
-                aPermissions: {},
+                availablePermissions: {},
                 permissions: []
             }
         },
         methods: {
             save() {
-                sio().emit('cp-group-add', {defaults, permissions});
+                sio().emit('cp-group-add', {defaults: this.defaults, permissions: this.permissions});
             }
         },
         created() {
@@ -57,11 +61,13 @@
             sio().emit('cp-group-add-permissions', {});
 
             sio().on('cp-group-add-permissions', data => {
-                this.aPermissions = JSON.parse(data);
+                this.availablePermissions = data;
             });
 
             sio().on('cp-group-add', data => {
-
+                if(data.success) {
+                    this.$router.push('/user/group/list');
+                }
             });
         }
     }

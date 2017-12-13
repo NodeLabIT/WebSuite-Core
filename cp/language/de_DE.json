@@ -36,7 +36,8 @@
   "group-name": "Name der Gruppe",
   "group-description": "Beschreibung der Gruppe",
   "group-displayname": "Anzeigename der Gruppe",
-  "group-displaycolor": "Farbe der Gruppe (Hex)",
+  "group-displaycolor": "Badgefarbe der Gruppe (Hex)",
+  "group-fontcolor": "Textfarbe der Gruppe (Hex)",
   "member-count": "Mitgliederanzahl",
   "penalties": "Sanktionen",
 
