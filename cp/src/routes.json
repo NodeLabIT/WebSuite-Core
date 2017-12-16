@@ -56,6 +56,10 @@
     "component": "core/user/group-add"
   },
   {
+    "path": "/user/group/edit/:groupID",
+    "component": "core/user/group-edit"
+  },
+  {
     "path": "/appearance",
     "component": "core/appearance"
   },
