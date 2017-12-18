@@ -8,10 +8,10 @@ class GroupAdd {
                 FileUtil.readFile(_dir + '/data/permissions.json').then(content => {
                     WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add-permissions', {cp: JSON.parse(contentCP), frontend: JSON.parse(content)});
                 }).catch(err => {
-
+                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add-permissions', {err});
                 });
             }).catch(err => {
-
+                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add-permissions', {err});
             });
         });
         WebSuite.getWebSocketHandler().registerCpEvent('cp-group-add', (socket, data) => {
@@ -21,14 +21,12 @@ class GroupAdd {
                     permissions.push([result.insertId, permission]);
                 }
                 WebSuite.getDatabase().query("INSERT INTO wsGroupPermissions(groupID, permission) VALUES ?", [permissions]).then(success => {
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add', {success: true});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add', {});
                 }).catch(err => {
-                    console.log(err.message);
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add', {success: false, err: err});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add', {err});
                 });
-
             }).catch(err => {
-
+                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-add', {err});
             });
         });
     }
