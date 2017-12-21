@@ -21,6 +21,7 @@ class SystemLoader {
             require('../core/websocket/eventListener/cp/user.userlist.class').listen();
             require('../core/websocket/eventListener/cp/user.grouplist.class').listen();
             require('../core/websocket/eventListener/cp/user.groupadd.class').listen();
+            require('../core/websocket/eventListener/cp/user.groupedit.class').listen();
             require('../core/websocket/eventListener/cp/dashboard.class').listen();
             require('../core/websocket/eventListener/cp/configuration.general.class').listen();
             require('../core/websocket/eventListener/cp/configuration.access.class').listen();

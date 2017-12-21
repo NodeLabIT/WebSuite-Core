@@ -6,23 +6,23 @@
         </a>
         <form>
             <div>
-                <input type="text" id="group-name" v-model="defaults.name" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.name) }" />
+                <input type="text" id="group-name" v-model="defaults.groupName" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.groupName) }" />
                 <label for="group-name" class="floating-label">{{ 'group-name' | translate }}</label>
             </div>
             <div>
-                <input type="text" id="group-description" v-model="defaults.description" class="large" v-bind:class="{ valid: $root.isValid(defaults.description) }" />
+                <input type="text" id="group-description" v-model="defaults.groupDescription" class="large" v-bind:class="{ valid: $root.isValid(defaults.groupDescription) }" />
                 <label for="group-description" class="floating-label">{{ 'group-description' | translate }}</label>
             </div>
             <div>
-                <input type="text" id="group-displayname" v-model="defaults.displayname" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.displayname) }" />
+                <input type="text" id="group-displayname" v-model="defaults.displayName" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.displayName) }" />
                 <label for="group-displayname" class="floating-label">{{ 'group-displayname' | translate }}</label>
             </div>
             <div>
-                <input type="text" id="group-displaycolor" v-model="defaults.displaycolor" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.displaycolor) }" />
+                <input type="text" id="group-displaycolor" v-model="defaults.displayColor" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.displayColor) }" />
                 <label for="group-displaycolor" class="floating-label">{{ 'group-displaycolor' | translate }}</label>
             </div>
             <div>
-                <input type="text" id="group-fontcolor" v-model="defaults.fontcolor" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.fontcolor) }" />
+                <input type="text" id="group-fontcolor" v-model="defaults.fontColor" class="tiny" v-bind:class="{ valid: $root.isValid(defaults.fontColor) }" />
                 <label for="group-fontcolor" class="floating-label">{{ 'group-fontcolor' | translate }}</label>
             </div>
 
@@ -46,17 +46,28 @@
     export default {
         data() {
             return {
+                groupID: 0,
                 defaults: {},
                 availablePermissions: {},
                 permissions: []
             }
         },
         methods: {
+            updateGroupID() {
+                if(this.$route.params.groupID) {
+                    if(parseInt(this.$route.params.groupID)) {
+                        this.groupID = parseInt(this.$route.params.groupID);
+                        return;
+                    }
+                }
+                this.groupID = 1;
+            },
             save() {
-                sio().emit('cp-group-add', {defaults: this.defaults, permissions: this.permissions});
+                sio().emit('cp-save-group-edit', {defaults: this.defaults, permissions: this.permissions});
             }
         },
         created() {
+            this.updateGroupID();
             this.$root.$data.title = this.$options.filters.translate('users-management');
             sio().emit('cp-group-add-permissions', {});
 
@@ -64,10 +75,11 @@
                 this.availablePermissions = data;
             });
 
-            sio().on('cp-group-add', data => {
-                if(data.success) {
-                    this.$router.push('/user/group/list');
-                }
+            sio().emit('cp-group-edit', {groupID: this.groupID});
+
+            sio().on('cp-group-edit', data => {
+                this.defaults = data.defaults;
+                this.permissions = data.permissions;
             });
         }
     }
