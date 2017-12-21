@@ -26,6 +26,10 @@
                 <label for="group-fontcolor" class="floating-label">{{ 'group-fontcolor' | translate }}</label>
             </div>
 
+            <div>
+                <span class="badge" v-bind:style="{ 'background-color': defaults.displayColor, color: defaults.fontColor }" style="padding: 6px 10px; border-radius: 3px;">{{ defaults.displayName }}</span>
+            </div>
+
             <div v-for="(value, category) in availablePermissions.cp">
                 {{ category | translate }}
                 <ul style="list-style-type: none;" v-for="(vl, permission) in value">
