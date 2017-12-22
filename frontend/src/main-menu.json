@@ -1,10 +1,10 @@
 [
   {
     "name": "dashboard",
-    "link": "/"
+    "url": "/"
   },
   {
     "name": "members",
-    "link": "/member/"
+    "url": "/member/"
   }
 ]

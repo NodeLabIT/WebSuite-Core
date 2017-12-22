@@ -4,6 +4,8 @@ import VueCookies from 'vue-cookies';
 
 import App from './App.vue';
 
+import LinkComponent from './linkComponent.vue';
+
 import Config from './config.json';
 const routesConfig = require('./routes.json');
 
@@ -55,6 +57,8 @@ function init() {
     Vue.filter('translate', (value) => {
         return language[value] === undefined ? value + " (untranslated)" : language[value];
     });
+
+    Vue.component('ws-link', LinkComponent);
 
     let vue = new Vue({
         el: '#websuite',

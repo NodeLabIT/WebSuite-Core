@@ -9,9 +9,7 @@
 
                     <h3 class="white mobile-hidden">Websuite 2</h3>
 
-                    <router-link v-for="link in mainMenu" :to="`${link.link}`">
-                        {{link.name | translate}}
-                    </router-link>
+                    <ws-link v-for="link in mainMenu" :link="link"></ws-link>
 
                     <div class="dropdown" v-if="$root.loggedIn">
                         <a href="#">
@@ -79,8 +77,8 @@
                         Jetzt anmelden
                     </a>
 
-                    <div class="container right align_right" v-if="$root.loggedIn">
-                        <router-link class="margin15vert" :to="`${link.link}`" v-for="link in userMenu">{{link.name | translate}}</router-link>
+                    <div class="container right align_right" v-if="!$root.loggedIn">
+                        <ws-link v-for="link in userMenu" :link="link" :cssClass="'margin15vert'"></ws-link>
                     </div>
                 </div>
             </div>
@@ -92,10 +90,10 @@
 
         <footer>
             <div class="container">
-                <router-link v-for="link in footerMenu.left" :to="`${link.link}`">{{ link.name | translate }}</router-link>
+                <ws-link v-for="link in footerMenu.left" :link="link"></ws-link>
 
                 <div class="container right">
-                    <a v-for="link in footerMenu.right" v-bind:href="`${link.link}`" class="fa" v-bind:class="link.icon"></a>
+                    <ws-link v-for="link in footerMenu.right" :link="link"></ws-link>
                 </div>
             </div>
         </footer>

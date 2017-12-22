@@ -692,6 +692,7 @@ header #sub-nav .container {
 }
 header #sub-nav a {
   font-size: 14px;
+  margin: 0 15px;
 }
 .forums .categorie {
   background: white;
@@ -833,10 +834,7 @@ footer .container a {
   font-size: 13px;
   font-weight: 600;
   display: inline-block;
-  margin-right: 25px;
-}
-footer .container a:last-of-type {
-  margin-right: 0;
+  margin: 0 15px;
 }
 #user-rules {
   max-height: 500px;
