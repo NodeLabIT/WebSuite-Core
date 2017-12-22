@@ -1,0 +1,22 @@
+{
+  "left": [
+    {
+      "name": "imprint",
+      "link": "/imprint"
+    },
+    {
+      "name": "data-privacy",
+      "link": "/data-privacy"
+    }
+  ],
+  "right": [
+    {
+      "icon": "fa-twitter",
+      "link": "https://twitter.com/nodelabIT"
+    },
+    {
+      "icon": "fa-youtube-play",
+      "link": "https://www.youtube.com/channel/UCnE5X1wb1AJxKOU3ingMHVA"
+    }
+  ]
+}

@@ -2,5 +2,9 @@
   {
     "name": "dashboard",
     "link": "/"
+  },
+  {
+    "name": "members",
+    "link": "/member/"
   }
 ]

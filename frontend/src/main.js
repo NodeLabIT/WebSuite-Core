@@ -29,7 +29,7 @@ const router = new VueRouter({
 let language = {};
 $.ajax({
     dataType: "json",
-    url: "/cp/language/de_DE.json",
+    url: "/language/de_DE.json",
     success: function(data) {
         language = data;
         init();
@@ -62,7 +62,8 @@ function init() {
         render: h => h(App),
         data: {
             loggedIn: false,
-            title: "..."
+            title: "...",
+            user: {}
         },
         methods: {
             isValid: function(input) {

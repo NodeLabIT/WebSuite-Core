@@ -1,0 +1,14 @@
+[
+  {
+    "name": "notification-settings",
+    "link": "/settings/notification"
+  },
+  {
+    "name": "privacy-settings",
+    "link": "/settings/privacy"
+  },
+  {
+    "name": "avatar-settings",
+    "link": "/settings/avatar"
+  }
+]
