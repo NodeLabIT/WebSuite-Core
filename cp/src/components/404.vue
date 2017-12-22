@@ -8,7 +8,7 @@
 <script>
     export default {
         created() {
-            this.$root.$data.title = this.$options.filters.translate('error');
+
         }
     }
 </script>
