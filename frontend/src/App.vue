@@ -9,11 +9,10 @@
 
                     <h3 class="white mobile-hidden">Websuite 2</h3>
 
-                    <a class="active">Startseite</a>
-                    <a href="#">Forum</a>
-                    <a href="#">Filebase</a>
-                    <a href="#">Lexikon</a>
-                    <a hreF="#">Hilfe</a>
+                    <router-link v-for="link in mainMenu" :to="`${link.link}`">
+                        {{link.name}}
+                    </router-link>
+
                     <div class="dropdown">
                         <a href="#">
                             <i class="fa fa-bell"></i>
@@ -25,46 +24,6 @@
                             <h4>Benachrichtigungen</h4>
                             <div class="content">
                                 <div class="grid">
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
                                     <div class="row">
                                         <div class="col col8">
                                             <img src="images/profileimg.png" alt="">
@@ -86,49 +45,9 @@
                         </a>
 
                         <div class="dropdown-content notification">
-                            <h4>Benachrichtigungen</h4>
+                            <h4>Chat</h4>
                             <div class="content">
                                 <div class="grid">
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col col8">
-                                            <img src="images/profileimg.png" alt="">
-                                        </div>
-                                        <div class="col col">
-                                            <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                            <h6>Vom 07.10.2017</h6>
-                                        </div>
-                                    </div>
-
                                     <div class="row">
                                         <div class="col col8">
                                             <img src="images/profileimg.png" alt="">
@@ -188,12 +107,12 @@
 <script>
     import { sio } from './main';
 
-    import menus from './menus.json';
+    import mainMenu from './main-menu.json';
 
     export default {
         data() {
             return {
-
+                mainMenu
             }
         },
         methods: {

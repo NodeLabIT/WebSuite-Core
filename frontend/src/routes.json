@@ -4,14 +4,6 @@
     "component": "404"
   },
   {
-    "path": "/error/204",
-    "component": "204"
-  },
-  {
-    "path": "/error/500",
-    "component": "500"
-  },
-  {
     "path": "/",
     "component": "dashboard"
   }
