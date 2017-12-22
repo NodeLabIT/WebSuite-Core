@@ -44,6 +44,10 @@
     "component": "core/user/user-list"
   },
   {
+    "path": "/user/user/edit/:userID",
+    "component": "core/user/user-edit"
+  },
+  {
     "path": "/user/group",
     "component": "core/user/group"
   },
@@ -58,6 +62,14 @@
   {
     "path": "/user/group/edit/:groupID",
     "component": "core/user/group-edit"
+  },
+  {
+    "path": "/user/penalty",
+    "component": "core/user/penalty"
+  },
+  {
+    "path": "/user/penalty/list",
+    "component": "core/user/penalty-list"
   },
   {
     "path": "/appearance",
