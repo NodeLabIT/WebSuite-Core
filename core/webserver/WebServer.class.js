@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const handlebar = require('handlebars');
 const serveStatic = require('serve-static');
 const compression = require('compression');
 const fs = require('fs');
@@ -9,6 +8,7 @@ const http = require('http');
 const { spawn } = require('child_process');
 
 const config = require(_dir + '/config.json');
+const frontendIndex = require('./FrontendIndexPage.class');
 
 const bots = config.crawler;
 const url = "http://localhost:" + config.server.webserver;
@@ -22,34 +22,6 @@ class WebServer {
     constructor() {
         this.listening = false;
         this.app = express();
-
-        handlebar.registerHelper('meta', function(items, options) {
-            let out = "";
-
-            for(let i=0, l=items.length; i<l; i++) {
-                out = out + "<meta " + options.fn(items[i]) + ">\n";
-            }
-
-            return out;
-        });
-        handlebar.registerHelper('links', function(items, options) {
-            let out = "";
-
-            for(let i=0, l=items.length; i<l; i++) {
-                out = out + "<link " + options.fn(items[i]) + ">\n";
-            }
-
-            return out;
-        });
-        handlebar.registerHelper('scripts', function(items, options) {
-            let out = "";
-
-            for(let i=0, l=items.length; i<l; i++) {
-                out = out + "<script src=\"" + options.fn(items[i]) + "\"></script>\n";
-            }
-
-            return out;
-        });
 
         // Add compression to express-app
         this.app.use(compression());
@@ -111,11 +83,11 @@ class WebServer {
         // add public-directive
         this.app.use(serveStatic(_dir + '/frontend/'));
         this.app.use((req, res) => {
-            if(this.frontendTemplate) {
-                res.send(this.frontendTemplate);
-                //res.send(fs.readFileSync(_dir + '/frontend/index.html', {encoding: 'utf-8'}));
+            const indexPage = frontendIndex.getIndexPage();
+            if(indexPage !== undefined) {
+                res.send(indexPage);
             } else {
-                this.compileFrontendTemplate();
+                frontendIndex.compileIndexPage();
                 res.send("website not available. please try again");
             }
         });
@@ -133,45 +105,11 @@ class WebServer {
      * */
     listen() {
         if(!this.listening) {
-            this.compileFrontendTemplate();
+            frontendIndex.postInit();
             this.webServer.listen(config.server.webserver, () => {
                 WebSuite.getLogger().info(`Webserver listening on port ${this.webServer.address().port}`);
             });
         }
-    }
-
-    // TODO: prettify
-    /**
-     * @private
-     * */
-    compileFrontendTemplate() {
-        FileUtil.readFile(__dirname + '/index.html').then(content => {
-            let template = handlebar.compile(content);
-
-            let data = {
-                meta: [
-                    {content: `charset="utf-8"`},
-                    {content: `name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"`}
-                ],
-                title: "NodeLab IT",
-                links: [
-                    {content: `href="css/style.css" rel="stylesheet" type="text/css"`},
-                    {content: `href="css/mobile.css" rel="stylesheet" type="text/css"`},
-                    {content: `href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"`},
-                    {content: `href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"`}
-                ],
-                scripts: [
-                    {content: `javascript/jquery_3.2.1.js`},
-                    {content: `/socket.io.js`},
-                    {content: `javascript/main.js`},
-                    {content: `dist/websuite.js`}
-                ]
-            };
-
-            this.frontendTemplate = template(data);
-        }).catch(err => {
-            console.log(err.message);
-        });
     }
 }
 

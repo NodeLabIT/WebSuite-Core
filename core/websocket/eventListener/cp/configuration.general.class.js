@@ -14,6 +14,7 @@ class GeneralConfiguration {
         WebSuite.getWebSocketHandler().registerCpEvent('cp-save-general-configuration', (socket, data) => {
             if(data.title !== undefined && data.subtitle !== undefined && data.description !== undefined && data.keywords !== undefined && data.footerScript !== undefined) {
                 FileUtil.saveFile(_dir + '/data/page.json', JSON.stringify(data, null, 2)).then(() => {
+                    WebSuite.getEventHandler().emit('general-configuration-changed', {});
                     WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-general-configuration', {});
                 }).catch(err => {
                     WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-general-configuration', {err});
