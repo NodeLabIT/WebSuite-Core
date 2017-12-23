@@ -26,6 +26,8 @@ class SystemLoader {
             require('../core/websocket/eventListener/cp/configuration.general.class').listen();
             require('../core/websocket/eventListener/cp/configuration.access.class').listen();
 
+            require('../core/websocket/eventListener/default.class').listen();
+
             global.WebSuite._getWebServer().listen();
         });
     }

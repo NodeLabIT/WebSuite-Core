@@ -24,13 +24,13 @@ class WebSocketHandler {
                     // Check, if packet-name starts with 'cp-'
                     if(message.packet.data[0].startsWith('cp-')) {
                         if(message.packet.data[1]) {
-                            this._cpSocketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1]);
+                            this._cpSocketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1], message.address);
                         } else {
                             // TODO: Error on undefined data
                         }
                     } else {
                         if(message.packet.data[1]) {
-                            this._socketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1]);
+                            this._socketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1], message.address);
                         } else {
                             // TODO: Error on undefined data
                         }

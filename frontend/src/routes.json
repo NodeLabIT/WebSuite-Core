@@ -6,5 +6,9 @@
   {
     "path": "/",
     "component": "dashboard"
+  },
+  {
+    "path": "/login",
+    "component": "core/login"
   }
 ]

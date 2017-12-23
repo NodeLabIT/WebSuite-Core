@@ -7,7 +7,7 @@
                 <div class="container right">
                     <i id="close-menu" class="fa fa-times mobile-hidden"></i>
 
-                    <h3 class="white mobile-hidden">Websuite 2</h3>
+                    <h3 class="white mobile-hidden">{{ $root.page.title }}</h3>
 
                     <ws-link v-for="link in mainMenu" :link="link"></ws-link>
 
@@ -63,28 +63,34 @@
             </nav>
 
             <div id="hero" class="container">
-                <h2 class="white">Websuite 2</h2>
-                <div class="maintext white">Willkommen zur zweiten Version der Websuite.</div>
+                <h2 class="white">{{ $root.page.title }}</h2>
+                <div class="maintext white">{{ $root.page.subtitle }}</div>
             </div>
 
             <div id="sub-nav">
-                <div class="container">
-                    <a href="#" v-if="$root.loggedIn">
+                <div class="container" v-if="$root.loggedIn">
+                    <a href="">
                         <i class="fa fa-user-circle-o left"></i>
                         Willkommen, {username}
                     </a>
-                    <a href="/login" v-if="!$root.loggedIn">
-                        Jetzt anmelden
+
+                    <div class="container right align_right">
+                        <ws-link v-for="link in userMenu" :link="link" :cssClass="'margin15vert'"></ws-link>
+                    </div>
+                </div>
+                <div class="container" v-else>
+                    <a href="">
+                        Willkommen!
                     </a>
 
-                    <div class="container right align_right" v-if="!$root.loggedIn">
-                        <ws-link v-for="link in userMenu" :link="link" :cssClass="'margin15vert'"></ws-link>
+                    <div class="container right align_right">
+                        <router-link to="/login" class="margin15vert">Anmelden oder Registrieren</router-link>
                     </div>
                 </div>
             </div>
         </header>
 
-        <main>
+        <main class="container">
             <router-view></router-view>
         </main>
 
