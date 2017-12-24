@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('#open-menu').on('click', function () {
         $('#main-nav').addClass('visible');
         $('.dark-overlay').addClass('visible');
