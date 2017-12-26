@@ -63,20 +63,25 @@
     display: block !important;
     margin-top: 10px;
   }
-  header #main-nav a {
-    display: table;
-    margin: 10px 0 !important;
+  header #main-nav span {
+    margin: 10px 0 0 0;
+    display: block;
   }
-  header #main-nav a:first-of-type {
+  header #main-nav span a {
+    display: table;
+    padding: 8px 0;
+    margin: 0 !important;
+  }
+  header #main-nav span a:first-of-type {
     margin-top: 0 !important;
   }
-  header #main-nav a:last-of-type {
+  header #main-nav span a:last-of-type {
     margin-bottom: 0 !important;
   }
-  header #main-nav a i {
+  header #main-nav span a i {
     display: none;
   }
-  header #main-nav a .notification-badge {
+  header #main-nav span a .notification-badge {
     height: 22px !important;
     width: 22px !important;
     line-height: 22px !important;

@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div v-on:scroll="handleScroll()">
         <div class="helper">
             <header>
-                <i id="open-menu" class="fa fa-bars mobile-hidden"></i>
+                <i id="open-menu" @click="openMenu();" class="fa fa-bars mobile-hidden"></i>
 
                 <nav id="main-nav">
                     <div class="container right">
-                        <i id="close-menu" class="fa fa-times mobile-hidden"></i>
+                        <i id="close-menu" @click="closeMenu();" class="fa fa-times mobile-hidden"></i>
 
                         <h3 class="white mobile-hidden">{{ $root.page.title }}</h3>
 
@@ -124,12 +124,23 @@
             }
         },
         methods: {
+            openMenu() {
+                $('#main-nav').addClass('visible');
+                $('.dark-overlay').addClass('visible');
+            },
+            closeMenu() {
+                $('#main-nav').removeClass('visible');
+                $('.dark-overlay').removeClass('visible');
+            },
+            handleScroll() {
+                let headerHeight = $('header').height() - $('#open-menu').height() - 20;
 
-        },
-        created() {
-            /*setTimeout(() => {
-                $('main').css('min-height', ($(window).innerHeight() - $('header').innerHeight() - $('footer').innerHeight() - ($('main').outerHeight(true) - $('main').outerHeight())) + "px");
-            }, 100);*/
+                if ($('body>div').scrollTop() > headerHeight) {
+                    $('#open-menu').addClass('dark');
+                } else {
+                    $('#open-menu').removeClass('dark');
+                }
+            }
         }
     }
 </script>
