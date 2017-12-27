@@ -504,16 +504,6 @@ html {
   font-family: 'Open Sans', 'Arial', 'sans-serif';
   background: #F3F3F3;
   overflow-y: auto;
-  height: 100%;
-}
-body > div {
-  overflow-y: scroll;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-body > div > .helper {
-  flex: 1;
 }
 .maintext a {
   color: var(--main_blue);
@@ -833,6 +823,7 @@ header #sub-nav a {
 }
 footer {
   background: #e4e4e4;
+  overflow-y: auto;
 }
 footer .container {
   margin: 20px auto;

@@ -10,21 +10,23 @@
                     <br/>
                     <form>
                         <div>
-                            <input type="text" placeholder="Nutzername / E-Mail-Adresse">
+                            <input type="text" v-model="username" placeholder="Nutzername">
                             <span></span>
                         </div>
                         <br/>
                         <div>
-                            <input type="password" placeholder="Passwort">
+                            <input type="password" v-model="password" placeholder="Passwort">
                             <span></span>
                         </div>
                         <br/>
                         <div>
-                            <input type="checkbox" id="stay">
+                            <input type="checkbox" v-model="stay" id="stay">
                             <label for="stay" class="checkbox">Angemeldet bleiben</label>
                         </div>
                         <br/>
-                        <input type="submit" class="mainbutton" value="Anmelden">
+                        <div style="text-align: center;">
+                            <a class="mainbutton" @click="login()">Anmelden</a>
+                        </div>
                     </form>
                 </div>
                 <div class="col col2" style="text-align: center">
@@ -41,15 +43,21 @@
 <script>
     import { sio } from '../../main';
 
+    // TODO: Add https://www.npmjs.com/package/vue-recaptcha
+
     export default {
         data() {
             return {
-
+                username: "ilou",
+                password: "foobar",
+                stay: false
             }
         },
         methods: {
-
-        },
+            login() {
+                sio().emit('login', {username: this.username, password: this.password, stay: this.stay});
+            }
+    },
         created() {
 
         }
