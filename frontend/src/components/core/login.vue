@@ -25,13 +25,14 @@
                         </div>
                         <br/>
                         <div style="text-align: center;">
-                            <a class="mainbutton" @click="login()">Anmelden</a>
+                            <button @click="executeRecaptcha" class="mainbutton">Anmelden</button>
                         </div>
+                        <recaptcha ref="recaptcha" @verify="login"></recaptcha>
                     </form>
                 </div>
                 <div class="col col2" style="text-align: center">
                     <div class="maintext">
-                        Wenn du einen Account erstellen willst, dann klicke hier
+                        Erstelle dir jetzt einen Account und erhalte damit Zugriff auf viele Funktionen:
                     </div>
                     <router-link to="/register" class="mainbutton">Hier Registrieren</router-link>
                 </div>
@@ -42,6 +43,7 @@
 
 <script>
     import { sio } from '../../main';
+    import Recaptcha from '../../Recaptcha.vue';
 
     // TODO: Add https://www.npmjs.com/package/vue-recaptcha
 
@@ -53,11 +55,16 @@
                 stay: false
             }
         },
+        components: { Recaptcha },
         methods: {
-            login() {
-                sio().emit('login', {username: this.username, password: this.password, stay: this.stay});
+            executeRecaptcha() {
+                event.preventDefault();
+                this.$refs.recaptcha.execute();
+            },
+            login(response) {
+                sio().emit('login', {username: this.username, password: this.password, stay: this.stay, captcha: response});
             }
-    },
+        },
         created() {
 
         }

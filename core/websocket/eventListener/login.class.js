@@ -1,43 +1,59 @@
 'use strict';
 
+const crypto = require('crypto');
+const request = require('request');
+
 class Login {
 
     static listen() {
         WebSuite.getWebSocketHandler().registerEvent('login', (socket, data, address) => {
-            console.log(address);
-            console.log(data);
             WebSuite.getDatabase().query("SELECT COUNT(*) as count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=?", [address, TimeUtil.currentTime() - 24 * 60 * 60 * 1000]).then(count => {
-                console.log(count[0].count);
                 if(parseInt(count[0].count) < 10) {
-                    // TODO: Add Captcha-Check
-                    WebSuite.getUserHandler().getUserByUserName(data.username).then(user => {
-                        const userID = user.getUserID();
+                    const secretKey = require('../../../config.json').secretKey;
+                    const verifiyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
 
-                        WebSuite.getDatabase().query("SELECT password FROM wsUser WHERE userID=?", [userID]).then(password => {
-                            FileUtil.readFile(_dir + "/data/userSalts.json").then(salts => {
-                                salts = JSON.parse(salts);
+                    request(verifiyUrl, (err, response, body) => {
+                        body = JSON.parse(body);
 
-                                if(CryptoUtil.matchPassword(data.password, password[0].password, salts[userID])) {
-                                    console.log("Password matches");
-                                    // TODO: Login
-                                }
-                                 else {
-                                    console.log("Password doesn't match");
-                                }
+                        if(body.success !== undefined && !body.success) {
+                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: new Error('captcha failed'), step: 7});
+                            return;
+                        }
+
+                        WebSuite.getUserHandler().getUserByUserName(data.username).then(user => {
+                            const userID = user.getUserID();
+
+                            WebSuite.getDatabase().query("SELECT password FROM wsUser WHERE userID=?", [userID]).then(password => {
+                                FileUtil.readFile(_dir + "/data/userSalts.json").then(salts => {
+                                    salts = JSON.parse(salts);
+
+                                    if(CryptoUtil.matchPassword(data.password, password[0].password, salts[userID])) {
+                                        // TODO: Login
+                                        const sessionID = crypto.randomBytes(16).toString('hex');
+
+                                        WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription) VALUES (?, ?, ?)", [sessionID, userID, address]).then(() => {
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {userID, sessionID});
+                                        }).catch(err => {
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 6});
+                                        });
+                                    } else {
+                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: new Error('password incorrect'), step: 5});
+                                    }
+                                }).catch(err => {
+                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 4});
+                                });
                             }).catch(err => {
-
+                                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 3});
                             });
                         }).catch(err => {
-
+                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 2});
                         });
-                    }).catch(err => {
-
                     });
                 } else {
-                    //
+                    WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: new Error('blocked-by-server'), step: 1});
                 }
             }).catch(err => {
-
+                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 0});
             });
         });
 
