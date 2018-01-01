@@ -5,7 +5,7 @@ import VueCookies from 'vue-cookies';
 import App from './App.vue';
 
 import LinkComponent from './linkComponent.vue';
-import UserInfoBox from './boxes/user-information.vue';
+import UserInfoBox from './components/user-information.vue';
 
 import Config from './config.json';
 const routesConfig = require('./routes.json');
@@ -20,7 +20,7 @@ let routes = [];
 for(let route of routesConfig) {
     routes.push({
         path: route.path,
-        component: require('./components/' + route.component + ".vue")
+        component: require('./pages/' + route.component + ".vue")
     });
 }
 

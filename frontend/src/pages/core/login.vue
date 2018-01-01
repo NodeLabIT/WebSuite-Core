@@ -1,14 +1,19 @@
 <template>
     <div>
-        <h4>Anmelden oder registrieren</h4>
+        <h4>Anmelden</h4>
         <div class="grid">
             <div class="row">
                 <div class="col col2">
                     <div class="maintext">
                         Du hast bereits einen Account? Dann melde dich hier an.
                     </div>
+                    <div class="alert error" v-if="err !== undefined"><b>Beim anmelden ist ein Fehler aufgetreten:</b><br/>
+                        <span v-if="err.step != -1">
+                            Die angegebenen Daten sind falsch -.- Bitte überprüfe deine Eingabe.
+                        </span>
+                    </div>
                     <br/>
-                    <form>
+                    <form class="relative">
                         <div>
                             <input type="text" v-model="username" placeholder="Nutzername">
                             <span></span>
@@ -45,14 +50,14 @@
     import { sio } from '../../main';
     import Recaptcha from '../../Recaptcha.vue';
 
-    // TODO: Add https://www.npmjs.com/package/vue-recaptcha
-
     export default {
         data() {
             return {
                 username: "ilou",
                 password: "foobar",
-                stay: false
+                stay: false,
+                err: undefined,
+                logging: ""
             }
         },
         components: { Recaptcha },
@@ -62,11 +67,23 @@
                 this.$refs.recaptcha.execute();
             },
             login(response) {
-                sio().emit('login', {username: this.username, password: this.password, stay: this.stay, captcha: response});
+                this.err = undefined;
+                if(!this.logging) {
+                    this.logging = response;
+                    sio().emit('login', {username: this.username, password: this.password, stay: this.stay, captcha: response});
+                }
             }
         },
         created() {
-
+            sio().on('login', (data) => {
+                this.logging = "";
+                if(data.err) {
+                    this.err = {
+                        err: data.err.message,
+                        step: data.step
+                    }
+                }
+            });
         }
     }
 </script>

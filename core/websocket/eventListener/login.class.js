@@ -37,7 +37,7 @@ class Login {
                                             WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 6});
                                         });
                                     } else {
-                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: new Error('password incorrect'), step: 5});
+                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: new Error('no data found'), step: -1});
                                     }
                                 }).catch(err => {
                                     WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 4});
@@ -46,7 +46,11 @@ class Login {
                                 WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 3});
                             });
                         }).catch(err => {
-                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 2});
+                            if(err.message === 'no data found') {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: -1});
+                            } else {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err, step: 2});
+                            }
                         });
                     });
                 } else {

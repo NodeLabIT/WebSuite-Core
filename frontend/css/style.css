@@ -80,6 +80,7 @@ body {
 }
 /* Alerts */
 .alert {
+  margin: 10px 0;
   padding: 15px;
   color: white;
   font-weight: 500;
@@ -509,7 +510,7 @@ html {
   color: var(--main_blue);
   text-decoration: none;
 }
-* {
+.relative * {
   position: relative;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
