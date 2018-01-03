@@ -7,9 +7,12 @@
                     <div class="maintext">
                         Du hast bereits einen Account? Dann melde dich hier an.
                     </div>
-                    <div class="alert error" v-if="err !== undefined"><b>Beim anmelden ist ein Fehler aufgetreten:</b><br/>
-                        <span v-if="err.step != -1">
-                            Die angegebenen Daten sind falsch -.- Bitte überprüfe deine Eingabe.
+                    <div class="alert error" v-if="err !== undefined"><b>Beim Anmelden ist ein Fehler aufgetreten:</b><br/>
+                        <span v-if="err.id === 0">
+                            Die angegebenen Daten sind falsch. Bitte überprüfe deine Eingabe.
+                        </span>
+                        <span v-if="err.id === -1">
+                            {{ err.err | translate }}
                         </span>
                     </div>
                     <br/>
@@ -67,7 +70,6 @@
                 this.$refs.recaptcha.execute();
             },
             login(response) {
-                this.err = undefined;
                 if(!this.logging) {
                     this.logging = response;
                     sio().emit('login', {username: this.username, password: this.password, stay: this.stay, captcha: response});
@@ -78,10 +80,13 @@
             sio().on('login', (data) => {
                 this.logging = "";
                 if(data.err) {
+                    console.log(data);
                     this.err = {
-                        err: data.err.message,
-                        step: data.step
+                        err: data.err,
+                        id: data.id
                     }
+                } else {
+                    this.err = undefined;
                 }
             });
         }

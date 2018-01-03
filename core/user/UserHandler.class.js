@@ -12,9 +12,13 @@ class UserHandler {
     getUserByUserID(userID) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(result => {
-                resolve(new User(result[0].userID));
+                if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
+                    reject(new Error('no data found'));
+                } else {
+                    resolve(new User(result[0].userID));
+                }
             }).catch(err => {
-                reject(err);
+                reject(new Error('no data found'));
             });
         });
     }
@@ -27,7 +31,11 @@ class UserHandler {
     getUserByUserName(userName) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [userName]).then(result => {
-                resolve(new User(result[0].userID));
+                if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
+                    reject(new Error('no data found'));
+                } else {
+                    resolve(new User(result[0].userID));
+                }
             }).catch(err => {
                 reject(err);
             });
@@ -42,9 +50,13 @@ class UserHandler {
     getUserByEMail(email) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then(result => {
-                resolve(new User(result[0].userID));
+                if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
+                    reject(new Error('no data found'));
+                } else {
+                    resolve(new User(result[0].userID));
+                }
             }).catch(err => {
-                reject(err);
+                reject(new Error('no data found'));
             });
         });
     }

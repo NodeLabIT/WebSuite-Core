@@ -38,12 +38,17 @@ class Database {
 
             // Get connection to get information about successful connection-establishment
             this._pool.getConnection((err, connection) => {
-                connection.release();
+                if(connection === undefined) {
+                    WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
+                    success(false);
+                    return;
+                }
                 if(err) {
                     WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
                     success(false);
                     return;
                 }
+                connection.release();
                 success(true);
             });
         }).catch(err => {
@@ -109,6 +114,11 @@ class Database {
         return new Promise((resolve, reject) => {
             // Get new connection from pool
             this._pool.getConnection((err, connection) => {
+                if(connection === undefined) {
+                    reject(new Error('no database connection'));
+                    WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
+                    return;
+                }
                 if(err) {
                     // release connection and reject on error
                     connection.release();
