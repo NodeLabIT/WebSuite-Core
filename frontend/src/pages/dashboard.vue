@@ -5,7 +5,7 @@
                 <h4>{{ 'dashboard' | translate }}</h4>
                 <div v-for="box in boxes" :is="box"></div>
             </div>
-            <div class="col col1" id="sidebar">
+            <div class="col col1 relative" id="sidebar">
                 <div v-for="box in sidebarBoxes" :is="box"></div>
             </div>
         </div>
