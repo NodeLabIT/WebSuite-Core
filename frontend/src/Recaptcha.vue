@@ -2,6 +2,7 @@
     <div
         id="g-recaptcha"
         class="g-recaptcha"
+        data-size="invisible"
         :data-sitekey="sitekey">
     </div>
 </template>
@@ -25,7 +26,6 @@
                 if (window.grecaptcha) {
                     this.widgetId = window.grecaptcha.render('g-recaptcha', {
                         sitekey: this.sitekey,
-                        size: 'invisible',
                         // the callback executed when the user solves the recaptcha
                         callback: (response) => {
                             // emit an event called verify with the response as payload

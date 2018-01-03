@@ -502,7 +502,7 @@ html {
   padding: 0;
   margin: 0;
   width: 100%;
-  font-family: 'Open Sans', 'Arial', 'sans-serif';
+  font-family: 'Roboto', 'Arial', 'sans-serif';
   background: #F3F3F3;
   overflow-y: auto;
 }
@@ -651,6 +651,7 @@ header #main-nav .container .dropdown .dropdown-content .content .col h6 {
   margin-bottom: 0;
 }
 header #main-nav .container a {
+  font-weight: 500;
   color: white;
   -webkit-transition: .3s;
   -moz-transition: .3s;
@@ -689,10 +690,12 @@ header #sub-nav {
 header #sub-nav .container {
   margin: 0 auto;
   color: white;
+  font-size: 13px;
+  font-weight: 500;
 }
 header #sub-nav a {
-  font-size: 14px;
   margin: 0 15px;
+  font-weight: 400;
 }
 .forums .categorie {
   background: white;

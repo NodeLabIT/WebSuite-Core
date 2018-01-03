@@ -79,8 +79,16 @@ function init() {
         created() {
             this.page.title = document.title;
 
+            if(this.$cookies.isKey("userID") && this.$cookies.isKey("sessionID")) {
+                sio().emit("auto-login", {userID: this.$cookies.get("userID"), sessionID: this.$cookies.get("sessionID")});
+            }
+
+            sio().on("auto-login", data => {
+
+            });
+
             sio().emit('page-default-data', {});
-            sio().on('page-default-data', (data) => {
+            sio().on('page-default-data', data => {
                 if(data.err) {
                     return;
                 }

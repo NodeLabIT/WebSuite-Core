@@ -70,19 +70,16 @@
 
                 <div id="sub-nav">
                     <div class="container" v-if="$root.loggedIn">
-                        <a href="">
-                            <i class="fa fa-user-circle-o left"></i>
-                            Willkommen, {username}
-                        </a>
+                        Willkommen, {{ $root.user.username }}
 
                         <div class="container right align_right">
                             <ws-link v-for="link in userMenu" :link="link" :cssClass="'margin15vert'"></ws-link>
                         </div>
                     </div>
                     <div class="container" v-else>
-                        <a href="">
+                        <span>
                             Willkommen!
-                        </a>
+                        </span>
 
                         <div class="container right align_right">
                             <router-link to="/login" class="margin15vert">Anmelden oder Registrieren</router-link>

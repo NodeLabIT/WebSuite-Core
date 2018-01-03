@@ -21,10 +21,9 @@ class Login {
                         }
 
                         WebSuite.getUserHandler().getUserByUserName(data.username).then(user => {
-                            console.log(user.getUserID());
                             const userID = user.getUserID();
 
-                            WebSuite.getDatabase().query("SELECT password FROM wsUser WHERE userID=?", [userID]).then(password => {
+                            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(password => {
                                 FileUtil.readFile(_dir + "/data/userSalts.json").then(salts => {
                                     salts = JSON.parse(salts);
 
@@ -34,15 +33,22 @@ class Login {
                                     }
 
                                     if(CryptoUtil.matchPassword(data.password, password[0].password, salts[userID])) {
-                                        let sessionID = "";
+                                        let sessionID = Date.now().toString(36) + "_";
                                         // Can this generate the same sessionID multiple times?
                                         const possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
                                         for(let i = 0; i < 32; i++) {
                                             sessionID += possible.charAt(Math.floor(Math.random() * possible.length));
                                         }
 
-                                        WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription) VALUES (?, ?, ?)", [sessionID, userID, address]).then(() => {
-                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {userID, sessionID});
+                                        let expire = -1;
+                                        if(data.stay) {
+                                            expire = Date.now() + 100 * 24 * 60 * 60 * 1000;
+                                        } else {
+                                            expire = Date.now() + 24 * 60 * 60 * 1000;
+                                        }
+
+                                        WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires) VALUES (?, ?, ?, ?)", [sessionID, userID, address, expire]).then(() => {
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {userID, username: password[0].username, sessionID});
                                         }).catch(err => {
                                             WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: "servererror", id: -1});
                                         });
@@ -71,7 +77,7 @@ class Login {
             });
         });
 
-        WebSuite.getWebSocketHandler().registerEvent('auto-login', (socket, data) => {
+        WebSuite.getWebSocketHandler().registerEvent('auto-login', (socket, data, address) => {
 
         });
     }

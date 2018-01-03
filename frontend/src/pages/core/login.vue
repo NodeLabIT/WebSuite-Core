@@ -1,7 +1,7 @@
 <template>
     <div>
         <h4>Anmelden</h4>
-        <div class="grid">
+        <div class="grid" v-if="!$root.loggedIn">
             <div class="row">
                 <div class="col col2">
                     <div class="maintext">
@@ -35,15 +35,24 @@
                         <div style="text-align: center;">
                             <button @click="executeRecaptcha" class="mainbutton">Anmelden</button>
                         </div>
+                        <br/>
+                        <div class="maintext" style="text-align: center;">
+                            <router-link to="/password-reset">Passwort vergessen?</router-link>
+                        </div>
                         <recaptcha ref="recaptcha" @verify="login"></recaptcha>
                     </form>
                 </div>
                 <div class="col col2" style="text-align: center">
                     <div class="maintext">
-                        Erstelle dir jetzt einen Account und erhalte damit Zugriff auf viele Funktionen:
+                        Erstelle dir jetzt einen Account und erhalte damit Zugriff auf viele weitere Funktionen:
                     </div>
                     <router-link to="/register" class="mainbutton">Hier Registrieren</router-link>
                 </div>
+            </div>
+        </div>
+        <div v-else>
+            <div class="alert error">
+                Du kannst nicht auf diese Seite zugreifen, wenn du angemeldet bist.
             </div>
         </div>
     </div>
@@ -80,13 +89,25 @@
             sio().on('login', (data) => {
                 this.logging = "";
                 if(data.err) {
-                    console.log(data);
                     this.err = {
                         err: data.err,
                         id: data.id
                     }
                 } else {
                     this.err = undefined;
+                    this.$root.loggedIn = true;
+                    this.$root.user = {
+                        userID: data.userID,
+                        username: data.username
+                    };
+                    if(this.stay) {
+                        this.$cookies.set("userID", data.userID, 365 * 24 * 60 * 60);
+                        this.$cookies.set("sessionID", data.sessionID, 365 * 24 * 60 * 60);
+                    } else {
+                        this.$cookies.set("userID", data.userID, 24 * 60 * 60);
+                        this.$cookies.set("sessionID", data.sessionID, 24 * 60 * 60);
+                    }
+                    this.$router.push('/member/user/' + data.userID + "-" + data.username);
                 }
             });
         }
