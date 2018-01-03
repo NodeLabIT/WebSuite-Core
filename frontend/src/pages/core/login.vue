@@ -100,7 +100,7 @@
                         userID: data.userID,
                         username: data.username
                     };
-                    if(this.stay) {
+                    if(data.stay) {
                         this.$cookies.set("userID", data.userID, 365 * 24 * 60 * 60);
                         this.$cookies.set("sessionID", data.sessionID, 365 * 24 * 60 * 60);
                     } else {

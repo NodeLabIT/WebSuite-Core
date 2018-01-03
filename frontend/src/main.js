@@ -84,7 +84,22 @@ function init() {
             }
 
             sio().on("auto-login", data => {
+                if(data.err) {
+                    return;
+                }
+                this.loggedIn = true;
+                this.user = {
+                    userID: data.userID,
+                    username: data.username
+                };
 
+                if(data.stay) {
+                    this.$cookies.set("userID", data.userID, 365 * 24 * 60 * 60);
+                    this.$cookies.set("sessionID", data.sessionID, 365 * 24 * 60 * 60);
+                } else {
+                    this.$cookies.set("userID", data.userID, 24 * 60 * 60);
+                    this.$cookies.set("sessionID", data.sessionID, 24 * 60 * 60);
+                }
             });
 
             sio().emit('page-default-data', {});
