@@ -4,8 +4,8 @@ import VueCookies from 'vue-cookies';
 
 import App from './App.vue';
 
-import LinkComponent from './linkComponent.vue';
-import UserInfoBox from './components/user-information.vue';
+import LinkComponent from './components/ws-link.vue';
+import UserInfoBox from './components/ws-box-userinfo.vue';
 
 import Config from './config.json';
 const routesConfig = require('./routes.json');
@@ -61,6 +61,7 @@ function init() {
 
     Vue.component('ws-link', LinkComponent);
     Vue.component('ws-box-userinfo', UserInfoBox);
+    Vue.component('ws-dropdown', UserInfoBox);
 
     let vue = new Vue({
         el: '#websuite',

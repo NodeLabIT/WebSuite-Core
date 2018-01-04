@@ -12,8 +12,8 @@
 
                         <ws-link v-for="link in mainMenu" :link="link"></ws-link>
 
-                        <div class="dropdown" v-if="$root.loggedIn">
-                            <a href="#">
+                        <div class="dropdown relative" v-if="$root.loggedIn">
+                            <a href="">
                                 <i class="fa fa-bell"></i>
                                 <span class="notification-badge">1</span>
                                 <span class="mobile-hidden">Benachrichtigungen</span>
@@ -36,30 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="dropdown" v-if="$root.loggedIn">
-                            <a href="#">
-                                <i class="fa fa-comments"></i>
-                                <span class="notification-badge">3</span>
-                                <span class="mobile-hidden">Nachrichten</span>
-                            </a>
 
-                            <div class="dropdown-content notification">
-                                <h4>Chat</h4>
-                                <div class="content">
-                                    <div class="grid">
-                                        <div class="row">
-                                            <div class="col col8">
-                                                <img src="images/profileimg.png" alt="">
-                                            </div>
-                                            <div class="col col">
-                                                <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                                <h6>Vom 07.10.2017</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </nav>
 
@@ -129,6 +106,25 @@
                 $('#main-nav').removeClass('visible');
                 $('.dark-overlay').removeClass('visible');
             }
+        },
+        created() {
+            $('.dropdown').on('click', function (e) {
+                $(".dropdown").each(function () {
+                    if($(this).find(".dropdown-content").hasClass("visible")) {
+                        $(this).find(".dropdown-content").removeClass("visible");
+                    }
+                });
+                $(this).closest('.dropdown').find('.dropdown-content').stop().toggleClass('visible');
+                return false;
+            });
+
+            $(document).on('click', function() {
+                $('.dropdown-content.visible').toggleClass('visible');
+            });
+            $('.dropdown-content').on('click', function(e) {
+                e.stopPropagation();
+                return false;
+            });
         }
     }
 </script>
