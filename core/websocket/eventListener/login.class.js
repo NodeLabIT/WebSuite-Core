@@ -9,8 +9,8 @@ class Login {
 
     static listen() {
         WebSuite.getWebSocketHandler().registerEvent('login', (socket, data, address) => {
-            WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=?", [address, TimeUtil.currentTime() - 6 * 60 * 60 * 1000]).then(count => {
-                if (parseInt(count[0].count) <= 7) {
+            WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND autologin=0", [address, TimeUtil.currentTime() - 6 * 60 * 60 * 1000]).then(count => {
+                if (parseInt(count[0].count) < 7) {
                     const secretKey = require('../../../config.json').secretKey;
                     const verifiyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
 
@@ -22,7 +22,7 @@ class Login {
                                 err: "captcha failed",
                                 id: -1
                             });
-                            this.addToBlocklist(address);
+                            this.addToBlocklist(address, false);
                             return;
                         }
 
@@ -75,7 +75,7 @@ class Login {
                                             err: "no data found",
                                             id: 0
                                         });
-                                        this.addToBlocklist(address);
+                                        this.addToBlocklist(address, false);
                                     }
                                 }).catch(err => {
                                     WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
@@ -117,8 +117,8 @@ class Login {
         });
 
         WebSuite.getWebSocketHandler().registerEvent('auto-login', (socket, data, address) => {
-            WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=?", [address, TimeUtil.currentTime() - 24 * 60 * 60 * 1000]).then(count => {
-                if (parseInt(count[0].count) <= 7) {
+            WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND autologin=1", [address, TimeUtil.currentTime() - 24 * 60 * 60 * 1000]).then(count => {
+                if (parseInt(count[0].count) < 3) {
                     WebSuite.getUserHandler().getUserByUserID(data.userID).then(user => {
                         const userID = user.getUserID();
 
@@ -128,7 +128,7 @@ class Login {
                                     err: "no data found",
                                     id: 0
                                 });
-                                this.addToBlocklist(address);
+                                this.addToBlocklist(address, true);
                                 return;
                             }
 
@@ -207,8 +207,8 @@ class Login {
     /**
      * @private
      * */
-    static addToBlocklist(ipAddress) {
-        WebSuite.getDatabase().query("INSERT INTO wsFailedLogins(ipAddress, unixtime) VALUES (?, ?)", [ipAddress, Date.now()]).then(success => {
+    static addToBlocklist(ipAddress, autologin) {
+        WebSuite.getDatabase().query("INSERT INTO wsFailedLogins(ipAddress, unixtime, autologin) VALUES (?, ?, ?)", [ipAddress, Date.now(), autologin]).then(success => {
             WebSuite.getLogger().info("Added "+ ipAddress + " to local blocklist");
         }).catch(err => {
             WebSuite.getLogger().error(err);
