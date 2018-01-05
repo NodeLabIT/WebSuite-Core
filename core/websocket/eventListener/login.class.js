@@ -51,12 +51,12 @@ class Login {
 
                                         let expire = -1;
                                         if (data.stay) {
-                                            expire = Date.now() + 365 * 24 * 60 * 60 * 1000;
+                                            expire = Date.now() + 90 * 24 * 60 * 60 * 1000;
                                         } else {
-                                            expire = Date.now() + 24 * 60 * 60 * 1000;
+                                            expire = Date.now() + 8 * 60 * 60 * 1000;
                                         }
 
-                                        WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires) VALUES (?, ?, ?, ?)", [sessionID, userID, address, expire]).then(() => {
+                                        WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, stay) VALUES (?, ?, ?, ?, ?)", [sessionID, userID, address, expire, data.stay]).then(() => {
                                             WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
                                                 userID,
                                                 username: password[0].username,
@@ -146,18 +146,17 @@ class Login {
                                 }
 
                                 let expires = -1;
-                                if (parseInt(session[0].stay) === 1) {
-                                    expires = Date.now() + 365 * 24 * 60 * 60 * 1000;
+                                if(session[0].stay === 1) {
+                                    expires = Date.now() + 90 * 24 * 60 * 60 * 1000;
                                 } else {
-                                    expires = Date.now() + 24 * 60 * 60 * 1000;
+                                    expires = Date.now() + 8 * 60 * 60 * 1000;
                                 }
 
                                 WebSuite.getDatabase().query("UPDATE wsUserSessions SET expires=? WHERE userID=? AND sessionID=?", [expires, userID, data.sessionID]).then(success => {
                                     WebSuite.getWebSocketHandler().sendToClient(socket, "auto-login", {
                                         userID: userID,
                                         sessionID: session[0].sessionID,
-                                        username: username[0].username,
-                                        stay: parseInt(session[0].stay) === 1
+                                        username: username[0].username
                                     });
                                 }).catch(err => {
                                     WebSuite.getWebSocketHandler().sendToClient(socket, "auto-login", {

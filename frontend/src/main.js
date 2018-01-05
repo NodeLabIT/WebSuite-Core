@@ -6,6 +6,7 @@ import App from './App.vue';
 
 import LinkComponent from './components/ws-link.vue';
 import UserInfoBox from './components/ws-box-userinfo.vue';
+import Dropdown from './components/ws-dropdown.vue';
 
 import Config from './config.json';
 const routesConfig = require('./routes.json');
@@ -61,7 +62,7 @@ function init() {
 
     Vue.component('ws-link', LinkComponent);
     Vue.component('ws-box-userinfo', UserInfoBox);
-    Vue.component('ws-dropdown', UserInfoBox);
+    Vue.component('ws-dropdown', Dropdown);
 
     let vue = new Vue({
         el: '#websuite',
@@ -70,11 +71,15 @@ function init() {
         data: {
             loggedIn: false,
             page: {},
-            user: {}
+            user: {},
+            dropdown: ""
         },
         methods: {
             isValid: function(input) {
                 return input !== undefined && input !== "";
+            },
+            isDropdownVisible(id) {
+                return this.dropdown === id;
             }
         },
         created() {
@@ -86,6 +91,8 @@ function init() {
 
             sio().on("auto-login", data => {
                 if(data.err) {
+                    this.$cookies.remove("userID");
+                    this.$cookies.remove("sessionID");
                     return;
                 }
                 this.loggedIn = true;
@@ -95,11 +102,11 @@ function init() {
                 };
 
                 if(data.stay) {
-                    this.$cookies.set("userID", data.userID, 365 * 24 * 60 * 60);
-                    this.$cookies.set("sessionID", data.sessionID, 365 * 24 * 60 * 60);
+                    this.$cookies.set("userID", data.userID, 90 * 24 * 60 * 60);
+                    this.$cookies.set("sessionID", data.sessionID, 90 * 24 * 60 * 60);
                 } else {
-                    this.$cookies.set("userID", data.userID, 24 * 60 * 60);
-                    this.$cookies.set("sessionID", data.sessionID, 24 * 60 * 60);
+                    this.$cookies.set("userID", data.userID, 8 * 60 * 60);
+                    this.$cookies.set("sessionID", data.sessionID, 8 * 60 * 60);
                 }
             });
 

@@ -2,41 +2,29 @@
     <div>
         <div class="helper">
             <header>
-                <i id="open-menu" @click="openMenu();" class="fa fa-bars mobile-hidden"></i>
+                <i id="open-menu" @click="openMenu();" class="fa fa-bars mobile-only"></i>
 
-                <nav id="main-nav">
+                <nav id="main-nav" class="relative">
                     <div class="container right">
-                        <i id="close-menu" @click="closeMenu();" class="fa fa-times mobile-hidden"></i>
+                        <i id="close-menu" @click="closeMenu();" class="fa fa-times mobile-only"></i>
 
-                        <h3 class="white mobile-hidden">{{ $root.page.title }}</h3>
+                        <h3 class="white mobile-only">{{ $root.page.title }}</h3>
 
                         <ws-link v-for="link in mainMenu" :link="link"></ws-link>
 
-                        <div class="dropdown relative" v-if="$root.loggedIn">
-                            <a href="">
-                                <i class="fa fa-bell"></i>
-                                <span class="notification-badge">1</span>
-                                <span class="mobile-hidden">Benachrichtigungen</span>
-                            </a>
-
-                            <div class="dropdown-content notification">
-                                <h4>Benachrichtigungen</h4>
-                                <div class="content">
-                                    <div class="grid">
-                                        <div class="row">
-                                            <div class="col col8">
-                                                <img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" alt="">
-                                            </div>
-                                            <div class="col col">
-                                                <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
-                                                <h6>Vom 07.10.2017</h6>
-                                            </div>
-                                        </div>
+                        <ws-dropdown v-if="$root.loggedIn" :title="'Benachrichtigungen'" :id="'notifications'" :badge="'1'" :icon="'fa-bell'">
+                            <div class="grid">
+                                <div class="row">
+                                    <div class="col col8">
+                                        <img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" alt="">
+                                    </div>
+                                    <div class="col col">
+                                        <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
+                                        <h6>Vom 07.10.2017</h6>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </ws-dropdown>
                     </div>
                 </nav>
 
@@ -108,23 +96,7 @@
             }
         },
         created() {
-            $('.dropdown').on('click', function (e) {
-                $(".dropdown").each(function () {
-                    if($(this).find(".dropdown-content").hasClass("visible")) {
-                        $(this).find(".dropdown-content").removeClass("visible");
-                    }
-                });
-                $(this).closest('.dropdown').find('.dropdown-content').stop().toggleClass('visible');
-                return false;
-            });
 
-            $(document).on('click', function() {
-                $('.dropdown-content.visible').toggleClass('visible');
-            });
-            $('.dropdown-content').on('click', function(e) {
-                e.stopPropagation();
-                return false;
-            });
         }
     }
 </script>

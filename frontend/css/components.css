@@ -35,13 +35,13 @@ body {
 .dark-body input::placeholder {
   color: #dadada;
 }
-.dark-body .hightlighted {
+.dark-body .highlighted {
   background: var(--main_accent) !important;
 }
-.dark-body .categorie {
+.dark-body .category {
   background: var(--main_accent) !important;
 }
-.dark-body .categorie .cat-row:last-of-type {
+.dark-body .category .cat-row:last-of-type {
   border-bottom: 0 !important;
 }
 .dark-body .cat-sidebar {
@@ -105,7 +105,7 @@ body {
   height: auto;
   margin: 80px auto;
 }
-.container.hightlighted {
+.container .highlighted {
   padding: 40px;
   border-top: var(--main_blue) 2px solid;
   background: white;

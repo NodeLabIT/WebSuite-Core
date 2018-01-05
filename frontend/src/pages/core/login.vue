@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h4>Anmelden</h4>
+    <div class="highlighted">
+        <h3>Anmelden</h3>
         <div class="grid" v-if="!$root.loggedIn">
             <div class="row">
                 <div class="col col2">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col col2" style="text-align: center">
                     <div class="maintext">
-                        Erstelle dir jetzt einen Account und erhalte damit Zugriff auf viele weitere Funktionen:
+                        Du hast noch keinen Account? Erstelle dir jetzt einen Account und erhalte damit Zugriff auf viele weitere coole Funktionen:
                     </div>
                     <router-link to="/register" class="mainbutton">Hier Registrieren</router-link>
                 </div>
@@ -101,11 +101,11 @@
                         username: data.username
                     };
                     if(data.stay) {
-                        this.$cookies.set("userID", data.userID, 365 * 24 * 60 * 60);
-                        this.$cookies.set("sessionID", data.sessionID, 365 * 24 * 60 * 60);
+                        this.$cookies.set("userID", data.userID, 90 * 24 * 60 * 60);
+                        this.$cookies.set("sessionID", data.sessionID, 90 * 24 * 60 * 60);
                     } else {
-                        this.$cookies.set("userID", data.userID, 24 * 60 * 60);
-                        this.$cookies.set("sessionID", data.sessionID, 24 * 60 * 60);
+                        this.$cookies.set("userID", data.userID, 8 * 60 * 60);
+                        this.$cookies.set("sessionID", data.sessionID, 8 * 60 * 60);
                     }
                     this.$router.push('/member/user/' + data.userID + "-" + data.username);
                 }

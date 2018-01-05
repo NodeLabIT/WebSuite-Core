@@ -22,7 +22,8 @@
         props: [
             'link',
             'cssClass'
-        ], created() {
+        ],
+        created() {
 
         }
     }
