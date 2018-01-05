@@ -56,7 +56,7 @@ class Login {
                                             expire = Date.now() + 8 * 60 * 60 * 1000;
                                         }
 
-                                        WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, stay) VALUES (?, ?, ?, ?, ?)", [sessionID, userID, address, expire, data.stay]).then(() => {
+                                        WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, clientID, stay) VALUES (?, ?, ?, ?, ?, ?)", [sessionID, userID, address, expire, socket, data.stay]).then(() => {
                                             WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
                                                 userID,
                                                 username: password[0].username,
@@ -152,11 +152,12 @@ class Login {
                                     expires = Date.now() + 8 * 60 * 60 * 1000;
                                 }
 
-                                WebSuite.getDatabase().query("UPDATE wsUserSessions SET expires=? WHERE userID=? AND sessionID=?", [expires, userID, data.sessionID]).then(success => {
+                                WebSuite.getDatabase().query("UPDATE wsUserSessions SET expires=?, clientID=? WHERE userID=? AND sessionID=?", [expires, socket, userID, data.sessionID]).then(success => {
                                     WebSuite.getWebSocketHandler().sendToClient(socket, "auto-login", {
                                         userID: userID,
                                         sessionID: session[0].sessionID,
-                                        username: username[0].username
+                                        username: username[0].username,
+                                        stay: session[0].stay
                                     });
                                 }).catch(err => {
                                     WebSuite.getWebSocketHandler().sendToClient(socket, "auto-login", {
@@ -198,6 +199,13 @@ class Login {
                 }
             }).catch(err => {
                 WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: "servererror", id: -1});
+                WebSuite.getLogger().error(err);
+            });
+        });
+
+        WebSuite.getWebSocketHandler().registerEvent('disconnect', (socket, data) => {
+            console.log("disconnect");
+            WebSuite.getDatabase().query("UPDATE wsUserSessions SET clientID=null WHERE clientID=?", [socket]).then(() => {}).catch(err => {
                 WebSuite.getLogger().error(err);
             });
         });

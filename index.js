@@ -37,6 +37,16 @@ if(cluster.isMaster) {
         io.use(ioWildcard);
 
         io.on('connection', (socket) => {
+            socket.on('disconnect', () => {
+                randomWorker(worker => {
+                    worker.send(JSON.stringify({
+                        type: 'sioPacket',
+                        clientID: socket.conn.id,
+                        packet: 'disconnect',
+                        address: socket.handshake.address
+                    }));
+                });
+            });
             socket.on('*', (packet) => {
                 if(restarting) {
                     unhandledPackets.push({

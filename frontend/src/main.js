@@ -101,7 +101,7 @@ function init() {
                     username: data.username
                 };
 
-                if(data.stay) {
+                if(data.stay === 1) {
                     this.$cookies.set("userID", data.userID, 90 * 24 * 60 * 60);
                     this.$cookies.set("sessionID", data.sessionID, 90 * 24 * 60 * 60);
                 } else {

@@ -673,7 +673,9 @@ header #main-nav .container a i {
   font-size: 25px;
 }
 header #main-nav .container a .notification-badge {
-  width: 15px;
+  width: auto;
+  min-width: 15px;
+  padding: 0 4px;
   height: 15px;
   background: #c63f41;
   color: white;
@@ -681,7 +683,7 @@ header #main-nav .container a .notification-badge {
   text-align: center;
   line-height: 15px;
   position: absolute;
-  right: -5px;
+  left: 17px;
   top: -5px;
   border-radius: 100px;
 }

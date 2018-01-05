@@ -20,7 +20,7 @@ class WebSocketHandler {
 
             // Check, if type of sent message from master is 'sioPacket'
             if(message.type === "sioPacket") {
-                if(message.packet.data[0] && message.clientID) {
+                if(message && message.packet && message.packet.data && message.packet.data[0] && message.clientID) {
                     // Check, if packet-name starts with 'cp-'
                     if(message.packet.data[0].startsWith('cp-')) {
                         if(message.packet.data[1]) {
@@ -36,6 +36,9 @@ class WebSocketHandler {
                         }
                     }
                 } else {
+                    if(message && message.packet === 'disconnect') {
+                        this._socketEvents.emit(message.packet, message.clientID, null, message.address);
+                    }
                     // TODO: Error on undefined data
                 }
             }
