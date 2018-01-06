@@ -57,7 +57,7 @@ class FrontendIndexPage {
     }
 
     compileIndexPage() {
-        FileUtil.readFile(__dirname + '/index.html').then(content => {
+        FileUtil.readFile(__dirname + '/index.hbs').then(content => {
             FileUtil.readFile(_dir + '/data/page.json').then(pageData => {
                 pageData = JSON.parse(pageData);
                 let template = handlebars.compile(content);
