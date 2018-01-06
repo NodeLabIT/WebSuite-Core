@@ -72,7 +72,16 @@ function init() {
             loggedIn: false,
             page: {},
             user: {},
-            dropdown: ""
+            dropdown: "",
+            render: {
+                status: 0,
+                min: 1
+            }
+        },
+        watch: {
+            'render.status': (value) => {
+                console.log("Render changed to " + value);
+            }
         },
         methods: {
             isValid: function(input) {
@@ -83,6 +92,11 @@ function init() {
             }
         },
         created() {
+            setTimeout(() => {
+                this.render.status ++;
+                console.log("doing something...");
+            }, 3000);
+
             this.page.title = document.title;
 
             if(this.$cookies.isKey("userID") && this.$cookies.isKey("sessionID")) {

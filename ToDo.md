@@ -3,12 +3,12 @@
 - [x] Datenbank-API
 - [ ] E-Mail-API
 - [x] WebSocket-API
-- [ ] WebServer
+- [x] WebServer
 - [ ] Plugin-API
-- [ ] Cronjob-API
+- [x] Cronjob-API
 - [x] Logger
 - [ ] Upload-API
 - [ ] User-API
 - [ ] Sessions-API
-- [ ] Event-API
-- [ ] Utils
+- [x] Event-API
+- [x] Utils

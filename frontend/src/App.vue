@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </ws-dropdown>
-                        <ws-dropdown v-if="$root.loggedIn" :title="'Chats'" :id="'chats'" :badge="'999+'" :icon="'fa-comments-o'">
+                        <ws-dropdown v-if="$root.loggedIn" :title="'Chats'" :id="'chats'" :badge="'99+'" :icon="'fa-comments-o'">
                             <div class="grid">
                                 <div class="row">
                                     <div class="col col8">

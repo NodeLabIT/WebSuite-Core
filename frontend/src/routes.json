@@ -10,5 +10,9 @@
   {
     "path": "/login",
     "component": "core/login"
+  },
+  {
+    "path": "/register",
+    "component": "core/register"
   }
 ]
