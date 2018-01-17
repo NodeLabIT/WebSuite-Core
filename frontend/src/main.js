@@ -75,12 +75,15 @@ function init() {
             dropdown: "",
             render: {
                 status: 0,
-                min: 1
+                required: 1
             }
         },
         watch: {
             'render.status': (value) => {
                 console.log("Render changed to " + value);
+                if(this.render.status === this.render.required) {
+                    document.rendered = true;
+                }
             }
         },
         methods: {
@@ -94,7 +97,6 @@ function init() {
         created() {
             setTimeout(() => {
                 this.render.status ++;
-                console.log("doing something...");
             }, 3000);
 
             this.page.title = document.title;
