@@ -8,8 +8,8 @@ import LinkComponent from './components/ws-link.vue';
 import UserInfoBox from './components/ws-box-userinfo.vue';
 import Dropdown from './components/ws-dropdown.vue';
 
-import Config from './config.json';
-const routesConfig = require('./routes.json');
+import Config from './config/settings.json';
+const routesConfig = require('./config/routes.json');
 
 // Components
 

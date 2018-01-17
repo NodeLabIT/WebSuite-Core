@@ -86,9 +86,9 @@
 <script>
     import { sio } from './main';
 
-    import mainMenu from './main-menu.json';
-    import userMenu from './user-menu.json';
-    import footerMenu from './footer-menu.json';
+    import mainMenu from './config/menus/main-menu.json';
+    import userMenu from './config/menus/user-menu.json';
+    import footerMenu from './config/menus/footer-menu.json';
 
     export default {
         data() {
