@@ -11,22 +11,16 @@ class UserUtil {
      * */
     static usernameAvailable(username) {
         return new Promise((resolve, reject) => {
-            if(username.length > username.trim().length) {
-                reject(new Error('username whitespace mismatch'));
-                return;
-            }
-
             WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE username = ?", [username]).then(result => {
-                // reject on result
-                reject(new Error('username not available'));
-            }).catch(err => {
-                if(err.message === 'no data found') {
-                    // resolve on 'no data found'
-                    resolve();
+                if(result !== undefined && result[0] !== undefined) {
+                    // reject on result
+                    reject(new Error('username not available'));
                 } else {
-                    // reject on error with error
-                    reject(err);
+                    resolve();
                 }
+            }).catch(err => {
+                // reject on error with error
+                reject(err);
             });
         });
     }
@@ -73,16 +67,15 @@ class UserUtil {
     static emailAvailable(email) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE email = ?", [email]).then(result => {
-                // reject on result
-                reject(new Error('email not available'));
-            }).catch(err => {
-                if(err.message === 'no data found') {
-                    // resolve on 'no data found'
-                    resolve();
+                if(result !== undefined && result[0] !== undefined) {
+                    // reject on result
+                    reject(new Error('email not available'));
                 } else {
-                    // reject on error with error
-                    reject(err);
+                    resolve();
                 }
+            }).catch(err => {
+                // reject on error with error
+                reject(err);
             });
         });
     }
@@ -102,15 +95,15 @@ class UserUtil {
                 return;
             }
 
-            // check for invalid characters
-            if(!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-                reject(new Error('email character mismatch'));
-                return;
-            }
-
             // check for full whitespace email-address
             if(email.length < email.trim().length) {
                 reject(new Error('email whitespace mismatch'));
+                return;
+            }
+
+            // check for invalid characters
+            if(!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+                reject(new Error('email character mismatch'));
                 return;
             }
 

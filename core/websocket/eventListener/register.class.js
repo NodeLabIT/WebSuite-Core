@@ -23,7 +23,6 @@ class Register {
                             return;
                         }
 
-                        // TODO: Registration
                         UserUtil.usernameValid(data.username).then(() => {
                             UserUtil.emailValid(data.email).then(() => {
                                 UserUtil.usernameAvailable(data.username).then(() => {
@@ -35,30 +34,126 @@ class Register {
 
                                             FileUtil.readFile(_dir + '/data/userSalts.json').then(userSalts => {
                                                 userSalts = JSON.parse(userSalts);
-                                                userSalts.push({userID: salt});
+                                                userSalts[userID] = salt;
 
                                                 FileUtil.saveFile(_dir + '/data/userSalts.json', JSON.stringify(userSalts, null, 2)).then(saved => {
-                                                    // success
+                                                    let sessionID = Date.now().toString(36) + "_";
+                                                    // Can this generate the same sessionID multiple times?
+                                                    const possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
+                                                    for (let i = 0; i < 32; i++) {
+                                                        sessionID += possible.charAt(Math.floor(Math.random() * possible.length));
+                                                    }
+
+                                                    let expire = Date.now() + 8 * 60 * 60 * 1000;
+                                                    WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, clientID) VALUES (?, ?, ?, ?, ?)", [sessionID, userID, "new device", expire, socket]).then(session => {
+                                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                            userID: userID,
+                                                            username: data.username,
+                                                            sessionID: sessionID
+                                                        });
+                                                    }).catch(err => {
+                                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                            err: "servererror",
+                                                            id: -1
+                                                        });
+                                                        WebSuite.getLogger().error(err);
+                                                    });
                                                 }).catch(err => {
-                                                    // TODO
+                                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                        err: "servererror",
+                                                        id: -1
+                                                    });
+                                                    WebSuite.getLogger().error(err);
                                                 });
                                             }).catch(err => {
-                                                // TODO
+                                                WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                    err: "servererror",
+                                                    id: -1
+                                                });
+                                                WebSuite.getLogger().error(err);
                                             });
                                         }).catch(err => {
-                                            // TODO
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                err: "servererror",
+                                                id: -1
+                                            });
+                                            WebSuite.getLogger().error(err);
                                         });
                                     }).catch(err => {
-                                        // TODO
+                                        if(err.message === "email not available") {
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                err: "email-not-available",
+                                                id: 0
+                                            });
+                                        } else {
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                err: "servererror",
+                                                id: -1
+                                            });
+                                        }
+                                        WebSuite.getLogger().error(err);
                                     });
                                 }).catch(err => {
-                                    // TODO
+                                    if(err.message === "username not available") {
+                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                            err: "username-not-available",
+                                            id: 0
+                                        });
+                                    } else {
+                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                            err: "servererror",
+                                            id: -1
+                                        });
+                                    }
+                                    WebSuite.getLogger().error(err);
                                 });
                             }).catch(err => {
-                                // TODO
+                                if(err.message === "email length mismatch") {
+                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                        err: "email-length-mismatch",
+                                        id: 0
+                                    });
+                                } else if(err.message === "email character mismatch") {
+                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                        err: "email-character-mismatch",
+                                        id: 0
+                                    });
+                                } else if(err.message === "email whitespace mismatch") {
+                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                        err: "email-whitespace-mismatch",
+                                        id: 0
+                                    });
+                                } else {
+                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                        err: "servererror",
+                                        id: -1
+                                    });
+                                }
+                                WebSuite.getLogger().error(err);
                             });
                         }).catch(err => {
-                            // TODO
+                            if(err.message === "username length mismatch") {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                    err: "username-length-mismatch",
+                                    id: 0
+                                });
+                            } else if(err.message === "username character mismatch") {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                    err: "username-character-mismatch",
+                                    id: 0
+                                });
+                            } else if(err.message === "username whitespace mismatch") {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                    err: "username-whitespace-mismatch",
+                                    id: 0
+                                });
+                            } else {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                    err: "servererror",
+                                    id: -1
+                                });
+                            }
+                            WebSuite.getLogger().error(err);
                         });
                     });
                 } else {
@@ -90,4 +185,4 @@ class Register {
 
 }
 
-module.exports = Login;
+module.exports = Register;
