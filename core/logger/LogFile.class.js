@@ -18,7 +18,7 @@ class LogFile {
         this._running = true;
         DirectoryUtil.directoryExists(_dir + '/logs/').then(() => {
             const date = new Date();
-            const dateString = `${(date.getFullYear() < 10 ? "0" : "") + date.getFullYear()}-${(date.getMonth() + 1 < 10 ? "0" : "") + date.getMonth() + 1}-${(date.getDate() < 10 ? "0" : "") + date.getDate()}`;
+            const dateString = `${(date.getFullYear() < 10 ? "0" : "") + date.getFullYear()}-${((date.getMonth() + 1) < 10 ? "0" : "") + (date.getMonth() + 1)}-${(date.getDate() < 10 ? "0" : "") + date.getDate()}`;
 
             let message = this._queue.shift();
 
