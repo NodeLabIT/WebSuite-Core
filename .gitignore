@@ -1,8 +1,10 @@
-.idea
+.idea/
+dist/
+node_modules/
+logs/
+
 WebSuite-Core.iml
-dist
 config.json
 package-lock.json
-node_modules
 .flooignore
 .floo
