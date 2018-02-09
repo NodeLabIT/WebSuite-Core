@@ -107,7 +107,7 @@
                         this.$cookies.set("userID", data.userID, 8 * 60 * 60);
                         this.$cookies.set("sessionID", data.sessionID, 8 * 60 * 60);
                     }
-                    this.$router.push('/member/user/' + data.userID + "-" + data.username);
+                    this.$router.push('/user/profile/' + data.userID + "-" + data.username);
                 }
             });
         }

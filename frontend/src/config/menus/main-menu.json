@@ -5,6 +5,6 @@
   },
   {
     "name": "members",
-    "url": "/member/"
+    "url": "/user/list"
   }
 ]

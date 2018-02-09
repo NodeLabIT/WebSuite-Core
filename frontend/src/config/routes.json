@@ -14,5 +14,61 @@
   {
     "path": "/register",
     "component": "core/register"
+  },
+  {
+    "path": "/search",
+    "component": "core/search"
+  },
+  {
+    "path": "/account/blocked",
+    "component": "core/account/blocked"
+  },
+  {
+    "path": "/account/following",
+    "component": "core/account/following"
+  },
+  {
+    "path": "/account/management",
+    "component": "core/account/management"
+  },
+  {
+    "path": "/account/profile",
+    "component": "core/account/profile"
+  },
+  {
+    "path": "/account/settings",
+    "component": "core/account/settings"
+  },
+  {
+    "path": "/conversation/add",
+    "component": "core/conversation/add"
+  },
+  {
+    "path": "/conversation/list",
+    "component": "core/conversation/list"
+  },
+  {
+    "path": "/conversation/view/:conversationID-:conversationTitle",
+    "component": "core/conversation/view"
+  },
+  {
+    "path": "/moderation/list",
+    "component": "core/moderation/list"
+  },
+  {
+    "path": "/moderation/view/:moderationID",
+    "component": "core/moderation/view"
+  },
+  {
+    "path": "/user/list",
+    "component": "core/user/list"
+  },
+  {
+    "path": "/user/profile/:userID-:username",
+    "component": "core/user/profile"
+  },
+  {
+    "path": "/user/team",
+    "component": "core/user/team"
   }
 ]
