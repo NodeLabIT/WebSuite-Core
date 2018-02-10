@@ -48,11 +48,11 @@
         },
         mounted() {
             document.getElementById(this.id).addEventListener('click', this.stopProp);
-            document.body.addEventListener('click', this.closeDropdown);
+            document.addEventListener('click', this.closeDropdown);
         },
         destroyed() {
             document.getElementById(this.id).removeEventListener('click', this.stopProp);
-            document.body.removeEventListener('click', this.closeDropdown);
+            document.removeEventListener('click', this.closeDropdown);
         }
     }
 </script>
