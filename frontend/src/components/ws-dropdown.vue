@@ -38,7 +38,21 @@
                 } else {
                     this.$root.dropdown = id;
                 }
+            },
+            stopProp(event) {
+                event.stopPropagation()
+            },
+            closeDropdown() {
+                this.$root.dropdown = undefined;
             }
+        },
+        mounted() {
+            document.getElementById(this.id).addEventListener('click', this.stopProp);
+            document.body.addEventListener('click', this.closeDropdown);
+        },
+        destroyed() {
+            document.getElementById(this.id).removeEventListener('click', this.stopProp);
+            document.body.removeEventListener('click', this.closeDropdown);
         }
     }
 </script>
