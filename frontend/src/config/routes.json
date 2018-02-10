@@ -20,6 +20,14 @@
     "component": "core/search"
   },
   {
+    "path": "/imprint",
+    "component": "core/imprint"
+  },
+  {
+    "path": "/privacy-policy",
+    "component": "core/privacy-policy"
+  },
+  {
     "path": "/account/blocked",
     "component": "core/account/blocked"
   },
@@ -48,6 +56,10 @@
     "component": "core/conversation/list"
   },
   {
+    "path": "/conversation/list/:pageID",
+    "component": "core/conversation/list"
+  },
+  {
     "path": "/conversation/view/:conversationID-:conversationTitle",
     "component": "core/conversation/view"
   },
@@ -56,11 +68,19 @@
     "component": "core/moderation/list"
   },
   {
+    "path": "/moderation/list/:pageID",
+    "component": "core/moderation/list"
+  },
+  {
     "path": "/moderation/view/:moderationID",
     "component": "core/moderation/view"
   },
   {
     "path": "/user/list",
+    "component": "core/user/list"
+  },
+  {
+    "path": "/user/list/:pageID",
     "component": "core/user/list"
   },
   {
