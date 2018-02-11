@@ -413,6 +413,36 @@ footer {
   }
 }
 
+.balloon {
+  display: none;
+  animation: balloonFadeIn 0.3s;
+
+  width: 90%;
+  max-width: 480px;
+
+  background: rgba(31, 32, 42, 0.75);
+  color: #fff;
+
+  padding: 10px 16px;
+  box-sizing: border-box;
+
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  z-index: 1001;
+
+  h4 {
+    color: #fff;
+  }
+}
+
+@keyframes balloonFadeIn {
+  0% { transform: translate(-50%, 0) scale(0); }
+  100% { transform: translate(-50%, 0) scale(1); }
+}
+
 #user-rules {
   max-height: 500px;
   overflow-y: hidden;
@@ -425,4 +455,62 @@ footer {
   bottom: -60px;
   border-radius: 100px;
   margin: auto;
+}
+
+.loader {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1000;
+
+  width: 40px;
+  margin-right: 4px;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.circular {
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite;
+  stroke-linecap: circle;
+  stroke: #fff;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
 }

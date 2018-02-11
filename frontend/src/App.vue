@@ -1,5 +1,14 @@
 <template>
     <div>
+        <div class="loader" v-if="$root.pageLoad.status !== $root.pageLoad.required">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+        <div class="balloon" id="no-connection">
+            <h4>Keine Verbindung</h4>
+            Die Verbindung zum Server wurde getrennt. Es wird versucht, die Verbindung erneut aufzubauen. Dies kann unter Umständen einige Zeit in Anspruch nehmen.
+        </div>
         <div class="helper">
             <header>
                 <i id="open-menu" @click="openMenu();" class="fa fa-bars mobile-only"></i>
@@ -109,7 +118,12 @@
             }
         },
         created() {
-
+            sio().on('disconnect', (reason) => {
+                $(".balloon#no-connection").show();
+                sio().on('reconnect', (attemptNumber) => {
+                    $(".balloon#no-connection").hide();
+                });
+            });
         }
     }
 </script>

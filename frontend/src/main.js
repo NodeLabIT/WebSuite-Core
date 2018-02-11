@@ -74,16 +74,22 @@ function init() {
             user: {},
             dropdown: "",
             pageLoad: {
+                loading: true,
                 status: 0,
                 required: 1
             }
         },
         watch: {
             'pageLoad.status': function(value) {
-                console.log("Render changed to " + value);
-                if(this.pageLoad.status === this.pageLoad.required) {
+                if(this.pageLoad.loading && this.pageLoad.status === this.pageLoad.required) {
+                    this.pageLoad.loading = false;
                     document.rendered = true;
                 }
+            },
+            '$route': function(to, from) {
+                this.pageLoad.loading = false;
+                this.pageLoad.required = 1;
+                this.pageLoad.status = 0;
             }
         },
         methods: {
