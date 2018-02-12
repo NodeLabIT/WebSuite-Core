@@ -30,6 +30,11 @@ const router = new VueRouter({
     mode: 'history'
 });
 
+router.beforeEach((to, from, next) => {
+    router.app.rendered = false;
+    next();
+});
+
 let language = {};
 $.ajax({
     dataType: "json",
@@ -73,23 +78,11 @@ function init() {
             page: {},
             user: {},
             dropdown: "",
-            pageLoad: {
-                loading: true,
-                status: 0,
-                required: 1
-            }
+            rendered: true
         },
         watch: {
-            'pageLoad.status': function(value) {
-                if(this.pageLoad.loading && this.pageLoad.status === this.pageLoad.required) {
-                    this.pageLoad.loading = false;
-                    document.rendered = true;
-                }
-            },
-            '$route': function(to, from) {
-                this.pageLoad.loading = false;
-                this.pageLoad.required = 1;
-                this.pageLoad.status = 0;
+            'rendered': function(value) {
+                document.rendered = value;
             }
         },
         methods: {
@@ -101,10 +94,6 @@ function init() {
             }
         },
         created() {
-            setTimeout(() => {
-                this.pageLoad.status ++;
-            }, 3000);
-
             this.page.title = document.title;
 
             if(this.$cookies.isKey("userID") && this.$cookies.isKey("sessionID")) {

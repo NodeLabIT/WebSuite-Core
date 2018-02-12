@@ -9,7 +9,7 @@
                 <tbody>
                     <tr>
                         <td>Beiträge</td>
-                        <td>112</td>
+                        <td>{{ abc }}</td>
                     </tr>
                     <tr>
                         <td>Themen</td>
@@ -33,3 +33,22 @@
         </div>
     </div>
 </template>
+
+<script>
+    import { sio } from '../main';
+
+    export default {
+        data() {
+            return {
+                loaded: false,
+                abc: 0
+            }
+        },
+        beforeMount() {
+            setTimeout(() => {
+                this.abc = 112;
+                this.loaded = true;
+            }, 500);
+        }
+    }
+</script>
