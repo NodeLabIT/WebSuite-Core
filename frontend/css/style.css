@@ -788,6 +788,49 @@ header #sub-nav a {
 .forums .latest-post .content .date {
   color: #989898;
 }
+.card-list {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.card-list .card-item {
+  border: 1px solid #E4E4E4;
+  box-shadow: 0 0 4px #E4E4E4;
+  background: white;
+  padding: 20px;
+}
+.card-list .card-item img {
+  width: 64px;
+  height: 64px;
+  border-radius: 100px;
+  object-fit: cover;
+  object-position: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+.card-list .card-item table {
+  display: inline-table;
+  width: auto;
+  font-size: 12px;
+  color: var(--main_text);
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.card-list .card-item table tr {
+  border: 0;
+}
+.card-list .card-item table a.card-title {
+  font-size: 15px;
+  color: var(--main_blue);
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.card-list .card-item table th,
+.card-list .card-item table td {
+  padding: 0;
+  border: 0;
+}
 #sidebar .panel-head {
   padding: 30px 30px 10px 30px;
   border-top: var(--main_blue) 2px solid;

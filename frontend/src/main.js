@@ -78,7 +78,8 @@ function init() {
             page: {},
             user: {},
             dropdown: "",
-            rendered: false
+            rendered: false,
+            autoLogin: '/'
         },
         watch: {
             'rendered': function(value) {
@@ -98,9 +99,18 @@ function init() {
 
             if(this.$cookies.isKey("userID") && this.$cookies.isKey("sessionID")) {
                 sio().emit("auto-login", {userID: this.$cookies.get("userID"), sessionID: this.$cookies.get("sessionID")});
+                this.autoLogin = window.location.pathname;
+                this.$router.push('/auto-login');
+            } else {
+                this.autoLogin = null;
             }
 
             sio().on("auto-login", data => {
+                if(this.autoLogin !== null) {
+                    this.$router.push(this.autoLogin);
+                    this.autoLogin = null;
+                }
+
                 if(data.err) {
                     this.$cookies.remove("userID");
                     this.$cookies.remove("sessionID");

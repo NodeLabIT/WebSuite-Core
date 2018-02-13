@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('./User.class');
+const GuestGroup = require('./GuestGroup.class');
 
 class UserHandler {
 
@@ -59,6 +60,10 @@ class UserHandler {
                 reject(new Error('no data found'));
             });
         });
+    }
+
+    getGuestGroup() {
+        return GuestGroup;
     }
 
 }

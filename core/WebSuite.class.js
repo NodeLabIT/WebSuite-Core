@@ -9,6 +9,7 @@ const Database = require('./database/Database.class');
 const Mail = require('./mail/Mail.class');
 
 const UserHandler = require('./user/UserHandler.class');
+const Sessions = require('./session/Sessions.class');
 
 const EventHandler = require('./event/EventHandler.class');
 
@@ -135,6 +136,15 @@ class WebSuite {
      * */
     getUserHandler() {
         return UserHandler;
+    }
+
+    /**
+     * Get Session-Class to work with User-Sessions
+     *
+     * @returns Sessions
+     * */
+    getSessions() {
+        return Sessions;
     }
 
 }

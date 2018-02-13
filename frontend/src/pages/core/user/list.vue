@@ -1,35 +1,55 @@
 <template>
     <div>
-        Mitgliederliste
+        <h4>{{ 'userlist' | translate }}</h4>
+        <div class="alert error" v-if="err === 'permissionDenied'">
+            Du hast keine Rechte diese Seite zu betrachten.
+        </div>
+        <div class="alert error" v-if="err === 'error occurred'">
+            Es ist ein Serverinterner Fehler aufgetreten. Bitte versuche die Seite neu zu laden. Notfalls wende dich an den Betreiber.
+        </div>
+        <div class="card-list" v-if="users.length > 0">
+            <div class="card-item" v-for="user in users">
+                <img src="https://preview.msr-webdesign.de/websuite2/images/profileimg.png">
+                <table>
+                    <tbody>
+                        <tr><a href="/" class="card-title">{{ user.username }}</a></tr>
+                        <tr><b>{{ user.groupName }}</b></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import { sio } from '../../../main';
+
     export default {
         data() {
             return {
-
+                users: [],
+                err: null
             }
         },
-        created() {
-
-        },
         beforeRouteEnter(to, from, next) {
-            // LOAD DATA AND CALL THAT AFTER SUCCESS
-            next(vm => {
-                let i = setInterval(() => {
-                    if(vm.$children.length === 0) {
-                        clearInterval(i);
+            sio().emit('userlist', {});
+            sio().on('userlist', (data) => {
+                next(vm => {
+                    if(data.err) {
+                        vm.err = data.err;
                         vm.$root.rendered = true;
-                    } else {
-                        if(vm.$children.some((c) => c.loaded === true) === true) {
-                            clearInterval(i);
-                            vm.$root.rendered = true;
-                        }
+                        return;
                     }
-                }, 200);
+
+                    vm.users = data.users;
+                    vm.$root.rendered = true;
+                });
             });
+        },
+        beforeRouteLeave(to, from, next) {
+            if(this.i)
+                clearInterval(this.i);
+            next();
         }
     }
 </script>

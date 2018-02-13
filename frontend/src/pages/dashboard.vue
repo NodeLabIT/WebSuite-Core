@@ -30,7 +30,7 @@
             // LOAD DATA AND CALL THAT AFTER SUCCESS
             next(vm => {
                 vm.i = setInterval(() => {
-                    if(vm.$children.some((c) => c.loaded === true) === true) {
+                    if (vm.$children.some((c) => c.loaded === true) === true) {
                         clearInterval(vm.i);
                         vm.$root.rendered = true;
                     }
@@ -38,9 +38,8 @@
             });
         },
         beforeRouteLeave(to, from, next) {
-            if(this.i) {
+            if(this.i)
                 clearInterval(this.i);
-            }
             next();
         }
     }
