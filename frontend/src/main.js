@@ -78,7 +78,7 @@ function init() {
             page: {},
             user: {},
             dropdown: "",
-            rendered: true
+            rendered: false
         },
         watch: {
             'rendered': function(value) {

@@ -49,7 +49,7 @@ class WebServer {
             }
 
             if(req.path.startsWith('/cp')) {
-                res.status(403).send("access denied for bots!");
+                res.status(403).end("access denied for bots!");
                 return;
             }
 

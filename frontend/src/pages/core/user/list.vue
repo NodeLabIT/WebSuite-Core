@@ -1,5 +1,5 @@
 <template>
-    <div v-show="$root.rendered === true">
+    <div>
         Mitgliederliste
     </div>
 </template>

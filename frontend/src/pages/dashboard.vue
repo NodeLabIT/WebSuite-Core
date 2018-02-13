@@ -1,9 +1,8 @@
 <template>
-    <div class="grid" v-show="$root.rendered === true">
+    <div class="grid">
         <div class="row">
             <div class="col col3">
                 <h4>{{ 'dashboard' | translate }}</h4>
-                {{ test }}
                 <div v-for="box in boxes" :is="box"></div>
             </div>
             <div class="col col1 relative" id="sidebar">
@@ -30,13 +29,19 @@
         beforeRouteEnter(to, from, next) {
             // LOAD DATA AND CALL THAT AFTER SUCCESS
             next(vm => {
-                let i = setInterval(() => {
+                vm.i = setInterval(() => {
                     if(vm.$children.some((c) => c.loaded === true) === true) {
-                        clearInterval(i);
+                        clearInterval(vm.i);
                         vm.$root.rendered = true;
                     }
                 }, 200);
             });
+        },
+        beforeRouteLeave(to, from, next) {
+            if(this.i) {
+                clearInterval(this.i);
+            }
+            next();
         }
     }
 </script>
