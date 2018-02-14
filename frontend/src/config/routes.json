@@ -84,6 +84,10 @@
     "component": "core/user/list"
   },
   {
+    "path": "/user/profile",
+    "component": "core/user/profile"
+  },
+  {
     "path": "/user/profile/:userID-:username",
     "component": "core/user/profile"
   },

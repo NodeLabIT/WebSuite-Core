@@ -102,6 +102,7 @@ function init() {
             }
 
             sio().on("auto-login", data => {
+                this.autoLogin = true;
                 this.$root.$emit("auto-loaded");
 
                 if(data.err) {

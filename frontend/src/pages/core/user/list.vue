@@ -32,11 +32,15 @@
             }
         },
         created() {
-            this.$root.$on("auto-loaded", () => {
-                sio().emit('userlist', {});
-            });
+            if(this.$root.autoLogin === false) {
+                this.$root.$on("auto-loaded", () => {
+                    sio().emit('user-list', {});
+                });
+            } else {
+                sio().emit('user-list', {});
+            }
 
-            sio().on('userlist', (data) => {
+            sio().on('user-list', (data) => {
                 if(data.err) {
                     this.err = data.err;
                     this.$root.rendered = true;
@@ -49,7 +53,7 @@
         },
         watch: {
             '$route': () => {
-                sio().emit('userlist', {});
+                sio().emit('user-list', {});
             }
         }
     }

@@ -1,10 +1,10 @@
 [
   {
-    "name": "account-settings",
-    "url": "/account/management"
+    "name": "profile",
+    "url": "/user/profile"
   },
   {
-    "name": "profile-settings",
-    "url": "/account/profile"
+    "name": "settings",
+    "url": "/account/settings"
   }
 ]

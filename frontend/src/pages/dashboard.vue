@@ -29,7 +29,7 @@
         created() {
             this.i = setInterval(() => {
                 if (this.$children.some((c) => c.loaded === true) === true) {
-                    clearInterval(vm.i);
+                    clearInterval(this.i);
                     this.$root.rendered = true;
                 }
             }, 200);
@@ -37,7 +37,6 @@
         beforeDestroy() {
             if(this.i)
                 clearInterval(this.i);
-            next();
         }
     }
 </script>
