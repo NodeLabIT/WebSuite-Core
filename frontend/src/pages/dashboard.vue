@@ -26,18 +26,15 @@
                 ]
             }
         },
-        beforeRouteEnter(to, from, next) {
-            // LOAD DATA AND CALL THAT AFTER SUCCESS
-            next(vm => {
-                vm.i = setInterval(() => {
-                    if (vm.$children.some((c) => c.loaded === true) === true) {
-                        clearInterval(vm.i);
-                        vm.$root.rendered = true;
-                    }
-                }, 200);
-            });
+        created() {
+            this.i = setInterval(() => {
+                if (this.$children.some((c) => c.loaded === true) === true) {
+                    clearInterval(vm.i);
+                    this.$root.rendered = true;
+                }
+            }, 200);
         },
-        beforeRouteLeave(to, from, next) {
+        beforeDestroy() {
             if(this.i)
                 clearInterval(this.i);
             next();

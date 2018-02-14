@@ -31,25 +31,26 @@
                 err: null
             }
         },
-        beforeRouteEnter(to, from, next) {
-            sio().emit('userlist', {});
-            sio().on('userlist', (data) => {
-                next(vm => {
-                    if(data.err) {
-                        vm.err = data.err;
-                        vm.$root.rendered = true;
-                        return;
-                    }
+        created() {
+            this.$root.$on("auto-loaded", () => {
+                sio().emit('userlist', {});
+            });
 
-                    vm.users = data.users;
-                    vm.$root.rendered = true;
-                });
+            sio().on('userlist', (data) => {
+                if(data.err) {
+                    this.err = data.err;
+                    this.$root.rendered = true;
+                    return;
+                }
+
+                this.users = data.users;
+                this.$root.rendered = true;
             });
         },
-        beforeRouteLeave(to, from, next) {
-            if(this.i)
-                clearInterval(this.i);
-            next();
+        watch: {
+            '$route': () => {
+                sio().emit('userlist', {});
+            }
         }
     }
 </script>

@@ -12,10 +12,6 @@
     "component": "core/login"
   },
   {
-    "path": "/auto-login",
-    "component": "core/auto-login"
-  },
-  {
     "path": "/register",
     "component": "core/register"
   },
