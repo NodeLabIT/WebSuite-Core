@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const User = require('../user/User.class');
+const User = require("../user/User.class");
 
 class Sessions {
 
@@ -15,7 +15,7 @@ class Sessions {
                     resolve(new User(result[0].userID));
                 }
             }).catch(err => {
-                reject(new Error('no data found'));
+                reject(new Error("no data found"));
             });
         });
     }
@@ -29,7 +29,7 @@ class Sessions {
                     resolve(new User(result[0].userID));
                 }
             }).catch(err => {
-                reject(new Error('no data found'));
+                reject(new Error("no data found"));
             });
         });
     }
@@ -43,7 +43,7 @@ class Sessions {
                     resolve(result[0].sessionID);
                 }
             }).catch(err => {
-                reject(new Error('no data found'));
+                reject(new Error("no data found"));
             });
         });
     }

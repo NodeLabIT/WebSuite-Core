@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const EventEmitter = require('./EventEmitter.class');
+const EventEmitter = require("./EventEmitter.class");
 
 class EventHandler {
 

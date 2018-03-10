@@ -1,35 +1,35 @@
-'use strict';
+"use strict";
 
-const handlebars = require('handlebars');
+const handlebars = require("handlebars");
 
 class FrontendIndexPage {
 
     constructor() {
-        handlebars.registerHelper('meta', function(items, options) {
+        handlebars.registerHelper("meta", function(items, options) {
             let out = "";
 
             for(let i=0, l=items.length; i<l; i++) {
-                out = out + "<meta " + options.fn(items[i]) + ">\n";
+                out += "<meta " + options.fn(items[i]) + ">\n";
             }
 
             return out;
         });
 
-        handlebars.registerHelper('link', function(items, options) {
+        handlebars.registerHelper("link", function(items, options) {
             let out = "";
 
             for(let i=0, l=items.length; i<l; i++) {
-                out = out + "<link " + options.fn(items[i]) + ">\n";
+                out += "<link " + options.fn(items[i]) + ">\n";
             }
 
             return out;
         });
 
-        handlebars.registerHelper('script', function(items, options) {
+        handlebars.registerHelper("script", function(items, options) {
             let out = "";
 
             for(let i=0, l=items.length; i<l; i++) {
-                out = out + "<script src=\"" + options.fn(items[i]) + "\"></script>\n";
+                out += "<script src=\"" + options.fn(items[i]) + "\"></script>\n";
             }
 
             return out;
@@ -46,8 +46,8 @@ class FrontendIndexPage {
 
     postInit() {
         this.compileIndexPage();
-        WebSuite.getEventHandler().on('general-configuration-changed', () => {
-            console.log("general configuration changed. recompiling");
+        WebSuite.getEventHandler().on("general-configuration-changed", () => {
+            console.log("general configuration changed. recompiling...");
             this.compileIndexPage();
         });
     }
@@ -57,8 +57,8 @@ class FrontendIndexPage {
     }
 
     compileIndexPage() {
-        FileUtil.readFile(__dirname + '/index.hbs').then(content => {
-            FileUtil.readFile(_dir + '/data/page.json').then(pageData => {
+        FileUtil.readFile(`${__dirname}/index.hbs`).then(content => {
+            FileUtil.readFile(`${_dir}/data/page.json`).then(pageData => {
                 pageData = JSON.parse(pageData);
                 let template = handlebars.compile(content);
 

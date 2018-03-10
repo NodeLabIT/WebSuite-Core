@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
+const fs = require("fs");
 
 class FileUtil {
 
@@ -14,7 +14,7 @@ class FileUtil {
     static fileExists(path) {
         return new Promise((resolve, reject) => {
             if(!path) {
-                reject(new Error('undefined param'));
+                reject(new Error("undefined param"));
                 return;
             }
 
@@ -39,11 +39,11 @@ class FileUtil {
     static readFile(path) {
         return new Promise((resolve, reject) => {
             if(path === undefined) {
-                reject(new Error('undefined param'));
+                reject(new Error("undefined param"));
             }
 
             this.fileExists(path).then(() => {
-                fs.readFile(path, 'utf-8', (err, content) => {
+                fs.readFile(path, "utf-8", (err, content) => {
                     if(err) {
                         reject(err);
                         return;
@@ -68,10 +68,10 @@ class FileUtil {
     static saveFile(path, content) {
         return new Promise((resolve, reject) => {
             if(path === undefined || content === undefined) {
-                reject(new Error('undefined param'));
+                reject(new Error("undefined param"));
             }
 
-            fs.writeFile(path, content, 'utf-8', (err) => {
+            fs.writeFile(path, content, "utf-8", (err) => {
                 if(err) {
                     reject(err);
                     return;

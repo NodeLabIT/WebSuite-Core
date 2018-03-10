@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
 class Dashboard {
 
     static listen() {
-        WebSuite.getWebSocketHandler().registerCpEvent('cp-restart-system', (socket, data) => {
+        WebSuite.getWebSocketHandler().registerCpEvent("cp-restart-system", (socket, data) => {
             process.send(JSON.stringify({type: "system", action: "restart"}));
         });
 
-        WebSuite.getWebSocketHandler().registerCpEvent('cp-recompile-system', (socket, data) => {
+        WebSuite.getWebSocketHandler().registerCpEvent("cp-recompile-system", (socket, data) => {
             // TODO: Compile LESS and Vue-Templates from Filesystem
 
             // TODO: success: deploy to webserver and let all Clients reconnect to the system

@@ -1,4 +1,6 @@
-'use strict';
+"use strict";
+
+// TODO: Code Style refactor
 
 class GroupEdit {
 

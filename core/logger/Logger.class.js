@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const LogFile = require('./LogFile.class');
+const LogFile = require("./LogFile.class");
 
 class Logger {
 

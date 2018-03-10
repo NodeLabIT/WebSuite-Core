@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const User = require('./User.class');
-const GuestGroup = require('./GuestGroup.class');
+const User = require("./User.class");
+const GuestGroup = require("./GuestGroup.class");
 
 class UserHandler {
 
@@ -14,12 +14,12 @@ class UserHandler {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
-                    reject(new Error('no data found'));
+                    reject(new Error("no data found"));
                 } else {
                     resolve(new User(result[0].userID));
                 }
             }).catch(err => {
-                reject(new Error('no data found'));
+                reject(new Error("no data found"));
             });
         });
     }
@@ -33,12 +33,12 @@ class UserHandler {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [userName]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
-                    reject(new Error('no data found'));
+                    reject(new Error("no data found"));
                 } else {
                     resolve(new User(result[0].userID));
                 }
             }).catch(err => {
-                reject(err);
+                reject(new Error("no data found"));
             });
         });
     }
@@ -52,12 +52,12 @@ class UserHandler {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
-                    reject(new Error('no data found'));
+                    reject(new Error("no data found"));
                 } else {
                     resolve(new User(result[0].userID));
                 }
             }).catch(err => {
-                reject(new Error('no data found'));
+                reject(new Error("no data found"));
             });
         });
     }

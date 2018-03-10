@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const WebSuite = require('../core/WebSuite.class');
 

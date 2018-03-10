@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
+const fs = require("fs");
 
 class DirectoryUtil {
 
@@ -14,7 +14,7 @@ class DirectoryUtil {
     static directoryExists(path) {
         return new Promise((resolve, reject) => {
             if(!path) {
-                reject(new Error('undefined param'));
+                reject(new Error("undefined param"));
                 return;
             }
 
@@ -39,7 +39,7 @@ class DirectoryUtil {
     static files(path) {
         return new Promise((resolve, reject) => {
             if(!path) {
-                reject(new Error('undefined param'));
+                reject(new Error("undefined param"));
                 return;
             }
 
@@ -65,12 +65,12 @@ class DirectoryUtil {
     static createDirectory(path, directoryName) {
         return new Promise((resolve, reject) => {
             if(!path || !directoryName) {
-                reject(new Error('undefined param'));
+                reject(new Error("undefined param"));
                 return;
             }
 
             if(!path.endsWith("/"))
-                path = path + "/";
+                path += "/";
 
             fs.mkdir(path + directoryName, (err) => {
                 if(err) {
@@ -93,7 +93,7 @@ class DirectoryUtil {
     static removeDirectory(path) {
         return new Promise((resolve, reject) => {
             if(!path) {
-                reject(new Error('undefined param'));
+                reject(new Error("undefined param"));
                 return;
             }
 

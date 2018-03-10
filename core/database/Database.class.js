@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const mysql = require('mysql');
+const mysql = require("mysql");
 
 class Database {
 
@@ -25,7 +25,7 @@ class Database {
      * @private
      * */
     _connect(success) {
-        FileUtil.readFile(_dir + '/config.json').then(content => {
+        FileUtil.readFile(`${_dir}/config.json`).then(content => {
             content = JSON.parse(content);
             // create new sql-connection-pool
             this._pool = mysql.createPool({
@@ -115,7 +115,7 @@ class Database {
             // Get new connection from pool
             this._pool.getConnection((err, connection) => {
                 if(connection === undefined) {
-                    reject(new Error('no database connection'));
+                    reject(new Error("no database connection"));
                     WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
                     return;
                 }

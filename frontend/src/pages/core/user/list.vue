@@ -8,7 +8,7 @@
             Es ist ein Serverinterner Fehler aufgetreten. Bitte versuche die Seite neu zu laden. Notfalls wende dich an den Betreiber.
         </div>
         <div class="card-list" v-if="users.length > 0">
-            <div class="card-item" v-for="user in users">
+            <div class="card-item card-link" v-for="user in users" @onclick="">
                 <img src="https://preview.msr-webdesign.de/websuite2/images/profileimg.png">
                 <table>
                     <tbody>

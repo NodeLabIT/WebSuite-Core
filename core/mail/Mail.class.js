@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
-const config = require('../../config.json');
+const config = require("../../config.json");
 
 class Mail {
 
@@ -27,7 +27,7 @@ class Mail {
      * @private
      * */
     _connect(success) {
-        FileUtil.readFile(_dir + '/config.json').then(content => {
+        FileUtil.readFile(`${_dir}/config.json`).then(content => {
             /*content = JSON.parse(content);
             this._transport = nodemailer.createTransport({
                 host: content.mail.host,

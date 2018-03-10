@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class LogFile {
 
@@ -16,7 +16,7 @@ class LogFile {
 
     dequeue() {
         this._running = true;
-        DirectoryUtil.directoryExists(_dir + '/logs/').then(() => {
+        DirectoryUtil.directoryExists(`${_dir}/logs/`).then(() => {
             const date = new Date();
             const dateString = `${(date.getFullYear() < 10 ? "0" : "") + date.getFullYear()}-${((date.getMonth() + 1) < 10 ? "0" : "") + (date.getMonth() + 1)}-${(date.getDate() < 10 ? "0" : "") + date.getDate()}`;
 
@@ -66,9 +66,8 @@ class LogFile {
             });
         }).catch(err => {
             if(err.code === 'ENOENT') {
-                DirectoryUtil.createDirectory(_dir + '/', 'logs').then(() => {
+                DirectoryUtil.createDirectory(`${_dir}/`, "logs").then(() => {
                     this.dequeue();
-                    this._running = false;
                 }).catch(err => {
                     if(err) {
                         console.error(err);

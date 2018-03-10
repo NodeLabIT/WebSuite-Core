@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const crypto = require('crypto');
+const crypto = require("crypto");
 
 class CryptoUtil {
 
@@ -13,7 +13,7 @@ class CryptoUtil {
      * @returns String double salted, hashed password
      * */
     static hashPassword(raw, salt) {
-        return crypto.createHmac('sha512', salt).update(raw).digest('hex');
+        return crypto.createHmac("sha512", salt).update(raw).digest("hex");
     }
 
     /**
@@ -37,7 +37,7 @@ class CryptoUtil {
      * @returns String random salt
      * */
     static generateSalt(length) {
-        return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
+        return crypto.randomBytes(Math.ceil(length / 2)).toString("hex").slice(0, length);
     }
 
 }

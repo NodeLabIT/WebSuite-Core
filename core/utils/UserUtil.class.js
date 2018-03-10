@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class UserUtil {
 
@@ -14,7 +14,7 @@ class UserUtil {
             WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE username = ?", [username]).then(result => {
                 if(result !== undefined && result[0] !== undefined) {
                     // reject on result
-                    reject(new Error('username not available'));
+                    reject(new Error("username not available"));
                 } else {
                     resolve();
                 }
@@ -36,19 +36,19 @@ class UserUtil {
         return new Promise((resolve, reject) => {
             // Check for valid length
             if(username.length < 3 || username.length > 25) {
-                reject(new Error('username length mismatch'));
+                reject(new Error("username length mismatch"));
                 return;
             }
 
             // check for invalid characters
             if(!username.match(/^([a-zA-Z0-9][\s_.-]?)+$/)) {
-                reject(new Error('username character mismatch'));
+                reject(new Error("username character mismatch"));
                 return;
             }
 
             // check for full whitespace name
             if(username.length > username.trim().length) {
-                reject(new Error('username whitespace mismatch'));
+                reject(new Error("username whitespace mismatch"));
                 return;
             }
 
@@ -69,7 +69,7 @@ class UserUtil {
             WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE email = ?", [email]).then(result => {
                 if(result !== undefined && result[0] !== undefined) {
                     // reject on result
-                    reject(new Error('email not available'));
+                    reject(new Error("email not available"));
                 } else {
                     resolve();
                 }
@@ -91,19 +91,19 @@ class UserUtil {
         return new Promise((resolve, reject) => {
             // Check for valid length to save it in the database
             if(email.length > 64) {
-                reject(new Error('email length mismatch'));
+                reject(new Error("email length mismatch"));
                 return;
             }
 
             // check for full whitespace email-address
             if(email.length < email.trim().length) {
-                reject(new Error('email whitespace mismatch'));
+                reject(new Error("email whitespace mismatch"));
                 return;
             }
 
             // check for invalid characters
             if(!email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-                reject(new Error('email character mismatch'));
+                reject(new Error("email character mismatch"));
                 return;
             }
 

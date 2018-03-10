@@ -1,6 +1,6 @@
-var url = require('system').args[1];
+var url = require("system").args[1];
 
-var page = require('webpage').create();
+var page = require("webpage").create();
 page.open(url, function(status) {
     setInterval(function() {
         var rendered = page.evaluate(function() {

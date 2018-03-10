@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // Create EventEmitter to proxy packets through the system
 const EventEmitter = require('../event/EventEmitter.class');
