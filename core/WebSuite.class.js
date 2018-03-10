@@ -1,26 +1,26 @@
 "use strict";
 
-const Logger = require('./logger/Logger.class');
+const Logger = require("./logger/Logger.class");
 
-const WebSocketHandler = require('./websocket/WebSocketHandler.class');
-const WebServer  = require('./webserver/WebServer.class');
+const WebSocketHandler = require("./websocket/WebSocketHandler.class");
+const WebServer  = require("./webserver/WebServer.class");
 
-const Database = require('./database/Database.class');
-const Mail = require('./mail/Mail.class');
+const Database = require("./database/Database.class");
+const Mail = require("./mail/Mail.class");
 
-const UserHandler = require('./user/UserHandler.class');
-const Sessions = require('./session/Sessions.class');
+const UserHandler = require("./user/UserHandler.class");
+const Sessions = require("./session/Sessions.class");
 
-const EventHandler = require('./event/EventHandler.class');
+const EventHandler = require("./event/EventHandler.class");
 
-const Cronjob = require('./cronjob/Cronjob.class');
+const Cronjob = require("./cronjob/Cronjob.class");
 
 // Utils
-require('./utils/CryptoUtil.class');
-require('./utils/DirectoryUtil.class');
-require('./utils/FileUtil.class');
-require('./utils/TimeUtil.class');
-require('./utils/UserUtil.class');
+require("./utils/CryptoUtil.class");
+require("./utils/DirectoryUtil.class");
+require("./utils/FileUtil.class");
+require("./utils/TimeUtil.class");
+require("./utils/UserUtil.class");
 
 /**
  * Class of core-module
@@ -49,15 +49,15 @@ class WebSuite {
                     user.getUserInformation().then(test => {
                         //this.getLogger().debug(test.username);
                     }).catch(err => {
-                        if(err.message === 'no data found') {
+                        if(err.message === "no data found") {
                             this.getLogger().debug("User doesn't have profile-information");
                         }
                     });
                 }).catch(err => {
-                    if(err.message === 'no data found') {
+                    if(err.message === "no data found") {
                         this.getLogger().debug("User doesn't exist");
                     } else {
-
+                        this.getLogger().debug(err.message);
                     }
                 });
             });

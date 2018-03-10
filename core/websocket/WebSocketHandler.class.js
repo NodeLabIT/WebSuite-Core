@@ -1,7 +1,7 @@
 "use strict";
 
 // Create EventEmitter to proxy packets through the system
-const EventEmitter = require('../event/EventEmitter.class');
+const EventEmitter = require("../event/EventEmitter.class");
 
 /**
  * Class to work with packets in socket.io
@@ -14,7 +14,7 @@ class WebSocketHandler {
         this._socketEvents = new EventEmitter();
 
         // Listen for new messages from the master
-        process.on('message', (message) => {
+        process.on("message", (message) => {
             // Parse Message to JSON-Object
             message = JSON.parse(message);
 
@@ -22,7 +22,7 @@ class WebSocketHandler {
             if(message.type === "sioPacket") {
                 if(message && message.packet && message.packet.data && message.packet.data[0] && message.clientID) {
                     // Check, if packet-name starts with 'cp-'
-                    if(message.packet.data[0].startsWith('cp-')) {
+                    if(message.packet.data[0].startsWith("cp-")) {
                         if(message.packet.data[1]) {
                             this._cpSocketEvents.emit(message.packet.data[0], message.clientID, message.packet.data[1], message.address);
                         } else {
@@ -36,7 +36,7 @@ class WebSocketHandler {
                         }
                     }
                 } else {
-                    if(message && message.packet === 'disconnect') {
+                    if(message && message.packet === "disconnect") {
                         this._socketEvents.emit(message.packet, message.clientID, null, message.address);
                     }
                     // TODO: Error on undefined data
@@ -47,7 +47,7 @@ class WebSocketHandler {
 
     sendToClient(clientID, packetName, packetData) {
         if(clientID && packetName && packetData) {
-            process.send(JSON.stringify({type: 'sioPacket', clientID, packet: {packetName, packetData}}));
+            process.send(JSON.stringify({type: "sioPacket", clientID, packet: {packetName, packetData}}));
         }
     }
 

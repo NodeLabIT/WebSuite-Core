@@ -3,7 +3,7 @@
 class GroupList {
 
     static listen() {
-        WebSuite.getWebSocketHandler().registerCpEvent('cp-group-list', (socket, data) => {
+        WebSuite.getWebSocketHandler().registerCpEvent("cp-group-list", (socket, data) => {
             WebSuite.getDatabase().query('SELECT * FROM wsGroup ORDER BY groupID', [])
                 .then(result => {
                     let counts = {};
@@ -16,7 +16,7 @@ class GroupList {
                                 counts[groupID] = count[0];
 
                                 if(i === result.length) {
-                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-list', {groups: result, counts});
+                                    WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-list", {groups: result, counts});
                                 }
                             }).catch(err=> {
                                 console.log(err.message);
@@ -25,7 +25,7 @@ class GroupList {
                     }
                 }). catch(err => {
                 WebSuite.getLogger().error(err.message);
-                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-list', {err: err.message});
+                WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-list", {err: err.message});
             });
         });
     }

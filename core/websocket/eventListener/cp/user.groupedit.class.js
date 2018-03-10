@@ -1,23 +1,21 @@
 "use strict";
 
-// TODO: Code Style refactor
-
 class GroupEdit {
 
     static listen() {
         // TODO: Rewrite for Group Edit
-        WebSuite.getWebSocketHandler().registerCpEvent('cp-group-edit-permissions', (socket, data) => {
-            FileUtil.readFile(_dir + '/data/administrativePermissions.json').then(contentCP => {
-                FileUtil.readFile(_dir + '/data/permissions.json').then(content => {
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-edit-permissions', {cp: JSON.parse(contentCP), frontend: JSON.parse(content)});
+        WebSuite.getWebSocketHandler().registerCpEvent("cp-group-edit-permissions", (socket, data) => {
+            FileUtil.readFile(`${_dir}/data/administrativePermissions.json`).then(contentCP => {
+                FileUtil.readFile(`${_dir}/data/permissions.json`).then(content => {
+                    WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit-permissions", {cp: JSON.parse(contentCP), frontend: JSON.parse(content)});
                 }).catch(err => {
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-edit-permissions', {err});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit-permissions", {err});
                 });
             }).catch(err => {
-                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-edit-permissions', {err});
+                WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit-permissions", {err});
             });
         });
-        WebSuite.getWebSocketHandler().registerCpEvent('cp-group-edit', (socket, data) => {
+        WebSuite.getWebSocketHandler().registerCpEvent("cp-group-edit", (socket, data) => {
             let groupID = 1;
             if(data.groupID && data.groupID > 0) {
                 groupID = data.groupID;
@@ -29,13 +27,13 @@ class GroupEdit {
                     for(let permission of permissions) {
                         perms.push(permission.permission);
                     }
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-edit', {defaults: result[0], permissions: perms});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit", {defaults: result[0], permissions: perms});
                 }).catch(err => {
                     // number is a signal to know where the error occurred.
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-edit', {err, number: 2});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit", {err, number: 2});
                 });
             }).catch(err => {
-                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-group-edit', {err, number: 1});
+                WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit", {err, number: 1});
             });
         });
 
@@ -67,38 +65,36 @@ class GroupEdit {
 
                         }).catch(err => {
                             console.log("2: " + err.message);
-                            WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-group-edit', {err, number: 2});
+                            WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {err, number: 2});
                         });
                         if(removed.length !== 0) {
                             WebSuite.getDatabase().query("DELETE FROM wsGroupPermissions WHERE (groupID, permission) IN (?)", [removed]).then(() => {
                                 console.log("updated successfully");
                             }).catch(err => {
-                                console.log("3: " + err.message);
-                                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-group-edit', {err, number: 3});
+                                WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {err, number: 3});
                             });
                         } else {
-                            WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-group-edit', {});
+                            WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {});
                         }
                     } else {
                         if(removed.length !== 0) {
                             WebSuite.getDatabase().query("DELETE FROM wsGroupPermissions WHERE (groupID, permission) IN (?)", [removed]).then(() => {
                                 console.log("updated successfully");
                             }).catch(err => {
-                                console.log("4: " + err.message);
-                                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-group-edit', {err, number: 3});
+                                WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {err, number: 3});
                             });
                         } else {
-                            WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-group-edit', {});
+                            WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {});
                         }
                     }
                 }).catch(err => {
                     console.log("1: " + err.message);
                     // number is a signal to know where the error occurred.
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-group-edit', {err, number: 1});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {err, number: 1});
                 });
             }).catch(err => {
                 console.log(err.message);
-                WebSuite.getWebSocketHandler().sendToClient(socket, 'cp-save-group-edit', {err, number: 0});
+                WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {err, number: 0});
             });
         });
     }

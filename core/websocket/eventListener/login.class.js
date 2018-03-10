@@ -1,21 +1,21 @@
 "use strict";
 
-const request = require('request');
+const request = require("request");
 
 class Login {
 
     static listen() {
-        WebSuite.getWebSocketHandler().registerEvent('login', (socket, data, address) => {
+        WebSuite.getWebSocketHandler().registerEvent("login", (socket, data, address) => {
             WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='login'", [address, TimeUtil.currentTime() - 6 * 60 * 60 * 1000]).then(count => {
                 if (parseInt(count[0].count) < 7) {
-                    const secretKey = require('../../../config.json').secretKey;
+                    const secretKey = require("../../../config.json").secretKey;
                     const verifiyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
 
                     request(verifiyUrl, (err, response, body) => {
                         body = JSON.parse(body);
 
                         if (body.success !== undefined && !body.success) {
-                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                            WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                 err: "captcha failed",
                                 id: -1
                             });
@@ -27,11 +27,11 @@ class Login {
                             const userID = user.getUserID();
 
                             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(password => {
-                                FileUtil.readFile(_dir + "/data/userSalts.json").then(salts => {
+                                FileUtil.readFile(`${_dir}/data/userSalts.json`).then(salts => {
                                     salts = JSON.parse(salts);
 
                                     if (salts[userID] === undefined) {
-                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                                        WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                             err: "no data found",
                                             id: 0
                                         });
@@ -54,48 +54,48 @@ class Login {
                                         }
 
                                         WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, clientID, stay) VALUES (?, ?, ?, ?, ?, ?)", [sessionID, userID, address, expire, socket, data.stay]).then(() => {
-                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                                 userID,
                                                 username: password[0].username,
                                                 sessionID,
                                                 stay: data.stay
                                             });
                                         }).catch(err => {
-                                            WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                                            WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                                 err: "servererror",
                                                 id: -1
                                             });
                                             WebSuite.getLogger().error(err);
                                         });
                                     } else {
-                                        WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                                        WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                             err: "no data found",
                                             id: 0
                                         });
                                         this.addToBlocklist(address, false);
                                     }
                                 }).catch(err => {
-                                    WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                                    WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                         err: "servererror",
                                         id: -1
                                     });
                                     WebSuite.getLogger().error(err);
                                 });
                             }).catch(err => {
-                                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                     err: "servererror",
                                     id: -1
                                 });
                                 WebSuite.getLogger().error(err);
                             });
                         }).catch(err => {
-                            if (err.message === 'no data found') {
-                                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                            if (err.message === "no data found") {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                     err: "no data found",
                                     id: 0
                                 });
                             } else {
-                                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {
+                                WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                     err: "servererror",
                                     id: -1
                                 });
@@ -104,16 +104,16 @@ class Login {
                         });
                     });
                 } else {
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: "blocked by server", id: -1});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, "login", {err: "blocked by server", id: -1});
                 }
             }).catch(err => {
-                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: "servererror", id: -1});
+                WebSuite.getWebSocketHandler().sendToClient(socket, "login", {err: "servererror", id: -1});
                 WebSuite.getLogger().error(err);
 
             });
         });
 
-        WebSuite.getWebSocketHandler().registerEvent('auto-login', (socket, data, address) => {
+        WebSuite.getWebSocketHandler().registerEvent("auto-login", (socket, data, address) => {
             WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='autologin'", [address, TimeUtil.currentTime() - 24 * 60 * 60 * 1000]).then(count => {
                 if (parseInt(count[0].count) < 3) {
                     WebSuite.getUserHandler().getUserByUserID(data.userID).then(user => {
@@ -192,15 +192,15 @@ class Login {
                         }
                     });
                 } else {
-                    WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: "blocked by server", id: -1});
+                    WebSuite.getWebSocketHandler().sendToClient(socket, "auto-login", {err: "blocked by server", id: -1});
                 }
             }).catch(err => {
-                WebSuite.getWebSocketHandler().sendToClient(socket, 'login', {err: "servererror", id: -1});
+                WebSuite.getWebSocketHandler().sendToClient(socket, "auto-login", {err: "servererror", id: -1});
                 WebSuite.getLogger().error(err);
             });
         });
 
-        WebSuite.getWebSocketHandler().registerEvent('disconnect', (socket, data) => {
+        WebSuite.getWebSocketHandler().registerEvent("disconnect", (socket, data) => {
             WebSuite.getDatabase().query("UPDATE wsUserSessions SET clientID=null WHERE clientID=?", [socket]).then(() => {}).catch(err => {
                 WebSuite.getLogger().error(err);
             });
