@@ -4,7 +4,7 @@ class GroupList {
 
     static listen() {
         global.WebSuite.getWebSocketHandler().registerCpEvent("cp-group-list", (socket, data) => {
-            global.WebSuite.getDatabase().query('SELECT * FROM wsGroup ORDER BY groupID', [])
+            global.WebSuite.getDatabase().query("SELECT * FROM wsGroup ORDER BY groupID", [])
                 .then((result) => {
                     let counts = {};
                     let i = 0;

@@ -35,7 +35,7 @@ class FrontendIndexPage {
             return out;
         });
 
-        handlebars.registerHelper('if', function(conditional, options) {
+        handlebars.registerHelper("if", function(conditional, options) {
             if(conditional) {
                 return options.fn(this);
             } else {
@@ -93,11 +93,11 @@ class FrontendIndexPage {
 
                 this.compiledIndexPage = template(data);
             }).catch((err) => {
-                this.compiledIndexPage = undefined;
+                this.compiledIndexPage = null;
                 console.log(err.message);
             });
         }).catch((err) => {
-            this.compiledIndexPage = undefined;
+            this.compiledIndexPage = null;
             console.log(err.message);
         });
     }

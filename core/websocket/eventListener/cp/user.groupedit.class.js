@@ -37,7 +37,7 @@ class GroupEdit {
             });
         });
 
-        global.WebSuite.getWebSocketHandler().registerCpEvent('cp-save-group-edit', (socket, data) => {
+        global.WebSuite.getWebSocketHandler().registerCpEvent("cp-save-group-edit", (socket, data) => {
             global.WebSuite.getDatabase().query("UPDATE wsGroup SET groupName=?, groupDescription=?, displayName=?, displayColor=?, fontColor=? WHERE groupID=?", [data.defaults.groupName, data.defaults.groupDescription, data.defaults.displayName, data.defaults.displayColor, data.defaults.fontColor, data.defaults.groupID]).then((success) => {
                 global.WebSuite.getDatabase().query("SELECT permission FROM wsGroupPermissions WHERE groupID=?", [data.defaults.groupID]).then((permissions) => {
                     let perms = [];
@@ -63,7 +63,7 @@ class GroupEdit {
                     if(added.length !== 0) {
                         global.WebSuite.getDatabase().query("INSERT INTO wsGroupPermissions(groupID, permission) VALUES ?", [added]).then(() => {
 
-                        }).catch(err => {
+                        }).catch((err) => {
                             console.log("2: " + err.message);
                             global.WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-group-edit", {err, number: 2});
                         });

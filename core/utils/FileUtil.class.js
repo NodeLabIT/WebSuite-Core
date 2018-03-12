@@ -13,7 +13,7 @@ class FileUtil {
      * */
     static fileExists(path) {
         return new Promise((resolve, reject) => {
-            if(!path) {
+            if(typeof path === "undefined") {
                 reject(new Error("undefined param"));
                 return;
             }
@@ -38,7 +38,7 @@ class FileUtil {
      * */
     static readFile(path) {
         return new Promise((resolve, reject) => {
-            if(path === undefined) {
+            if(typeof path === "undefined") {
                 reject(new Error("undefined param"));
             }
 
@@ -67,7 +67,7 @@ class FileUtil {
      * */
     static saveFile(path, content) {
         return new Promise((resolve, reject) => {
-            if(path === undefined || content === undefined) {
+            if(typeof path === "undefined" || typeof content === "undefined") {
                 reject(new Error("undefined param"));
             }
 

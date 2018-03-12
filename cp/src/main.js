@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router';
-import VueCookies from 'vue-cookies';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import VueCookies from "vue-cookies";
 
-import App from './App.vue';
+import App from "./App.vue";
 
-import Config from './config.json';
-const routesConfig = require('./routes.json');
+import Config from "./config.json";
+const routesConfig = require("./routes.json");
 
 // Components
 
@@ -17,25 +17,16 @@ let routes = [];
 for(let route of routesConfig) {
     routes.push({
         path: route.path,
-        component: require('./components/' + route.component + ".vue")
+        component: require("./components/" + route.component + ".vue")
     });
 }
 
 const router = new VueRouter({
     routes,
-    mode: 'history'
+    mode: "history"
 });
 
 let language = {};
-$.ajax({
-    dataType: "json",
-    url: "/cp/language/de_DE.json",
-    success: function(data) {
-        language = data;
-        init();
-    }
-});
-
 let socket;
 
 // TODO: Disallow connection for Bots to prevent crawling-errors
@@ -52,12 +43,12 @@ export function sio() {
 }
 
 function init() {
-    Vue.filter('translate', (value) => {
-        return language[value] === undefined ? value + " (untranslated)" : language[value];
+    Vue.filter("translate", (value) => {
+        return typeof language[value] === "undefined" ? value + " (untranslated)" : language[value];
     });
 
     let vue = new Vue({
-        el: '#wscp',
+        el: "#wscp",
         router,
         render: h => h(App),
         data: {
@@ -67,22 +58,22 @@ function init() {
         },
         methods: {
             isValid: function(input) {
-                return input !== undefined && input !== "";
+                return typeof input !== "undefined" && input !== "";
             },
             openDialog(dialogId) {
-                if(this.openedDialog !== undefined) {
-                    this.closeDialog(this.openedDialog)
+                if(typeof this.openedDialog !== "undefined" || this.openedDialog !== null) {
+                    this.closeDialog(this.openedDialog);
                 }
                 $(dialogId).removeClass('closed');
                 this.openedDialog = dialogId;
             },
             closeDialog(dialogId) {
                 $(dialogId).addClass("fade");
-                $(dialogId).one('webkitAnimationEnd onanimationend msAnimationEnd', (event) => {
-                    $(dialogId).addClass('closed');
-                    $(dialogId).removeClass('fade');
+                $(dialogId).one("webkitAnimationEnd onanimationend msAnimationEnd", (event) => {
+                    $(dialogId).addClass("closed");
+                    $(dialogId).removeClass("fade");
                 });
-                this.openedDialog = undefined;
+                this.openedDialog = null;
             }
         },
         created() {
@@ -90,3 +81,12 @@ function init() {
         }
     });
 }
+
+$.ajax({
+    dataType: "json",
+    url: "/cp/language/de_DE.json",
+    success: function(data) {
+        language = data;
+        init();
+    }
+});

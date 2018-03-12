@@ -67,7 +67,7 @@
         data() {
             return {
                 user: {
-                    username: 'ilou'
+                    username: "ilou"
                 },
                 subMenu: {
 
@@ -76,7 +76,7 @@
         },
         methods: {
             loadSubNavigation() {
-                const section = this.$route.path.split('/')[1];
+                const section = this.$route.path.split("/")[1];
 
                 if(menus[section]) {
                     this.subMenu = menus[section];
@@ -85,19 +85,19 @@
                 }
             },
             toggleNav() {
-                $('#navigation').slideToggle();
+                $("#navigation").slideToggle();
             }
         },
         watch: {
-            '$route' (to, from) {
+            "$route" (to, from) {
                 this.loadSubNavigation();
             }
         },
         created() {
-            sio().on('disconnect', (reason) => {
-                this.$root.openDialog('#sio-no-connection');
-                sio().on('reconnect', (attemptNumber) => {
-                    this.$root.closeDialog('#sio-no-connection');
+            sio().on("disconnect", (reason) => {
+                this.$root.openDialog("#sio-no-connection");
+                sio().on("reconnect", (attemptNumber) => {
+                    this.$root.closeDialog("#sio-no-connection");
                 });
             });
             this.loadSubNavigation();

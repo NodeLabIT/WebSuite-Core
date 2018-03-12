@@ -1,19 +1,19 @@
-require('babel-polyfill');
-var path = require('path');
-var webpack = require('webpack');
+require("babel-polyfill");
+var path = require("path");
+var webpack = require("webpack");
 
 module.exports = {
-  entry: ['babel-polyfill', './src/main.js'],
+  entry: ["babel-polyfill", "./src/main.js"],
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'wscp.js'
+    path: path.resolve(__dirname, "./dist"),
+    publicPath: "/dist/",
+    filename: "wscp.js"
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: "vue-loader",
         options: {
           loaders: {
           }
@@ -22,21 +22,21 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {
-          name: '[name].[ext]?[hash]'
+          name: "[name].[ext]?[hash]"
         }
       }
     ]
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      "vue$": "vue/dist/vue.esm.js"
     }
   },
   devServer: {
@@ -46,16 +46,16 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: "#eval-source-map"
 };
 
-if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map';
+if (process.env.NODE_ENV === "production") {
+  module.exports.devtool = "#source-map";
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
+      "process.env": {
+        NODE_ENV: "\"production\""
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

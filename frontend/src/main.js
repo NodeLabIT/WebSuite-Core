@@ -1,15 +1,15 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router';
-import VueCookies from 'vue-cookies';
+import Vue from "vue"
+import VueRouter from "vue-router";
+import VueCookies from "vue-cookies";
 
-import App from './App.vue';
+import App from "./App.vue";
 
-import LinkComponent from './components/ws-link.vue';
-import UserInfoBox from './components/ws-box-userinfo.vue';
-import Dropdown from './components/ws-dropdown.vue';
+import LinkComponent from "./components/ws-link.vue";
+import UserInfoBox from "./components/ws-box-userinfo.vue";
+import Dropdown from "./components/ws-dropdown.vue";
 
-import Config from './config/settings.json';
-const routesConfig = require('./config/routes.json');
+import Config from "./config/settings.json";
+const routesConfig = require("./config/routes.json");
 
 // Components
 
@@ -21,13 +21,13 @@ let routes = [];
 for(let route of routesConfig) {
     routes.push({
         path: route.path,
-        component: require('./pages/' + route.component + ".vue")
+        component: require("./pages/" + route.component + ".vue")
     });
 }
 
 const router = new VueRouter({
     routes,
-    mode: 'history'
+    mode: "history"
 });
 
 router.beforeEach((to, from, next) => {
@@ -36,15 +36,6 @@ router.beforeEach((to, from, next) => {
 });
 
 let language = {};
-$.ajax({
-    dataType: "json",
-    url: "/language/de_DE.json",
-    success: function(data) {
-        language = data;
-        init();
-    }
-});
-
 let socket;
 
 // TODO: Disallow connection for Bots to prevent crawling-errors
@@ -61,16 +52,16 @@ export function sio() {
 }
 
 function init() {
-    Vue.filter('translate', (value) => {
-        return language[value] === undefined ? value + " (ut)" : language[value];
+    Vue.filter("translate", (value) => {
+        return typeof language[value] === "undefined" ? value + " (ut)" : language[value];
     });
 
-    Vue.component('ws-link', LinkComponent);
-    Vue.component('ws-box-userinfo', UserInfoBox);
-    Vue.component('ws-dropdown', Dropdown);
+    Vue.component("ws-link", LinkComponent);
+    Vue.component("ws-box-userinfo", UserInfoBox);
+    Vue.component("ws-dropdown", Dropdown);
 
     let vue = new Vue({
-        el: '#websuite',
+        el: "#websuite",
         router,
         render: h => h(App),
         data: {
@@ -82,13 +73,13 @@ function init() {
             autoLogin: false
         },
         watch: {
-            'rendered': function(value) {
+            "rendered": function(value) {
                 document.rendered = value;
             }
         },
         methods: {
             isValid: function(input) {
-                return input !== undefined && input !== "";
+                return typeof input !== "undefined" && input !== "";
             },
             isDropdownVisible(id) {
                 return this.dropdown === id;
@@ -125,8 +116,8 @@ function init() {
                 }
             });
 
-            sio().emit('page-default-data', {});
-            sio().on('page-default-data', data => {
+            sio().emit("page-default-data", {});
+            sio().on("page-default-data", data => {
                 if(data.err) {
                     return;
                 }
@@ -135,3 +126,12 @@ function init() {
         }
     });
 }
+
+$.ajax({
+    dataType: "json",
+    url: "/language/de_DE.json",
+    success: function(data) {
+        language = data;
+        init();
+    }
+});

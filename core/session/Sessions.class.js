@@ -9,7 +9,7 @@ class Sessions {
     getUserBySessionID(sessionID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE sessionID=?", [sessionID]).then((result) => {
-                if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
+                if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
                     resolve(null);
                 } else {
                     resolve(new User(result[0].userID));
@@ -23,7 +23,7 @@ class Sessions {
     getUserByClientID(clientID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE clientID=?", [clientID]).then((result) => {
-                if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
+                if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
                     resolve(null);
                 } else {
                     resolve(new User(result[0].userID));
@@ -37,7 +37,7 @@ class Sessions {
     getSessionIDByUserID(userID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=?", [userID]).then((result) => {
-                if(result === undefined || result[0] === undefined || result[0].sessionID === undefined) {
+                if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].sessionID === "undefined") {
                     resolve(null);
                 } else {
                     resolve(result[0].sessionID);

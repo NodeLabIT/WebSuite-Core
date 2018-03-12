@@ -12,7 +12,7 @@ class GeneralConfiguration {
         });
 
         global.WebSuite.getWebSocketHandler().registerCpEvent("cp-save-general-configuration", (socket, data) => {
-            if(data.title !== undefined && data.subtitle !== undefined && data.description !== undefined && data.keywords !== undefined && data.footerScript !== undefined) {
+            if(typeof data.title !== "undefined" && typeof data.subtitle !== "undefined" && typeof data.description !== "undefined" && typeof data.keywords !== "undefined" && typeof data.footerScript !== "undefined") {
                 global.FileUtil.saveFile(`${global._dir}/data/page.json`, JSON.stringify(data, null, 2)).then(() => {
                     global.WebSuite.getEventHandler().emit("general-configuration-changed", {});
                     global.WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-general-configuration", {});

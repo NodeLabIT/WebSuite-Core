@@ -38,7 +38,7 @@ if(cluster.isMaster) {
 
         io.on("connection", (socket) => {
             socket.on("disconnect", () => {
-                randomWorker(worker => {
+                randomWorker((worker) => {
                     worker.send(JSON.stringify({
                         type: "sioPacket",
                         clientID: socket.conn.id,
@@ -52,15 +52,15 @@ if(cluster.isMaster) {
                     unhandledPackets.push({
                         type: "sioPacket",
                         clientID: socket.conn.id,
-                        packet: packet,
+                        packet,
                         address: socket.handshake.address
                     });
                 } else {
-                    randomWorker(worker => {
+                    randomWorker((worker) => {
                         worker.send(JSON.stringify({
                             type: "sioPacket",
                             clientID: socket.conn.id,
-                            packet: packet,
+                            packet,
                             address: socket.handshake.address
                         }));
                     });
@@ -70,8 +70,8 @@ if(cluster.isMaster) {
 
         let handleUnhandledPackets = () => {
             if(unhandledPackets.length > 0) {
-                unhandledPackets.forEach(packet => {
-                    randomWorker(worker => {
+                unhandledPackets.forEach((packet) => {
+                    randomWorker((worker) => {
                         worker.send(JSON.stringify(packet));
                     });
                 });

@@ -50,7 +50,7 @@ class DirectoryUtil {
                 }
 
                 resolve(files);
-            })
+            });
         });
     }
 
@@ -69,8 +69,9 @@ class DirectoryUtil {
                 return;
             }
 
-            if(!path.endsWith("/"))
+            if(!path.endsWith("/")) {
                 path += "/";
+            }
 
             fs.mkdir(path + directoryName, (err) => {
                 if(err) {

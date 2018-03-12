@@ -38,7 +38,7 @@ class Database {
 
             // Get connection to get information about successful connection-establishment
             this._pool.getConnection((err, connection) => {
-                if(connection === undefined) {
+                if(typeof connection === "undefined") {
                     global.WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
                     success(false);
                     return;
@@ -51,7 +51,7 @@ class Database {
                 connection.release();
                 success(true);
             });
-        }).catch(err => {
+        }).catch((err) => {
             global.WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
             success(false);
         });

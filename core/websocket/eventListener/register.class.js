@@ -6,7 +6,7 @@ class Register {
 
     static listen() {
         global.WebSuite.getWebSocketHandler().registerEvent("register", (socket, data, address) => {
-            global.WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='registration'", [address, TimeUtil.currentTime() - 12 * 60 * 60 * 1000]).then((count) => {
+            global.WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='registration'", [address, global.TimeUtil.currentTime() - 12 * 60 * 60 * 1000]).then((count) => {
                 if (parseInt(count[0].count) < 3) {
                     const secretKey = require("../../../config.json").secretKey;
                     const verifiyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
@@ -52,7 +52,7 @@ class Register {
                                                             sessionID: sessionID
                                                         });
                                                     }).catch((err) => {
-                                                        global.WebSuite.getWebSocketHandler().sendToClient(socket, 'register', {
+                                                        global.WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
                                                             err: "servererror",
                                                             id: -1
                                                         });

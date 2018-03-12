@@ -61,7 +61,7 @@ class WebServer {
                 output = data;
             });
             cmd.stderr.on("data", (data) => {
-                global.WebSuite.getLogger().error(`Error while rendering: ${this.Uint8ArrToString(data)}`);
+                global.WebSuite.getLogger().error(`Error while rendering: ${this.uInt8ArrToString(data)}`);
             });
             cmd.on("close", (code) => {
                 res.send(output.toString());
@@ -84,7 +84,7 @@ class WebServer {
         this.app.use(serveStatic(`${global._dir}/frontend/`));
         this.app.use((req, res) => {
             const indexPage = frontendIndex.getIndexPage();
-            if(indexPage !== undefined) {
+            if(typeof indexPage !== "undefined") {
                 res.send(indexPage);
             } else {
                 frontendIndex.compileIndexPage();
@@ -96,7 +96,7 @@ class WebServer {
         this.webServer = http.Server(this.app);
     }
 
-    Uint8ArrToString(myUint8Arr){
+    uInt8ArrToString(myUint8Arr){
         return String.fromCharCode.apply(null, myUint8Arr);
     }
 

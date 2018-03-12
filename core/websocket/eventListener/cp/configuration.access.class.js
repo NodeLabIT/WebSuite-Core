@@ -12,7 +12,7 @@ class AccessConfiguration {
         });
 
         global.WebSuite.getWebSocketHandler().registerCpEvent("cp-save-access-configuration", (socket, data) => {
-            if(data.maintenanceReason !== undefined) {
+            if(typeof data.maintenanceReason !== "undefined") {
                 global.WebSuite.getDatabase().query("UPDATE wsConfigurationOptions SET value=? WHERE name=?", [data.maintenanceReason, "maintenanceReason"]).then((result) => {
                     global.WebSuite.getWebSocketHandler().sendToClient(socket, "cp-save-access-configuration", {});
                 }).catch((err) => {
