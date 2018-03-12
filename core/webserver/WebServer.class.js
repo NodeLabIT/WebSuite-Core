@@ -61,7 +61,7 @@ class WebServer {
                 output = data;
             });
             cmd.stderr.on("data", (data) => {
-                WebSuite.getLogger().error(`Error while rendering: ${this.Uint8ArrToString(data)}`);
+                global.WebSuite.getLogger().error(`Error while rendering: ${this.Uint8ArrToString(data)}`);
             });
             cmd.on("close", (code) => {
                 res.send(output.toString());

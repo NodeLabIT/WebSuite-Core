@@ -12,7 +12,7 @@ class UserHandler {
      * */
     getUserByUserID(userID) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
                     reject(new Error("no data found"));
                 } else {
@@ -31,7 +31,7 @@ class UserHandler {
      * */
     getUserByUserName(userName) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [userName]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [userName]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
                     reject(new Error("no data found"));
                 } else {
@@ -50,7 +50,7 @@ class UserHandler {
      * */
     getUserByEMail(email) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
                     reject(new Error("no data found"));
                 } else {

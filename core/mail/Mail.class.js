@@ -9,13 +9,13 @@ class Mail {
     constructor(callback) {
         this._connect(connected => {
             if(connected) {
-                WebSuite.getLogger().info("Connected to Mail-Server successfully");
+                global.WebSuite.getLogger().info("Connected to Mail-Server successfully");
                 callback(true);
                 return;
             }
 
             callback(false);
-            WebSuite.getLogger().warn("Connection to Mail-Server can not be established!");
+            global.WebSuite.getLogger().warn("Connection to Mail-Server can not be established!");
         });
     }
 
@@ -49,14 +49,14 @@ class Mail {
 
             this._transport.verify(err => {
                 if(err) {
-                    WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
+                    global.WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
                     success(false);
                     return;
                 }
                 success(true);
             });
         }).catch(err => {
-            WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
+            global.WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
             success(false);
         });
     }

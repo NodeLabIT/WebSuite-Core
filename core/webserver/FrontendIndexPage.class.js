@@ -46,7 +46,7 @@ class FrontendIndexPage {
 
     postInit() {
         this.compileIndexPage();
-        WebSuite.getEventHandler().on("general-configuration-changed", () => {
+        global.WebSuite.getEventHandler().on("general-configuration-changed", () => {
             console.log("general configuration changed. recompiling...");
             this.compileIndexPage();
         });

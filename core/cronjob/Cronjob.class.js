@@ -6,12 +6,12 @@ class Cronjob {
 
     registerJob(time, handle) {
         if(!time || !handle) {
-            WebSuite.getLogger().warn("undefined Parameters registering new Cronjob!");
+            global.WebSuite.getLogger().warn("undefined Parameters registering new Cronjob!");
             return;
         }
 
         if(!cron.validate(time)) {
-            WebSuite.getLogger().warn("given time is not a valid cron expression!");
+            global.WebSuite.getLogger().warn("given time is not a valid cron expression!");
             return;
         }
 

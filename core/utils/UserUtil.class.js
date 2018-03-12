@@ -11,7 +11,7 @@ class UserUtil {
      * */
     static usernameAvailable(username) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE username = ?", [username]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE username = ?", [username]).then(result => {
                 if(result !== undefined && result[0] !== undefined) {
                     // reject on result
                     reject(new Error("username not available"));
@@ -66,7 +66,7 @@ class UserUtil {
      * */
     static emailAvailable(email) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE email = ?", [email]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT userID FROM wsUser WHERE email = ?", [email]).then(result => {
                 if(result !== undefined && result[0] !== undefined) {
                     // reject on result
                     reject(new Error("email not available"));

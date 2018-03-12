@@ -7,13 +7,13 @@ class Database {
     constructor(callback) {
         this._connect(connected => {
             if(connected) {
-                WebSuite.getLogger().info("Connected to MySQL-Database successfully");
+                global.WebSuite.getLogger().info("Connected to MySQL-Database successfully");
                 callback(true);
                 return;
             }
 
             callback(false);
-            WebSuite.getLogger().warn("Connection to MySQL-Database can not be established!");
+            global.WebSuite.getLogger().warn("Connection to MySQL-Database can not be established!");
         });
     }
 
@@ -39,12 +39,12 @@ class Database {
             // Get connection to get information about successful connection-establishment
             this._pool.getConnection((err, connection) => {
                 if(connection === undefined) {
-                    WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
+                    global.WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
                     success(false);
                     return;
                 }
                 if(err) {
-                    WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
+                    global.WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
                     success(false);
                     return;
                 }
@@ -52,7 +52,7 @@ class Database {
                 success(true);
             });
         }).catch(err => {
-            WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
+            global.WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
             success(false);
         });
     }
@@ -68,7 +68,7 @@ class Database {
         // Disconnect all connections from database
         this._pool.end((err) => {
             if(err) {
-                WebSuite.getLogger().error(`An error occurred while trying to disconnect from Database: \n${err.message}`);
+                global.WebSuite.getLogger().error(`An error occurred while trying to disconnect from Database: \n${err.message}`);
                 success(false);
                 return;
             }
@@ -116,14 +116,14 @@ class Database {
             this._pool.getConnection((err, connection) => {
                 if(connection === undefined) {
                     reject(new Error("no database connection"));
-                    WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
+                    global.WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
                     return;
                 }
                 if(err) {
                     // release connection and reject on error
                     connection.release();
                     reject(err);
-                    WebSuite.getLogger().error(`An error occurred while performing query '${query}':\n${err.message}`);
+                    global.WebSuite.getLogger().error(`An error occurred while performing query '${query}':\n${err.message}`);
                     return;
                 }
 

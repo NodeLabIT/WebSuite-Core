@@ -8,7 +8,7 @@ class Sessions {
 
     getUserBySessionID(sessionID) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE sessionID=?", [sessionID]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE sessionID=?", [sessionID]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
                     resolve(null);
                 } else {
@@ -22,7 +22,7 @@ class Sessions {
 
     getUserByClientID(clientID) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE clientID=?", [clientID]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE clientID=?", [clientID]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].userID === undefined) {
                     resolve(null);
                 } else {
@@ -36,7 +36,7 @@ class Sessions {
 
     getSessionIDByUserID(userID) {
         return new Promise((resolve, reject) => {
-            WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=?", [userID]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=?", [userID]).then(result => {
                 if(result === undefined || result[0] === undefined || result[0].sessionID === undefined) {
                     resolve(null);
                 } else {
