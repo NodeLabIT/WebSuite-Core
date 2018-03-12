@@ -16,16 +16,16 @@ class LogFile {
 
     dequeue() {
         this._running = true;
-        global.DirectoryUtil.directoryExists(`${_dir}/logs/`).then(() => {
+        global.DirectoryUtil.directoryExists(`${global._dir}/logs/`).then(() => {
             const date = new Date();
             const dateString = `${(date.getFullYear() < 10 ? "0" : "") + date.getFullYear()}-${((date.getMonth() + 1) < 10 ? "0" : "") + (date.getMonth() + 1)}-${(date.getDate() < 10 ? "0" : "") + date.getDate()}`;
 
             let message = this._queue.shift();
 
-            global.FileUtil.fileExists(`${_dir}/logs/${dateString}.txt`).then(() => {
-                global.FileUtil.readFile(`${_dir}/logs/${dateString}.txt`).then((content) => {
+            global.FileUtil.fileExists(`${global._dir}/logs/${dateString}.txt`).then(() => {
+                global.FileUtil.readFile(`${global._dir}/logs/${dateString}.txt`).then((content) => {
                     content += message + "\n";
-                    global.FileUtil.saveFile(`${_dir}/logs/${dateString}.txt`, content).then(() => {
+                    global.FileUtil.saveFile(`${global._dir}/logs/${dateString}.txt`, content).then(() => {
                         if(this._queue.length > 0)
                             this.dequeue();
 
@@ -49,7 +49,7 @@ class LogFile {
                     this._running = false;
                 });
             }).catch((err) => {
-                global.FileUtil.saveFile(`${_dir}/logs/${dateString}.txt`, message + "\n").then(() => {
+                global.FileUtil.saveFile(`${global._dir}/logs/${dateString}.txt`, message + "\n").then(() => {
                     if(this._queue.length > 0)
                         this.dequeue();
 
@@ -66,7 +66,7 @@ class LogFile {
             });
         }).catch((err) => {
             if(err.code === 'ENOENT') {
-                global.DirectoryUtil.createDirectory(`${_dir}/`, "logs").then(() => {
+                global.DirectoryUtil.createDirectory(`${global._dir}/`, "logs").then(() => {
                     this.dequeue();
                 }).catch((err) => {
                     if(err) {

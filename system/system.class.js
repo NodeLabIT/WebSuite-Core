@@ -1,6 +1,6 @@
 "use strict";
 
-const WebSuite = require('../core/WebSuite.class');
+const WebSuite = require("../core/WebSuite.class");
 
 /**
  * Class to load the whole system
@@ -18,18 +18,18 @@ class SystemLoader {
                 return;
             }
 
-            require('../core/websocket/eventListener/cp/user.userlist.class').listen();
-            require('../core/websocket/eventListener/cp/user.grouplist.class').listen();
-            require('../core/websocket/eventListener/cp/user.groupadd.class').listen();
-            require('../core/websocket/eventListener/cp/user.groupedit.class').listen();
-            require('../core/websocket/eventListener/cp/dashboard.class').listen();
-            require('../core/websocket/eventListener/cp/configuration.general.class').listen();
-            require('../core/websocket/eventListener/cp/configuration.access.class').listen();
+            require("../core/websocket/eventListener/cp/user.userlist.class").listen();
+            require("../core/websocket/eventListener/cp/user.grouplist.class").listen();
+            require("../core/websocket/eventListener/cp/user.groupadd.class").listen();
+            require("../core/websocket/eventListener/cp/user.groupedit.class").listen();
+            require("../core/websocket/eventListener/cp/dashboard.class").listen();
+            require("../core/websocket/eventListener/cp/configuration.general.class").listen();
+            require("../core/websocket/eventListener/cp/configuration.access.class").listen();
 
-            require('../core/websocket/eventListener/default.class').listen();
-            require('../core/websocket/eventListener/login.class').listen();
-            require('../core/websocket/eventListener/register.class').listen();
-            require('../core/websocket/eventListener/user.class').listen();
+            require("../core/websocket/eventListener/default.class").listen();
+            require("../core/websocket/eventListener/login.class").listen();
+            require("../core/websocket/eventListener/register.class").listen();
+            require("../core/websocket/eventListener/user.class").listen();
 
             global.WebSuite._getWebServer().listen();
         });

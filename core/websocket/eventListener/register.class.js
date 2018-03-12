@@ -32,11 +32,11 @@ class Register {
                                         global.WebSuite.getDatabase().query("INSERT INTO wsUser(username, email, password) VALUES(?, ?, ?)", [data.username, data.email, password]).then((insert) => {
                                             const userID = insert.insertId;
 
-                                            global.FileUtil.readFile(`${_dir}/data/userSalts.json`).then((userSalts) => {
+                                            global.FileUtil.readFile(`${global._dir}/data/userSalts.json`).then((userSalts) => {
                                                 userSalts = JSON.parse(userSalts);
                                                 userSalts[userID] = salt;
 
-                                                global.FileUtil.saveFile(`${_dir}/data/userSalts.json`, JSON.stringify(userSalts, null, 2)).then(() => {
+                                                global.FileUtil.saveFile(`${global._dir}/data/userSalts.json`, JSON.stringify(userSalts, null, 2)).then(() => {
                                                     let sessionID = Date.now().toString(36) + "_";
                                                     // Can this generate the same sessionID multiple times?
                                                     const possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";

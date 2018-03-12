@@ -1,11 +1,11 @@
 "use strict";
 
-const cluster = require('cluster');
-const os = require('os');
+const cluster = require("cluster");
+const os = require("os");
 
-const config = require('./config.json');
+const config = require("./config.json");
 
-const Check = require('./system/check.class');
+const Check = require("./system/check.class");
 
 global._dir = __dirname;
 
@@ -22,7 +22,7 @@ if(cluster.isMaster) {
         let unhandledPackets = [];
 
         // If crash then log it and restart one worker
-        cluster.on('exit', (worker, code, signal) => {
+        cluster.on("exit", (worker, code, signal) => {
             if(code !== 0) {
                 console.error(`Worker ${worker.process.pid} died. Restarting...`);
                 cluster.fork();
@@ -30,19 +30,19 @@ if(cluster.isMaster) {
         });
 
         //socket.io-Server
-        const io = require('socket.io')();
-        const ioWildcard = require('socketio-wildcard')();
+        const io = require("socket.io")();
+        const ioWildcard = require("socketio-wildcard")();
 
         // Use ioWildcard to send every packet from Master to one Worker
         io.use(ioWildcard);
 
-        io.on('connection', (socket) => {
-            socket.on('disconnect', () => {
+        io.on("connection", (socket) => {
+            socket.on("disconnect", () => {
                 randomWorker(worker => {
                     worker.send(JSON.stringify({
-                        type: 'sioPacket',
+                        type: "sioPacket",
                         clientID: socket.conn.id,
-                        packet: 'disconnect',
+                        packet: "disconnect",
                         address: socket.handshake.address
                     }));
                 });
@@ -50,7 +50,7 @@ if(cluster.isMaster) {
             socket.on('*', (packet) => {
                 if(restarting) {
                     unhandledPackets.push({
-                        type: 'sioPacket',
+                        type: "sioPacket",
                         clientID: socket.conn.id,
                         packet: packet,
                         address: socket.handshake.address
@@ -58,7 +58,7 @@ if(cluster.isMaster) {
                 } else {
                     randomWorker(worker => {
                         worker.send(JSON.stringify({
-                            type: 'sioPacket',
+                            type: "sioPacket",
                             clientID: socket.conn.id,
                             packet: packet,
                             address: socket.handshake.address
@@ -78,22 +78,22 @@ if(cluster.isMaster) {
             }
         };
 
-        cluster.on('message', (worker, message, handle) => {
+        cluster.on("message", (worker, message, handle) => {
             const json = JSON.parse(message);
 
-            if(json.type && json.type === 'sioPacket') {
+            if(json.type && json.type === "sioPacket") {
                 if(json.clientID && json.packet && json.packet.packetName && json.packet.packetData) {
-                    if(json.clientID === 'broadcast') {
+                    if(json.clientID === "broadcast") {
                         io.emit(json.packet.packetName, json.packet.packetData);
                     } else {
                         io.to(json.clientID).emit(json.packet.packetName, json.packet.packetData);
                     }
                 }
             }
-            if(json.type && json.type === 'system') {
-                if(json.action && json.action === 'restart') {
+            if(json.type && json.type === "system") {
+                if(json.action && json.action === "restart") {
                     restarting = true;
-                    io.emit('restart', {});
+                    io.emit("restart", {});
                     setTimeout(() => {
                         delete require.cache[require.resolve("./system/system.class")];
 
@@ -101,7 +101,7 @@ if(cluster.isMaster) {
                         const workers = Object.keys(cluster.workers);
                         const f = () => {
                             if(i === workers.length) {
-                                io.emit('restart-finished', {});
+                                io.emit("restart-finished", {});
                                 restarting = false;
                                 handleUnhandledPackets();
                                 return;
@@ -110,7 +110,7 @@ if(cluster.isMaster) {
                             cluster.workers[workers[i]].disconnect();
 
                             const worker = cluster.fork();
-                            worker.on('listening', () => {
+                            worker.on("listening", () => {
                                 i++;
                                 f();
                             });
@@ -129,7 +129,7 @@ if(cluster.isMaster) {
 }
 
 if(cluster.isWorker) {
-    require('./system/system.class');
+    require("./system/system.class");
 }
 
 /**

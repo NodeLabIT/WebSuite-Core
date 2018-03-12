@@ -5,8 +5,8 @@ class GroupEdit {
     static listen() {
         // TODO: Rewrite for Group Edit
         global.WebSuite.getWebSocketHandler().registerCpEvent("cp-group-edit-permissions", (socket, data) => {
-            global.FileUtil.readFile(`${_dir}/data/administrativePermissions.json`).then((contentCP) => {
-                global.FileUtil.readFile(`${_dir}/data/permissions.json`).then((content) => {
+            global.FileUtil.readFile(`${global._dir}/data/administrativePermissions.json`).then((contentCP) => {
+                global.FileUtil.readFile(`${global._dir}/data/permissions.json`).then((content) => {
                     global.WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit-permissions", {cp: JSON.parse(contentCP), frontend: JSON.parse(content)});
                 }).catch((err) => {
                     global.WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-edit-permissions", {err});

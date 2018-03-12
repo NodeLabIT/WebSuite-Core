@@ -7,7 +7,7 @@ const fs = require("fs");
 const http = require("http");
 const { spawn } = require("child_process");
 
-const config = require(`${_dir}/config.json`);
+const config = require(`${global._dir}/config.json`);
 const frontendIndex = require("./FrontendIndexPage.class");
 
 const bots = config.crawler;
@@ -71,17 +71,17 @@ class WebServer {
         // serve socket.io-File
         this.app.get("/socket.io.js", (req, res) => {
             res.header("Content-Type", "application/javascript");
-            res.send(fs.readFileSync(`${_dir}/node_modules/socket.io-client/dist/socket.io.js`));
+            res.send(fs.readFileSync(`${global._dir}/node_modules/socket.io-client/dist/socket.io.js`));
         });
 
         // add cp-directive
-        this.app.use("/cp/", serveStatic(`${_dir}/cp/`));
+        this.app.use("/cp/", serveStatic(`${global._dir}/cp/`));
         this.app.use("/cp/", (req, res) => {
-            res.send(fs.readFileSync(`${_dir}/cp/index.html`, {encoding: "utf-8"}));
+            res.send(fs.readFileSync(`${global._dir}/cp/index.html`, {encoding: "utf-8"}));
         });
 
         // add public-directive
-        this.app.use(serveStatic(`${_dir}/frontend/`));
+        this.app.use(serveStatic(`${global._dir}/frontend/`));
         this.app.use((req, res) => {
             const indexPage = frontendIndex.getIndexPage();
             if(indexPage !== undefined) {

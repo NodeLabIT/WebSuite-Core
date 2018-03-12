@@ -27,7 +27,7 @@ class Login {
                             const userID = user.getUserID();
 
                             global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then((password) => {
-                                global.FileUtil.readFile(`${_dir}/data/userSalts.json`).then((salts) => {
+                                global.FileUtil.readFile(`${global._dir}/data/userSalts.json`).then((salts) => {
                                     salts = JSON.parse(salts);
 
                                     if (salts[userID] === undefined) {

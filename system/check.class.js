@@ -1,10 +1,10 @@
 "use strict";
 
-const fs = require('fs');
+const fs = require("fs");
 
-const config = require('../config.json');
-const data = require('../data.json');
-const packageFile = require('../package.json');
+const config = require("../config.json");
+const data = require("../data.json");
+const packageFile = require("../package.json");
 
 /**
  * Class for basic checks before the application starts
@@ -20,30 +20,30 @@ class Check {
         return new Promise((resolve, reject) => {
             // Check for required dependencies
             for(let dependency in packageFile.dependencies) {
-                if(!fs.existsSync(__dirname + "/../node_modules/" + dependency + "/")) {
-                    reject('missing dependencies. run \'npm install\' to install them'); return;
+                if(!fs.existsSync(`${global._dir}/node_modules/${dependency}/`)) {
+                    reject("missing dependencies. run 'npm install' to install them"); return;
                 }
             }
-            for(let plugin in data.plugins) {
-                let pluginPackage = require(_dir + "/plugins/" + plugin + "/package.json");
+            for(let plugin of data.plugins) {
+                let pluginPackage = require(`${global._dir}/plugins/${plugin}/package.json`);
                 for(let dependency in pluginPackage.dependencies) {
-                    if(!fs.existsSync(_dir + "/node_modules/" + dependency + "/")) {
-                        reject('missing plugin-dependency \'' + dependency + '\'. run \'npm install ' + dependency +'\' to install it'); return;
+                    if(!fs.existsSync(`${global._dir}/node_modules/${dependency}/`)) {
+                        reject(`missing plugin-dependency '${dependency}'. run 'npm install ${dependency}' to install it`); return;
                     }
                 }
             }
 
             // Check for Node-Version higher 4
             if(process.versions.node.split(".")[0] < 4) {
-                reject('node-version not sufficient to run this system'); return;
+                reject("node-version not sufficient to run this system"); return;
             }
 
             // Check for config-conflicts
             if(config.workers <= 0) {
-                reject('amount of workers less than 1'); return;
+                reject("amount of workers less than 1"); return;
             }
             if(config.server.socketio === config.server.webserver) {
-                reject('socket.io can\'t listen on the same port as the webserver'); return;
+                reject("socket.io can't listen on the same port as the webserver"); return;
             }
 
             // resolve when all checks passed

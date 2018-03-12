@@ -25,7 +25,7 @@ class Database {
      * @private
      * */
     _connect(success) {
-        global.FileUtil.readFile(`${_dir}/config.json`).then((content) => {
+        global.FileUtil.readFile(`${global._dir}/config.json`).then((content) => {
             content = JSON.parse(content);
             // create new sql-connection-pool
             this._pool = mysql.createPool({
@@ -114,7 +114,7 @@ class Database {
         return new Promise((resolve, reject) => {
             // Get new connection from pool
             this._pool.getConnection((err, connection) => {
-                if(connection === undefined) {
+                if(typeof connection === "undefined") {
                     reject(new Error("no database connection"));
                     global.WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
                     return;
