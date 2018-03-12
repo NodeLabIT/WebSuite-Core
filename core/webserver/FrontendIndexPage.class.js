@@ -57,8 +57,8 @@ class FrontendIndexPage {
     }
 
     compileIndexPage() {
-        FileUtil.readFile(`${__dirname}/index.hbs`).then(content => {
-            FileUtil.readFile(`${_dir}/data/page.json`).then(pageData => {
+        global.FileUtil.readFile(`${__dirname}/index.hbs`).then((content) => {
+            global.FileUtil.readFile(`${_dir}/data/page.json`).then((pageData) => {
                 pageData = JSON.parse(pageData);
                 let template = handlebars.compile(content);
 
@@ -92,11 +92,11 @@ class FrontendIndexPage {
                 };
 
                 this.compiledIndexPage = template(data);
-            }).catch(err => {
+            }).catch((err) => {
                 this.compiledIndexPage = undefined;
                 console.log(err.message);
             });
-        }).catch(err => {
+        }).catch((err) => {
             this.compiledIndexPage = undefined;
             console.log(err.message);
         });

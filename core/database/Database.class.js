@@ -25,7 +25,7 @@ class Database {
      * @private
      * */
     _connect(success) {
-        FileUtil.readFile(`${_dir}/config.json`).then(content => {
+        global.FileUtil.readFile(`${_dir}/config.json`).then((content) => {
             content = JSON.parse(content);
             // create new sql-connection-pool
             this._pool = mysql.createPool({
@@ -85,14 +85,14 @@ class Database {
      * */
     _reconnect(success) {
         // Try to disconnect
-        this._disconnect(disconnected => {
+        this._disconnect((disconnected) => {
             if(!disconnected) {
                 success(false);
                 return;
             }
 
             // Try to connect when disconnect was successful
-            this._connect(connected => {
+            this._connect((connected) => {
                 if(!connected) {
                     success(false);
                     return;

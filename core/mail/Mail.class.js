@@ -7,7 +7,7 @@ const config = require("../../config.json");
 class Mail {
 
     constructor(callback) {
-        this._connect(connected => {
+        this._connect((connected) => {
             if(connected) {
                 global.WebSuite.getLogger().info("Connected to Mail-Server successfully");
                 callback(true);
@@ -27,7 +27,7 @@ class Mail {
      * @private
      * */
     _connect(success) {
-        FileUtil.readFile(`${_dir}/config.json`).then(content => {
+        global.FileUtil.readFile(`${_dir}/config.json`).then((content) => {
             /*content = JSON.parse(content);
             this._transport = nodemailer.createTransport({
                 host: content.mail.host,
@@ -47,7 +47,7 @@ class Mail {
                 ignoreTLS: true
             });
 
-            this._transport.verify(err => {
+            this._transport.verify((err) => {
                 if(err) {
                     global.WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
                     success(false);
@@ -55,7 +55,7 @@ class Mail {
                 }
                 success(true);
             });
-        }).catch(err => {
+        }).catch((err) => {
             global.WebSuite.getLogger().error(`An error occurred while trying to connect to mail-server:\n${err.message}`);
             success(false);
         });
@@ -85,7 +85,7 @@ class Mail {
         // disconnect
         this._disconnect(() => {
             // connect
-            this._connect(connected => {
+            this._connect((connected) => {
                 if(!connected) {
                     success(false);
                     return;

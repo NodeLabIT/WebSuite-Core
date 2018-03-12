@@ -23,10 +23,10 @@ class User {
     getUserInformation() {
         return new Promise((resolve, reject) => {
             // Query all user-information regarding to the user-id defined in the constructor
-            global.WebSuite.getDatabase().query("SELECT * FROM wsUser, wsUserProfile WHERE wsUser.userID=? AND wsUser.userID = wsUserProfile.userID", [this.userID]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT * FROM wsUser, wsUserProfile WHERE wsUser.userID=? AND wsUser.userID = wsUserProfile.userID", [this.userID]).then((result) => {
                 // resolve on result
                 resolve(result[0]);
-            }).catch(err => {
+            }).catch((err) => {
                 // reject on error
                 reject(err);
             });
@@ -41,10 +41,10 @@ class User {
     getUserProfileFields() {
         return new Promise((resolve, reject) => {
             // Query all profile-fields regarding to the user-id defined in the constructor
-            global.WebSuite.getDatabase().query("SELECT wsConfigurationUserProfileInformation.informationName, wsUserProfileInformation.value FROM wsConfigurationUserProfileInformation, wsUserProfileInformation WHERE wsUserProfileInformation.userID = ? AND wsUserProfileInformation.informationID = wsConfigurationUserProfileInformation.informationID", [this.userID]).then(results => {
+            global.WebSuite.getDatabase().query("SELECT wsConfigurationUserProfileInformation.informationName, wsUserProfileInformation.value FROM wsConfigurationUserProfileInformation, wsUserProfileInformation WHERE wsUserProfileInformation.userID = ? AND wsUserProfileInformation.informationID = wsConfigurationUserProfileInformation.informationID", [this.userID]).then((results) => {
                 // resolve on result
                 resolve(results);
-            }).catch(err => {
+            }).catch((err) => {
                 // reject on error
                 reject(err);
             });
@@ -60,10 +60,10 @@ class User {
      * */
     hasPermission(permission) {
         return new Promise((resolve, reject) => {
-            global.WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsGroupPermissions, wsGroupUser WHERE wsGroupPermissions.groupID = wsGroupUser.groupID AND wsGroupUser.userID = ? AND wsGroupPermissions.permission = ?", [this.userID, permission]).then(result => {
+            global.WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsGroupPermissions, wsGroupUser WHERE wsGroupPermissions.groupID = wsGroupUser.groupID AND wsGroupUser.userID = ? AND wsGroupPermissions.permission = ?", [this.userID, permission]).then((result) => {
                 // resolve on result
                 resolve(parseInt(result[0].count) > 0);
-            }).catch(err => {
+            }).catch((err) => {
                 // reject on error
                 reject(err);
             });

@@ -29,14 +29,14 @@ class WebSuite {
 
     constructor(callback) {
         this.getLogger().info(`Starting worker ${process.pid}`);
-        this._database = new Database(databaseConnected => {
+        this._database = new Database((databaseConnected) => {
             if(!databaseConnected) {
                 this.getLogger().info("Please check your database-setup! WebSuite cannot be started");
                 callback(false);
                 return;
             }
 
-            this._mail = new Mail(mailConnected => {
+            this._mail = new Mail((mailConnected) => {
                 if(!mailConnected) {
                     this.getLogger().info("Please check your mail-setup! WebSuite cannot be started");
                     callback(false);
@@ -45,15 +45,15 @@ class WebSuite {
 
                 callback(true);
 
-                this.getUserHandler().getUserByUserID(1).then(user => {
-                    user.getUserInformation().then(test => {
+                this.getUserHandler().getUserByUserID(1).then((user) => {
+                    user.getUserInformation().then((test) => {
                         //this.getLogger().debug(test.username);
-                    }).catch(err => {
+                    }).catch((err) => {
                         if(err.message === "no data found") {
                             this.getLogger().debug("User doesn't have profile-information");
                         }
                     });
-                }).catch(err => {
+                }).catch((err) => {
                     if(err.message === "no data found") {
                         this.getLogger().debug("User doesn't exist");
                     } else {
