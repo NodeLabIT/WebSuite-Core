@@ -12,7 +12,7 @@
                 <img src="https://preview.msr-webdesign.de/websuite2/images/profileimg.png">
                 <table>
                     <tbody>
-                        <tr><a href="/" class="card-title">{{ user.username }}</a></tr>
+                        <tr><router-link :to="`/user/profile/${user.userID}-${user.username}`" class="card-title">{{ user.username }}</router-link></tr>
                         <tr><b>{{ user.groupName }}</b></tr>
                     </tbody>
                 </table>

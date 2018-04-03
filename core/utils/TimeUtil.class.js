@@ -19,7 +19,7 @@ class TimeUtil {
      * @returns number future time in milliseconds
      * */
     static futureTime(options) {
-        if(!options) {
+        if(options === null || typeof options === "function" || typeof options !== 'object') {
             return -1;
         }
 
@@ -49,7 +49,7 @@ class TimeUtil {
      * @returns number past time in milliseconds
      * */
     static pastTime(options) {
-        if(!options) {
+        if(options === null || typeof options === "function" || typeof options !== 'object') {
             return -1;
         }
 

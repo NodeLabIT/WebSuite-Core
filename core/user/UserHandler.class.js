@@ -6,66 +6,81 @@ const GuestGroup = require("./GuestGroup.class");
 class UserHandler {
 
     /**
-     * Get a user by his userID
+     * The function queries the database and tries to fetch a user by the given parameter "userID". If an error occurs
+     * in the request (e.g. connection timeout, faulty sql-query), the Promise is rejected with this error.
+     * If the user doesn't exist, the Promise is rejected with the error message "no data found". Otherwise an object of
+     * the class {@link User} is returned as user (resolve Promise)
      *
-     * @param userID userID of User you want tot work with
+     * @return {Promise}
+     *
+     * @param userID UserID, by that the user can be assigned
      * */
-    getUserByUserID(userID) {
+    static getUserByUserID(userID) {
         return new Promise((resolve, reject) => {
-            global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then((result) => {
+            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
                     reject(new Error("no data found"));
                 } else {
                     resolve(new User(result[0].userID));
                 }
             }).catch((err) => {
-                reject(new Error("no data found"));
+                reject(err);
             });
         });
     }
 
     /**
-     * Get a user by his username
+     * The function queries the database and tries to fetch a user by the given parameter "username". If an error occurs
+     * in the request (e.g. connection timeout, faulty sql-query), the Promise is rejected with this error.
+     * If the user doesn't exist, the Promise is rejected with the error message "no data found". Otherwise an object of
+     * the class {@link User} is returned as user (resolve Promise)
      *
-     * @param userName user-name of User you want tot work with
+     * @return {Promise}
+     *
+     * @param username username, by that the user can be assigned
      * */
-    getUserByUserName(userName) {
+    static getUserByUserName(username) {
         return new Promise((resolve, reject) => {
-            global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [userName]).then((result) => {
+            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [username]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
                     reject(new Error("no data found"));
                 } else {
                     resolve(new User(result[0].userID));
                 }
             }).catch((err) => {
-                reject(new Error("no data found"));
+                reject(err);
             });
         });
     }
 
     /**
-     * Get a user by his email-address
+     * The function queries the database and tries to fetch a user by the given parameter "email". If an error occurs
+     * in the request (e.g. connection timeout, faulty sql-query), the Promise is rejected with this error.
+     * If the user doesn't exist, the Promise is rejected with the error message "no data found". Otherwise an object of
+     * the class {@link User} is returned as user (resolve Promise)
      *
-     * @param email email-address of User you want tot work with
+     * @return {Promise}
+     *
+     * @param email email-address, by that the user can be assigned
      * */
-    getUserByEMail(email) {
+    static getUserByEMail(email) {
         return new Promise((resolve, reject) => {
-            global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then((result) => {
+            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
                     reject(new Error("no data found"));
                 } else {
                     resolve(new User(result[0].userID));
                 }
             }).catch((err) => {
-                reject(new Error("no data found"));
+                reject(err);
             });
         });
     }
 
-    getGuestGroup() {
+    static getGuestGroup() {
         return GuestGroup;
     }
 
 }
 
-module.exports = new UserHandler();
+module.exports = UserHandler;

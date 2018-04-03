@@ -4,9 +4,7 @@ const User = require("../user/User.class");
 
 class Sessions {
 
-    constructor() {}
-
-    getUserBySessionID(sessionID) {
+    static getUserBySessionID(sessionID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE sessionID=?", [sessionID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
@@ -20,7 +18,7 @@ class Sessions {
         });
     }
 
-    getUserByClientID(clientID) {
+    static getUserByClientID(clientID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE clientID=?", [clientID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
@@ -34,7 +32,7 @@ class Sessions {
         });
     }
 
-    getSessionIDByUserID(userID) {
+    static getSessionIDByUserID(userID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=?", [userID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].sessionID === "undefined") {
@@ -50,4 +48,4 @@ class Sessions {
 
 }
 
-module.exports = new Sessions();
+module.exports = Sessions;

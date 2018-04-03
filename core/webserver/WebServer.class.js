@@ -105,7 +105,7 @@ class WebServer {
      * */
     listen() {
         if(!this.listening) {
-            frontendIndex.postInit();
+            frontendIndex.init();
             this.webServer.listen(config.server.webserver, () => {
                 global.WebSuite.getLogger().info(`Webserver listening on port ${this.webServer.address().port}`);
             });
