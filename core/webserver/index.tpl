@@ -8,9 +8,9 @@
         <meta name="keywords" content="{$keywords}">
 
         <!-- OPTIONAL/EXTRA META -->
-        {for $meta in $metas}
+        {foreach from=$metas item=meta}
             <meta name="{$meta.name}" lang="{$meta.lang}" content="{$meta.content}">
-        {/for}
+        {/foreach}
 
         <title>{$title}</title>
 
@@ -24,9 +24,9 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
         <!-- OPTIONAL/EXTRA LINKS -->
-        {for $link in $links}
+        {foreach from=$links item=link}
             <link href="{$link.href}" rel="{$link.rel}" type="{$link.type}">
-        {/for}
+        {/foreach}
     </head>
     <body>
         <div id="websuite"></div>
@@ -39,7 +39,7 @@
     <script src="/dist/websuite.js"></script>
 
     <!-- OPTIONAL/EXTRA SCRIPTS -->
-    {for $script in $scripts}
+    {foreach from=$scripts item=script}
         <script src="{$script.src}"></script>
-    {/for}
+    {/foreach}
 </html>

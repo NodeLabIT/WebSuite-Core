@@ -24,7 +24,8 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-undef": "off"
     },
     "globals": {
         "WebSuite": false,
