@@ -44,11 +44,9 @@
                 abc: 0
             }
         },
-        beforeMount() {
-            setTimeout(() => {
-                this.abc = 112;
-                this.loaded = true;
-            }, 500);
+        created() {
+            this.abc = 112;
+            this.loaded = true;
         }
     }
 </script>
