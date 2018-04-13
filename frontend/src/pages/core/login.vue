@@ -86,7 +86,8 @@
             }
         },
         created() {
-            sio().on('login', (data) => {
+            this.$root.rendered = true;
+            sio().once('login', (data) => {
                 this.logging = "";
                 if(data.err) {
                     this.err = {

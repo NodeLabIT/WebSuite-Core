@@ -72,15 +72,15 @@
                 this.$refs.recaptcha.execute();
             },
             register(response) {
-                //if(!this.registering) {
-                    console.log("Test");
+                if(this.registering === "") {
                     this.registering = response;
                     sio().emit('register', {email: this.email, username: this.username, password: this.password, captcha: response});
-                //}
+                }
             }
         },
         created() {
-            sio().on('register', (data) => {
+            this.$root.rendered = true;
+            sio().once('register', (data) => {
                 this.registering = "";
                 if(data.err) {
                     this.err = {
@@ -97,7 +97,7 @@
                     this.$cookies.set("userID", data.userID, 8 * 60 * 60);
                     this.$cookies.set("sessionID", data.sessionID, 8 * 60 * 60);
 
-                    //this.$router.push('/member/user/' + data.userID + "-" + data.username);
+                    this.$router.push('/member/user/' + data.userID + "-" + data.username);
                 }
             });
         }

@@ -4,9 +4,9 @@
     </div>
     <div v-else>
         <div class="grid">
-            <div class="row">
-                <div class="col">
-                    <img src="https://preview.msr-webdesign.de/websuite2/images/profileimg.png" height="80px">
+            <div class="row" id="centered">
+                <div class="col" id="profile-avatar-container">
+                    <img src="https://preview.msr-webdesign.de/websuite2/images/profileimg.png" width="100px" height="100px">
                 </div>
                 <div class="col">
                     <h3>{{ basicInformation.username }}</h3>
@@ -17,6 +17,18 @@
 
     </div>
 </template>
+
+<style>
+    .profile-avatar {
+        border-radius: 100%;
+    }
+
+    @media all and (max-width: 1110px) {
+        #centered {
+            text-align: center;
+        }
+    }
+</style>
 
 <script>
     import { sio } from '../../../main';
