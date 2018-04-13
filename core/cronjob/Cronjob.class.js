@@ -4,7 +4,7 @@ const cron = require("node-cron");
 
 class Cronjob {
 
-    static registerJob(time, handle) {
+    registerJob(time, handle) {
         if(typeof time === "undefined" || typeof handle === "undefined") {
             WebSuite.getLogger().warn("undefined Parameters registering new Cronjob!");
             return;
@@ -20,4 +20,4 @@ class Cronjob {
 
 }
 
-module.exports = Cronjob;
+module.exports = new Cronjob();

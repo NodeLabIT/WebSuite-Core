@@ -3,48 +3,56 @@
 class User {
 
     static listen() {
-        global.WebSuite.getWebSocketHandler().registerEvent("user-list", (socket, data) => {
-            global.WebSuite.getSessions().getUserByClientID(socket).then((user) => {
-                if(user !== null) {
-                    user.hasPermission("core.frontend.user.list").then((has) => {
-                        if(!has) {
-                            global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {err: "permissionDenied"});
-                            return;
-                        }
+        WebSuite.getWebSocketHandler().registerEvent("user-list", async (socket, data) => {
+            try {
+                let user = await WebSuite.getSessions().getUserByClientID(socket);
 
-                        global.WebSuite.getDatabase().query("SELECT wsUser.userID, wsUser.username, wsGroup.groupName FROM wsUser, wsGroupUser, wsGroup WHERE wsUser.userID = wsGroupUser.userID AND wsGroup.groupID = wsGroupUser.groupID ORDER BY wsGroup.groupID ASC, username ASC;").then((users) => {
-                            global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {users});
-                        }).catch((err) => {
-                            global.WebSuite.getLogger().error(err);
-                            global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {err: "error occurred"});
-                        });
-                    }).catch((err) => {
-                        global.WebSuite.getLogger().error(err);
-                        global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {err: "error occurred"});
-                    });
+                let hasPermission = null;
+
+                if(user === null) {
+                    hasPermission = await WebSuite.getUserHandler().getGuestGroup().hasPermission("core.frontend.user.list");
                 } else {
-                    // GUEST
-                    global.WebSuite.getUserHandler().getGuestGroup().hasPermission("core.frontend.user.list").then((has) => {
-                        if(!has) {
-                            global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {err: "permissionDenied"});
-                            return;
-                        }
-
-                        global.WebSuite.getDatabase().query("SELECT wsUser.userID, wsUser.username, wsGroup.groupName FROM wsUser, wsGroupUser, wsGroup WHERE wsUser.userID = wsGroupUser.userID AND wsGroup.groupID = wsGroupUser.groupID ORDER BY wsGroup.groupID ASC, username ASC;").then((users) => {
-                            global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {users});
-                        }).catch((err) => {
-                            global.WebSuite.getLogger().error(err);
-                            global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {err: "error occurred"});
-                        });
-                    }).catch((err) => {
-                        global.WebSuite.getLogger().error(err);
-                        global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {err: "error occurred"});
-                    });
+                    hasPermission = await user.hasPermission("core.frontend.user.list");
                 }
-            }).catch((err) => {
-                global.WebSuite.getLogger().error(err);
-                global.WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {err: "error occurred"});
-            });
+
+                if(hasPermission === null)
+                    throw new Error("error checking permissions");
+
+                if(hasPermission === false)
+                    throw new Error("permission denied");
+
+                const users = await WebSuite.getDatabase().query("SELECT wsUser.userID, wsUser.username, wsGroup.groupName FROM wsUser, wsGroupUser, wsGroup WHERE wsUser.userID = wsGroupUser.userID AND wsGroup.groupID = wsGroupUser.groupID ORDER BY wsGroup.groupID ASC, username ASC;");
+
+                WebSuite.getWebSocketHandler().sendToClient(socket, "user-list", {users});
+            } catch (err) {
+                WebSuite.getLogger().error(err.message);
+            }
+        });
+
+        WebSuite.getWebSocketHandler().registerEvent("user-profile", async (socket, data) => {
+            try {
+                let user = await WebSuite.getSessions().getUserByClientID(socket);
+
+                let hasPermission = null;
+
+                if(user === null) {
+                    hasPermission = await WebSuite.getUserHandler().getGuestGroup().hasPermission("core.frontend.user.viewProfile");
+                } else {
+                    hasPermission = await user.hasPermission("core.frontend.user.viewProfile");
+                }
+
+                if(hasPermission === null)
+                    throw new Error("error checking permissions");
+
+                if(hasPermission === false)
+                    throw new Error("permission denied");
+
+                const basicInformation = await WebSuite.getDatabase().query("SELECT username, groupName FROM wsUser, wsGroupUser, wsGroup WHERE wsUser.userID = wsGroupUser.userID AND wsGroup.groupID = wsGroupUser.groupID AND wsUser.userID = ?;", [data.userID]);
+
+                WebSuite.getWebSocketHandler().sendToClient(socket, "user-profile", {basicInformation: basicInformation[0]});
+            } catch (err) {
+                WebSuite.getLogger().error(err.message);
+            }
         });
     }
 

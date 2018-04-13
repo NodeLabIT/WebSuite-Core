@@ -4,7 +4,7 @@ const User = require("../user/User.class");
 
 class Sessions {
 
-    static getUserBySessionID(sessionID) {
+    getUserBySessionID(sessionID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE sessionID=?", [sessionID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
@@ -18,7 +18,7 @@ class Sessions {
         });
     }
 
-    static getUserByClientID(clientID) {
+    getUserByClientID(clientID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE clientID=?", [clientID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
@@ -32,7 +32,7 @@ class Sessions {
         });
     }
 
-    static getSessionIDByUserID(userID) {
+    getSessionIDByUserID(userID) {
         return new Promise((resolve, reject) => {
             global.WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=?", [userID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].sessionID === "undefined") {
@@ -48,4 +48,4 @@ class Sessions {
 
 }
 
-module.exports = Sessions;
+module.exports = new Sessions();

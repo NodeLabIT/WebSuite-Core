@@ -33,7 +33,7 @@
         },
         created() {
             if(this.$root.autoLogin === false) {
-                this.$root.$on("auto-loaded", () => {
+                this.$root.$on("loaded", () => {
                     sio().emit('user-list', {});
                 });
             } else {

@@ -15,7 +15,7 @@ class UserHandler {
      *
      * @param userID UserID, by that the user can be assigned
      * */
-    static getUserByUserID(userID) {
+    getUserByUserID(userID) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
@@ -39,7 +39,7 @@ class UserHandler {
      *
      * @param username username, by that the user can be assigned
      * */
-    static getUserByUserName(username) {
+    getUserByUserName(username) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE username=?", [username]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
@@ -63,7 +63,7 @@ class UserHandler {
      *
      * @param email email-address, by that the user can be assigned
      * */
-    static getUserByEMail(email) {
+    getUserByEMail(email) {
         return new Promise((resolve, reject) => {
             WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE email=?", [email]).then((result) => {
                 if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
@@ -77,10 +77,10 @@ class UserHandler {
         });
     }
 
-    static getGuestGroup() {
+    getGuestGroup() {
         return GuestGroup;
     }
 
 }
 
-module.exports = UserHandler;
+module.exports = new UserHandler();

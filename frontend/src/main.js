@@ -90,12 +90,12 @@ function init() {
 
             if(this.$cookies.isKey("userID") && this.$cookies.isKey("sessionID")) {
                 sio().emit("auto-login", {userID: this.$cookies.get("userID"), sessionID: this.$cookies.get("sessionID")});
+            } else {
+                this.autoLogin = true;
+                this.$root.$emit("loaded");
             }
 
             sio().on("auto-login", data => {
-                this.autoLogin = true;
-                this.$root.$emit("auto-loaded");
-
                 if(data.err) {
                     this.$cookies.remove("userID");
                     this.$cookies.remove("sessionID");
@@ -106,6 +106,9 @@ function init() {
                     userID: data.userID,
                     username: data.username
                 };
+
+                this.autoLogin = true;
+                this.$root.$emit("loaded");
 
                 if(data.stay === 1) {
                     this.$cookies.set("userID", data.userID, 90 * 24 * 60 * 60);
