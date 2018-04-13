@@ -32,7 +32,7 @@
                     clearInterval(this.i);
                     this.$root.rendered = true;
                 }
-            }, 200);
+            }, 100);
         },
         beforeDestroy() {
             if(this.i)
