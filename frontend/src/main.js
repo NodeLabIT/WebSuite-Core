@@ -21,7 +21,7 @@ let routes = [];
 for(let route of routesConfig) {
     routes.push({
         path: route.path,
-        component: require("./pages/" + route.component + ".vue")
+        component: () => import("./pages/" + route.component + ".vue")
     });
 }
 
