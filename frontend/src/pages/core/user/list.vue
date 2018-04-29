@@ -12,7 +12,7 @@
                 <img src="https://preview.msr-webdesign.de/websuite2/images/profileimg.png">
                 <table>
                     <tbody>
-                        <tr><router-link :to="`/user/profile/${user.userID}-${user.username}`" class="card-title">{{ user.username }}</router-link></tr>
+                        <tr><router-link :to="userUrl(user.userID, user.username)" class="card-title">{{ user.username }}</router-link></tr>
                         <tr><b>{{ user.groupName }}</b></tr>
                     </tbody>
                 </table>
@@ -54,6 +54,11 @@
         watch: {
             '$route': () => {
                 sio().emit('user-list', {});
+            }
+        },
+        methods: {
+            userUrl(userID, username) {
+                return `/user/profile/${userID}-${this.$root.$options.filters.urlify(username)}`;
             }
         }
     }

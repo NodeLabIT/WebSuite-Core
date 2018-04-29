@@ -52,6 +52,14 @@
                 this.basicInformation = data.basicInformation
             });
         },
+        beforeUpdate() {
+            this.loadProfile();
+
+            sio().once("user-profile", data => {
+                this.$root.rendered = true;
+                this.basicInformation = data.basicInformation
+            });
+        },
         methods: {
             loadProfile() {
                 this.err = null;

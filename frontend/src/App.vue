@@ -25,7 +25,7 @@
                             <div class="grid">
                                 <div class="row">
                                     <div class="col col8">
-                                        <img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" alt="">
+                                        <img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
                                     </div>
                                     <div class="col col">
                                         <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>
@@ -38,7 +38,7 @@
                             <div class="grid">
                                 <div class="row">
                                     <div class="col col8">
-                                        <img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg" alt="">
+                                        <img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
                                     </div>
                                     <div class="col col">
                                         <h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a></h5>

@@ -21,7 +21,7 @@ let routes = [];
 for(let route of routesConfig) {
     routes.push({
         path: route.path,
-        component: () => import("./pages/" + route.component + ".vue")
+        component: require("./pages/" + route.componentUrl + ".vue")
     });
 }
 
@@ -53,7 +53,20 @@ export function sio() {
 
 function init() {
     Vue.filter("translate", (value) => {
-        return typeof language[value] === "undefined" ? value + " (ut)" : language[value];
+        return typeof language[value] === "undefined" ? value : language[value];
+    });
+
+    Vue.filter("urlify", function(value) {
+        value = value.toLowerCase();
+
+        value = value.replace(/[ä]/gi, "ae");
+        value = value.replace(/[ö]/gi, "oe");
+        value = value.replace(/[ü]/gi, "ue");
+
+        value = value.replace(/\W/gi, "-");
+
+        value = value.replace(/(-)\1+/gi, "-");
+        return value;
     });
 
     Vue.component("ws-link", LinkComponent);

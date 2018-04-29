@@ -1,98 +1,98 @@
 [
   {
     "path": "*",
-    "component": "404"
+    "componentUrl": "404"
   },
   {
     "path": "/",
-    "component": "dashboard"
+    "componentUrl": "dashboard"
   },
   {
     "path": "/login",
-    "component": "core/login"
+    "componentUrl": "core/login"
   },
   {
     "path": "/register",
-    "component": "core/register"
+    "componentUrl": "core/register"
   },
   {
     "path": "/search",
-    "component": "core/search"
+    "componentUrl": "core/search"
   },
   {
     "path": "/imprint",
-    "component": "core/imprint"
+    "componentUrl": "core/imprint"
   },
   {
     "path": "/privacy-policy",
-    "component": "core/privacy-policy"
+    "componentUrl": "core/privacy-policy"
   },
   {
     "path": "/account/blocked",
-    "component": "core/account/blocked"
+    "componentUrl": "core/account/blocked"
   },
   {
     "path": "/account/following",
-    "component": "core/account/following"
+    "componentUrl": "core/account/following"
   },
   {
     "path": "/account/management",
-    "component": "core/account/management"
+    "componentUrl": "core/account/management"
   },
   {
     "path": "/account/profile",
-    "component": "core/account/profile"
+    "componentUrl": "core/account/profile"
   },
   {
     "path": "/account/settings",
-    "component": "core/account/settings"
+    "componentUrl": "core/account/settings"
   },
   {
     "path": "/conversation/add",
-    "component": "core/conversation/add"
+    "componentUrl": "core/conversation/add"
   },
   {
     "path": "/conversation/list",
-    "component": "core/conversation/list"
+    "componentUrl": "core/conversation/list"
   },
   {
     "path": "/conversation/list/:pageID",
-    "component": "core/conversation/list"
+    "componentUrl": "core/conversation/list"
   },
   {
     "path": "/conversation/view/:conversationID-:conversationTitle",
-    "component": "core/conversation/view"
+    "componentUrl": "core/conversation/view"
   },
   {
     "path": "/moderation/list",
-    "component": "core/moderation/list"
+    "componentUrl": "core/moderation/list"
   },
   {
     "path": "/moderation/list/:pageID",
-    "component": "core/moderation/list"
+    "componentUrl": "core/moderation/list"
   },
   {
     "path": "/moderation/view/:moderationID",
-    "component": "core/moderation/view"
+    "componentUrl": "core/moderation/view"
   },
   {
     "path": "/user/list",
-    "component": "core/user/list"
+    "componentUrl": "core/user/list"
   },
   {
     "path": "/user/list/:pageID",
-    "component": "core/user/list"
+    "componentUrl": "core/user/list"
   },
   {
     "path": "/user/profile",
-    "component": "core/user/profile"
+    "componentUrl": "core/user/profile"
   },
   {
     "path": "/user/profile/:userID-:username",
-    "component": "core/user/profile"
+    "componentUrl": "core/user/profile"
   },
   {
     "path": "/user/team",
-    "component": "core/user/team"
+    "componentUrl": "core/user/team"
   }
 ]
