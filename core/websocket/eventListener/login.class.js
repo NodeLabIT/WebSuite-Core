@@ -5,8 +5,8 @@ const request = require("request");
 class Login {
 
     static listen() {
-        global.WebSuite.getWebSocketHandler().registerEvent("login", (socket, data, address) => {
-            global.WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='login'", [address, global.TimeUtil.currentTime() - 6 * 60 * 60 * 1000]).then((count) => {
+        WebSuite.getWebSocketHandler().registerEvent("login", (socket, data, address) => {
+            WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='login'", [address, global.TimeUtil.currentTime() - 6 * 60 * 60 * 1000]).then((count) => {
                 if (parseInt(count[0].count) < 7) {
                     const secretKey = require("../../../config.json").secretKey;
                     const verifiyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
@@ -15,7 +15,7 @@ class Login {
                         body = JSON.parse(body);
 
                         if (typeof body.success !== "undefined" && !body.success) {
-                            global.WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
+                            WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                 err: "captcha failed",
                                 id: -1
                             });
@@ -23,22 +23,22 @@ class Login {
                             return;
                         }
 
-                        global.WebSuite.getUserHandler().getUserByUserName(data.username).then((user) => {
+                        WebSuite.getUserHandler().getUserByUserName(data.username).then((user) => {
                             const userID = user.getUserID();
 
-                            global.WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then((password) => {
-                                global.FileUtil.readFile(`${global._dir}/data/userSalts.json`).then((salts) => {
+                            WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then((password) => {
+                                FileUtil.readFile(`${global._dir}/data/userSalts.json`).then((salts) => {
                                     salts = JSON.parse(salts);
 
                                     if (typeof salts[userID] === "undefined") {
-                                        global.WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
+                                        WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
                                             err: "no data found",
                                             id: 0
                                         });
                                         return;
                                     }
 
-                                    if (global.CryptoUtil.matchPassword(data.password, password[0].password, salts[userID])) {
+                                    if (CryptoUtil.matchPassword(data.password, password[0].password, salts[userID])) {
                                         let sessionID = Date.now().toString(36) + "_";
                                         // Can this generate the same sessionID multiple times?
                                         const possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
