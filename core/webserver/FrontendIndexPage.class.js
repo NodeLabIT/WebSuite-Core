@@ -70,7 +70,9 @@ class FrontendIndexPage {
             tpl.assign("links" , pageData.links);
             tpl.assign("scripts" , pageData.scripts);
 
-            this.compiledIndexPage = tpl.fetch(`${__dirname}/index.tpl`);
+            tpl.setcwd(__dirname);
+
+            this.compiledIndexPage = tpl.fetch("index.tpl");
         }).catch((err) => {
             this.compiledIndexPage = null;
             console.log(err.message);

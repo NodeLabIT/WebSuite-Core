@@ -29,7 +29,9 @@
         {/for}
     </head>
     <body>
-        <div id="websuite"></div>
+        <div id="websuite">
+            Bitte aktiviere JavaScript!
+        </div>
     </body>
 
     <!-- REQUIRED SCRIPTS -->

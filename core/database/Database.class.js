@@ -38,13 +38,13 @@ class Database {
 
             // Get connection to get information about successful connection-establishment
             this._pool.getConnection((err, connection) => {
-                if(typeof connection === "undefined") {
-                    global.WebSuite.getLogger().error(`An error occurred while performing query '${query}':\nno database connection`);
+                if(err) {
+                    WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
                     success(false);
                     return;
                 }
-                if(err) {
-                    global.WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
+                if(typeof connection === "undefined") {
+                    WebSuite.getLogger().error(`An error occurred while connecting.`);
                     success(false);
                     return;
                 }
@@ -52,7 +52,7 @@ class Database {
                 success(true);
             });
         }).catch((err) => {
-            global.WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
+            WebSuite.getLogger().error(`An error occurred while trying to connect to database:\n${err.message}`);
             success(false);
         });
     }

@@ -1,11 +1,12 @@
 "use strict";
 
 const crypto = require("crypto");
+const argon = require('argon2');
 
 class CryptoUtil {
 
     /**
-     * Hashes in SHA 512 and salts a password
+     * The given string password
      *
      * @param raw the password
      * @param salt the salt

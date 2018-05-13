@@ -19,5 +19,11 @@
     "user": "websuite",
     "password": "websuite",
     "database": "websuite"
-  }
+  },
+  "secretKey": "reCaptchaSecretKey",
+  "crawler": [
+    "Googlebot",
+    "Discordbot",
+    "Twitterbot"
+  ]
 }
