@@ -1,5 +1,7 @@
 "use strict";
 
+/* eslint-disable no-console */
+
 const LogFile = require("./LogFile.class");
 
 class Logger {
