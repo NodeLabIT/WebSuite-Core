@@ -8,22 +8,25 @@ class GroupList {
 				.then((result) => {
 					let counts = {};
 					let i = 0;
-					for(let res of result) {
+					for (let res of result) {
 						const groupID = res.groupID;
 						WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsGroupUser WHERE wsGroupUser.groupID = ?", [groupID])
 							.then((count) => {
-								i ++;
+								i++;
 								counts[groupID] = count[0];
 
-								if(i === result.length) {
-									WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-list", {groups: result, counts});
+								if (i === result.length) {
+									WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-list", {
+										groups: result,
+										counts
+									});
 								}
 							}).catch((err) => {
-								console.log(err.message);
-								// TODO
+							console.log(err.message);
+							// TODO
 						});
 					}
-				}). catch((err) => {
+				}).catch((err) => {
 				WebSuite.getLogger().error(err.message);
 				WebSuite.getWebSocketHandler().sendToClient(socket, "cp-group-list", {err: err.message});
 			});
