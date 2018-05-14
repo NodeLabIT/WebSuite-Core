@@ -1,10 +1,10 @@
 [
-  {
-    "name": "profile",
-    "url": "/user/profile"
-  },
-  {
-    "name": "settings",
-    "url": "/account/settings"
-  }
+	{
+		"name": "profile",
+		"url": "/user/profile"
+	},
+	{
+		"name": "settings",
+		"url": "/account/settings"
+	}
 ]

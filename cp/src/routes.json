@@ -1,90 +1,90 @@
 [
-  {
-    "path": "*",
-    "component": "404"
-  },
-  {
-    "path": "/error/204",
-    "component": "204"
-  },
-  {
-    "path": "/error/500",
-    "component": "500"
-  },
-  {
-    "path": "/",
-    "component": "dashboard"
-  },
-  {
-    "path": "/configuration",
-    "component": "core/configuration"
-  },
-  {
-    "path": "/configuration/general",
-    "component": "core/configuration/general"
-  },
-  {
-    "path": "/configuration/access",
-    "component": "core/configuration/access"
-  },
-  {
-    "path": "/user",
-    "component": "core/user"
-  },
-  {
-    "path": "/user/user",
-    "component": "core/user/user"
-  },
-  {
-    "path": "/user/user/list",
-    "component": "core/user/user-list"
-  },
-  {
-    "path": "/user/user/list/:pageID",
-    "component": "core/user/user-list"
-  },
-  {
-    "path": "/user/user/edit/:userID",
-    "component": "core/user/user-edit"
-  },
-  {
-    "path": "/user/group",
-    "component": "core/user/group"
-  },
-  {
-    "path": "/user/group/list",
-    "component": "core/user/group-list"
-  },
-  {
-    "path": "/user/group/add",
-    "component": "core/user/group-add"
-  },
-  {
-    "path": "/user/group/edit/:groupID",
-    "component": "core/user/group-edit"
-  },
-  {
-    "path": "/user/penalty",
-    "component": "core/user/penalty"
-  },
-  {
-    "path": "/user/penalty/list",
-    "component": "core/user/penalty-list"
-  },
-  {
-    "path": "/appearance",
-    "component": "core/appearance"
-  },
-  {
-    "path": "/appearance/design",
-    "component": "core/appearance/design"
-  },
-  {
-    "path": "/appearance/templates-list/",
-    "component": "core/appearance/templates-list"
-  },
-  {
-    "path": "/appearance/languages-list/",
-    "component": "core/appearance/languages-list"
-  }
+	{
+		"path": "*",
+		"component": "404"
+	},
+	{
+		"path": "/error/204",
+		"component": "204"
+	},
+	{
+		"path": "/error/500",
+		"component": "500"
+	},
+	{
+		"path": "/",
+		"component": "dashboard"
+	},
+	{
+		"path": "/configuration",
+		"component": "core/configuration"
+	},
+	{
+		"path": "/configuration/general",
+		"component": "core/configuration/general"
+	},
+	{
+		"path": "/configuration/access",
+		"component": "core/configuration/access"
+	},
+	{
+		"path": "/user",
+		"component": "core/user"
+	},
+	{
+		"path": "/user/user",
+		"component": "core/user/user"
+	},
+	{
+		"path": "/user/user/list",
+		"component": "core/user/user-list"
+	},
+	{
+		"path": "/user/user/list/:pageID",
+		"component": "core/user/user-list"
+	},
+	{
+		"path": "/user/user/edit/:userID",
+		"component": "core/user/user-edit"
+	},
+	{
+		"path": "/user/group",
+		"component": "core/user/group"
+	},
+	{
+		"path": "/user/group/list",
+		"component": "core/user/group-list"
+	},
+	{
+		"path": "/user/group/add",
+		"component": "core/user/group-add"
+	},
+	{
+		"path": "/user/group/edit/:groupID",
+		"component": "core/user/group-edit"
+	},
+	{
+		"path": "/user/penalty",
+		"component": "core/user/penalty"
+	},
+	{
+		"path": "/user/penalty/list",
+		"component": "core/user/penalty-list"
+	},
+	{
+		"path": "/appearance",
+		"component": "core/appearance"
+	},
+	{
+		"path": "/appearance/design",
+		"component": "core/appearance/design"
+	},
+	{
+		"path": "/appearance/templates-list/",
+		"component": "core/appearance/templates-list"
+	},
+	{
+		"path": "/appearance/languages-list/",
+		"component": "core/appearance/languages-list"
+	}
 ]

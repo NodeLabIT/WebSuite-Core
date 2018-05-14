@@ -1,43 +1,43 @@
 {
-  "dashboard": [
+	"dashboard": [
 
-  ],
-  "configuration": [
-    {
-      "path": "/configuration/general/",
-      "selector": "general"
-    },
-    {
-      "path": "/configuration/access/",
-      "selector": "access"
-    }
-  ],
-  "user": [
-    {
-      "path": "/user/user/",
-      "selector": "users"
-    },
-    {
-      "path": "/user/group/",
-      "selector": "groups"
-    },
-    {
-      "path": "/user/penalty/",
-      "selector": "penalties"
-    }
-  ],
-  "appearance": [
-    {
-      "path": "/appearance/design/",
-      "selector": "design"
-    },
-    {
-      "path": "/appearance/templates-list/",
-      "selector": "templates"
-    },
-    {
-      "path": "/appearance/languages-list/",
-      "selector": "languages"
-    }
-  ]
+	],
+	"configuration": [
+		{
+			"path": "/configuration/general/",
+			"selector": "general"
+		},
+		{
+			"path": "/configuration/access/",
+			"selector": "access"
+		}
+	],
+	"user": [
+		{
+			"path": "/user/user/",
+			"selector": "users"
+		},
+		{
+			"path": "/user/group/",
+			"selector": "groups"
+		},
+		{
+			"path": "/user/penalty/",
+			"selector": "penalties"
+		}
+	],
+	"appearance": [
+		{
+			"path": "/appearance/design/",
+			"selector": "design"
+		},
+		{
+			"path": "/appearance/templates-list/",
+			"selector": "templates"
+		},
+		{
+			"path": "/appearance/languages-list/",
+			"selector": "languages"
+		}
+	]
 }

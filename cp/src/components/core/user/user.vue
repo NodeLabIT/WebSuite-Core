@@ -1,7 +1,7 @@
 <script>
-    export default {
-        created() {
-            this.$router.push('/user/user/list');
-        }
-    }
+	export default {
+		created() {
+			this.$router.push('/user/user/list');
+		}
+	}
 </script>

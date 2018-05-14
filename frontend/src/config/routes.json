@@ -1,98 +1,98 @@
 [
-  {
-    "path": "*",
-    "componentUrl": "404"
-  },
-  {
-    "path": "/",
-    "componentUrl": "dashboard"
-  },
-  {
-    "path": "/login",
-    "componentUrl": "core/login"
-  },
-  {
-    "path": "/register",
-    "componentUrl": "core/register"
-  },
-  {
-    "path": "/search",
-    "componentUrl": "core/search"
-  },
-  {
-    "path": "/imprint",
-    "componentUrl": "core/imprint"
-  },
-  {
-    "path": "/privacy-policy",
-    "componentUrl": "core/privacy-policy"
-  },
-  {
-    "path": "/account/blocked",
-    "componentUrl": "core/account/blocked"
-  },
-  {
-    "path": "/account/following",
-    "componentUrl": "core/account/following"
-  },
-  {
-    "path": "/account/management",
-    "componentUrl": "core/account/management"
-  },
-  {
-    "path": "/account/profile",
-    "componentUrl": "core/account/profile"
-  },
-  {
-    "path": "/account/settings",
-    "componentUrl": "core/account/settings"
-  },
-  {
-    "path": "/conversation/add",
-    "componentUrl": "core/conversation/add"
-  },
-  {
-    "path": "/conversation/list",
-    "componentUrl": "core/conversation/list"
-  },
-  {
-    "path": "/conversation/list/:pageID",
-    "componentUrl": "core/conversation/list"
-  },
-  {
-    "path": "/conversation/view/:conversationID-:conversationTitle",
-    "componentUrl": "core/conversation/view"
-  },
-  {
-    "path": "/moderation/list",
-    "componentUrl": "core/moderation/list"
-  },
-  {
-    "path": "/moderation/list/:pageID",
-    "componentUrl": "core/moderation/list"
-  },
-  {
-    "path": "/moderation/view/:moderationID",
-    "componentUrl": "core/moderation/view"
-  },
-  {
-    "path": "/user/list",
-    "componentUrl": "core/user/list"
-  },
-  {
-    "path": "/user/list/:pageID",
-    "componentUrl": "core/user/list"
-  },
-  {
-    "path": "/user/profile",
-    "componentUrl": "core/user/profile"
-  },
-  {
-    "path": "/user/profile/:userID-:username",
-    "componentUrl": "core/user/profile"
-  },
-  {
-    "path": "/user/team",
-    "componentUrl": "core/user/team"
-  }
+	{
+		"path": "*",
+		"componentUrl": "404"
+	},
+	{
+		"path": "/",
+		"componentUrl": "dashboard"
+	},
+	{
+		"path": "/login",
+		"componentUrl": "core/login"
+	},
+	{
+		"path": "/register",
+		"componentUrl": "core/register"
+	},
+	{
+		"path": "/search",
+		"componentUrl": "core/search"
+	},
+	{
+		"path": "/imprint",
+		"componentUrl": "core/imprint"
+	},
+	{
+		"path": "/privacy-policy",
+		"componentUrl": "core/privacy-policy"
+	},
+	{
+		"path": "/account/blocked",
+		"componentUrl": "core/account/blocked"
+	},
+	{
+		"path": "/account/following",
+		"componentUrl": "core/account/following"
+	},
+	{
+		"path": "/account/management",
+		"componentUrl": "core/account/management"
+	},
+	{
+		"path": "/account/profile",
+		"componentUrl": "core/account/profile"
+	},
+	{
+		"path": "/account/settings",
+		"componentUrl": "core/account/settings"
+	},
+	{
+		"path": "/conversation/add",
+		"componentUrl": "core/conversation/add"
+	},
+	{
+		"path": "/conversation/list",
+		"componentUrl": "core/conversation/list"
+	},
+	{
+		"path": "/conversation/list/:pageID",
+		"componentUrl": "core/conversation/list"
+	},
+	{
+		"path": "/conversation/view/:conversationID-:conversationTitle",
+		"componentUrl": "core/conversation/view"
+	},
+	{
+		"path": "/moderation/list",
+		"componentUrl": "core/moderation/list"
+	},
+	{
+		"path": "/moderation/list/:pageID",
+		"componentUrl": "core/moderation/list"
+	},
+	{
+		"path": "/moderation/view/:moderationID",
+		"componentUrl": "core/moderation/view"
+	},
+	{
+		"path": "/user/list",
+		"componentUrl": "core/user/list"
+	},
+	{
+		"path": "/user/list/:pageID",
+		"componentUrl": "core/user/list"
+	},
+	{
+		"path": "/user/profile",
+		"componentUrl": "core/user/profile"
+	},
+	{
+		"path": "/user/profile/:userID-:username",
+		"componentUrl": "core/user/profile"
+	},
+	{
+		"path": "/user/team",
+		"componentUrl": "core/user/team"
+	}
 ]

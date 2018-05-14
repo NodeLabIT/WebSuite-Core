@@ -27,109 +27,114 @@ require("./utils/UserUtil.class");
  * */
 class WebSuite {
 
-    constructor(callback) {
-        this.getLogger().info(`Starting worker ${process.pid}`);
-        this._database = new Database((databaseConnected) => {
-            if(!databaseConnected) {
-                this.getLogger().info("Please check your database-setup! WebSuite cannot be started");
-                callback(false);
-                return;
-            }
+	constructor(callback) {
+		this.getLogger().info(`Starting worker ${process.pid}`);
+		this._database = new Database((databaseConnected) => {
+			if(!databaseConnected) {
+				this.getLogger().info("Please check your database-setup! WebSuite cannot be started");
+				callback(false);
+				return;
+			}
 
-            this._mail = new Mail((mailConnected) => {
-                if(!mailConnected) {
-                    this.getLogger().info("Please check your mail-setup! WebSuite cannot be started");
-                    callback(false);
-                    return;
-                }
+			this._mail = new Mail(async (mailConnected) => {
+				if(!mailConnected) {
+					this.getLogger().info("Please check your mail-setup! WebSuite cannot be started");
+					callback(false);
+					return;
+				}
 
-                callback(true);
-            });
-        });
-    }
+				let hash = await CryptoUtil.hashPassword("Dy5s");
+				console.log(hash);
 
-    /**
-     * Get WebSocketHandler to register new Socket-Events
-     *
-     * @returns WebSocketHandler-class
-     * */
-    getWebSocketHandler() {
-        return WebSocketHandler;
-    }
+				CryptoUtil.matchPassword("Dy5s", "$argon2id$v=19$m=4096,t=3,p=1$laKx7YiSDj0J2G7IIDPkVQ");
 
-    /**
-     * Get EventHandler to listen and emit system-events
-     *
-     * @returns EventHandler-class
-     * */
-    getEventHandler() {
-        return EventHandler;
-    }
+				callback(true);
+			});
+		});
+	}
 
-    /**
-     * Get CronjobHandler to register new cronjobs
-     *
-     * @returns Cronjob-class
-     * */
-    getCrons() {
-        return Cronjob;
-    }
+	/**
+	 * Get WebSocketHandler to register new Socket-Events
+	 *
+	 * @returns WebSocketHandler-class
+	 * */
+	getWebSocketHandler() {
+		return WebSocketHandler;
+	}
 
-    /**
-     * Get the web-server to let him listen, when system is started
-     *
-     * @returns WebServer-class
-     *
-     * @private
-     * */
-    _getWebServer() {
-        return WebServer;
-    }
+	/**
+	 * Get EventHandler to listen and emit system-events
+	 *
+	 * @returns EventHandler-class
+	 * */
+	getEventHandler() {
+		return EventHandler;
+	}
 
-    /**
-     * Get the Logger to log information, errors, warnings and debug
-     *
-     * @returns Logger Logger-class
-     * */
-    getLogger() {
-        return Logger;
-    }
+	/**
+	 * Get CronjobHandler to register new cronjobs
+	 *
+	 * @returns Cronjob-class
+	 * */
+	getCrons() {
+		return Cronjob;
+	}
 
-    /**
-     * Get Database-Class to send database-queries
-     *
-     * @returns Database-class
-     * */
-    getDatabase() {
-        return this._database;
-    }
+	/**
+	 * Get the web-server to let him listen, when system is started
+	 *
+	 * @returns WebServer-class
+	 *
+	 * @private
+	 * */
+	_getWebServer() {
+		return WebServer;
+	}
 
-    /**
-     * Get Mail-Class to send emails
-     *
-     * @returns Mail-class
-     * */
-    getMail() {
-        return this._mail;
-    }
+	/**
+	 * Get the Logger to log information, errors, warnings and debug
+	 *
+	 * @returns Logger Logger-class
+	 * */
+	getLogger() {
+		return Logger;
+	}
 
-    /**
-     * Get User-Class to work with the User
-     *
-     * @returns UserHandler
-     * */
-    getUserHandler() {
-        return UserHandler;
-    }
+	/**
+	 * Get Database-Class to send database-queries
+	 *
+	 * @returns Database-class
+	 * */
+	getDatabase() {
+		return this._database;
+	}
 
-    /**
-     * Get Session-Class to work with User-Sessions
-     *
-     * @returns Sessions
-     * */
-    getSessions() {
-        return Sessions;
-    }
+	/**
+	 * Get Mail-Class to send emails
+	 *
+	 * @returns Mail-class
+	 * */
+	getMail() {
+		return this._mail;
+	}
+
+	/**
+	 * Get User-Class to work with the User
+	 *
+	 * @returns UserHandler
+	 * */
+	getUserHandler() {
+		return UserHandler;
+	}
+
+	/**
+	 * Get Session-Class to work with User-Sessions
+	 *
+	 * @returns Sessions
+	 * */
+	getSessions() {
+		return Sessions;
+	}
 
 }
 

@@ -1,22 +1,22 @@
 {
-  "left": [
-    {
-      "name": "imprint",
-      "url": "/imprint"
-    },
-    {
-      "name": "privacy-policy",
-      "url": "/privacy-policy"
-    }
-  ],
-  "right": [
-    {
-      "icon": "fa-twitter",
-      "url": "https://twitter.com/nodelabIT"
-    },
-    {
-      "icon": "fa-youtube-play",
-      "url": "https://www.youtube.com/channel/UCnE5X1wb1AJxKOU3ingMHVA"
-    }
-  ]
+	"left": [
+		{
+			"name": "imprint",
+			"url": "/imprint"
+		},
+		{
+			"name": "privacy-policy",
+			"url": "/privacy-policy"
+		}
+	],
+	"right": [
+		{
+			"icon": "fa-twitter",
+			"url": "https://twitter.com/nodelabIT"
+		},
+		{
+			"icon": "fa-youtube-play",
+			"url": "https://www.youtube.com/channel/UCnE5X1wb1AJxKOU3ingMHVA"
+		}
+	]
 }

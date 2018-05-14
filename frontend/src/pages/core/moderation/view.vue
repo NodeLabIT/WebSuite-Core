@@ -1,19 +1,18 @@
 <template>
-    <div>
+	<div>
 
-    </div>
+	</div>
 </template>
 
 <script>
-    import { sio } from '../../../main';
-    export default {
-        data() {
-            return {
+	import {sio} from "../../../main";
 
-            }
-        },
-        created() {
+	export default {
+		data() {
+			return {};
+		},
+		created() {
 
-        }
-    }
+		}
+	};
 </script>

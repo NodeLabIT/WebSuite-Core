@@ -12,591 +12,610 @@
 @color-info: #2196F3;
 
 html {
-  overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 html, body {
-  margin: 0;
-  background: @background-page;
+	margin: 0;
+	background: @background-page;
 
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-weight: 300;
-  font-size: 14px;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	font-weight: 300;
+	font-size: 14px;
 
-  width: 100%;
+	width: 100%;
 }
 
 .header {
-  background: @color-discord-dark;
-  position: relative;
-  z-index: 100;
-  nav {
-    background: @color-discord-dark;
-    &.primary {
-      @media all and (max-width: 1080px) {
-        position: fixed;
-      }
-      line-height: 60px;
-      .toggle {
-        @media all and (min-width: 1081px) {
-          display: none;
-        }
+	background: @color-discord-dark;
+	position: relative;
+	z-index: 100;
+	nav {
+		background: @color-discord-dark;
+		&.primary {
+			@media all and (max-width: 1080px) {
+				position: fixed;
+			}
+			line-height: 60px;
+			.toggle {
+				@media all and (min-width: 1081px) {
+					display: none;
+				}
 
-        @media  all and (max-width: 1080px) {
-          display: inline;
-          margin-left: 20px;
-          color: fade(@color-white, 40%);
+				@media all and (max-width: 1080px) {
+					display: inline;
+					margin-left: 20px;
+					color: fade(@color-white, 40%);
 
-          &:hover, &:active {
-            color: fade(@color-white, 70%);
-          }
+					&:hover, &:active {
+						color: fade(@color-white, 70%);
+					}
 
-          &.active {
-            color: @color-white;
-          }
-        }
-      }
-      .left {
-        @media all and (min-width: 1081px) {
-          display: inline-block;
-          width: ~"calc(100% - 60px)";
-        }
-        @media all and (max-width: 1080px) {
-          display: none;
-          position: fixed;
-          background: @color-grey;
-          left: 0;
-          top: 60px;
-          width: 100%;
-          height: ~"calc(100% - 60px)";
-          overflow-y: scroll;
-          z-index: 10001;
-        }
-        a {
-          @media all and (max-width: 1080px) {
-            display: block;
-            margin-left: 20px;
-          }
-          @media all and (min-width: 1081px) {
-            display: inline;
-          }
-          font-size: 14px;
-          color: fade(@color-white, 40%);
-          text-decoration: none;
+					&.active {
+						color: @color-white;
+					}
+				}
+			}
+			.left {
+				@media all and (min-width: 1081px) {
+					display: inline-block;
+					width: ~"calc(100% - 60px)";
+				}
+				@media all and (max-width: 1080px) {
+					display: none;
+					position: fixed;
+					background: @color-grey;
+					left: 0;
+					top: 60px;
+					width: 100%;
+					height: ~"calc(100% - 60px)";
+					overflow-y: scroll;
+					z-index: 10001;
+				}
+				a {
+					@media all and (max-width: 1080px) {
+						display: block;
+						margin-left: 20px;
+					}
+					@media all and (min-width: 1081px) {
+						display: inline;
+					}
+					font-size: 14px;
+					color: fade(@color-white, 40%);
+					text-decoration: none;
 
-          &:hover, &:active {
-            color: fade(@color-white, 70%);
-          }
+					&:hover, &:active {
+						color: fade(@color-white, 70%);
+					}
 
-          &.active {
-            color: @color-white;
-          }
+					&.active {
+						color: @color-white;
+					}
 
-          @media all and (min-width: 1081px) {
-            &:not(:first-child) {
-              margin-left: 64px;
-            }
-          }
+					@media all and (min-width: 1081px) {
+						&:not(:first-child) {
+							margin-left: 64px;
+						}
+					}
 
-          box-sizing: border-box;
-          display: inline-block;
-        }
-      }
-      .right {
-        @media all and (max-width: 1080px) {
-          margin-right: 20px;
-        }
-        width: 60px;
-        text-align: center;
-        display: inline-block;
-        float: right;
-        a#dropdown {
-          margin-left: 4px;
-          cursor: pointer;
-          color: fade(@color-white, 40%);
+					box-sizing: border-box;
+					display: inline-block;
+				}
+			}
+			.right {
+				@media all and (max-width: 1080px) {
+					margin-right: 20px;
+				}
+				width: 60px;
+				text-align: center;
+				display: inline-block;
+				float: right;
+				a#dropdown {
+					margin-left: 4px;
+					cursor: pointer;
+					color: fade(@color-white, 40%);
 
-          &:hover {
-            color: fade(@color-white, 70%);
-          }
+					&:hover {
+						color: fade(@color-white, 70%);
+					}
 
-          &.active {
-            color: @color-white;
-          }
-        }
-        img {
-          vertical-align: middle;
-          border-radius: 16px;
-        }
-      }
-    }
-    &.secondary {
-      @media all and (max-width: 1080px) {
-        margin-left: 20px;
-        width: auto;
-      }
-      line-height: 36px;
-      font-weight: 500;
-      a {
-        font-size: 14px;
-        text-transform: uppercase;
-        color: fade(@color-white, 40%);
-        text-decoration: none;
-        padding: 0 12px;
-        border-bottom: 4px solid @color-discord-dark;
+					&.active {
+						color: @color-white;
+					}
+				}
+				img {
+					vertical-align: middle;
+					border-radius: 16px;
+				}
+			}
+		}
+		&.secondary {
+			@media all and (max-width: 1080px) {
+				margin-left: 20px;
+				width: auto;
+			}
+			line-height: 36px;
+			font-weight: 500;
+			a {
+				font-size: 14px;
+				text-transform: uppercase;
+				color: fade(@color-white, 40%);
+				text-decoration: none;
+				padding: 0 12px;
+				border-bottom: 4px solid @color-discord-dark;
 
-        &:hover, &:active {
-          color: fade(@color-white, 70%);
-        }
+				&:hover, &:active {
+					color: fade(@color-white, 70%);
+				}
 
-        &.active {
-          color: @color-white;
-          border-bottom: 4px solid @color-discord;
-        }
+				&.active {
+					color: @color-white;
+					border-bottom: 4px solid @color-discord;
+				}
 
-        &:not(:first-child) {
-          margin-left: 32px;
-        }
+				&:not(:first-child) {
+					margin-left: 32px;
+				}
 
-        box-sizing: border-box;
-        display: inline-block;
+				box-sizing: border-box;
+				display: inline-block;
 
-        .badge {
-          color: @color-white;
-          background: @color-discord;
-          margin-left: 6px;
-          padding: 5px 8px;
-          border-radius: 13px;
-        }
-      }
-    }
-    @media all and (min-width: 1081px) {
-      width: 82%;
-      min-width: 1000px;
-      margin: 0 auto;
-    }
-    @media all and (max-width: 1080px) {
-      width: 100%;
-      margin: 0 auto;
-    }
-  }
-  .page-title {
-    box-sizing: border-box;
-    display: block;
-    @media all and (min-width: 1081px) {
-      width: 82%;
-      min-width: 1000px;
-      margin: 0 auto;
-    }
-    @media all and (max-width: 1080px) {
-      padding-top: 50px;
-      margin-left: 20px;
-    }
-    h1 {
-      font-weight: 100;
-      color: @color-white;
-      margin: 0;
-      @media all and (max-width: 1080px) {
-        font-size: 25px;
-        line-height: 48px;
-      }
-      @media all and (min-width: 1081px) {
-        line-height: 96px;
-      }
-    }
-  }
+				.badge {
+					color: @color-white;
+					background: @color-discord;
+					margin-left: 6px;
+					padding: 5px 8px;
+					border-radius: 13px;
+				}
+			}
+		}
+		@media all and (min-width: 1081px) {
+			width: 82%;
+			min-width: 1000px;
+			margin: 0 auto;
+		}
+		@media all and (max-width: 1080px) {
+			width: 100%;
+			margin: 0 auto;
+		}
+	}
+	.page-title {
+		box-sizing: border-box;
+		display: block;
+		@media all and (min-width: 1081px) {
+			width: 82%;
+			min-width: 1000px;
+			margin: 0 auto;
+		}
+		@media all and (max-width: 1080px) {
+			padding-top: 50px;
+			margin-left: 20px;
+		}
+		h1 {
+			font-weight: 100;
+			color: @color-white;
+			margin: 0;
+			@media all and (max-width: 1080px) {
+				font-size: 25px;
+				line-height: 48px;
+			}
+			@media all and (min-width: 1081px) {
+				line-height: 96px;
+			}
+		}
+	}
 }
 
 .main {
-  @media all and (min-width: 1081px) {
-    width: 82%;
-    min-width: 1000px;
-    margin: 0 auto;
+	@media all and (min-width: 1081px) {
+		width: 82%;
+		min-width: 1000px;
+		margin: 0 auto;
 
-    > div {
-      &.extra-margin {
-        margin-top: 20px;
-      }
-    }
-  }
-  @media all and (max-width: 1080px) {
-    width: 96%;
-    margin: 0 auto;
+		> div {
+			&.extra-margin {
+				margin-top: 20px;
+			}
+		}
+	}
+	@media all and (max-width: 1080px) {
+		width: 96%;
+		margin: 0 auto;
 
-    > div {
-      &.extra-margin {
-        margin-top: 20px;
-      }
-    }
-  }
+		> div {
+			&.extra-margin {
+				margin-top: 20px;
+			}
+		}
+	}
 
-  .table-container {
-    display: block;
-    max-width: 100%;
-    overflow-x: auto;
-  }
-  table {
-    width: 96%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    thead {
-      color: fade(@color-black, 33%);
-      border-bottom: 1px solid fade(@color-black, 33%);
-      line-height: 60px;
-    }
-    tbody {
-      tr {
-        height: 64px;
-        &:not(:last-child) {
-          border-bottom: 1px solid fade(@color-black, 10%);
-        }
-        img, .inliner {
-          display: inline-block;
-          vertical-align: middle;
-        }
-        img {
-          border-radius: 24px;
-        }
-        .inliner {
-          span {
-            display: block;
-            padding-left: 16px;
-            line-height: 20px;
-          }
-        }
-        .material-icons {
-          color: fade(@color-black, 20%);
-          &:hover, &.active {
-            color: @color-discord;
-          }
-          cursor: pointer;
-        }
-      }
-    }
-  }
-  padding-bottom: 100px;
+	.table-container {
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
+	}
+	table {
+		width: 96%;
+		margin: 0 auto;
+		border-collapse: collapse;
+		thead {
+			color: fade(@color-black, 33%);
+			border-bottom: 1px solid fade(@color-black, 33%);
+			line-height: 60px;
+		}
+		tbody {
+			tr {
+				height: 64px;
+				&:not(:last-child) {
+					border-bottom: 1px solid fade(@color-black, 10%);
+				}
+				img, .inliner {
+					display: inline-block;
+					vertical-align: middle;
+				}
+				img {
+					border-radius: 24px;
+				}
+				.inliner {
+					span {
+						display: block;
+						padding-left: 16px;
+						line-height: 20px;
+					}
+				}
+				.material-icons {
+					color: fade(@color-black, 20%);
+					&:hover, &.active {
+						color: @color-discord;
+					}
+					cursor: pointer;
+				}
+			}
+		}
+	}
+	padding-bottom: 100px;
 }
 
 a {
-  &.floating-button {
-    text-decoration: none;
-    text-align: center;
-    background: @color-discord;
-    @media all and (min-width: 1081px) {
-      position: absolute;
-      right: 9%;
-      margin-top: -27px;
-      i {
-        display: inline;
-      }
-      .text {
-        display: none;
-      }
-      z-index: 10000;
+	&.floating-button {
+		text-decoration: none;
+		text-align: center;
+		background: @color-discord;
+		@media all and (min-width: 1081px) {
+			position: absolute;
+			right: 9%;
+			margin-top: -27px;
+			i {
+				display: inline;
+			}
 
-      &.extra-margin {
-        margin-top: -66px;
-      }
-    }
-    @media all and (max-width: 1080px) {
-      position: static;
-      display: block;
-      width: 98%;
-      box-sizing: border-box;
-      margin: 20px auto 0;
-      border-radius: 4px;
-      i {
-        display: none;
-      }
-      .text {
-        font-size: 16px;
-        font-weight: 500;
-      }
-    }
-    padding: 12px;
-    border-radius: 32px;
-    color: @color-white;
-    transition: all 0.3s ease;
-    cursor: pointer;
+			.text {
+				display: none;
+			}
 
-    &:hover {
-      border-radius: 16px;
-    }
+			z-index: 10000;
 
-    i {
-      font-size: 30px;
-    }
-  }
+			&.extra-margin {
+				margin-top: -66px;
+			}
+		}
+		@media all and (max-width: 1080px) {
+			position: static;
+			display: block;
+			width: 98%;
+			box-sizing: border-box;
+			margin: 20px auto 0;
+			border-radius: 4px;
+			i {
+				display: none;
+			}
 
-  &.button {
-    text-align: center;
-    background: @color-discord;
-    padding: 12px;
-    border-radius: 4px;
-    color: @color-white;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-transform: uppercase;
-    display: inline-block;
-    font-weight: 500;
+			.text {
+				font-size: 16px;
+				font-weight: 500;
+			}
+		}
+		padding: 12px;
+		border-radius: 32px;
+		color: @color-white;
+		transition: all 0.3s ease;
+		cursor: pointer;
 
-    &:hover {
-      background: @color-discord-dark;
-    }
-  }
+		&:hover {
+			border-radius: 16px;
+		}
+
+		i {
+			font-size: 30px;
+		}
+	}
+
+	&.button {
+		text-align: center;
+		background: @color-discord;
+		padding: 12px;
+		border-radius: 4px;
+		color: @color-white;
+		transition: all 0.3s ease;
+		cursor: pointer;
+		text-transform: uppercase;
+		display: inline-block;
+		font-weight: 500;
+
+		&:hover {
+			background: @color-discord-dark;
+		}
+	}
 }
 
 form {
-  > div {
-    margin-top: 40px;
-    position: relative;
-    z-index: 0;
-    > label.floating-label {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 0;
-    }
-    > label.floating-label, > input {
-      padding: 10px 12px;
-      cursor: text;
-      transition: all 0.2s ease;
-    }
-    > input {
-      position: relative;
-      z-index: 1;
-      background: none;
-      outline: none;
-      border: 0;
-      border-bottom: 1px solid fade(@color-black, 12.5%);
-      font-size: 14px;
-      &:focus {
-        border-color: @color-discord;
-      }
-      &:focus, &.valid {
-        + label.floating-label {
-          top: -20px;
-          left: -10px;
-          font-size: 12px;
-          font-weight: 500;
-          color: @color-discord;
-        }
-      }
+	> div {
+		margin-top: 40px;
+		position: relative;
+		z-index: 0;
+		> label.floating-label {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 0;
+		}
+		> label.floating-label, > input {
+			padding: 10px 12px;
+			cursor: text;
+			transition: all 0.2s ease;
+		}
+		> input {
+			position: relative;
+			z-index: 1;
+			background: none;
+			outline: none;
+			border: 0;
+			border-bottom: 1px solid fade(@color-black, 12.5%);
+			font-size: 14px;
+			&:focus {
+				border-color: @color-discord;
+			}
+			&:focus, &.valid {
+				+ label.floating-label {
+					top: -20px;
+					left: -10px;
+					font-size: 12px;
+					font-weight: 500;
+					color: @color-discord;
+				}
+			}
 
-      @media all and (min-width: 1081px) {
-        &.tiny {
-          width: 40%;
-        }
-        &.large {
-          width: 100%;
-        }
-      }
-      @media all and (max-width: 1080px) {
-        &.tiny {
-          width: 80%;
-        }
-        &.large {
-          width: 100%;
-        }
-      }
-      box-sizing: border-box;
-    }
+			@media all and (min-width: 1081px) {
+				&.tiny {
+					width: 40%;
+				}
 
-    span.helper {
-      font-size: 12px;
-      margin-left: 12px;
-      margin-top: 4px;
-      display: block;
-    }
+				&.large {
+					width: 100%;
+				}
+			}
+			@media all and (max-width: 1080px) {
+				&.tiny {
+					width: 80%;
+				}
 
-    textarea {
-      margin-top: 10px;
-      width: 100%;
-      max-width: 100%;
-      min-width: 100%;
-      min-height: 240px;
-    }
-  }
+				&.large {
+					width: 100%;
+				}
+			}
+			box-sizing: border-box;
+		}
+
+		span.helper {
+			font-size: 12px;
+			margin-left: 12px;
+			margin-top: 4px;
+			display: block;
+		}
+
+		textarea {
+			margin-top: 10px;
+			width: 100%;
+			max-width: 100%;
+			min-width: 100%;
+			min-height: 240px;
+		}
+	}
 }
 
 .pagination {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  a {
-    color: @color-white;
-    background: @color-discord;
-    padding: 17px 15px;
-    line-height: 50px;
-    box-sizing: border-box;
-    &:first-child {
-      margin-right: 32px;
-    }
-    &:last-child {
-      margin-left: 32px;
-    }
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+	a {
+		color: @color-white;
+		background: @color-discord;
+		padding: 17px 15px;
+		line-height: 50px;
+		box-sizing: border-box;
+		&:first-child {
+			margin-right: 32px;
+		}
+		&:last-child {
+			margin-left: 32px;
+		}
 
-    &.inactive {
-      background: fade(@color-black, 5%);
-    }
-  }
+		&.inactive {
+			background: fade(@color-black, 5%);
+		}
+	}
 }
 
 .dialog-container {
-  &:not(.closed) {
-    &:before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.4);
-    }
-    &.fade {
-      .dialog {
-        animation: dialogFadeOut 0.3s;
-        animation-fill-mode: forwards;
-      }
-    }
-  }
-  &.closed {
-    display: none;
-  }
-  display: flex;
+	&:not(.closed) {
+		&:before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1000;
+			background: rgba(0, 0, 0, 0.4);
+		}
+		&.fade {
+			.dialog {
+				animation: dialogFadeOut 0.3s;
+				animation-fill-mode: forwards;
+			}
+		}
+	}
+	&.closed {
+		display: none;
+	}
+	display: flex;
 
-  .dialog {
-    animation: dialogFadeIn 0.3s;
-    animation-fill-mode: forwards;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	.dialog {
+		animation: dialogFadeIn 0.3s;
+		animation-fill-mode: forwards;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
-    z-index: 1010;
+		z-index: 1010;
 
-    position: fixed;
+		position: fixed;
 
-    &:not(.small) {
-      top: 0;
-      left: 50%;
+		&:not(.small) {
+			top: 0;
+			left: 50%;
 
-      width: 97%;
-      height: 92%;
-    }
-    &.small {
-      top: 0;
-      left: 50%;
+			width: 97%;
+			height: 92%;
+		}
+		&.small {
+			top: 0;
+			left: 50%;
 
-      width: 500px;
-      max-width: 95%;
-    }
-    background: @color-white;
+			width: 500px;
+			max-width: 95%;
+		}
+		background: @color-white;
 
-    .dialog-header {
-      background: @color-discord-dark;
-      color: @color-white;
-      padding: 20px 40px;
-      font-weight: bold;
-      .description {
-        margin-top: 7px;
-        display: block;
-        font-weight: normal;
-        font-size: 11pt;
-      }
-      .close-dialog {
-        float: right;
-      }
-    }
-    .dialog-body {
-      padding: 20px;
-    }
-    .dialog-footer {
-      padding: 20px 40px;
-    }
-  }
+		.dialog-header {
+			background: @color-discord-dark;
+			color: @color-white;
+			padding: 20px 40px;
+			font-weight: bold;
+			.description {
+				margin-top: 7px;
+				display: block;
+				font-weight: normal;
+				font-size: 11pt;
+			}
+			.close-dialog {
+				float: right;
+			}
+		}
+		.dialog-body {
+			padding: 20px;
+		}
+		.dialog-footer {
+			padding: 20px 40px;
+		}
+	}
 }
 
 aside {
-  &.footer-information {
-    color: @color-white;
-    padding: 12px 36px;
-    border-radius: 6px;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    @media all and (max-width: 1080px) {
-      width: 94%;
-      text-align: center;
-      box-sizing: border-box;
-    }
-  }
+	&.footer-information {
+		color: @color-white;
+		padding: 12px 36px;
+		border-radius: 6px;
+		position: fixed;
+		bottom: 20px;
+		left: 50%;
+		transform: translate(-50%, 0);
+		@media all and (max-width: 1080px) {
+			width: 94%;
+			text-align: center;
+			box-sizing: border-box;
+		}
+	}
 }
 
 .uppercase {
-  text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .primary-text {
-  color: @color-discord;
-  font-weight: 500;
-  font-size: 16px;
+	color: @color-discord;
+	font-weight: 500;
+	font-size: 16px;
 }
 
 .center-text {
-  text-align: center;
+	text-align: center;
 }
 
 .hidden-tiny {
-  @media all and (max-width: 1080px) {
-    display: none;
-  }
+	@media all and (max-width: 1080px) {
+		display: none;
+	}
 }
 
 .bg-primary {
-  background: @color-discord;
+	background: @color-discord;
 }
 
 .bg-error {
-  background: @color-error;
+	background: @color-error;
 }
 
 .bg-warning {
-  background: @color-warning;
+	background: @color-warning;
 }
 
 .bg-success {
-  background: @color-success;
+	background: @color-success;
 }
 
 .bg-info {
-  background: @color-info;
+	background: @color-info;
 }
 
 .material-icons {
-  display: inline-flex;
-  vertical-align: middle;
+	display: inline-flex;
+	vertical-align: middle;
 
-  &.spin {
-    animation: spin 1.5s linear infinite;
-  }
-  &.large {
-    font-size: 42px;
-  }
+	&.spin {
+		animation: spin 1.5s linear infinite;
+	}
+	&.large {
+		font-size: 42px;
+	}
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
+
 @keyframes dialogFadeIn {
-  0% { transform: translate(-50%, 80px) scale(0); }
-  100% { transform: translate(-50%, 80px) scale(1); }
+	0% {
+		transform: translate(-50%, 80px) scale(0);
+	}
+	100% {
+		transform: translate(-50%, 80px) scale(1);
+	}
 }
+
 @keyframes dialogFadeOut {
-  0% { transform: translate(-50%, 80px) scale(1); }
-  100% { transform: translate(-50%, 80px) scale(0); }
+	0% {
+		transform: translate(-50%, 80px) scale(1);
+	}
+	100% {
+		transform: translate(-50%, 80px) scale(0);
+	}
 }

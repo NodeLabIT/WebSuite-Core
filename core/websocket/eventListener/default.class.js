@@ -2,15 +2,15 @@
 
 class DefaultData {
 
-    static listen() {
-        global.WebSuite.getWebSocketHandler().registerEvent("page-default-data", (socket, data) => {
-            global.FileUtil.readFile(`${global._dir}/data/page.json`).then((content) => {
-                global.WebSuite.getWebSocketHandler().sendToClient(socket, "page-default-data", JSON.parse(content));
-            }).catch((err) => {
-                global.WebSuite.getWebSocketHandler().sendToClient(socket, "page-default-data", {err});
-            });
-        });
-    }
+	static listen() {
+		WebSuite.getWebSocketHandler().registerEvent("page-default-data", (socket, data) => {
+			global.FileUtil.readFile(`${global._dir}/data/page.json`).then((content) => {
+				WebSuite.getWebSocketHandler().sendToClient(socket, "page-default-data", JSON.parse(content));
+			}).catch((err) => {
+				WebSuite.getWebSocketHandler().sendToClient(socket, "page-default-data", {err});
+			});
+		});
+	}
 
 }
 

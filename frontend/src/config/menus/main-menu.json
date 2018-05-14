@@ -1,10 +1,10 @@
 [
-  {
-    "name": "dashboard",
-    "url": "/"
-  },
-  {
-    "name": "users",
-    "url": "/user/list"
-  }
+	{
+		"name": "dashboard",
+		"url": "/"
+	},
+	{
+		"name": "users",
+		"url": "/user/list"
+	}
 ]

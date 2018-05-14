@@ -2,74 +2,74 @@
 
 class TimeUtil {
 
-    /**
-     * Get the current time in milliseconds since 01.01.1970 00:00:00 UTC
-     *
-     * @returns number current time in milliseconds
-     * */
-    static currentTime() {
-        return Date.now();
-    }
+	/**
+	 * Get the current time in milliseconds since 01.01.1970 00:00:00 UTC
+	 *
+	 * @returns number current time in milliseconds
+	 * */
+	static currentTime() {
+		return Date.now();
+	}
 
-    /**
-     * Get a future time in milliseconds since 01.01.1970 00:00:00 UTC
-     *
-     * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
-     *
-     * @returns number future time in milliseconds
-     * */
-    static futureTime(options) {
-        if(options === null || typeof options === "function" || typeof options !== "object") {
-            return -1;
-        }
+	/**
+	 * Get a future time in milliseconds since 01.01.1970 00:00:00 UTC
+	 *
+	 * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
+	 *
+	 * @returns number future time in milliseconds
+	 * */
+	static futureTime(options) {
+		if(options === null || typeof options === "function" || typeof options !== "object") {
+			return -1;
+		}
 
-        let futureTime = this.currentTime();
+		let futureTime = this.currentTime();
 
-        if(options.days && options.days > 0) {
-            futureTime += options.days * 24 * 60 * 60 * 1000;
-        }
-        if(options.hours && options.hours > 0) {
-            futureTime += options.hours * 60 * 60 * 1000;
-        }
-        if(options.minutes && options.minutes > 0) {
-            futureTime += options.minutes * 60 * 1000;
-        }
-        if(options.seconds && options.seconds > 0) {
-            futureTime += options.seconds * 1000;
-        }
+		if(options.days && options.days > 0) {
+			futureTime += options.days * 24 * 60 * 60 * 1000;
+		}
+		if(options.hours && options.hours > 0) {
+			futureTime += options.hours * 60 * 60 * 1000;
+		}
+		if(options.minutes && options.minutes > 0) {
+			futureTime += options.minutes * 60 * 1000;
+		}
+		if(options.seconds && options.seconds > 0) {
+			futureTime += options.seconds * 1000;
+		}
 
-        return futureTime;
-    }
+		return futureTime;
+	}
 
-    /**
-     * Get a future time in milliseconds since 01.01.1970 00:00:00 UTC
-     *
-     * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
-     *
-     * @returns number past time in milliseconds
-     * */
-    static pastTime(options) {
-        if(options === null || typeof options === "function" || typeof options !== "object") {
-            return -1;
-        }
+	/**
+	 * Get a future time in milliseconds since 01.01.1970 00:00:00 UTC
+	 *
+	 * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
+	 *
+	 * @returns number past time in milliseconds
+	 * */
+	static pastTime(options) {
+		if(options === null || typeof options === "function" || typeof options !== "object") {
+			return -1;
+		}
 
-        let pastTime = this.currentTime();
+		let pastTime = this.currentTime();
 
-        if(options.days && options.days > 0) {
-            pastTime -= options.days * 24 * 60 * 60 * 1000;
-        }
-        if(options.hours && options.hours > 0) {
-            pastTime -= options.hours * 60 * 60 * 1000;
-        }
-        if(options.minutes && options.minutes > 0) {
-            pastTime -= options.minutes * 60 * 1000;
-        }
-        if(options.seconds && options.seconds > 0) {
-            pastTime -= options.seconds * 1000;
-        }
+		if(options.days && options.days > 0) {
+			pastTime -= options.days * 24 * 60 * 60 * 1000;
+		}
+		if(options.hours && options.hours > 0) {
+			pastTime -= options.hours * 60 * 60 * 1000;
+		}
+		if(options.minutes && options.minutes > 0) {
+			pastTime -= options.minutes * 60 * 1000;
+		}
+		if(options.seconds && options.seconds > 0) {
+			pastTime -= options.seconds * 1000;
+		}
 
-        return pastTime;
-    }
+		return pastTime;
+	}
 
 }
 

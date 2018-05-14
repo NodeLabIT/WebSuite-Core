@@ -1,22 +1,22 @@
 <template>
-    <div>
+	<div>
 
-    </div>
+	</div>
 </template>
 
 <script>
-    import { sio } from '../../../main';
-    export default {
-        data() {
-            return {
+	import { sio } from '../../../main';
+	export default {
+		data() {
+			return {
 
-            }
-        },
-        methods: {
+			}
+		},
+		methods: {
 
-        },
-        created() {
-            this.$root.$data.title = this.$options.filters.translate('appearance');
-        }
-    }
+		},
+		created() {
+			this.$root.$data.title = this.$options.filters.translate('appearance');
+		}
+	}
 </script>

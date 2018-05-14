@@ -1,42 +1,42 @@
 {
-  "name": "websuite-core",
-  "version": "1.0.0",
-  "description": "WebSuite Core project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NodeLabIT/WebSuite-Core.git"
-  },
-  "author": "NodeLab IT",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/NodeLabIT/WebSuite-Core/issues"
-  },
-  "homepage": "https://github.com/NodeLabIT/WebSuite-Core#readme",
-  "dependencies": {
-    "argon2": "^0.19.2",
-    "compression": "^1.7.1",
-    "email-templates": "^3.3.2",
-    "express": "^4.16.0",
-    "less": "^2.7.3",
-    "mysql": "^2.14.1",
-    "node-cron": "^1.2.1",
-    "node-tpl": "0.0.6",
-    "nodemailer": "^4.1.2",
-    "request": "^2.83.0",
-    "serve-static": "^1.13.0",
-    "socket.io": "^2.0.3",
-    "socketio-wildcard": "^2.0.0",
-    "sticky-session": "^1.1.2"
-  },
-  "devDependencies": {
-    "del": "^3.0.0",
-    "eslint": "^4.19.1",
-    "gulp": "^3.9.1",
-    "gulp-gzip": "^1.4.0",
-    "gulp-tar": "^2.0.0"
-  }
+	"name": "websuite-core",
+	"version": "1.0.0",
+	"description": "WebSuite Core project",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NodeLabIT/WebSuite-Core.git"
+	},
+	"author": "NodeLab IT",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/NodeLabIT/WebSuite-Core/issues"
+	},
+	"homepage": "https://github.com/NodeLabIT/WebSuite-Core#readme",
+	"dependencies": {
+		"argon2": "^0.19.2",
+		"compression": "^1.7.1",
+		"email-templates": "^3.3.2",
+		"express": "^4.16.0",
+		"less": "^2.7.3",
+		"mysql": "^2.14.1",
+		"node-cron": "^1.2.1",
+		"node-tpl": "0.0.6",
+		"nodemailer": "^4.1.2",
+		"request": "^2.83.0",
+		"serve-static": "^1.13.0",
+		"socket.io": "^2.0.3",
+		"socketio-wildcard": "^2.0.0",
+		"sticky-session": "^1.1.2"
+	},
+	"devDependencies": {
+		"del": "^3.0.0",
+		"eslint": "^4.19.1",
+		"gulp": "^3.9.1",
+		"gulp-gzip": "^1.4.0",
+		"gulp-tar": "^2.0.0"
+	}
 }

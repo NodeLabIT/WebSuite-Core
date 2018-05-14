@@ -1,118 +1,118 @@
 {
-  "core.cp": {
-    "core.cp.access": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.restartSystem": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.recompileSystem": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.configuration.general": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.configuration.access": {
-      "type": "boolean",
-      "default": false
-    }
-  },
-  "core.cp.user": {
-    "core.cp.users.list": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.users.add": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.users.edit": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.users.manage": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.groups.list": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.groups.add": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.groups.edit": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.groups.manage": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.penalties.list": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.penalties.add": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.penalties.edit": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.penalties.manage": {
-      "type": "boolean",
-      "default": false
-    }
-  },
-  "core.cp.applications": {
-    "core.cp.applications.list": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.applications.manage": {
-      "type": "boolean",
-      "default": false
-    }
-  },
-  "core.cp.appearance": {
-    "core.cp.appearance.design": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.appearance.templates.list": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.appearance.templates.edit": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.appearance.templates.manage": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.appearance.languages.list": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.appearance.languages.add": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.appearance.languages.edit": {
-      "type": "boolean",
-      "default": false
-    },
-    "core.cp.appearance.languages.manage": {
-      "type": "boolean",
-      "default": false
-    }
-  }
+	"core.cp": {
+		"core.cp.access": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.restartSystem": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.recompileSystem": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.configuration.general": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.configuration.access": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"core.cp.user": {
+		"core.cp.users.list": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.users.add": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.users.edit": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.users.manage": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.groups.list": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.groups.add": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.groups.edit": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.groups.manage": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.penalties.list": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.penalties.add": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.penalties.edit": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.penalties.manage": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"core.cp.applications": {
+		"core.cp.applications.list": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.applications.manage": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"core.cp.appearance": {
+		"core.cp.appearance.design": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.appearance.templates.list": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.appearance.templates.edit": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.appearance.templates.manage": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.appearance.languages.list": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.appearance.languages.add": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.appearance.languages.edit": {
+			"type": "boolean",
+			"default": false
+		},
+		"core.cp.appearance.languages.manage": {
+			"type": "boolean",
+			"default": false
+		}
+	}
 }
