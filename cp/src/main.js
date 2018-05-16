@@ -4,7 +4,7 @@ import VueCookies from "vue-cookies";
 
 import App from "./App.vue";
 
-import Config from "./config.json";
+import Config from "./settings.json";
 const routesConfig = require("./routes.json");
 
 // Components

@@ -1,0 +1,25 @@
+{
+	"title": "NodeLab IT",
+	"subtitle": "Willkommen zur ersten öffentlichen Version der WebSuite",
+	"description": "WebSuite webpage",
+	"keywords": "websuite, nodelab",
+	"metas": [],
+	"links": [],
+	"scripts": [],
+	"imprint": {
+		"address": "",
+		"email": "",
+		"phone": "",
+		"fax": "",
+		"representative": "",
+		"register": "",
+		"vatID": "",
+		"additional": {
+			"text": "",
+			"html": true
+		}
+	},
+	"privacyPolicy": {
+		"text": ""
+	}
+}

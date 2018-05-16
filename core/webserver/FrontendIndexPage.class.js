@@ -27,11 +27,11 @@ class FrontendIndexPage {
 	}
 
 	/**
-	 * Kompiliert die Frontend-Index-Page der WebSuite und schreibt dabei alle Daten aus der page.json in die angegebene
+	 * Kompiliert die Frontend-Index-Page der WebSuite und schreibt dabei alle Daten aus der options.json in die angegebene
 	 * Template-Datei.
 	 * */
 	static compileIndexPage() {
-		global.FileUtil.readFile(`${global._dir}/data/page.json`).then((pageData) => {
+		global.FileUtil.readFile(`${global._dir}/data/options.json`).then((pageData) => {
 			pageData = JSON.parse(pageData);
 
 			const data = {

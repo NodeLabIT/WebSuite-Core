@@ -9,6 +9,14 @@ const Check = require("./system/check.class");
 
 global._dir = __dirname;
 
+
+// Utils
+require("./core/utils/CryptoUtil.class");
+require("./core/utils/DirectoryUtil.class");
+require("./core/utils/FileUtil.class");
+require("./core/utils/TimeUtil.class");
+require("./core/utils/UserUtil.class");
+
 if (cluster.isMaster) {
 	new Check().then(() => {
 		// TODO: Check for undefined types to highly prevent crashes and uncaughtError-shutdowns

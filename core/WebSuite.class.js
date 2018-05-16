@@ -15,13 +15,6 @@ const EventHandler = require("./event/EventHandler.class");
 
 const Cronjob = require("./cronjob/Cronjob.class");
 
-// Utils
-require("./utils/CryptoUtil.class");
-require("./utils/DirectoryUtil.class");
-require("./utils/FileUtil.class");
-require("./utils/TimeUtil.class");
-require("./utils/UserUtil.class");
-
 /**
  * Class of core-module
  * */
@@ -43,10 +36,10 @@ class WebSuite {
 					return;
 				}
 
-				let hash = await CryptoUtil.hashPassword("Dy5s");
+				/*let hash = await CryptoUtil.hashPassword("Dy5s");
 				console.log(hash);
 
-				CryptoUtil.matchPassword("Dy5s", "$argon2id$v=19$m=4096,t=3,p=1$laKx7YiSDj0J2G7IIDPkVQ");
+				CryptoUtil.matchPassword("Dy5s", "$argon2id$v=19$m=4096,t=3,p=1$laKx7YiSDj0J2G7IIDPkVQ");*/
 
 				callback(true);
 			});

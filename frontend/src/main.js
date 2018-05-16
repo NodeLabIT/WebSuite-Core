@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
 	next();
 });
 
-let language = {};
+const language = require("../language/de_DE");
 let socket;
 
 // TODO: Disallow connection for Bots to prevent crawling-errors
@@ -147,11 +147,4 @@ function init() {
 	});
 }
 
-$.ajax({
-	dataType: "json",
-	url: "/language/de_DE.json",
-	success: function (data) {
-		language = data;
-		init();
-	}
-});
+init();

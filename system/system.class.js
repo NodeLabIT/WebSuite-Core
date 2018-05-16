@@ -31,7 +31,7 @@ class SystemLoader {
 			require("../core/websocket/eventListener/register.class").listen();
 			require("../core/websocket/eventListener/user.class").listen();
 
-			WebSuite._getWebServer().listen();
+			global.WebSuite._getWebServer().listen();
 		});
 	}
 
