@@ -9,9 +9,9 @@ class Login {
 			WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='login'", [address, global.TimeUtil.currentTime() - 6 * 60 * 60 * 1000]).then((count) => {
 				if (parseInt(count[0].count) < 7) {
 					const secretKey = require("../../../config.json").secretKey;
-					const verifiyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
+					const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
 
-					request(verifiyUrl, (err, response, body) => {
+					request(verifyUrl, (err, response, body) => {
 						body = JSON.parse(body);
 
 						if (typeof body.success !== "undefined" && !body.success) {
@@ -26,19 +26,9 @@ class Login {
 						WebSuite.getUserHandler().getUserByUserName(data.username).then((user) => {
 							const userID = user.getUserID();
 
-							WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then((password) => {
-								FileUtil.readFile(`${global._dir}/data/userSalts.json`).then((salts) => {
-									salts = JSON.parse(salts);
-
-									if (typeof salts[userID] === "undefined") {
-										WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
-											err: "no data found",
-											id: 0
-										});
-										return;
-									}
-
-									if (CryptoUtil.matchPassword(data.password, password[0].password, salts[userID])) {
+							WebSuite.getDatabase().query("SELECT * FROM wsUser WHERE userID=?", [userID]).then(async (password) => {
+								try {
+									if(await CryptoUtil.verify(password[0].password, data.password)) {
 										let sessionID = Date.now().toString(36) + "_";
 										// Can this generate the same sessionID multiple times?
 										const possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
@@ -74,13 +64,13 @@ class Login {
 										});
 										this.addToBlocklist(address, false);
 									}
-								}).catch((err) => {
+								} catch(err) {
 									WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
 										err: "servererror",
 										id: -1
 									});
 									WebSuite.getLogger().error(err);
-								});
+								}
 							}).catch((err) => {
 								WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
 									err: "servererror",

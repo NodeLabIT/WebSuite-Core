@@ -81,7 +81,7 @@
 				this.$refs.recaptcha.execute();
 			},
 			login(response) {
-				if (!this.logging) {
+				if (this.logging === "") {
 					this.logging = response;
 					sio().emit("login", {
 						username: this.username,
@@ -94,7 +94,7 @@
 		},
 		created() {
 			this.$root.rendered = true;
-			sio().once("login", (data) => {
+			sio().on("login", (data) => {
 				this.logging = "";
 				if (data.err) {
 					this.err = {
@@ -118,6 +118,10 @@
 					this.$router.push("/user/profile/" + data.userID + "-" + data.username);
 				}
 			});
+		},
+		beforeDestroy() {
+			// Unregister socket-Listener
+			sio().off("login");
 		}
 	};
 </script>

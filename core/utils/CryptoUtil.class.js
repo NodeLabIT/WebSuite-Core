@@ -1,63 +1,47 @@
 "use strict";
 
-const crypto = require("crypto");
 const argon2 = require('argon2');
 
 class CryptoUtil {
 
 	/**
-	 * The given password will be hashed using argon2id. While hashing a salt will be generated
+	 * The given password will be hashed using argon2id
 	 *
 	 * @param password
 	 *
-	 * @returns Object content: salt, hashed String
+	 * @returns {String, Error} returns a String (the argon2-hash) or on error an Error
 	 * */
-	static async hashPassword(password) {
+	static async hash(password) {
 		try {
+			// TODO: Read this from cp-options
 			const options = {
-				type: argon2.argon2id
+				type: argon2.argon2id,
+				iterations: 3,
+				memory: 4096,
+				parallelism: 1
 			};
-			const hash = argon2.hash(password, options);
 
-			return hash;
+			return await argon2.hash(password, options);
 		} catch(err) {
-			console.log(err);
-			return err;
+			throw err;
 		}
 	}
 
 	/**
 	 * Check for password-match
 	 *
-	 * @param raw the password
-	 * @param hashed the hashed and salted password
+	 * @param hash the hashed and salted password
+	 * @param password the hashed and salted password
 	 *
 	 * @returns boolean true, when matches, otherwise false
 	 * */
-	static async matchPassword(raw, hashed) {
+	static async verify(hash, password) {
 		try {
-			console.log(raw);
-			console.log(hashed);
-			if (await argon2.verify(hashed, raw)) {
-				console.log("YEPPPP");
-			} else {
-				console.log("NOOOO :(");
-			}
+			return await argon2.verify(hash, password);
 		} catch (err) {
-			console.log(err);
 			// internal failure
+			throw err;
 		}
-	}
-
-	/**
-	 * Generates a salt (save it to a file and don't store it in the database!)
-	 *
-	 * @param length length of the salt
-	 *
-	 * @returns String random salt
-	 * */
-	static generateSalt(length) {
-		return crypto.randomBytes(Math.ceil(length / 2)).toString("hex").slice(0, length);
 	}
 
 }

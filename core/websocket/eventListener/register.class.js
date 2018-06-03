@@ -6,12 +6,13 @@ class Register {
 
 	static listen() {
 		WebSuite.getWebSocketHandler().registerEvent("register", (socket, data, address) => {
+			console.log("Die Ableitung von e^x ist e^x");
 			WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='registration'", [address, global.TimeUtil.currentTime() - 12 * 60 * 60 * 1000]).then((count) => {
 				if (parseInt(count[0].count) < 3) {
 					const secretKey = require("../../../config.json").secretKey;
-					const verifiyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
+					const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
 
-					request(verifiyUrl, (err, response, body) => {
+					request(verifyUrl, (err, response, body) => {
 						body = JSON.parse(body);
 
 						if (body.success !== undefined && !body.success) {
@@ -26,37 +27,24 @@ class Register {
 						global.UserUtil.usernameValid(data.username).then(() => {
 							global.UserUtil.emailValid(data.email).then(() => {
 								global.UserUtil.usernameAvailable(data.username).then(() => {
-									global.UserUtil.emailAvailable(data.email).then(() => {
-										const salt = global.CryptoUtil.generateSalt(64);
-										const password = global.CryptoUtil.hashPassword(data.password, salt);
-										WebSuite.getDatabase().query("INSERT INTO wsUser(username, email, password) VALUES(?, ?, ?)", [data.username, data.email, password]).then((insert) => {
+									global.UserUtil.emailAvailable(data.email).then(async () => {
+
+										const hash = await CryptoUtil.hash(data.password);
+										WebSuite.getDatabase().query("INSERT INTO wsUser(username, email, password) VALUES(?, ?, ?)", [data.username, data.email, hash]).then((insert) => {
 											const userID = insert.insertId;
+												let sessionID = Date.now().toString(36) + "_";
+												// Can this generate the same sessionID multiple times?
+												const possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
+												for (let i = 0; i < 32; i++) {
+													sessionID += possible.charAt(Math.floor(Math.random() * possible.length));
+												}
 
-											global.FileUtil.readFile(`${global._dir}/data/userSalts.json`).then((userSalts) => {
-												userSalts = JSON.parse(userSalts);
-												userSalts[userID] = salt;
-
-												global.FileUtil.saveFile(`${global._dir}/data/userSalts.json`, JSON.stringify(userSalts, null, 2)).then(() => {
-													let sessionID = Date.now().toString(36) + "_";
-													// Can this generate the same sessionID multiple times?
-													const possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-";
-													for (let i = 0; i < 32; i++) {
-														sessionID += possible.charAt(Math.floor(Math.random() * possible.length));
-													}
-
-													let expire = Date.now() + 8 * 60 * 60 * 1000;
-													WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, clientID) VALUES (?, ?, ?, ?, ?)", [sessionID, userID, "new device", expire, socket]).then((session) => {
-														WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
-															userID: userID,
-															username: data.username,
-															sessionID: sessionID
-														});
-													}).catch((err) => {
-														WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
-															err: "servererror",
-															id: -1
-														});
-														WebSuite.getLogger().error(err);
+												let expire = Date.now() + 8 * 60 * 60 * 1000;
+												WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, clientID) VALUES (?, ?, ?, ?, ?)", [sessionID, userID, "new device", expire, socket]).then((session) => {
+													WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
+														userID: userID,
+														username: data.username,
+														sessionID: sessionID
 													});
 												}).catch((err) => {
 													WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
@@ -65,13 +53,6 @@ class Register {
 													});
 													WebSuite.getLogger().error(err);
 												});
-											}).catch((err) => {
-												WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
-													err: "servererror",
-													id: -1
-												});
-												WebSuite.getLogger().error(err);
-											});
 										}).catch((err) => {
 											WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
 												err: "servererror",

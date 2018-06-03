@@ -87,7 +87,7 @@
 		},
 		created() {
 			this.$root.rendered = true;
-			sio().once("register", (data) => {
+			sio().on("register", (data) => {
 				this.registering = "";
 				if (data.err) {
 					this.err = {
@@ -107,6 +107,10 @@
 					this.$router.push("/member/user/" + data.userID + "-" + data.username);
 				}
 			});
+		},
+		beforeDestroy() {
+			// Unregister socket-Listener
+			sio().off("register");
 		}
 	};
 </script>

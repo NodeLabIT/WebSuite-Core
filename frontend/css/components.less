@@ -1,16 +1,10 @@
-body {
-	/* Colors */
-	--main_text: #545454;
-	--main_blue: #1560b8;
-	--main_accent: #5a5e69;
-}
+@import 'colors';
 
 .dark-body {
 	background: #484c56;
-	--main_blue: #2196f3;
 
 	footer {
-		background: var(--main_accent);
+		background: @mainAccent;
 
 		a {
 			color: #dadada !important;
@@ -44,11 +38,11 @@ body {
 	}
 
 	.highlighted {
-		background: var(--main_accent) !important;
+		background: @mainAccent !important;
 	}
 
 	.category {
-		background: var(--main_accent) !important;
+		background: @mainAccent !important;
 
 		.cat-row:last-of-type {
 			border-bottom: 0 !important;
@@ -56,7 +50,7 @@ body {
 	}
 
 	.cat-sidebar {
-		background: var(--main_accent) !important;
+		background: @mainAccent !important;
 
 		table {
 			color: #dadada !important;
@@ -69,7 +63,7 @@ body {
 
 	.notification {
 		.content {
-			background: var(--main_accent) !important;
+			background: @mainAccent !important;
 			border: 0 !important;
 
 			.row:nth-child(odd) {
@@ -130,7 +124,7 @@ body {
 
 	.highlighted {
 		padding: 40px;
-		border-top: var(--main_blue) 2px solid;
+		border-top: @mainBlue 2px solid;
 		background: white;
 	}
 
@@ -213,7 +207,7 @@ body {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 10px 0;
-	color: var(--main_text);
+	color: @mainText;
 
 	&.white {
 		color: white;
@@ -239,7 +233,7 @@ h3 {
 .maintext {
 	font-size: 15px;
 	line-height: 24px;
-	color: var(--main_text);
+	color: @mainText;
 	margin-bottom: 10px;
 
 	&.small {
@@ -298,7 +292,7 @@ form {
 		background: transparent;
 		border: 0;
 		outline: none;
-		color: var(--main_text);
+		color: @mainText;
 
 		&:focus ~ span:after {
 			transform: scaleX(1);
@@ -309,7 +303,7 @@ form {
 		}
 
 		&[type=checkbox]:checked + .checkbox:after {
-			background: var(--main_blue);
+			background: @mainBlue;
 			left: 20px;
 		}
 
@@ -319,7 +313,7 @@ form {
 			}
 
 			& + .radio:before {
-				border-color: var(--main_blue);
+				border-color: @mainBlue;
 			}
 		}
 
@@ -342,7 +336,7 @@ form {
 				height: 20px;
 				width: 20px;
 				border-radius: 100px;
-				background: var(--main_blue);
+				background: @mainBlue;
 				cursor: pointer;
 				-webkit-appearance: none;
 				-moz-appearance: none;
@@ -364,7 +358,7 @@ form {
 				height: 20px;
 				width: 20px;
 				border-radius: 100px;
-				background: var(--main_blue);
+				background: @mainBlue;
 				cursor: pointer;
 				-webkit-appearance: none;
 				-moz-appearance: none;
@@ -379,7 +373,7 @@ form {
 	label {
 		font-size: 16px;
 		line-height: 24px;
-		color: var(--main_text);
+		color: @mainText;
 		cursor: pointer;
 
 		&.checkbox {
@@ -403,7 +397,7 @@ form {
 				height: 20px;
 				position: absolute;
 				border-radius: 100px;
-				background: var(--main_text);
+				background: @mainText;
 				left: -5px;
 				display: block;
 				content: '';
@@ -422,7 +416,7 @@ form {
 			&:before {
 				height: 15px;
 				width: 15px;
-				border: 2px solid var(--main_accent);
+				border: 2px solid @mainAccent;
 				border-radius: 100px;
 				display: inline-block;
 				content: '';
@@ -444,7 +438,7 @@ form {
 				height: 7px;
 				content: '';
 				transform: scale(0);
-				background: var(--main_blue);
+				background: @mainBlue;
 				-webkit-transition: .3s;
 				-moz-transition: .3s;
 				-ms-transition: .3s;
@@ -461,7 +455,7 @@ form {
 		&:before {
 			width: 100%;
 			height: 1px;
-			background: var(--main_accent);
+			background: @mainAccent;
 			display: block;
 			content: '';
 		}
@@ -469,7 +463,7 @@ form {
 		&:after {
 			width: 100%;
 			height: 2px;
-			background: var(--main_blue);
+			background: @mainBlue;
 			display: block;
 			content: '';
 			transform: scaleX(0);
@@ -491,7 +485,7 @@ form {
 
 /* Mainbutton */
 .mainbutton {
-	background: var(--main_blue);
+	background: @mainBlue;
 	padding: 14px 24px;
 	color: white;
 	font-size: 14px;
@@ -541,7 +535,7 @@ table {
 	th, td {
 		padding: 15px;
 		border-right: 1px #ddd solid;
-		color: var(--main_text);
+		color: @mainText;
 		text-align: left;
 
 		i {

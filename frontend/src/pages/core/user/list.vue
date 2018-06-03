@@ -64,6 +64,10 @@
 			userUrl(userID, username) {
 				return `/user/profile/${userID}-${this.$root.$options.filters.urlify(username)}`;
 			}
+		},
+		beforeDestroy() {
+			// Unregister socket-Listener
+			sio().off("user-list");
 		}
 	};
 </script>
