@@ -33,6 +33,7 @@
         "FileUtil": false,
         "TimeUtil": false,
         "UserUtil": false,
-        "_dir": false
+        "_dir": false,
+        "$": false
     }
 }
