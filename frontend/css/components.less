@@ -1,78 +1,5 @@
 @import 'colors';
 
-.dark-body {
-	background: #484c56;
-
-	footer {
-		background: @mainAccent;
-
-		a {
-			color: #dadada !important;
-		}
-	}
-
-	td, th {
-		color: #dadada;
-	}
-
-	.maintext {
-		color: #dadada;
-	}
-
-	form {
-		span:before {
-			background: #dadada;
-		}
-
-		input, select, textarea {
-			color: #dadada;
-		}
-
-		label {
-			color: #dadada;
-		}
-	}
-
-	input::placeholder {
-		color: #dadada;
-	}
-
-	.highlighted {
-		background: @mainAccent !important;
-	}
-
-	.category {
-		background: @mainAccent !important;
-
-		.cat-row:last-of-type {
-			border-bottom: 0 !important;
-		}
-	}
-
-	.cat-sidebar {
-		background: @mainAccent !important;
-
-		table {
-			color: #dadada !important;
-		}
-	}
-
-	h1, h2, h3, h4, h5, h6 {
-		color: #dadada;
-	}
-
-	.notification {
-		.content {
-			background: @mainAccent !important;
-			border: 0 !important;
-
-			.row:nth-child(odd) {
-				background: #646873 !important;
-			}
-		}
-	}
-}
-
 /* NoMargin */
 &.noMarginTop {
 	margin-top: 0 !important;
@@ -207,7 +134,7 @@
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 10px 0;
-	color: @mainText;
+	color: @baseColor;
 
 	&.white {
 		color: white;
@@ -233,7 +160,7 @@ h3 {
 .maintext {
 	font-size: 15px;
 	line-height: 24px;
-	color: @mainText;
+	color: @baseColor;
 	margin-bottom: 10px;
 
 	&.small {
@@ -292,7 +219,7 @@ form {
 		background: transparent;
 		border: 0;
 		outline: none;
-		color: @mainText;
+		color: @baseColor;
 
 		&:focus ~ span:after {
 			transform: scaleX(1);
@@ -373,7 +300,7 @@ form {
 	label {
 		font-size: 16px;
 		line-height: 24px;
-		color: @mainText;
+		color: @baseColor;
 		cursor: pointer;
 
 		&.checkbox {
@@ -397,7 +324,7 @@ form {
 				height: 20px;
 				position: absolute;
 				border-radius: 100px;
-				background: @mainText;
+				background: @baseColor;
 				left: -5px;
 				display: block;
 				content: '';
@@ -416,7 +343,7 @@ form {
 			&:before {
 				height: 15px;
 				width: 15px;
-				border: 2px solid @mainAccent;
+				border: 2px solid @mainBlue;
 				border-radius: 100px;
 				display: inline-block;
 				content: '';
@@ -455,7 +382,7 @@ form {
 		&:before {
 			width: 100%;
 			height: 1px;
-			background: @mainAccent;
+			background: @mainBlue;
 			display: block;
 			content: '';
 		}
@@ -535,7 +462,7 @@ table {
 	th, td {
 		padding: 15px;
 		border-right: 1px #ddd solid;
-		color: @mainText;
+		color: @baseColor;
 		text-align: left;
 
 		i {

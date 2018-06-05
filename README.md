@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/05dfdb44e89241e58d7c7f4a779c6eef)](https://www.codacy.com/app/ilouHD/WebSuite-Core?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NodeLabIT/WebSuite-Core&amp;utm_campaign=Badge_Grade)
+
 # WebSuite
 Die WebSuite ist ein Content-Management-System mit neuester Technik. Die Verbindung von Node.js, socket.io und Vue.js sorgt dabei für ein modernes System, das eine unvergleichbare Einzigartigkeit und Interaktion bietet, wie sie bisher kein CMS erreichen konnte. Inhalte können somit schnell und Live aktualisiert werden und auch erreichen wir mit Vue.js die Möglichkeit auf eine Single-Page-Application.
 

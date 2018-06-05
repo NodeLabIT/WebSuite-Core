@@ -11,9 +11,6 @@
   }
 }
 @media (max-width: 960px) {
-  header #main-nav a {
-    margin: 0 !important;
-  }
   header #main-nav i.fa {
     display: none;
   }
@@ -71,7 +68,6 @@
     display: block !important;
   }
   header #main-nav span {
-    margin: 2px 0 0 0;
     display: block;
   }
   header #main-nav a {
@@ -89,10 +85,9 @@
     display: none;
   }
   header #main-nav a .notification-badge {
-    padding: 0 4px;
     display: inline;
     left: calc(100% + 5px) !important;
-    top: 2px !important;
+    top: 4px !important;
     position: absolute;
   }
   .grid .forum-box {
@@ -178,35 +173,29 @@
   }
   header #main-nav .dropdown {
     display: block !important;
-    margin-top: 10px;
   }
   header #main-nav span {
-    margin: 2px 0 0 0;
     display: block;
   }
-  header #main-nav span a {
+  header #main-nav a {
     display: table;
     padding: 6px 0;
     margin: 0 !important;
   }
-  header #main-nav span a:first-of-type {
+  header #main-nav a:first-of-type {
     margin-top: 0 !important;
   }
-  header #main-nav span a:last-of-type {
+  header #main-nav a:last-of-type {
     margin-bottom: 0 !important;
   }
-  header #main-nav span a i {
+  header #main-nav a i {
     display: none;
   }
-  header #main-nav span a .notification-badge {
-    height: 22px !important;
-    width: 22px !important;
-    line-height: 22px !important;
-    top: 0 !important;
-    right: 0 !important;
-    float: right;
-    position: relative !important;
-    margin-left: 25px;
+  header #main-nav a .notification-badge {
+    display: inline;
+    left: calc(100% + 5px) !important;
+    top: 4px !important;
+    position: absolute;
   }
   .grid .forum-box {
     display: block !important;
@@ -284,35 +273,29 @@
   }
   #main-nav .dropdown {
     display: block !important;
-    margin-top: 10px;
   }
   #main-nav span {
-    margin: 2px 0 0 0;
     display: block;
   }
-  #main-nav span a {
+  #main-nav a {
     display: table;
     padding: 6px 0;
     margin: 0 !important;
   }
-  #main-nav span a:first-of-type {
+  #main-nav a:first-of-type {
     margin-top: 0 !important;
   }
-  #main-nav span a:last-of-type {
+  #main-nav a:last-of-type {
     margin-bottom: 0 !important;
   }
-  #main-nav span a i {
+  #main-nav a i {
     display: none;
   }
-  #main-nav span a .notification-badge {
-    height: 22px !important;
-    width: 22px !important;
-    line-height: 22px !important;
-    top: 0 !important;
-    right: 0 !important;
-    float: right;
-    position: relative !important;
-    margin-left: 25px;
+  #main-nav a .notification-badge {
+    display: inline;
+    left: calc(100% + 5px) !important;
+    top: 4px !important;
+    position: absolute;
   }
   #sub-nav .right {
     width: auto !important;
