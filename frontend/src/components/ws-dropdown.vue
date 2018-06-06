@@ -31,6 +31,10 @@
 		],
 		methods: {
 			dropdown(id) {
+				if($("#main-nav").hasClass("visible") && $(".dark-overlay").hasClass("visible")) {
+					$("#main-nav").removeClass("visible");
+					$(".dark-overlay").removeClass("visible");
+				}
 				if (this.$root.dropdown === id) {
 					this.$root.dropdown = undefined;
 				} else {

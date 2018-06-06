@@ -63,7 +63,18 @@
 			}
 
 			.notification {
-				display: none;
+				width: 100% !important;
+				max-height: 100%;
+				z-index: 1000;
+				overflow-y: scroll;
+				position: fixed !important;
+				left: 0;
+				top: 0;
+				padding-top: 0 !important;
+
+				&::before {
+					display: none !important;
+				}
 			}
 
 			.right {
@@ -201,7 +212,18 @@
 			}
 
 			.notification {
-				display: none;
+				width: 80% !important;
+				max-height: 100%;
+				z-index: 1000;
+				overflow-y: scroll;
+				position: fixed !important;
+				left: 0;
+				top: 0;
+				padding-top: 0 !important;
+
+				&::before {
+					display: none !important;
+				}
 			}
 
 			.right {
@@ -327,7 +349,18 @@
 		}
 
 		.notification {
-			display: none;
+			width: 50% !important;
+			max-height: 100%;
+			z-index: 1000;
+			overflow-y: scroll;
+			position: fixed !important;
+			left: 0;
+			top: 0;
+			padding-top: 0 !important;
+
+			&::before {
+				display: none !important;
+			}
 		}
 
 		.right {
