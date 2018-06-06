@@ -12,6 +12,9 @@
 			<div class="content">
 				<slot>Standard</slot>
 			</div>
+			<a class="close-dropdown" @click="closeDropdown">
+				schließen
+			</a>
 		</div>
 	</div>
 </template>

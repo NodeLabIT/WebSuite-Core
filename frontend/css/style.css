@@ -529,6 +529,15 @@ header #main-nav .container .dropdown .dropdown-content.visible {
 }
 header #main-nav .container .dropdown .dropdown-content.notification {
   width: 390px;
+  z-index: 1000;
+}
+header #main-nav .container .dropdown .dropdown-content.notification .close-dropdown {
+  background: #edf3f8;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  display: block;
+  margin: 0;
+  padding: 6px 0;
 }
 header #main-nav .container .dropdown .dropdown-content:before {
   position: absolute;

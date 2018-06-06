@@ -60,6 +60,12 @@
   header #main-nav .notification::before {
     display: none !important;
   }
+  header #main-nav .notification .grid .row {
+    display: flex;
+  }
+  header #main-nav .notification a {
+    display: inline;
+  }
   header #main-nav .right {
     float: none;
     margin: 0;
@@ -112,9 +118,6 @@
     display: block;
     margin: 0 0;
   }
-  .grid .row .col {
-    margin: 15px 0;
-  }
   .cat-row {
     border: 0 !important;
   }
@@ -165,7 +168,7 @@
     left: 0;
   }
   header #main-nav .notification {
-    width: 80% !important;
+    width: 100% !important;
     max-height: 100%;
     z-index: 1000;
     overflow-y: scroll;
@@ -176,6 +179,12 @@
   }
   header #main-nav .notification::before {
     display: none !important;
+  }
+  header #main-nav .notification .grid .row {
+    display: flex;
+  }
+  header #main-nav .notification a {
+    display: inline;
   }
   header #main-nav .right {
     float: none;
@@ -229,9 +238,6 @@
     display: block;
     margin: 0;
   }
-  .grid .row .col {
-    margin: 15px 0;
-  }
   .cat-row {
     border: 0 !important;
   }
@@ -275,7 +281,7 @@
     left: 0;
   }
   #main-nav .notification {
-    width: 50% !important;
+    width: 100% !important;
     max-height: 100%;
     z-index: 1000;
     overflow-y: scroll;
@@ -286,6 +292,15 @@
   }
   #main-nav .notification::before {
     display: none !important;
+  }
+  #main-nav .notification .grid .row {
+    display: flex;
+  }
+  #main-nav .notification a {
+    display: inline;
+  }
+  #main-nav .notification .content {
+    max-height: 100%;
   }
   #main-nav .right {
     float: none;

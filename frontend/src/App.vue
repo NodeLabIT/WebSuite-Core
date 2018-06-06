@@ -27,10 +27,80 @@
 									 :badge="'1'" :icon="'fa-bell'">
 							<div class="grid">
 								<div class="row">
-									<div class="col col8">
+									<div class="col">
 										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
 									</div>
-									<div class="col col">
+									<div class="col">
+										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
+										</h5>
+										<h6>Vom 07.10.2017</h6>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
+									</div>
+									<div class="col">
+										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
+										</h5>
+										<h6>Vom 07.10.2017</h6>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
+									</div>
+									<div class="col">
+										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
+										</h5>
+										<h6>Vom 07.10.2017</h6>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
+									</div>
+									<div class="col">
+										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
+										</h5>
+										<h6>Vom 07.10.2017</h6>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
+									</div>
+									<div class="col">
+										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
+										</h5>
+										<h6>Vom 07.10.2017</h6>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
+									</div>
+									<div class="col">
+										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
+										</h5>
+										<h6>Vom 07.10.2017</h6>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
+									</div>
+									<div class="col">
+										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
+										</h5>
+										<h6>Vom 07.10.2017</h6>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
+									</div>
+									<div class="col">
 										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
 										</h5>
 										<h6>Vom 07.10.2017</h6>
@@ -42,10 +112,10 @@
 									 :icon="'fa-comments-o'">
 							<div class="grid">
 								<div class="row">
-									<div class="col col8">
+									<div class="col">
 										<img src="images/avatars/58-446b0bd040e05628ad190369e7ed8317a7d2cfc1.jpg">
 									</div>
-									<div class="col col">
+									<div class="col">
 										<h5><a href="#">Marcel Reif</a> gefällt Ihr Beitrag im Thema <a href="#">Software-Update</a>
 										</h5>
 										<h6>Vom 07.10.2017</h6>
