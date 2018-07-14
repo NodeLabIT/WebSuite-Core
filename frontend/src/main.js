@@ -1,8 +1,8 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-import VueCookies from "vue-cookies";
 
 import App from "./App.vue";
+
+import router from './router';
 
 import LinkComponent from "./components/ws-link.vue";
 import UserInfoBox from "./components/ws-box-userinfo.vue";
@@ -10,26 +10,7 @@ import Dropdown from "./components/ws-dropdown.vue";
 
 import Config from "./config/settings.json";
 
-const routesConfig = require("./config/routes.json");
-
 // Components
-
-Vue.use(VueRouter);
-Vue.use(VueCookies);
-
-let routes = [];
-
-for (let route of routesConfig) {
-	routes.push({
-		path: route.path,
-		component: require("./pages/" + route.componentUrl + ".vue")
-	});
-}
-
-const router = new VueRouter({
-	routes,
-	mode: "history"
-});
 
 router.beforeEach((to, from, next) => {
 	router.app.rendered = false;

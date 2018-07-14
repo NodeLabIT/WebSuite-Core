@@ -17,6 +17,7 @@
 		<!-- REQUIRED LINKS -->
 		<link href="/css/style.css" rel="stylesheet" type="text/css">
 		<link href="/css/mobile.css" rel="stylesheet" type="text/css">
+		<link href="/css/loader.css" rel="stylesheet" type="text/css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,700,800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700" rel="stylesheet" type="text/css">
 		<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -30,14 +31,22 @@
 	</head>
 	<body>
 		<div id="websuite">
-			Bitte aktiviere JavaScript!
+			<div class="ploader-container">
+				<div>
+					<div class="ploader"></div>
+					<div class="pstatus">
+						Daten werden geladen...
+					</div>
+					<div class="pinfo">
+						<b>Information:</b> JavaScript und Cookies müssen aktiviert sein
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 
 	<!-- REQUIRED SCRIPTS -->
-	<script src="/javascript/jquery_3.2.1.js"></script>
 	<script src="/socket.io.js"></script>
-	<script src="/javascript/main.js"></script>
 	<script src="/dist/websuite.js"></script>
 
 	<!-- OPTIONAL/EXTRA SCRIPTS -->

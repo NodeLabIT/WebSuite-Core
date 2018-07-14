@@ -1,0 +1,83 @@
+.ploader-container {
+	height: 100vh !important;
+
+	background: #212121;
+	color: #FFFFFF;
+
+	> div {
+		display: inline;
+		width: 270px;
+		margin: 0;
+		position: absolute;
+
+		top: 50%;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%, -50%);
+
+		.ploader {
+			margin-left: ~"calc(50% - 5px)";
+			width: 10px;
+			height: 10px;
+			border-radius: 5px;
+			background-color: #252a3b;
+			color: #1976D2;
+			animation: flashing .6s infinite linear alternate;
+			animation-delay: .2s;
+
+			&:before, &:after {
+				margin-left: ~"calc(50% - 5px)";
+				content: '';
+				display: inline-block;
+				position: absolute;
+				top: 0;
+			}
+
+			&:before {
+				padding: 0;
+				left: -15px;
+				width: 10px;
+				height: 10px;
+				border-radius: 5px;
+				background-color: #252a3b;
+				color: #1976D2;
+				animation: flashing .6s infinite alternate;
+				animation-delay: 0s;
+			}
+
+			&:after{
+				left: 15px;
+				width: 10px;
+				height: 10px;
+				border-radius: 5px;
+				background-color: #252a3b;
+				color: #1976D2;
+				animation: flashing .6s infinite alternate;
+				animation-delay: .4s;
+			}
+		}
+
+		.pstatus {
+			margin-top: 24px;
+			font-size: 11pt;
+			text-align: center;
+			font-weight: 100;
+		}
+
+		.pinfo {
+			margin-top: 40px;
+			color: #5a5a5a;
+			font-size: 10pt;
+			text-align: center;
+		}
+	}
+}
+
+@keyframes flashing {
+	0% {
+		background-color: #1976D2;
+	}
+	100% {
+		background-color: #252a3b;
+	}
+}
