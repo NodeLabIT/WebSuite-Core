@@ -2,13 +2,15 @@ import Vue from "vue";
 
 import App from "./App.vue";
 
-import router from './router';
+import router from "./router";
 
 import LinkComponent from "./components/ws-link.vue";
 import UserInfoBox from "./components/ws-box-userinfo.vue";
 import Dropdown from "./components/ws-dropdown.vue";
 
 import Config from "./config/settings.json";
+
+import load from "./tmp/load.js";
 
 // Components
 
@@ -21,6 +23,7 @@ const language = require("../language/de_DE");
 let socket;
 
 // TODO: Disallow connection for Bots to prevent crawling-errors
+// TODO: Check for local storage (active session) and add them for request
 if (!navigator.userAgent.includes("Googlebot")) {
 	if (Config.connectionUrl !== "") {
 		socket = io(Config.connectionUrl);
@@ -64,8 +67,7 @@ function init() {
 			page: {},
 			user: {},
 			dropdown: "",
-			rendered: false,
-			autoLogin: false
+			rendered: false
 		},
 		watch: {
 			"rendered": function (value) {
@@ -83,40 +85,6 @@ function init() {
 		created() {
 			this.page.title = document.title;
 
-			if (this.$cookies.isKey("userID") && this.$cookies.isKey("sessionID")) {
-				sio().emit("auto-login", {
-					userID: this.$cookies.get("userID"),
-					sessionID: this.$cookies.get("sessionID")
-				});
-			} else {
-				this.autoLogin = true;
-				this.$root.$emit("loaded");
-			}
-
-			sio().on("auto-login", data => {
-				if (data.err) {
-					this.$cookies.remove("userID");
-					this.$cookies.remove("sessionID");
-					return;
-				}
-				this.loggedIn = true;
-				this.user = {
-					userID: data.userID,
-					username: data.username
-				};
-
-				this.autoLogin = true;
-				this.$root.$emit("loaded");
-
-				if (data.stay === 1) {
-					this.$cookies.set("userID", data.userID, 90 * 24 * 60 * 60);
-					this.$cookies.set("sessionID", data.sessionID, 90 * 24 * 60 * 60);
-				} else {
-					this.$cookies.set("userID", data.userID, 8 * 60 * 60);
-					this.$cookies.set("sessionID", data.sessionID, 8 * 60 * 60);
-				}
-			});
-
 			sio().emit("page-default-data", {});
 			sio().on("page-default-data", data => {
 				if (data.err) {
@@ -128,4 +96,4 @@ function init() {
 	});
 }
 
-init();
+//init();

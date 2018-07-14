@@ -31,13 +31,13 @@
 	</head>
 	<body>
 		<div id="websuite">
-			<div class="ploader-container">
+			<div class="pre-loader-container">
 				<div>
-					<div class="ploader"></div>
-					<div class="pstatus">
+					<div class="pre-loader"></div>
+					<div class="pre-status">
 						Daten werden geladen...
 					</div>
-					<div class="pinfo">
+					<div class="pre-info">
 						<b>Information:</b> JavaScript und Cookies müssen aktiviert sein
 					</div>
 				</div>
