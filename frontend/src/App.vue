@@ -6,7 +6,7 @@
 				<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
 			</svg>
 		</div>
-		<div class="balloon" id="no-connection">
+		<div class="balloon" v-if="noConnection === true">
 			<h4>Keine Verbindung</h4>
 			Die Verbindung zum Server wurde getrennt. Es wird versucht, die Verbindung erneut aufzubauen. Dies kann
 			unter Umständen einige Zeit in Anspruch nehmen.
@@ -158,7 +158,7 @@
 
 		<footer>
 			<div class="container">
-				<ws-link v-for="link in footerMenu.left" :link="link"></ws-link>
+				<ws-link v-for="link in footerMenu.left"  :link="link"></ws-link>
 
 				<div class="container right">
 					<ws-link v-for="link in footerMenu.right" :link="link"></ws-link>
@@ -180,7 +180,9 @@
 			return {
 				mainMenu,
 				userMenu,
-				footerMenu
+				footerMenu,
+
+				noConnection: false
 			};
 		},
 		methods: {
@@ -195,9 +197,9 @@
 		},
 		created() {
 			sio().on("disconnect", (reason) => {
-				$(".balloon#no-connection").show();
-				sio().on("reconnect", (attemptNumber) => {
-					$(".balloon#no-connection").hide();
+				this.noConnection = true;
+				sio().once("reconnect", (attemptNumber) => {
+					this.noConnection = false;
 				});
 			});
 		}

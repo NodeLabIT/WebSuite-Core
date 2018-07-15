@@ -96,4 +96,17 @@ function init() {
 	});
 }
 
-//init();
+socket.on("connect", () => {
+	if(window.localStorage.getItem("user") !== null) {
+		document.getElementById("loading-status").innerText = "Anmeldung wird ausgeführt...";
+		const user = JSON.parse(window.localStorage.getItem("user"));
+		socket.emit("init", {auth: user});
+	} else {
+		document.getElementById("loading-status").innerText = "Informationen werden abgerufen...";
+		socket.emit("init", {});
+	}
+});
+
+socket.on("init", (data) => {
+	init();
+});

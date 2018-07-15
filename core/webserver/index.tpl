@@ -34,8 +34,8 @@
 			<div class="pre-loader-container">
 				<div>
 					<div class="pre-loader"></div>
-					<div class="pre-status">
-						Daten werden geladen...
+					<div class="pre-status" id="loading-status">
+						Verbindung wird hergestellt...
 					</div>
 					<div class="pre-info">
 						<b>Information:</b> JavaScript und Cookies müssen aktiviert sein

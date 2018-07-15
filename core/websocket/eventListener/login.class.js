@@ -102,7 +102,7 @@ class Login {
 			});
 		});
 
-		WebSuite.getWebSocketHandler().registerEvent("auto-login", (socket, data, address) => {
+		/**WebSuite.getWebSocketHandler().registerEvent("auto-login", (socket, data, address) => {
 			WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='autologin'", [address, global.TimeUtil.currentTime() - 24 * 60 * 60 * 1000]).then((count) => {
 				if(parseInt(count[0].count) < 3) {
 					WebSuite.getUserHandler().getUserByUserID(data.userID).then((user) => {
@@ -187,7 +187,7 @@ class Login {
 				WebSuite.getWebSocketHandler().sendToClient(socket, "auto-login", {err: "servererror", id: -1});
 				WebSuite.getLogger().error(err);
 			});
-		});
+		});*/
 
 		WebSuite.getWebSocketHandler().registerEvent("disconnect", (socket, data) => {
 			WebSuite.getDatabase().query("UPDATE wsUserSessions SET clientID=null WHERE clientID=?", [socket]).then(() => {}).catch((err) => {
