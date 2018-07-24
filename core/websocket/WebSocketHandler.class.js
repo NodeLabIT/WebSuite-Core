@@ -16,7 +16,7 @@ class WebSocketHandler {
 		// Listen for new messages from the master
 		process.on("message", (message) => {
 			// Parse Message to JSON-Object
-			message = JSON.parse(message);
+			//message = JSON.parse(message);
 
 			// Check, if type of sent message from master is 'sioPacket'
 			if(message.type === "sioPacket") {

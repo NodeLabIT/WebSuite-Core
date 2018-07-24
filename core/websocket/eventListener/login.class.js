@@ -43,7 +43,7 @@ class Login {
 											expire = Date.now() + 8 * 60 * 60 * 1000;
 										}
 
-										WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, clientID, stay) VALUES (?, ?, ?, ?, ?, ?)", [sessionID, userID, address, expire, socket, data.stay]).then(() => {
+										WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, securityToken, stay) VALUES (?, ?, ?, ?, ?, ?)", [sessionID, userID, address, expire, socket, data.stay]).then(() => {
 											WebSuite.getWebSocketHandler().sendToClient(socket, "login", {
 												userID,
 												username: password[0].username,
@@ -190,7 +190,7 @@ class Login {
 		});*/
 
 		WebSuite.getWebSocketHandler().registerEvent("disconnect", (socket, data) => {
-			WebSuite.getDatabase().query("UPDATE wsUserSessions SET clientID=null WHERE clientID=?", [socket]).then(() => {}).catch((err) => {
+			WebSuite.getDatabase().query("UPDATE wsUserSessions SET securityToken=null WHERE securityToken=?", [socket]).then(() => {}).catch((err) => {
 				WebSuite.getLogger().error(err);
 			});
 		});

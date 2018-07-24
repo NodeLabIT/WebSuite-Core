@@ -47,12 +47,12 @@ if (cluster.isMaster) {
 		io.on("connection", (socket) => {
 			socket.on("disconnect", () => {
 				randomWorker((worker) => {
-					worker.send(JSON.stringify({
+					worker.send({
 						type: "sioPacket",
 						clientID: socket.conn.id,
 						packet: "disconnect",
 						address: socket.handshake.address
-					}));
+					});
 				});
 			});
 			socket.on("*", (packet) => {
@@ -65,12 +65,12 @@ if (cluster.isMaster) {
 					});
 				} else {
 					randomWorker((worker) => {
-						worker.send(JSON.stringify({
+						worker.send({
 							type: "sioPacket",
 							clientID: socket.conn.id,
 							packet,
 							address: socket.handshake.address
-						}));
+						});
 					});
 				}
 			});
@@ -80,26 +80,26 @@ if (cluster.isMaster) {
 			if (unhandledPackets.length > 0) {
 				unhandledPackets.forEach((packet) => {
 					randomWorker((worker) => {
-						worker.send(JSON.stringify(packet));
+						worker.send(packet);
 					});
 				});
 			}
 		};
 
 		cluster.on("message", (worker, message, handle) => {
-			const json = JSON.parse(message);
+			//const json = JSON.parse(message);
 
-			if (json.type && json.type === "sioPacket") {
-				if (json.clientID && json.packet && json.packet.packetName && json.packet.packetData) {
-					if (json.clientID === "broadcast") {
-						io.emit(json.packet.packetName, json.packet.packetData);
+			if (message.type && message.type === "sioPacket") {
+				if (message.clientID && message.packet && message.packet.packetName && message.packet.packetData) {
+					if (message.clientID === "broadcast") {
+						io.emit(message.packet.packetName, message.packet.packetData);
 					} else {
-						io.to(json.clientID).emit(json.packet.packetName, json.packet.packetData);
+						io.to(message.clientID).emit(message.packet.packetName, message.packet.packetData);
 					}
 				}
 			}
-			if (json.type && json.type === "system") {
-				if (json.action && json.action === "restart") {
+			if (message.type && message.type === "system") {
+				if (message.action && message.action === "restart") {
 					restarting = true;
 					io.emit("restart", {});
 					setTimeout(() => {

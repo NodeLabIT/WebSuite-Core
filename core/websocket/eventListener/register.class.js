@@ -40,7 +40,7 @@ class Register {
 												}
 
 												let expire = Date.now() + 8 * 60 * 60 * 1000;
-												WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, clientID) VALUES (?, ?, ?, ?, ?)", [sessionID, userID, "new device", expire, socket]).then((session) => {
+												WebSuite.getDatabase().query("INSERT INTO wsUserSessions(sessionID, userID, sessionDescription, expires, securityToken) VALUES (?, ?, ?, ?, ?)", [sessionID, userID, "new device", expire, socket]).then((session) => {
 													WebSuite.getWebSocketHandler().sendToClient(socket, "register", {
 														userID: userID,
 														username: data.username,

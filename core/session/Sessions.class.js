@@ -4,44 +4,44 @@ const User = require("../user/User.class");
 
 class Sessions {
 
-	getUserBySessionID(sessionID) {
+	getUserID(sessionID) {
 		return new Promise((resolve, reject) => {
-			WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE sessionID=?", [sessionID]).then((result) => {
-				if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
-					resolve(null);
-				} else {
-					resolve(new User(result[0].userID));
+			process.send(JSON.stringify(
+				{
+					type: "sioUserRequest",
+					sessionID: sessionID
 				}
-			}).catch((err) => {
-				reject(new Error("no data found"));
+			));
+
+			process.on("message", (message) => {
+				message = JSON.parse(message);
+
+				if(message.type === "sioUserRequest") {
+					if(message.sessionID === sessionID) {
+						
+					}
+				}
 			});
 		});
 	}
 
-	getUserByClientID(clientID) {
+	getUserSessions(userID) {
 		return new Promise((resolve, reject) => {
-			WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE clientID=?", [clientID]).then((result) => {
-				if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].userID === "undefined") {
-					resolve(null);
-				} else {
-					resolve(new User(result[0].userID));
+			process.send(JSON.stringify(
+				{
+					type: "sioSessionRequest",
+					userID: userID
 				}
-			}).catch((err) => {
-				reject(new Error("no data found"));
-			});
-		});
-	}
+			));
 
-	getSessionIDByUserID(userID) {
-		return new Promise((resolve, reject) => {
-			WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=?", [userID]).then((result) => {
-				if(typeof result === "undefined" || typeof result[0] === "undefined" || typeof result[0].sessionID === "undefined") {
-					resolve(null);
-				} else {
-					resolve(result[0].sessionID);
+			process.on("message", (message) => {
+				message = JSON.parse(message);
+
+				if(message.type === "sioSessionRequest") {
+					if(message.userID === userID) {
+
+					}
 				}
-			}).catch((err) => {
-				reject(new Error("no data found"));
 			});
 		});
 	}

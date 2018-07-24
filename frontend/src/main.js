@@ -63,9 +63,9 @@ function init() {
 		router,
 		render: h => h(App),
 		data: {
-			loggedIn: false,
-			page: {},
-			user: {},
+			loggedIn: load.loggedIn,
+			page: load.page,
+			user: load.user,
 			dropdown: "",
 			rendered: false
 		},
@@ -100,13 +100,21 @@ socket.on("connect", () => {
 	if(window.localStorage.getItem("user") !== null) {
 		document.getElementById("loading-status").innerText = "Anmeldung wird ausgeführt...";
 		const user = JSON.parse(window.localStorage.getItem("user"));
-		socket.emit("init", {auth: user});
+		socket.emit("init", {auth: true, user: user});
 	} else {
 		document.getElementById("loading-status").innerText = "Informationen werden abgerufen...";
-		socket.emit("init", {});
+		socket.emit("init", {auth: false});
 	}
 });
 
 socket.on("init", (data) => {
+	load.page = data.page;
+	if(data.auth.expired === true) {
+		window.localStorage.removeItem("user");
+	}
+	if(data.auth.error === null && data.auth.expired === false && data.auth.user !== null) {
+		load.user = data.auth.user;
+		load.loggedIn = true;
+	}
 	init();
 });

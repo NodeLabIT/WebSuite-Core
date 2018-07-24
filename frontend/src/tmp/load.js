@@ -1,4 +1,5 @@
 let variables = {
+	loggedIn: false,
 	user: {},
 	page: {
 		title: "",
