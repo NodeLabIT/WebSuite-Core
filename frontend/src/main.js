@@ -36,6 +36,8 @@ export function sio() {
 	return socket;
 }
 
+let vue = undefined;
+
 function init() {
 	Vue.filter("translate", (value) => {
 		return typeof language[value] === "undefined" ? value : language[value];
@@ -58,7 +60,7 @@ function init() {
 	Vue.component("ws-box-userinfo", UserInfoBox);
 	Vue.component("ws-dropdown", Dropdown);
 
-	let vue = new Vue({
+	vue = new Vue({
 		el: "#websuite",
 		router,
 		render: h => h(App),
@@ -66,7 +68,7 @@ function init() {
 			loggedIn: load.loggedIn,
 			page: load.page,
 			user: load.user,
-			dropdown: "",
+			dropdown: undefined,
 			rendered: false
 		},
 		watch: {
@@ -97,27 +99,34 @@ function init() {
 }
 
 socket.on("connect", () => {
-	if(window.localStorage.getItem("user") !== null) {
-		document.getElementById("loading-status").innerText = "Anmeldung wird ausgeführt...";
-		const user = JSON.parse(window.localStorage.getItem("user"));
-		socket.emit("init", {auth: true, user: user});
-	} else {
-		document.getElementById("loading-status").innerText = "Informationen werden abgerufen...";
-		socket.emit("init", {auth: false});
+	if(vue === undefined) {
+		if(window.localStorage.getItem("user") !== null) {
+			document.getElementById("loading-status").innerText = "Anmeldung wird ausgeführt...";
+
+			const user = JSON.parse(window.localStorage.getItem("user"));
+			socket.emit("init", {auth: true, user: user});
+		} else {
+			document.getElementById("loading-status").innerText = "Informationen werden abgerufen...";
+
+			socket.emit("init", {auth: false});
+		}
 	}
 });
 
 socket.on("init", (data) => {
-	console.log("test");
 	load.page = data.page;
 	if(data.auth.expired === true) {
 		window.localStorage.removeItem("user");
+
+		load.user = {};
+		load.loggedIn = false;
 	}
-	console.log("test2");
 	if(data.auth.error === null && data.auth.expired === false && data.auth.user !== null) {
 		load.user = data.auth.user;
 		load.loggedIn = true;
 	}
-	console.log("test3");
-	init();
+
+	// Initialize Vue-App when not happened
+	if(vue === undefined)
+		init();
 });

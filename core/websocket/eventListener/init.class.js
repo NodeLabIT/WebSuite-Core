@@ -47,11 +47,13 @@ class Init {
 						throw new Error("missing database-entries");
 					}
 
-					process.send({type: "sioAuth", userID: userI[0].userID, socketID: socket});
+					// add user-session to all workers (for sending passive user-specific
+					process.send({type: "sioAdd", userID: userI[0].userID, sessionID: socket});
 
 					authInfo.user = {};
 					authInfo.user['userID'] = userI[0].userID;
 					authInfo.user['username'] = userI[0].username;
+					authInfo.user['socketID'] = socket;
 					authInfo.user['avatarUrlKey'] = userI[0].userID + "-" + userI[0].avatarChanged;
 				}
 				const pageOptions = JSON.parse(await FileUtil.readFile(`${_dir}/data/options.json`));
@@ -69,6 +71,15 @@ class Init {
 				console.error(err);
 				// TODO: handle errors
 			}
+		});
+
+		WebSuite.getWebSocketHandler().registerEvent("re-auth", async (socket, data) => {
+			process.send({type: "sioRemove", sessionID: data.socketID});
+			process.send({type: "sioAdd", userID: data.userID, sessionID: socket});
+		});
+
+		WebSuite.getWebSocketHandler().registerEvent("disconnect", (socket, data) => {
+			process.send({type: "sioRemove", sessionID: socket});
 		});
 	}
 

@@ -844,6 +844,26 @@ footer .container a {
   transform: translate(-50%, 0);
   z-index: 1001;
 }
+.balloon.visible {
+  display: block;
+}
+.balloon#noConnection {
+  position: fixed;
+  background: #212121;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: none;
+}
+.balloon#noConnection > span {
+  position: absolute;
+  max-width: 480px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .balloon h4 {
   color: #fff;
 }

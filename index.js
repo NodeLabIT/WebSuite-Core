@@ -89,7 +89,7 @@ if (cluster.isMaster) {
 		cluster.on("message", (worker, message, handle) => {
 			//const json = JSON.parse(message);
 
-			if (message.type && message.type === "sioPacket") {
+			if (typeof message.type !== "undefined" && message.type === "sioPacket") {
 				if (message.clientID && message.packet && message.packet.packetName && message.packet.packetData) {
 					if (message.clientID === "broadcast") {
 						io.emit(message.packet.packetName, message.packet.packetData);
@@ -98,7 +98,33 @@ if (cluster.isMaster) {
 					}
 				}
 			}
-			if (message.type && message.type === "system") {
+
+			if(typeof message.type !== "undefined" && message.type === "sioAdd") {
+				if(typeof message.userID !== "undefined" && typeof message.sessionID !== "undefined") {
+					eachWorker((worker) => {
+						worker.send({
+							type: "sessionsUpdate",
+							action: "add",
+							userID: message.userID,
+							sessionID: message.sessionID
+						});
+					});
+				}
+			}
+
+			if(typeof message.type !== "undefined" && message.type === "sioRemove") {
+				if(typeof message.sessionID !== "undefined") {
+					eachWorker((worker) => {
+						worker.send({
+							type: "sessionsUpdate",
+							action: "remove",
+							sessionID: message.sessionID
+						});
+					});
+				}
+			}
+
+			if (typeof message.type !== "undefined" && message.type === "system") {
 				if (message.action && message.action === "restart") {
 					restarting = true;
 					io.emit("restart", {});

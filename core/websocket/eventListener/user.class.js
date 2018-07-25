@@ -5,14 +5,14 @@ class User {
 	static listen() {
 		WebSuite.getWebSocketHandler().registerEvent("user-list", async (socket, data) => {
 			try {
-				let user = await WebSuite.getSessions().getUserByClientID(socket);
+				let userID = WebSuite.getSessions().getUserID(socket);
 
 				let hasPermission = null;
 
-				if(user === null) {
+				if(userID === undefined) {
 					hasPermission = await WebSuite.getUserHandler().getGuestGroup().hasPermission("core.frontend.user.list");
 				} else {
-					hasPermission = await user.hasPermission("core.frontend.user.list");
+					hasPermission = await (await WebSuite.getUserHandler().getUserByUserID(userID)).hasPermission("core.frontend.user.list");
 				}
 
 				if(hasPermission === null)
@@ -31,14 +31,14 @@ class User {
 
 		WebSuite.getWebSocketHandler().registerEvent("user-profile", async (socket, data) => {
 			try {
-				let user = await WebSuite.getSessions().getUserByClientID(socket);
+				let userID = WebSuite.getSessions().getUserID(socket);
 
 				let hasPermission = null;
 
-				if(user === null) {
+				if(userID === undefined) {
 					hasPermission = await WebSuite.getUserHandler().getGuestGroup().hasPermission("core.frontend.user.viewProfile");
 				} else {
-					hasPermission = await user.hasPermission("core.frontend.user.viewProfile");
+					hasPermission = await (await WebSuite.getUserHandler().getUserByUserID(userID)).hasPermission("core.frontend.user.viewProfile");
 				}
 
 				if(hasPermission === null)

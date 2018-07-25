@@ -188,12 +188,6 @@ class Login {
 				WebSuite.getLogger().error(err);
 			});
 		});*/
-
-		WebSuite.getWebSocketHandler().registerEvent("disconnect", (socket, data) => {
-			WebSuite.getDatabase().query("UPDATE wsUserSessions SET securityToken=null WHERE securityToken=?", [socket]).then(() => {}).catch((err) => {
-				WebSuite.getLogger().error(err);
-			});
-		});
 	}
 
 	/**

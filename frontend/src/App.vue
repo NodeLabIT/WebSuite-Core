@@ -1,21 +1,25 @@
 <template>
 	<div>
-		<div class="dark-overlay"></div>
+		<div class="dark-overlay" v-bind:class="{ 'visible': $root.$data.dropdown !== undefined || noConnection === true || navBarVisible === true }" ></div>
 		<div class="loader" v-show="$root.rendered === false">
 			<svg class="circular" viewBox="25 25 50 50">
 				<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
 			</svg>
 		</div>
-		<div class="balloon" v-if="noConnection === true">
-			<h4>Keine Verbindung</h4>
-			Die Verbindung zum Server wurde getrennt. Es wird versucht, die Verbindung erneut aufzubauen. Dies kann
-			unter Umständen einige Zeit in Anspruch nehmen.
+		<div class="balloon" id="noConnection" :class="{ 'visible': noConnection === true }">
+			<span>
+				<h4>Keine Verbindung</h4>
+				Die Verbindung zum Server wurde getrennt. Es wird versucht, die Verbindung erneut aufzubauen. Dies kann
+				unter Umständen einige Zeit in Anspruch nehmen.
+
+				Solltest du angemeldet sein gewesen, wirst du erneut angemeldet werden.
+			</span>
 		</div>
 		<div class="helper">
 			<header>
 				<i id="open-menu" @click="openMenu();" class="fa fa-bars mobile-only"></i>
 
-				<nav id="main-nav" class="relative">
+				<nav id="main-nav" class="relative" :class="{ 'visible': navBarVisible === true }">
 					<div class="container right">
 						<i id="close-menu" @click="closeMenu();" class="fa fa-times mobile-only"></i>
 
@@ -24,7 +28,7 @@
 						<ws-link v-for="link in mainMenu" :link="link"></ws-link>
 
 						<ws-dropdown v-if="$root.loggedIn" :title="'Benachrichtigungen'" :id="'notifications'"
-									 :badge="'1'" :icon="'fa-bell'">
+									 :badge="'1'" :icon="'fa-bell'" :class="{  }">
 							<div class="grid">
 								<div class="row">
 									<div class="col">
@@ -182,25 +186,33 @@
 				userMenu,
 				footerMenu,
 
+				navBarVisible: false,
 				noConnection: false
 			};
 		},
 		methods: {
 			openMenu() {
-				$("#main-nav").addClass("visible");
-				$(".dark-overlay").addClass("visible");
+				this.navBarVisible = true;
 			},
 			closeMenu() {
-				$("#main-nav").removeClass("visible");
-				$(".dark-overlay").removeClass("visible");
+				this.navBarVisible = false;
 			}
 		},
 		created() {
 			sio().on("disconnect", (reason) => {
 				this.noConnection = true;
 				sio().once("reconnect", (attemptNumber) => {
-					this.noConnection = false;
+					if(typeof this.$root.$data.user.userID !== "undefined") {
+						// TODO: Benachrichtigung über erneute Anmeldung...
+						sio().emit("re-auth", {userID: this.$root.$data.user.userID, socketID: this.$root.$data.user.socketID});
+					} else {
+						this.noConnection = false;
+					}
 				});
+			});
+			sio().on("re-auth", (data) => {
+				this.$root.$data.user.socketID = data.socketID;
+				this.noConnection = false;
 			});
 		}
 	};

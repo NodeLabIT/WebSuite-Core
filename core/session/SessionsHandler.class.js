@@ -3,15 +3,26 @@
 class SessionsHandler {
 
 	constructor() {
+		// userID: sessionID
+		this._sessions = {};
+
 		process.on("message", (message) => {
 			if(message.type === "sessionsUpdate") {
 				if(message.action === "add") {
-					// TODO: Add to session-list
+					this._sessions[message.sessionID.toString()] = message.userID;
 				} else if(message.action === "remove") {
-					// TODO: Remove from session-list
+					delete this._sessions[message.sessionID];
 				}
 			}
 		});
+	}
+
+	getSessions(userID) {
+		return Object.keys(this._sessions).filter(e => this._sessions[e] === userID);
+	}
+
+	getUserID(sessionID) {
+		return this._sessions[sessionID];
 	}
 
 }
