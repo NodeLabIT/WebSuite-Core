@@ -108,13 +108,16 @@ socket.on("connect", () => {
 });
 
 socket.on("init", (data) => {
+	console.log("test");
 	load.page = data.page;
 	if(data.auth.expired === true) {
 		window.localStorage.removeItem("user");
 	}
+	console.log("test2");
 	if(data.auth.error === null && data.auth.expired === false && data.auth.user !== null) {
 		load.user = data.auth.user;
 		load.loggedIn = true;
 	}
+	console.log("test3");
 	init();
 });

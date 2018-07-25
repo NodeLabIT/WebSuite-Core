@@ -47,7 +47,7 @@ class WebSocketHandler {
 
 	sendToClient(clientID, packetName, packetData) {
 		if(clientID && packetName && packetData) {
-			process.send(JSON.stringify({type: "sioPacket", clientID, packet: {packetName, packetData}}));
+			process.send({type: "sioPacket", clientID, packet: {packetName, packetData}});
 		}
 	}
 

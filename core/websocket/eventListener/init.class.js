@@ -24,6 +24,7 @@ class Init {
 						throw new Error("missing/faulty data in sent package");
 					}
 
+
 					const sessionI = await WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=? AND sessionID=? AND securityToken=?", [data.user.userID, data.user.sessionID, data.user.securityToken]);
 
 					// Check for saved session
@@ -46,7 +47,7 @@ class Init {
 						throw new Error("missing database-entries");
 					}
 
-					process.send(JSON.stringify({type: "sioAuth", userID: userI[0].userID, socketID: socket}));
+					process.send({type: "sioAuth", userID: userI[0].userID, socketID: socket});
 
 					authInfo.user = {};
 					authInfo.user['userID'] = userI[0].userID;
