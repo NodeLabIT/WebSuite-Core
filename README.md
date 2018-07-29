@@ -20,3 +20,7 @@ Du möchtest über alles informiert werden? Dann trete noch heute unserem Discor
 # Milestones
 
 Alle Milestones des Projektes sind hier einsehbar: https://github.com/NodeLabIT/WebSuite-Core/milestones
+
+#JSDocs
+
+JSDocs können mit ```jsdoc -c jsdoc.json``` generiert werden. Dazu muss ```jsdoc``` global als depencdency installiert sein.

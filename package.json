@@ -29,6 +29,7 @@
 	},
 	"devDependencies": {
 		"del": "^3.0.0",
+		"docma": "^2.1.0",
 		"eslint": "^4.19.1",
 		"gulp": "^3.9.1",
 		"gulp-gzip": "^1.4.0",

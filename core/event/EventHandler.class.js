@@ -9,22 +9,26 @@ class EventHandler {
 	}
 
 	/**
-	 * Listen to event
+	 * Define a callback that is executed when an event with the given event-name is fired.
 	 *
-	 * @param eventName String eventname
-	 * @param listener Function function to listen
+	 * @param {String} eventName The name of the event you want to listen on.
+	 * @param {Function} listener The callback that is executed when the event is fired.
+	 *
+	 * @return {undefined}
 	 * */
 	on(eventName, listener) {
 		this._eventHandler.on(eventName, listener);
 	}
 
 	/**
-	 * Emit event
+	 * Fire an event to the WebSuite's event-system by defining an event-name and attaching (optional) data to the event
 	 *
-	 * @param eventName String eventname
-	 * @param data {Object, Array} Object or Array containing information
+	 * @param {String} eventName The name of the event you want to fire.
+	 * @param {(Object|Array)} data Optional Object/Array containing data that may be important to listeners.
+	 *
+	 * @return {undefined}
 	 * */
-	emit(eventName, data) {
+	emit(eventName, data = []) {
 		this._eventHandler.emit(eventName, data);
 	}
 

@@ -102,6 +102,8 @@ class WebServer {
 
 	/**
 	 * Make the webserver listen on specified port
+	 *
+	 * @private
 	 * */
 	listen() {
 		if(!this.listening) {

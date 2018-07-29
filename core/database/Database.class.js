@@ -2,6 +2,9 @@
 
 const mysql = require("mysql");
 
+/**
+ * Class for Database
+ * */
 class Database {
 
 	constructor(callback) {
@@ -18,14 +21,21 @@ class Database {
 	}
 
 	/**
-	 * Connect to the MySQL-Database
+	 * Callback as function to handle the success of the database-connection-establishment
 	 *
-	 * @param success callback to handle the success (true when successful, otherwise false)
+	 * @callback Database~databaseConnectHandler
 	 *
-	 * @private
+	 * @param {boolean} success when connection-establishment was successful true, otherwise false
+	 * */
+
+	/**
+	 * Connects to the Database using the access-data saved in base-dir/config.json
+	 *
+	 * @param {Database~databaseConnectHandler} success Callback to handle the success/failure (boolean true when successful, otherwise false)
+	 *
 	 * */
 	_connect(success) {
-		global.FileUtil.readFile(`${global._dir}/config.json`).then((content) => {
+		FileUtil.readFile(`${_dir}/config.json`).then((content) => {
 			content = JSON.parse(content);
 			// create new sql-connection-pool
 			this._pool = mysql.createPool({
@@ -58,11 +68,17 @@ class Database {
 	}
 
 	/**
-	 * Disconnect from the MySQL-Database
+	 * Callback as function to handle success of disconnect from the database-server
 	 *
-	 * @param success callback to handle the success (true when successful, otherwise false)
+	 * @callback Database~disconnectHandler
 	 *
-	 * @private
+	 * @param {boolean} success when disconnect was successful true, otherwise false
+	 * */
+
+	/**
+	 * Close connection from MySQL-Database-server
+	 *
+	 * @param {Database~disconnectHandler} success Callback to handle the success/failure of disconnecting from the database-server
 	 * */
 	_disconnect(success) {
 		// Disconnect all connections from database

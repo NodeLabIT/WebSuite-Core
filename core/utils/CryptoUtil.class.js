@@ -9,7 +9,7 @@ class CryptoUtil {
 	 *
 	 * @param password
 	 *
-	 * @returns {String, Error} returns a String (the argon2-hash) or on error an Error
+	 * @return {(String|Error)} returns a String (the argon2-hash) or on error an Error
 	 * */
 	static async hash(password) {
 		try {
@@ -33,7 +33,7 @@ class CryptoUtil {
 	 * @param hash the hashed and salted password
 	 * @param password the hashed and salted password
 	 *
-	 * @returns boolean true, when matches, otherwise false
+	 * @return boolean true, when matches, otherwise false
 	 * */
 	static async verify(hash, password) {
 		try {
