@@ -1,0 +1,13 @@
+{
+	"getting-started": {
+		"title": "Einführung in die Entwicklung",
+		"children": {
+			"building-your-first-package": {
+				"title": "Build your app"
+			}
+		}
+	},
+	"test": {
+		"title": "a simple test"
+	}
+}

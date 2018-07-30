@@ -2,6 +2,9 @@
 
 const tpl = require("node-tpl");
 
+/**
+ * @private
+ * */
 class FrontendIndexPage {
 
 	/**

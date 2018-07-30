@@ -16,9 +16,17 @@
 	},
 	"templates": {
 		"cleverLinks": false,
-		"monospaceLinks": false
+		"monospaceLinks": false,
+		"default": {
+			"outputSourceFiles": false
+		}
 	},
 	"opts": {
-		"recurse": true
+		"destination": "./docs/out/",
+		"readme": "./README.md",
+		"recurse": true,
+		"template": "../JSDoc-Theme",
+		"tutorials": "./docs/tutorials",
+		"mainpagetitle": "WebSuite Dokumentation"
 	}
 }

@@ -5,6 +5,7 @@ const EventEmitter = require("../event/EventEmitter.class");
 
 /**
  * Class to work with packets in socket.io
+ * @hideconstructor
  * */
 class WebSocketHandler {
 
@@ -45,6 +46,13 @@ class WebSocketHandler {
 		});
 	}
 
+	/**
+	 * Send packet to a user's client defined by clientID. packets' name is defined by packetName and packet's content is defined by packetData.
+	 *
+	 * @param {string} clientID User's clientID to define the packet-receiver
+	 * @param {string} packetName The name that defines the packet being sent to the user's client
+	 * @param {(object|array)} packetData Packet's content data
+	 * */
 	sendToClient(clientID, packetName, packetData) {
 		if(clientID && packetName && packetData) {
 			process.send({type: "sioPacket", clientID, packet: {packetName, packetData}});
@@ -52,22 +60,39 @@ class WebSocketHandler {
 	}
 
 	/**
+	 * Callback as function to handle incoming cp-packets
+	 *
+	 * @callback WebSocketHandler~cpEventHandler
+	 *
+	 * @param {string} clientID the socket.io-sessionID of the client that sent this packet
+	 * @param {(object|array)} data data sent by the user's client
+	 * */
+
+	/**
 	 * Register a handler for a socket.io-packet sent from the control panel
 	 *
-	 * @param packetName name of the packet
-	 * @param handler(clientID, packet) Handler for the packet
+	 * @param {string} packetName name of the packet
+	 * @param {WebSocketHandler~cpEventHandler} handler Handler for the packet
 	 * */
 	registerCpEvent(packetName, handler) {
 		if(packetName && handler) {
 			this._cpSocketEvents.on(packetName, handler);
 		}
 	}
+	/**
+	 * Callback as function to handle incoming packets
+	 *
+	 * @callback WebSocketHandler~eventHandler
+	 *
+	 * @param {string} clientID the socket.io-sessionID of the client that sent this packet
+	 * @param {(object|array)} data data sent by the user's client
+	 * */
 
 	/**
 	 * Register a handler for a socket.io-packet sent from the frontend-page
 	 *
-	 * @param packetName name of the packet
-	 * @param handler(clientID, packet) Handler for the packet
+	 * @param {string} packetName name of the packet
+	 * @param {WebSocketHandler~eventHandler} handler Handler for the packet
 	 * */
 	registerEvent(packetName, handler) {
 		if(packetName && handler) {

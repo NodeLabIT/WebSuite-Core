@@ -17,6 +17,7 @@ const Cronjob = require("./cronjob/Cronjob.class");
 
 /**
  * Class of core-module
+ * @hideconstructor
  * */
 class WebSuite {
 
@@ -49,7 +50,7 @@ class WebSuite {
 	/**
 	 * Get WebSocketHandler to register new Socket-Events
 	 *
-	 * @returns WebSocketHandler-class
+	 * @return {WebSocketHandler}
 	 * */
 	getWebSocketHandler() {
 		return WebSocketHandler;

@@ -1,0 +1,1 @@
+In diesem Tutorial wirst du einige Grundlagen der Entwicklung von Plugins für die WebSuite kennen lernen.

@@ -4,6 +4,7 @@ const cron = require("node-cron");
 
 /**
  * Class for cronjobs
+ * @hideconstructor
  * */
 class Cronjob {
 

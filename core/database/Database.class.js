@@ -4,6 +4,7 @@ const mysql = require("mysql");
 
 /**
  * Class for Database
+ * @hideconstructor
  * */
 class Database {
 
@@ -26,6 +27,8 @@ class Database {
 	 * @callback Database~databaseConnectHandler
 	 *
 	 * @param {boolean} success when connection-establishment was successful true, otherwise false
+	 *
+	 * @private
 	 * */
 
 	/**
@@ -33,6 +36,7 @@ class Database {
 	 *
 	 * @param {Database~databaseConnectHandler} success Callback to handle the success/failure (boolean true when successful, otherwise false)
 	 *
+	 * @private
 	 * */
 	_connect(success) {
 		FileUtil.readFile(`${_dir}/config.json`).then((content) => {
@@ -73,12 +77,16 @@ class Database {
 	 * @callback Database~disconnectHandler
 	 *
 	 * @param {boolean} success when disconnect was successful true, otherwise false
+	 *
+	 * @private
 	 * */
 
 	/**
 	 * Close connection from MySQL-Database-server
 	 *
 	 * @param {Database~disconnectHandler} success Callback to handle the success/failure of disconnecting from the database-server
+	 *
+	 * @private
 	 * */
 	_disconnect(success) {
 		// Disconnect all connections from database

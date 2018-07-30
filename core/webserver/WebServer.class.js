@@ -16,6 +16,9 @@ const webpage = /\/(.*?)\./i;
 
 /**
  * Class for creating and managing the webserver
+ *
+ * @private
+ * @hideconstructor
  * */
 class WebServer {
 
@@ -96,6 +99,9 @@ class WebServer {
 		this.webServer = http.Server(this.app);
 	}
 
+	/**
+	 * @private
+	 * */
 	uInt8ArrToString(myUint8Arr){
 		return String.fromCharCode.apply(null, myUint8Arr);
 	}
