@@ -24,3 +24,4 @@ Alle Milestones des Projektes sind hier einsehbar: https://github.com/NodeLabIT/
 # JSDocs
 
 JSDocs können mit ```jsdoc -c jsdoc.json``` generiert werden. Dazu muss ```jsdoc``` global als depencdency installiert sein.
+Weiterhin muss das [NodeLab-Theme für JSDoc](https://github.com/NodeLabIT/JSDoc-Theme) relativ zur ```jsdoc.json``` gesehen im Ordner ```../JSDoc-Theme/``` liegen.
