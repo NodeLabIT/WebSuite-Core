@@ -24,7 +24,8 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console": "error"
     },
     "globals": {
         "WebSuite": false,
@@ -34,5 +35,13 @@
         "TimeUtil": false,
         "UserUtil": false,
         "_dir": false
-    }
+    },
+    "overrides": [
+        {
+            "files": ["./core/**", "./index.js"],
+            "rules": {
+                "no-console": "off"
+            }
+        }
+    ]
 }
