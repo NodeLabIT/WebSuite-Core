@@ -34,18 +34,5 @@
         "TimeUtil": false,
         "UserUtil": false,
         "_dir": false
-    },
-    "overrides": [
-        {
-            "files": ["./core/**", "./index.js"],
-            "rules": {
-                "no-restricted-syntax": [
-                    "off",
-                    {
-                        "selector": "CallExpression[callee.object.name='console'][callee.property.name=/^(log|warn|error|info|trace)$/]"
-                    }
-                ]
-            }
-        }
-    ]
+    }
 }
