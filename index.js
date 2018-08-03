@@ -1,7 +1,6 @@
 "use strict";
 
 const cluster = require("cluster");
-const os = require("os");
 
 const config = require("./config.json");
 
@@ -30,7 +29,7 @@ if (cluster.isMaster) {
 		let unhandledPackets = [];
 
 		// If crash then log it and restart one worker
-		cluster.on("exit", (worker, code, signal) => {
+		cluster.on("exit", (worker, code) => {
 			if (code !== 0) {
 				console.error(`Worker ${worker.process.pid} died. Restarting...`);
 				cluster.fork();
