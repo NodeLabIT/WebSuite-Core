@@ -32,6 +32,14 @@ class LogFile {
 		this.log.write(text + "\n");
 	}
 
+	_reset() {
+		if(this.opened === true) {
+			this.log.end("=== END OF LOG ===", "utf-8", () => {
+				console.log("file closed");
+			});
+		}
+	}
+
 }
 
 module.exports = new LogFile();

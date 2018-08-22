@@ -15,8 +15,7 @@
 		<title>{$title}</title>
 
 		<!-- REQUIRED LINKS -->
-		<link href="/css/style.css" rel="stylesheet" type="text/css">
-		<link href="/css/mobile.css" rel="stylesheet" type="text/css">
+		<link href="/css/websuite-light.css" rel="stylesheet" type="text/css">
 		<link href="/css/loader.css" rel="stylesheet" type="text/css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600,700,800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700" rel="stylesheet" type="text/css">
