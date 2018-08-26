@@ -37,11 +37,6 @@ class WebSuite {
 					return;
 				}
 
-				/*let hash = await CryptoUtil.hashPassword("Dy5s");
-				console.log(hash);
-
-				CryptoUtil.matchPassword("Dy5s", "$argon2id$v=19$m=4096,t=3,p=1$laKx7YiSDj0J2G7IIDPkVQ");*/
-
 				callback(true);
 			});
 		});
