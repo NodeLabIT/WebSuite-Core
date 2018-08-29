@@ -16,7 +16,11 @@ const EventHandler = require("./event/EventHandler.class");
 const Cronjob = require("./cronjob/Cronjob.class");
 
 /**
- * Class of core-module
+ * Der Kern der gesamten Anwendung. Über diese Klasse erhalten Entwickler Zugriff auf alle für sie wichtigen Systeme,
+ * bzw. Methoden zur Entwicklung der WebSuite, bzw. Erweiterungen dieser.
+ *
+ * NIEMALS den Konstruktor aufrufen!
+ *
  * @hideconstructor
  * */
 class WebSuite {
@@ -43,7 +47,8 @@ class WebSuite {
 	}
 
 	/**
-	 * Get WebSocketHandler to register new Socket-Events
+	 * Händler-Klasse um auf einkommende Pakete von der Webseite (Frontend als auch Control Panel) zu reagieren, als auch
+	 * Pakete zu speziellen Nutzern oder allen verbundenen Nutzern zu senden.
 	 *
 	 * @return {WebSocketHandler}
 	 * */
@@ -52,27 +57,25 @@ class WebSuite {
 	}
 
 	/**
-	 * Get EventHandler to listen and emit system-events
+	 * Händler-Klasse um auf Events innerhalb des Systems zu reagieren, als auch um Events innerhalb des Systems zu senden.
 	 *
-	 * @returns EventHandler-class
+	 * @returns {EventHandler}
 	 * */
 	getEventHandler() {
 		return EventHandler;
 	}
 
 	/**
-	 * Get CronjobHandler to register new cronjobs
+	 * Händler-Klasse zur Verwaltung von Cronjobs, die während der Laufzeit des System ausgeführt werden.
 	 *
-	 * @returns Cronjob-class
+	 * @returns {Cronjob}
 	 * */
 	getCrons() {
 		return Cronjob;
 	}
 
 	/**
-	 * Get the web-server to let him listen, when system is started
-	 *
-	 * @returns WebServer-class
+	 * @returns {WebServer}
 	 *
 	 * @private
 	 * */
@@ -81,45 +84,47 @@ class WebSuite {
 	}
 
 	/**
-	 * Get the Logger to log information, errors, warnings and debug
+	 * Händler-Klasse um Informationen, Fehler, Warnungen oder Debug in der Konsole zu senden als auch in den Logdateien
+	 * zu speichern.
 	 *
-	 * @returns Logger Logger-class
+	 * @returns {Logger}
 	 * */
 	getLogger() {
 		return Logger;
 	}
 
 	/**
-	 * Get Database-Class to send database-queries
+	 * Händler-Klasse um den Zugriff auf die Datenbank zu gewähren und Methoden zu bieten, mit denen Daten ausgelesen,
+	 * geändert, hinzugefügt oder auch gelöscht werden können.
 	 *
-	 * @returns Database-class
+	 * @returns {Database}
 	 * */
 	getDatabase() {
 		return this._database;
 	}
 
 	/**
-	 * Get Mail-Class to send emails
+	 * Händler-Klasse um E-Mails zu versenden.
 	 *
-	 * @returns Mail-class
+	 * @returns {Mail}
 	 * */
 	getMail() {
 		return this._mail;
 	}
 
 	/**
-	 * Get User-Class to work with the User
+	 * Händler-Klasse um Nutzer anhand ihrer NutzerID, ihres Nutzernamen oder ihrer E-Mail-Adresse anzufragen.
 	 *
-	 * @returns UserHandler
+	 * @returns {UserHandler}
 	 * */
 	getUserHandler() {
 		return UserHandler;
 	}
 
 	/**
-	 * Get Session-Class to work with User-Sessions
+	 * Händler-Klasse um die Sessions der aktuell mit dem System verbundenen Nutzer abzufragen.
 	 *
-	 * @returns Sessions
+	 * @returns {Sessions}
 	 * */
 	getSessions() {
 		return Sessions;

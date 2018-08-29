@@ -1,11 +1,16 @@
 "use strict";
 
+/**
+ * @namespace TimeUtil
+ * */
 class TimeUtil {
 
 	/**
 	 * Get the current time in milliseconds since 01.01.1970 00:00:00 UTC
 	 *
 	 * @returns number current time in milliseconds
+	 *
+	 * @memberOf TimeUtil
 	 * */
 	static currentTime() {
 		return Date.now();
@@ -25,6 +30,8 @@ class TimeUtil {
 	 * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
 	 *
 	 * @returns number future time in milliseconds
+	 *
+	 * @memberOf TimeUtil
 	 * */
 	static futureTime(options) {
 		if(options === null || typeof options === "function" || typeof options !== "object") {
@@ -55,6 +62,8 @@ class TimeUtil {
 	 * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
 	 *
 	 * @returns number past time in milliseconds
+	 *
+	 * @memberOf TimeUtil
 	 * */
 	static pastTime(options) {
 		if(options === null || typeof options === "function" || typeof options !== "object") {

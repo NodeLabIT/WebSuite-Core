@@ -3,7 +3,8 @@
 const cron = require("node-cron");
 
 /**
- * Class for cronjobs
+ * Verwaltung von Cronjobs, die während der Laufzeit der WebSuite ausgeführt werden
+ *
  * @hideconstructor
  * */
 class Cronjob {

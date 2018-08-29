@@ -169,6 +169,8 @@ if (cluster.isWorker) {
 /**
  * Go through all workers
  * @param callback returns one worker
+ *
+ * @private
  * */
 function eachWorker(callback) {
 	for (const id in cluster.workers) {
@@ -179,6 +181,8 @@ function eachWorker(callback) {
 /**
  * Get random worker
  * @param callback returns one worker
+ *
+ * @private
  * */
 function randomWorker(callback) {
 	const workers = Object.keys(cluster.workers);
