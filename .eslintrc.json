@@ -30,6 +30,7 @@
     "globals": {
         "WebSuite": false,
         "CryptoUtil": false,
+        "FileUtil": false,
         "TimeUtil": false,
         "UserUtil": false,
         "_dir": false
