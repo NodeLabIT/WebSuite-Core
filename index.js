@@ -13,8 +13,6 @@ global._dir = __dirname;
 
 // Utils
 require("./core/utils/CryptoUtil.class");
-require("./core/utils/DirectoryUtil.class");
-require("./core/utils/FileUtil.class");
 require("./core/utils/TimeUtil.class");
 require("./core/utils/UserUtil.class");
 
