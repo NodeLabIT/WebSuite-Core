@@ -552,11 +552,21 @@ footer .container a {
   background: white;
 }
 .container.right {
-  float: right;
   width: auto;
   display: inline-block;
   margin: 0;
-  text-align: right;
+}
+@media all and (min-width: 961px) {
+  .container.right {
+    float: right;
+    text-align: right;
+  }
+}
+@media all and (min-width: 320px) and (max-width: 960px) {
+  .container.right {
+    float: none;
+    text-align: left;
+  }
 }
 .container.left {
   float: left;
