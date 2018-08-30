@@ -24,7 +24,7 @@ class Init {
 						throw new Error("missing/faulty data in sent package");
 					}
 
-
+					// Read session-information from database defined by userID, sessionID and securityToken
 					const sessionI = await WebSuite.getDatabase().query("SELECT * FROM wsUserSessions WHERE userID=? AND sessionID=? AND securityToken=?", [data.user.userID, data.user.sessionID, data.user.securityToken]);
 
 					// Check for saved session
@@ -58,7 +58,7 @@ class Init {
 				}
 				const pageOptions = JSON.parse(await FileUtil.readFile(`${_dir}/data/options.json`));
 
-				// read more (important?!) data
+				// TODO: read more (important?!) data
 
 				WebSuite.getWebSocketHandler().sendToClient(socket, "init", {
 					page: {

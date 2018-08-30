@@ -108,13 +108,11 @@
 						userID: data.userID,
 						username: data.username
 					};
-					if (data.stay) {
-						this.$cookies.set("userID", data.userID, 90 * 24 * 60 * 60);
-						this.$cookies.set("sessionID", data.sessionID, 90 * 24 * 60 * 60);
-					} else {
-						this.$cookies.set("userID", data.userID, 8 * 60 * 60);
-						this.$cookies.set("sessionID", data.sessionID, 8 * 60 * 60);
-					}
+					window.localStorage.setItem("user", JSON.stringify({
+						userID: data.userID,
+						sessionID: data.sessionID,
+						securityToken: data.securityToken
+					}));
 					this.$router.push("/user/profile/" + data.userID + "-" + data.username);
 				}
 			});

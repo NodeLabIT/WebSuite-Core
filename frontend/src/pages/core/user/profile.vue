@@ -6,7 +6,7 @@
 		<div class="grid">
 			<div class="row" id="centered">
 				<div class="col">
-					<img class="profile-avatar" src="https://preview.msr-webdesign.de/websuite2/images/profileimg.png"
+					<img class="profile-avatar" :src="'/media/avatar/' + this.$root.user.avatarUrlKey + '.png'"
 						 width="100px" height="100px">
 				</div>
 				<div class="col">
