@@ -183,6 +183,7 @@ header #main-nav .container .dropdown .dropdown-content.notification .close-drop
   display: block;
   margin: 0;
   padding: 6px 0;
+  cursor: pointer;
 }
 header #main-nav .container .dropdown .dropdown-content:before {
   position: absolute;
