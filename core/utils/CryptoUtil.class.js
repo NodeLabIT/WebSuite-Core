@@ -3,7 +3,7 @@
 const argon2 = require('argon2');
 
 /**
- * @namespace CryptoUtil
+ * @class CryptoUtil
  * */
 class CryptoUtil {
 
@@ -13,8 +13,6 @@ class CryptoUtil {
 	 * @param password
 	 *
 	 * @return {(String|Error)} returns a String (the argon2-hash) or on error an Error
-	 *
-	 * @memberOf CryptoUtil
 	 * */
 	static async hash(password) {
 		try {
@@ -39,8 +37,6 @@ class CryptoUtil {
 	 * @param password the hashed and salted password
 	 *
 	 * @return boolean true, when matches, otherwise false
-	 *
-	 * @memberOf CryptoUtil
 	 * */
 	static async verify(hash, password) {
 		try {

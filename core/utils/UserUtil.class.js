@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * @namespace UserUtil
+ * @class UserUtil
  * */
 class UserUtil {
 
@@ -11,8 +11,6 @@ class UserUtil {
 	 * @param username username to check
 	 *
 	 * @returns Promise resolves if available, otherwise rejects
-	 *
-	 * @memberOf UserUtil
 	 * */
 	static usernameAvailable(username) {
 		return new Promise((resolve, reject) => {
@@ -36,8 +34,6 @@ class UserUtil {
 	 * @param username username to check
 	 *
 	 * @returns Promise resolves if valid, otherwise rejects
-	 *
-	 * @memberOf UserUtil
 	 * */
 	static usernameValid(username) {
 		return new Promise((resolve, reject) => {
@@ -70,8 +66,6 @@ class UserUtil {
 	 * @param email username to check
 	 *
 	 * @returns Promise resolves if available, otherwise rejects
-	 *
-	 * @memberOf UserUtil
 	 * */
 	static emailAvailable(email) {
 		return new Promise((resolve, reject) => {
@@ -95,8 +89,6 @@ class UserUtil {
 	 * @param email email-address to check
 	 *
 	 * @returns Promise resolves if valid, otherwise rejects
-	 *
-	 * @memberOf UserUtil
 	 * */
 	static emailValid(email) {
 		return new Promise((resolve, reject) => {

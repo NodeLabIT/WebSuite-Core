@@ -3,7 +3,7 @@
 const fs = require("fs");
 
 /**
- * @namespace FileUtil
+ * @class FileUtil
  * */
 class FileUtil {
 
@@ -13,8 +13,6 @@ class FileUtil {
 	 * @param path path of the file
 	 *
 	 * @returns Promise resolves on success, rejects on failure with error
-	 *
-	 * @memberof FileUtil
 	 * */
 	static fileExists(path) {
 		return new Promise((resolve, reject) => {
@@ -40,8 +38,6 @@ class FileUtil {
 	 * @param path path to the file
 	 *
 	 * @returns Promise resolves on success with file-content, rejects on failure with error
-	 *
-	 * @memberof FileUtil
 	 * */
 	static readFile(path) {
 		return new Promise((resolve, reject) => {
@@ -71,8 +67,6 @@ class FileUtil {
 	 * @param content content to save in the file
 	 *
 	 * @returns Promise resolves on success, rejects on failure with error
-	 *
-	 * @memberof FileUtil
 	 * */
 	static saveFile(path, content) {
 		return new Promise((resolve, reject) => {
