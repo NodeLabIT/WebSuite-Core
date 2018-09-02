@@ -4,7 +4,7 @@ node_modules/
 logs/
 
 WebSuite-Core.iml
-config.json
+data/config.json
 package-lock.json
 .flooignore
 .floo

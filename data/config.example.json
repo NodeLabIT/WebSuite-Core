@@ -1,4 +1,5 @@
 {
+	"versionID": 1,
 	"workers": 1,
 	"server": {
 		"socketio": 8081,

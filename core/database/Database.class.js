@@ -32,14 +32,14 @@ class Database {
 	 * */
 
 	/**
-	 * Connects to the Database using the access-data saved in base-dir/config.json
+	 * Connects to the Database using the access-data saved in base-dir/data/config.json
 	 *
 	 * @param {Database~databaseConnectHandler} success Callback to handle the success/failure (boolean true when successful, otherwise false)
 	 *
 	 * @private
 	 * */
 	_connect(success) {
-		FileUtil.readFile(`${_dir}/config.json`).then((content) => {
+		FileUtil.readFile(_config).then((content) => {
 			content = JSON.parse(content);
 			// create new sql-connection-pool
 			this._pool = mysql.createPool({

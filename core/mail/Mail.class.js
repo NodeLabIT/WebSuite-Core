@@ -2,7 +2,7 @@
 
 const nodemailer = require("nodemailer");
 
-const config = require("../../config.json");
+const config = require(_config);
 
 class Mail {
 
@@ -27,7 +27,7 @@ class Mail {
 	 * @private
 	 * */
 	_connect(success) {
-		global.FileUtil.readFile(`${global._dir}/config.json`).then((content) => {
+		global.FileUtil.readFile(_config).then((content) => {
 			/*content = JSON.parse(content);
 			this._transport = nodemailer.createTransport({
 				host: content.mail.host,

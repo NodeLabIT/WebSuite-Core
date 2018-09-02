@@ -1,15 +1,14 @@
 "use strict";
 
 /* eslint-disable no-console */
+global._dir = __dirname;
+global._config = __dirname + "/data/config.json";
 
 const cluster = require("cluster");
 
-const config = require("./config.json");
+const config = require(_config);
 
 const Check = require("./system/check.class");
-
-global._dir = __dirname;
-
 
 // Utils
 require("./core/utils/CryptoUtil.class");
@@ -87,8 +86,6 @@ if (cluster.isMaster) {
 		};
 
 		cluster.on("message", (worker, message, handle) => {
-			//const json = JSON.parse(message);
-
 			if (typeof message.type !== "undefined" && message.type === "sioPacket") {
 				if (message.clientID && message.packet && message.packet.packetName && message.packet.packetData) {
 					if (message.clientID === "broadcast") {

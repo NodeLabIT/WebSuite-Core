@@ -8,7 +8,7 @@ class Login {
 		WebSuite.getWebSocketHandler().registerEvent("login", (socket, data, address) => {
 			WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='login'", [address, global.TimeUtil.currentTime() - 6 * 60 * 60 * 1000]).then((count) => {
 				if (parseInt(count[0].count) < 7) {
-					const secretKey = require("../../../config.json").secretKey;
+					const secretKey = require(_config).secretKey;
 					const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
 
 					request(verifyUrl, (err, response, body) => {

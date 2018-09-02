@@ -9,7 +9,7 @@ class Register {
 			console.log("Die Ableitung von e^x ist e^x");
 			WebSuite.getDatabase().query("SELECT COUNT(*) AS count FROM wsFailedLogins WHERE ipAddress=? AND unixtime>=? AND type='registration'", [address, global.TimeUtil.currentTime() - 12 * 60 * 60 * 1000]).then((count) => {
 				if (parseInt(count[0].count) < 3) {
-					const secretKey = require("../../../config.json").secretKey;
+					const secretKey = require(_config).secretKey;
 					const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.captcha}&remoteip=${address}`;
 
 					request(verifyUrl, (err, response, body) => {

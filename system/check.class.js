@@ -2,8 +2,8 @@
 
 const fs = require("fs");
 
-const config = require("../config.json");
-const data = require("../data.json");
+const config = require(_config);
+const plugins = require(_dir + "/data/plugins.json");
 const packageFile = require("../package.json");
 
 /**
@@ -25,7 +25,7 @@ class Check {
 					return;
 				}
 			}
-			for (let plugin of data.plugins) {
+			for (let plugin of plugins) {
 				let pluginPackage = require(`${global._dir}/plugins/${plugin}/package.json`);
 				for (let dependency in pluginPackage.dependencies) {
 					if (!fs.existsSync(`${global._dir}/node_modules/${dependency}/`)) {

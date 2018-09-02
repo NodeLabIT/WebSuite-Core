@@ -7,7 +7,7 @@ const fs = require("fs");
 const http = require("http");
 const { spawn } = require("child_process");
 
-const config = require(`${global._dir}/config.json`);
+const config = require(_config);
 const frontendIndex = require("./FrontendIndexPage.class");
 
 const bots = config.crawler;

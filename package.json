@@ -33,7 +33,6 @@
 		"eslint": "^4.19.1",
 		"gulp": "^3.9.1",
 		"gulp-gzip": "^1.4.0",
-		"gulp-tar": "^2.0.0",
-		"latodoc": "github:smeijer/latodoc"
+		"gulp-tar": "^2.0.0"
 	}
 }
