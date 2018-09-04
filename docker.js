@@ -7,12 +7,12 @@ const fs = require('fs');
 console.log("Copying files to docker-volume /opt/websuite/data");
 
 const files = {
-	"data/permissionsList/administrativePermissions.json": "/opt/websuite/data/permissionsList/administrativePermissions.json",
-	"data/permissionsList/permissions.json": "/opt/websuite/data/permissionsList/permissions.json",
-	"data/config.example.json": "/opt/websuite/data/config.json",
-	"data/footerScript.js": "/opt/websuite/data/footerScript.js",
-	"data/options.json": "/opt/websuite/data/options.json",
-	"data/plugins.json": "/opt/websuite/data/plugins.json"
+	"default/permissionsList/administrativePermissions.json": "/opt/websuite/data/permissionsList/administrativePermissions.json",
+	"default/permissionsList/permissions.json": "/opt/websuite/data/permissionsList/permissions.json",
+	"default/config.example.json": "/opt/websuite/data/config.json",
+	"default/footerScript.js": "/opt/websuite/data/footerScript.js",
+	"default/options.json": "/opt/websuite/data/options.json",
+	"default/plugins.json": "/opt/websuite/data/plugins.json"
 };
 
 for (const file in files) {
