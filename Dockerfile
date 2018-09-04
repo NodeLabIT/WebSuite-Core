@@ -14,24 +14,24 @@ RUN apk add --no-cache --virtual .gyp \
         g++ \
         gcc
 
-RUN  npm install && npm cache clean --force
+RUN npm install && npm cache clean --force
 
 RUN apk del .gyp
 
 COPY core /opt/websuite/core
-COPY cp /opt/websuite/core
-COPY frontend /opt/websuite/core
-COPY system /opt/websuite/core
+COPY cp /opt/websuite/cp
+COPY frontend /opt/websuite/frontend
+COPY system /opt/websuite/system
 
-COPY index.js /opt/websuite
-COPY docker.js /opt/websuite
+COPY index.js /opt/websuite/index.js
+COPY docker.js /opt/websuite/docker.js
 
-COPY data/permissionsList/* /opt/websuite/data/permissionsList/
-COPY data/options.json /opt/websuite/data
-COPY data/plugins.json /opt/websuite/data
-COPY data/config.example.json /opt/websuite/data/config.json
+COPY data/permissionsList/* /opt/websuite/default/permissionsList/
+COPY data/options.json /opt/websuite/default/options.json
+COPY data/plugins.json /opt/websuite/default/plugins.json
+COPY data/config.example.json /opt/websuite/default/config.json
 
-#CMD node docker.js
+CMD node docker.js
 
 CMD node index.js
 
