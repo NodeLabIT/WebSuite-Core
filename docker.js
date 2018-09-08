@@ -1,8 +1,10 @@
 // THIS FILE ONLY EXECUTES REQUIRED CODE FOR DOCKER-VOLUMES
 
+/* eslint-disable no-console */
+
 "use strict";
 
-const fs = require('fs');
+const fs = require("fs");
 
 console.log("Copying files to docker-volume /opt/websuite/data");
 
