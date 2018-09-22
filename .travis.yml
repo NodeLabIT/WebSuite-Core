@@ -1,0 +1,12 @@
+sudo: required
+
+language: node_js
+node_js:
+  - "nodejs"
+  - "10.9.0"
+
+services:
+  - docker
+
+before_install:
+  - docker build -t websuite .

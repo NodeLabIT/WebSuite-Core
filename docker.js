@@ -17,7 +17,8 @@ const files = {
 	"default/plugins.json": "/opt/websuite/data/plugins.json"
 };
 
-fs.mkdirSync("/opt/websuite/data/permissionsList");
+if(!fs.existsSync("/opt/websuite/data/permissionsList"))
+	fs.mkdirSync("/opt/websuite/data/permissionsList");
 
 for (const file in files) {
 	console.log("Copying " + file + " to " + files[file]);

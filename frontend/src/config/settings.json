@@ -1,3 +1,4 @@
 {
-	"connectionUrl": "http://192.168.178.57:8081"
+	"connectionUrl": "https://beta.nodelab-it.de",
+	"recaptchaKey": "6LeZjXEUAAAAAApAW1J6jO80O21FH4r5r2NjP1uD"
 }

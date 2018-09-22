@@ -28,7 +28,7 @@ class Mail {
 	 * */
 	_connect(success) {
 		global.FileUtil.readFile(_config).then((content) => {
-			/*content = JSON.parse(content);
+			content = JSON.parse(content);
 			this._transport = nodemailer.createTransport({
 				host: content.mail.host,
 				port: content.mail.port,
@@ -38,13 +38,6 @@ class Mail {
 					user: content.mail.sender.user,
 					pass: content.mail.sender.password
 				}
-			});*/
-
-			// DEVELOPMENT!
-			this._transport = nodemailer.createTransport({
-				host: "localhost",
-				port: 1025,
-				ignoreTLS: true
 			});
 
 			this._transport.verify((err) => {

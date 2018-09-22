@@ -1,0 +1,6 @@
+version: '1.17'
+services:
+  websuite:
+    volumes:
+      - ./vol/data:/opt/websuite/data
+      - ./vol/logs:/opt/websuite/logs

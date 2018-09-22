@@ -11,7 +11,7 @@
 	export default {
 		data() {
 			return {
-				sitekey: "6LcMoz4UAAAAAKakT7I8r7mtFolWOdIRiHObKbT-",
+				sitekey: require("./config/settings").recaptchaKey,
 				widgetId: 0
 			};
 		},

@@ -23,8 +23,8 @@ COPY cp /opt/websuite/cp
 COPY frontend /opt/websuite/frontend
 COPY system /opt/websuite/system
 
-RUN cd frontend && npm install && npm cache clean --force && cd ..
-RUN cd cp && npm install && npm cache clean --force && cd ..
+RUN cd frontend && npm install && npm run build-dev && npm cache clean --force && cd ..
+RUN cd cp && npm install && npm run build-dev && npm cache clean --force && cd ..
 
 COPY index.js /opt/websuite/index.js
 COPY docker.js /opt/websuite/docker.js
