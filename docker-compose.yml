@@ -1,6 +1,9 @@
-version: '1.17'
+version: "3"
 services:
   websuite:
+    build: .
+    image: websuite:tag
+    network_mode: "host"
     volumes:
       - ./vol/data:/opt/websuite/data
       - ./vol/logs:/opt/websuite/logs

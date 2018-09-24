@@ -24,6 +24,7 @@ for (const file in files) {
 	console.log("Copying " + file + " to " + files[file]);
 	if(!fs.existsSync(files[file])) {
 		fs.copyFileSync(file, files[file], fs.constants.COPYFILE_EXCL);
+		console.log("File copied!");
 		continue;
 	}
 	console.log("File already exists in destination. Checking for Updates...");
