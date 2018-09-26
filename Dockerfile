@@ -6,6 +6,8 @@ WORKDIR /opt/websuite
 VOLUME /opt/websuite/data
 VOLUME /opt/websuite/logs
 
+VOLUME /opt/websuite/node_modules
+
 COPY package.json /opt/websuite
 
 RUN apk add --no-cache --virtual .gyp \

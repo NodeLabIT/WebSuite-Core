@@ -17,8 +17,19 @@ const files = {
 	"default/plugins.json": "/opt/websuite/data/plugins.json"
 };
 
-if(!fs.existsSync("/opt/websuite/data/permissionsList"))
-	fs.mkdirSync("/opt/websuite/data/permissionsList");
+function mkdirSync(directory) {
+	const path = directory.replace(/\/$/, '').split('/');
+
+	for (let i = 1; i <= path.length; i++) {
+		const segment = path.slice(0, i).join('/');
+		!fs.existsSync(segment) ? fs.mkdirSync(segment) : null ;
+	}
+}
+
+mkdirSync("/opt/websuite/data/permissionsList");
+mkdirSync("/opt/websuite/data/web/public/");
+
+// STEP 1: Copy default files to docker-volume
 
 for (const file in files) {
 	console.log("Copying " + file + " to " + files[file]);

@@ -85,6 +85,7 @@ class WebServer {
 
 		// add public-directive
 		this.app.use(serveStatic(`${global._dir}/frontend/`));
+		this.app.use(serveStatic("/opt/websuite/data/web/public/"));
 		this.app.use((req, res) => {
 			const indexPage = frontendIndex.getIndexPage();
 			if(typeof indexPage !== "undefined") {
