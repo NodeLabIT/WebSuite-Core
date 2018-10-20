@@ -4,7 +4,7 @@
 *.iml
 
 # Sensitive server-configuration
-config.json
+data/config.json
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
