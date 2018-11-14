@@ -57,7 +57,7 @@ class WebServer {
 			}
 
 			let pageUrl = url + req.path;
-			let cmd = spawn('phantomjs', ["prerender.js", pageUrl], {cwd: `${__dirname}/prerender/`});
+			let cmd = spawn('/usr/bin/phantomjs', ["prerender.js", pageUrl], {cwd: `${__dirname}/prerender/`});
 
 			let output = "";
 			cmd.stdout.on("data", (data) => {

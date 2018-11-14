@@ -6,8 +6,6 @@ WORKDIR /opt/websuite
 VOLUME /opt/websuite/data
 VOLUME /opt/websuite/logs
 
-VOLUME /opt/websuite/node_modules
-
 COPY package.json /opt/websuite
 
 RUN apk add --no-cache --virtual .gyp \
@@ -15,6 +13,10 @@ RUN apk add --no-cache --virtual .gyp \
         make \
         g++ \
         gcc
+
+ENV PHANTOMJS_VERSION 2.1.1
+RUN wget --no-check-certificate -q -O - https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 | tar xjC /opt
+RUN ln -s /opt/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
 
 RUN npm install && npm cache clean --force
 

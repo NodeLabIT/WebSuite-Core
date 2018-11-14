@@ -74,8 +74,11 @@ class Init {
 		});
 
 		WebSuite.getWebSocketHandler().registerEvent("re-auth", async (socket, data) => {
+			// Change global sio-session-list
 			process.send({type: "sioRemove", sessionID: data.socketID});
 			process.send({type: "sioAdd", userID: data.userID, sessionID: socket});
+
+			WebSuite.getWebSocketHandler().sendToClient(socket, "re-auth", {socketID: socket});
 		});
 
 		WebSuite.getWebSocketHandler().registerEvent("disconnect", (socket, data) => {

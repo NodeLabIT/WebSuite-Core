@@ -18,11 +18,12 @@ const files = {
 };
 
 function mkdirSync(directory) {
-	const path = directory.replace(/\/$/, '').split('/');
+	const path = directory.split('/');
 
 	for (let i = 1; i <= path.length; i++) {
 		const segment = path.slice(0, i).join('/');
-		!fs.existsSync(segment) ? fs.mkdirSync(segment) : null ;
+		console.log("Creating " + segment);
+		!fs.existsSync(segment) ? fs.mkdirSync(segment) : null;
 	}
 }
 

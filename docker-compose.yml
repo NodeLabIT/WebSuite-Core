@@ -4,6 +4,7 @@ services:
     build: .
     image: websuite:tag
     network_mode: "host"
+    restart: always
     volumes:
       - ./vol/data:/opt/websuite/data
       - ./vol/logs:/opt/websuite/logs

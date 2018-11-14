@@ -27,7 +27,7 @@ class Mail {
 	 * @private
 	 * */
 	_connect(success) {
-		global.FileUtil.readFile(_config).then((content) => {
+		FileUtil.readFile(_config).then((content) => {
 			content = JSON.parse(content);
 			this._transport = nodemailer.createTransport({
 				host: content.mail.host,
