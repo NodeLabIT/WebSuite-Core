@@ -3,16 +3,20 @@
 const fs = require("fs");
 
 /**
- * @class FileUtil
+ * Helperclass for working with files and directories.
+ *
+ * @hideconstructor
  * */
 class FileUtil {
 
+	// TODO: Refactor, maybe use of async/await. stable version. add functionality
+
 	/**
-	 * Check, whether file exists or not
+	 * Prüft, ob die Datei unter path verfügbar ist.
 	 *
-	 * @param path path of the file
+	 * @param {String} path absolute or relative path to the file
 	 *
-	 * @returns Promise resolves on success, rejects on failure with error
+	 * @returns {Promise} resolves on success, rejects on failure with error
 	 * */
 	static fileExists(path) {
 		return new Promise((resolve, reject) => {

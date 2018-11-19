@@ -3,6 +3,11 @@
 const User = require("./User.class");
 const GuestGroup = require("./GuestGroup.class");
 
+/**
+ * UserHandler
+ *
+ * @hideconstructor
+ * */
 class UserHandler {
 
 	/**
@@ -11,9 +16,9 @@ class UserHandler {
 	 * If the user doesn't exist, the Promise is rejected with the error message "no data found". Otherwise an object of
 	 * the class {@link User} is returned as user (resolve Promise)
 	 *
-	 * @return {Promise}
+	 * @returns {Promise}
 	 *
-	 * @param userID UserID, by that the user can be assigned
+	 * @param {Number} userID UserID, by that the user can be assigned
 	 * */
 	getUserByUserID(userID) {
 		return new Promise((resolve, reject) => {
@@ -35,9 +40,9 @@ class UserHandler {
 	 * If the user doesn't exist, the Promise is rejected with the error message "no data found". Otherwise an object of
 	 * the class {@link User} is returned as user (resolve Promise)
 	 *
-	 * @return {Promise}
+	 * @returns {Promise}
 	 *
-	 * @param username username, by that the user can be assigned
+	 * @param {String} username username, by that the user can be assigned
 	 * */
 	getUserByUserName(username) {
 		return new Promise((resolve, reject) => {
@@ -59,9 +64,9 @@ class UserHandler {
 	 * If the user doesn't exist, the Promise is rejected with the error message "no data found". Otherwise an object of
 	 * the class {@link User} is returned as user (resolve Promise)
 	 *
-	 * @return {Promise}
+	 * @returns {Promise} test
 	 *
-	 * @param email email-address, by that the user can be assigned
+	 * @param {String} email email-address, by that the user can be assigned
 	 * */
 	getUserByEMail(email) {
 		return new Promise((resolve, reject) => {
@@ -77,6 +82,11 @@ class UserHandler {
 		});
 	}
 
+	/**
+	 * The function returns an object of the default group of users that are currently not logged in (called: guest).
+	 *
+	 * @returns {GuestGroup} Object of the default-group (GuestGroup)
+	 * */
 	getGuestGroup() {
 		return GuestGroup;
 	}

@@ -2,9 +2,11 @@
 
 class SessionsHandler {
 
+	//TODO: Read from external caching-system
+
 	constructor() {
 		// userID: sessionID
-		this._sessions = {};
+		/*this._sessions = {};
 
 		process.on("message", (message) => {
 			if(message.type === "sessionsUpdate") {
@@ -14,15 +16,15 @@ class SessionsHandler {
 					delete this._sessions[message.sessionID];
 				}
 			}
-		});
+		});*/
 	}
 
 	getSessions(userID) {
-		return Object.keys(this._sessions).filter(e => this._sessions[e] === userID);
+		//return Object.keys(this._sessions).filter(e => this._sessions[e] === userID);
 	}
 
 	getUserID(sessionID) {
-		return this._sessions[sessionID];
+		//return this._sessions[sessionID];
 	}
 
 }

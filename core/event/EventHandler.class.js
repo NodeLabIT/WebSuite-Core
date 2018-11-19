@@ -2,6 +2,11 @@
 
 const EventEmitter = require("./EventEmitter.class");
 
+/**
+ * Delivers an endpoint to listen on and emit events to the WebSuite's event-system
+ *
+ * @hideconstructor
+ * */
 class EventHandler {
 
 	constructor() {
@@ -9,12 +14,20 @@ class EventHandler {
 	}
 
 	/**
+	 * Callback as function to handle the received packet
+	 *
+	 * @callback EventHandler~onEvent
+	 *
+	 * @param {(Object|Array)} [data] Object/Array containing the data that were attached to the event
+	 *
+	 * @private
+	 * */
+
+	/**
 	 * Define a callback that is executed when an event with the given event-name is fired.
 	 *
 	 * @param {String} eventName The name of the event you want to listen on.
-	 * @param {Function} listener The callback that is executed when the event is fired.
-	 *
-	 * @return {undefined}
+	 * @param {EventEmitter~onEvent} listener The callback that is executed when the event is fired.
 	 * */
 	on(eventName, listener) {
 		this._eventHandler.on(eventName, listener);
@@ -25,8 +38,6 @@ class EventHandler {
 	 *
 	 * @param {String} eventName The name of the event you want to fire.
 	 * @param {(Object|Array)} data Optional Object/Array containing data that may be important to listeners.
-	 *
-	 * @return {undefined}
 	 * */
 	emit(eventName, data = []) {
 		this._eventHandler.emit(eventName, data);

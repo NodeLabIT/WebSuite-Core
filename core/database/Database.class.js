@@ -3,7 +3,8 @@
 const mysql = require("mysql");
 
 /**
- * Class for Database
+ * Manages the database-connection and delivers an endpoint for interacting/querying with the database
+ *
  * @hideconstructor
  * */
 class Database {
@@ -127,12 +128,12 @@ class Database {
 	}
 
 	/**
-	 * Query Database
 	 *
-	 * @params query query you want to perform in the database
-	 * @params values Array of values to replace
 	 *
-	 * @returns Promise rejects on error, resolves on success
+	 * @param {String} query query you want to perform in the database
+	 * @param {(Array|Object)} values Array of values to replace
+	 *
+	 * @returns {Promise} rejects on error, resolves on success
 	 * */
 	query(query, values) {
 		return new Promise((resolve, reject) => {

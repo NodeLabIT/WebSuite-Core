@@ -3,16 +3,22 @@
 const argon2 = require('argon2');
 
 /**
- * @class CryptoUtil
+ * Helperclass for hashing passwords.
+ *
+ * @hideconstructor
  * */
 class CryptoUtil {
 
 	/**
-	 * The given password will be hashed using argon2id
+	 * Hashes a password using the hashing-algorithm argon2id. If no password is specified, the function will throw an
+	 * error. If hashing fails, the function will throw an error. Otherwise the function returns the hashed password
+	 * as argon2-string.
 	 *
-	 * @param password
+	 * @param {String} password The password that has to be hashed
 	 *
-	 * @return {(String|Error)} returns a String (the argon2-hash) or on error an Error
+	 * @return {String} Returns the argon2-hashed password
+	 *
+	 * @throws {Error}
 	 * */
 	static async hash(password) {
 		try {
@@ -31,20 +37,26 @@ class CryptoUtil {
 	}
 
 	/**
-	 * Check for password-match
+	 * Compares the password against the argon2-hash (verification). If no hash or password is specified the function
+	 * will throw an error. If the verification fails, the function will also terminate throwing an error. Otherwise
+	 * the function returns a boolean indicating password-match. So returning true on password-match and false on
+	 * password-mismatch.
 	 *
-	 * @param hash the hashed and salted password
-	 * @param password the hashed and salted password
+	 * @param {String} hash The argon2-hash-string
+	 * @param {String} password The raw (unhashed) password
 	 *
-	 * @return boolean true, when matches, otherwise false
+	 * @return {Boolean} Returns true on password-match and false on password-mismatch
+	 *
+	 * @throws {Error}
 	 * */
 	static async verify(hash, password) {
-		try {
-			return await argon2.verify(hash, password);
-		} catch (err) {
-			// internal failure
-			throw err;
-		}
+		if(typeof hash === "undefined")
+			throw new Error("undefined paramater");
+
+		if(typeof password === "undefined")
+			throw new Error("undefined paramater");
+
+		return await argon2.verify(hash, password);
 	}
 
 }

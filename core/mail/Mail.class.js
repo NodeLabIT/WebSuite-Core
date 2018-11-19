@@ -4,6 +4,11 @@ const nodemailer = require("nodemailer");
 
 const config = require(_config);
 
+/**
+ * Manages the mailserver-connection and delivers an endpoint for sending mails
+ *
+ * @hideconstructor
+ * */
 class Mail {
 
 	constructor(callback) {
@@ -20,9 +25,19 @@ class Mail {
 	}
 
 	/**
-	 * Connect to the Mail-Server
+	 * Callback as function to handle the success of creating the mailserver-connection
 	 *
-	 * @param success callback to handle the success (true when successful, otherwise false)
+	 * @callback Mail~mailConnectHandler
+	 *
+	 * @param {boolean} success when connect was successful true, otherwise false
+	 *
+	 * @private
+	 * */
+
+	/**
+	 * Connect to the mailserver
+	 *
+	 * @param {Mail~mailConnectHandler} success Callback to handle the success/failure (boolean true when successful, otherwise false)
 	 *
 	 * @private
 	 * */
@@ -55,9 +70,19 @@ class Mail {
 	}
 
 	/**
-	 * Disconnect from the Mail-Server
+	 * Callback as function to handle the success of closing the mailserver-connection
 	 *
-	 * @param success callback to handle the success (true when successful, otherwise false)
+	 * @callback Mail~mailDisconnectHandler
+	 *
+	 * @param {boolean} success when disconnect was successful true, otherwise false
+	 *
+	 * @private
+	 * */
+
+	/**
+	 * Disconnect from the mailserver
+	 *
+	 * @param {Mail~mailDisconnectHandler} success Callback to handle the success/failure (boolean true when successful, otherwise false)
 	 *
 	 * @private
 	 * */
@@ -68,9 +93,19 @@ class Mail {
 	}
 
 	/**
-	 * Disconnect from the Mail-Server and Connect again
+	 * Callback as function to handle the success of the recreating the mailserver-connection (reconnect)
 	 *
-	 * @param success callback to handle the success (true when successful, otherwise false)
+	 * @callback Mail~mailReconnectHandler
+	 *
+	 * @param {boolean} success when reconenct was successful true, otherwise false
+	 *
+	 * @private
+	 * */
+
+	/**
+	 * Reconnect to the mailserver
+	 *
+	 * @param {Mail~mailReconnectHandler} success Callback to handle the success/failure (boolean true when successful, otherwise false)
 	 *
 	 * @private
 	 * */
@@ -88,13 +123,7 @@ class Mail {
 		});
 	}
 
-	/**
-	 * Send HTML-Mail
-	 *
-	 * @param message message you want to send (can include HTML)
-	 * @param to recipient-address where the mail is supposed to be sent to
-	 * @param subject Subject of the email
-	 * */
+	// TODO: JS-Docs, add error-handling using Promises
 	sendHTMLMail(message, to, subject) {
 		let mailOptions = {
 			from: `"${config.mail.sender.displayName}" <${config.mail.sender.user}>`,

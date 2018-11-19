@@ -1,14 +1,14 @@
 "use strict";
 
 /**
- * @class TimeUtil
+ * @hideconstructor
  * */
 class TimeUtil {
 
 	/**
 	 * Get the current time in milliseconds since 01.01.1970 00:00:00 UTC
 	 *
-	 * @returns number current time in milliseconds
+	 * @returns {Number} current time in milliseconds
 	 * */
 	static currentTime() {
 		return Date.now();
@@ -25,9 +25,9 @@ class TimeUtil {
 	/**
 	 * Get a future time in milliseconds since 01.01.1970 00:00:00 UTC
 	 *
-	 * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
+	 * @param {Object} options Available options: days (number), hours (number), minutes (number), seconds (number)
 	 *
-	 * @returns number future time in milliseconds
+	 * @returns {Number} future time in milliseconds
 	 * */
 	static futureTime(options) {
 		if(options === null || typeof options === "function" || typeof options !== "object") {
@@ -55,9 +55,9 @@ class TimeUtil {
 	/**
 	 * Get a future time in milliseconds since 01.01.1970 00:00:00 UTC
 	 *
-	 * @param options Available options: days (number), hours (number), minutes (number), seconds (number)
+	 * @param {Object} options Available options: days (number), hours (number), minutes (number), seconds (number)
 	 *
-	 * @returns number past time in milliseconds
+	 * @returns {Number} past time in milliseconds
 	 * */
 	static pastTime(options) {
 		if(options === null || typeof options === "function" || typeof options !== "object") {

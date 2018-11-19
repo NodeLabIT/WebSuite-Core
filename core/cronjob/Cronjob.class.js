@@ -3,7 +3,7 @@
 const cron = require("node-cron");
 
 /**
- * Verwaltung von Cronjobs, die während der Laufzeit der WebSuite ausgeführt werden
+ * Manage cronjobs that are executed during system-runtime
  *
  * @hideconstructor
  * */

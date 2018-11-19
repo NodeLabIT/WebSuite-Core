@@ -2,20 +2,35 @@
 
 const LogFile = require("./LogFile.class");
 
+/**
+ * Adds helper-functions to easily send information, errors, warnings or debug to the console. Information, errors and
+ * warnings will also being saved to LogFiles.
+ *
+ * @hideconstructor
+ * */
 class Logger {
 
-	logToFile(message) {
+	// TODO: Check for set parameters in info(), debug(), warn() and error()
+
+	/**
+	 * Appends the message defined by parameter to the end of the log-file
+	 *
+	 * @param {String} message the message you want to append to the log-file
+	 *
+	 * @private
+	 * */
+	_logToFile(message) {
 		LogFile.append(TimeUtil.timeString() + " | " + message + " (" + process.pid + ")");
 	}
 
 	/**
-	 * send info-message (green console-color)
+	 * send an info-message to the console (green color) and append it to the log-file
 	 *
-	 * @param message message to send
-	 * @param master boolean whether sending from master or not (undefined when worker)
+	 * @param {String} message message to send
+	 * @param {boolean} master true when sending from master, otherwise false (or undefined)
 	 * */
 	info(message, master) {
-		this.logToFile("INFO : " + message);
+		this._logToFile("INFO : " + message);
 		if(master) {
 			console.log(`\x1b[32m[MASTER | ${process.pid}] \x1b[0m${message}`);
 			return;
@@ -24,10 +39,10 @@ class Logger {
 	}
 
 	/**
-	 * send debug-message (cyan console-color)
+	 * send a debug-message to the console (cyan color) and append it to the log-file
 	 *
-	 * @param message message to send
-	 * @param master boolean whether sending from master or not (undefined when worker)
+	 * @param {String} message message to send
+	 * @param {boolean} master true when sending from master, otherwise false (or undefined)
 	 * */
 	debug(message, master) {
 		if(master) {
@@ -38,13 +53,13 @@ class Logger {
 	}
 
 	/**
-	 * send error-message (red console-color)
+	 * send an error-message to the console (red color) and append it to the log-file
 	 *
-	 * @param message message to send
-	 * @param master boolean whether sending from master or not (undefined when worker)
+	 * @param {String} message message to send
+	 * @param {boolean} master true when sending from master, otherwise false (or undefined)
 	 * */
 	error(message, master) {
-		this.logToFile("ERROR: " + message);
+		this._logToFile("ERROR: " + message);
 		if(master) {
 			console.log(`\x1b[31m[MASTER | ${process.pid}] \x1b[0m${message}`);
 			return;
@@ -53,13 +68,13 @@ class Logger {
 	}
 
 	/**
-	 * send warn-message (yellow console-color)
+	 * send a warn-message to the console (yellow color) and append it to the log-file
 	 *
-	 * @param message message to send
-	 * @param master boolean whether sending from master or not (undefined when worker)
+	 * @param {String} message message to send
+	 * @param {boolean} master true when sending from master, otherwise false (or undefined)
 	 * */
 	warn(message, master) {
-		this.logToFile("WARN : " + message);
+		this._logToFile("WARN : " + message);
 		if(master) {
 			console.log(`\x1b[33m[MASTER | ${process.pid}] \x1b[0m${message}`);
 			return;
