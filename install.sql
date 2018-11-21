@@ -10,7 +10,7 @@ create table wsConfigurationOptions
 (
   name  VARCHAR(64) not null
     primary key,
-  value MEDIUMTEXT(16777215) not null
+  value MEDIUMTEXT not null
 );
 
 create table wsConfigurationReactionTypes
@@ -45,7 +45,7 @@ create table wsFailedLogins
     primary key,
   ipAddress VARCHAR(64) not null,
   unixtime  BIGINT(19)  not null,
-  type      ENUM (12)   not null
+  type      ENUM ('registration', 'login', 'autologin')   not null
 );
 
 create table wsGroup
