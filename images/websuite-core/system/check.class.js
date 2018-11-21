@@ -35,12 +35,6 @@ class Check {
 				}
 			}
 
-			// Check for Node-Version higher 4
-			if (process.versions.node.split(".")[0] < 4) {
-				reject("node-version not sufficient to run this system");
-				return;
-			}
-
 			// Check for config-conflicts
 			if (config.workers <= 0) {
 				reject("amount of workers less than 1");

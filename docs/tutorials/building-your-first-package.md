@@ -1,1 +1,0 @@
-Damit es dir leicht fällt deine Plugins zu testen empfehlen wir die Nutzung von gulp zum builden der Pakete.
