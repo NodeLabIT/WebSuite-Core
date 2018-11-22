@@ -33,12 +33,6 @@ RUN cd cp && npm install && npm run build-dev && npm cache clean --force && cd .
 COPY index.js /opt/websuite/index.js
 COPY docker.js /opt/websuite/docker.js
 
-COPY data/permissionsList/* /opt/websuite/default/permissionsList/
-COPY data/options.json /opt/websuite/default/options.json
-COPY data/plugins.json /opt/websuite/default/plugins.json
-COPY data/footerScript.js /opt/websuite/default/footerScript.js
-COPY data/config.example.json /opt/websuite/default/config.json
-
 CMD ["sh", "-c", "node docker.js && node index.js"]
 
 EXPOSE 8080
