@@ -24,12 +24,10 @@ let socket;
 
 // TODO: Disallow connection for Bots to prevent crawling-errors
 // TODO: Check for local storage (active session) and add them for request
-if (!navigator.userAgent.includes("Googlebot")) {
-	if (Config.connectionUrl !== "") {
-		socket = io(Config.connectionUrl);
-	} else {
-		socket = io();
-	}
+if (Config.connectionUrl !== "") {
+	socket = io(Config.connectionUrl);
+} else {
+	socket = io();
 }
 
 export function sio() {

@@ -5,12 +5,12 @@ const serveStatic = require("serve-static");
 const compression = require("compression");
 const fs = require("fs");
 const http = require("http");
-const { spawn } = require("child_process");
 
 const config = require(_config);
 const frontendIndex = require("./FrontendIndexPage.class");
 
-const bots = config.crawler;
+const puppeteer = require("puppeteer");
+const crawlerUserAgents = require("../../crawler-user-agents");
 const url = `http://localhost:${config.server.webserver}`;
 const webpage = /\/(.*?)\./i;
 
@@ -22,7 +22,7 @@ const webpage = /\/(.*?)\./i;
  * */
 class WebServer {
 
-	constructor() {
+	async constructor() {
 		this.listening = false;
 		this.app = express();
 
@@ -33,13 +33,19 @@ class WebServer {
 			next();
 		});
 
-		this.app.use((req, res, next) => {
+		let crawlers = [];
+		await crawlerUserAgents.forEach(c => c.instances.forEach(i => crawlers.push(i)));
+
+		// Start Chromium on launch
+		const browser = await puppeteer.launch();
+
+		this.app.use(async (req, res, next) => {
 			if(!req.headers || !req.headers["user-agent"]) {
 				next();
 				return;
 			}
 
-			if(!bots.some(e => req.headers["user-agent"].toString().includes(e))) {
+			if(!crawlers.some(e => req.headers["user-agent"].toString().includes(e))) {
 				next();
 				return;
 			}
@@ -57,18 +63,14 @@ class WebServer {
 			}
 
 			let pageUrl = url + req.path;
-			let cmd = spawn('/usr/bin/phantomjs', ["prerender.js", pageUrl], {cwd: `${__dirname}/prerender/`});
 
-			let output = "";
-			cmd.stdout.on("data", (data) => {
-				output = data;
-			});
-			cmd.stderr.on("data", (data) => {
-				WebSuite.getLogger().error(`Error while rendering: ${this.uInt8ArrToString(data)}`);
-			});
-			cmd.on("close", (code) => {
-				res.send(output.toString());
-			});
+			const page = await browser.newPage();
+			await page.goto(pageUrl);
+			await page.waitForFunction('document.rendered === true');
+
+			res.send(await page.content());
+
+			await page.close();
 		});
 
 		// serve socket.io-File
