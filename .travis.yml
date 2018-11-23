@@ -7,8 +7,7 @@ node_js:
 services:
   - docker
 
-before_install:
-  - docker build -t websuite ./images/websuite-core/
+script: docker build -t websuite ./images/websuite-core/
 
 after_success:
   - wget https://raw.githubusercontent.com/k3rn31p4nic/travis-ci-discord-webhook/master/send.sh
