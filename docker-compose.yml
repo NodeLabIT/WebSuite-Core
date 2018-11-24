@@ -8,8 +8,8 @@ services:
     depends_on:
       - websuite_synchronize
     volumes:
-      - ./vol/data:/opt/websuite/data
-      - ./vol/logs:/opt/websuite/logs
+      - ./vol/data:/opt/websuite-core/data
+      - ./vol/logs:/opt/websuite-core/logs
   websuite_synchronize:
     build: images/websuite-synchronize
     image: websuite-synchronize

@@ -10,7 +10,7 @@ const config = require(_config);
 const frontendIndex = require("./FrontendIndexPage.class");
 
 const puppeteer = require("puppeteer");
-const crawlerUserAgents = require("../../crawler-user-agents");
+const crawlerUserAgents = require("../../crawler-user-agents.json");
 const url = `http://localhost:${config.server.webserver}`;
 const webpage = /\/(.*?)\./i;
 
@@ -22,7 +22,11 @@ const webpage = /\/(.*?)\./i;
  * */
 class WebServer {
 
-	async constructor() {
+	constructor() {
+		this.init();
+	}
+
+	async init() {
 		this.listening = false;
 		this.app = express();
 
@@ -37,7 +41,7 @@ class WebServer {
 		await crawlerUserAgents.forEach(c => c.instances.forEach(i => crawlers.push(i)));
 
 		// Start Chromium on launch
-		const browser = await puppeteer.launch();
+		const browser = await puppeteer.launch({args: ["--no-sandbox"], executablePath: "/usr/bin/chromium-browser"});
 
 		this.app.use(async (req, res, next) => {
 			if(!req.headers || !req.headers["user-agent"]) {

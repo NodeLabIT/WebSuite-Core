@@ -7,6 +7,8 @@
 		<meta name="description" content="{$description}">
 		<meta name="keywords" content="{$keywords}">
 
+		<meta name="google-site-verification" content="nNcgH4JUZNp-QEZaBBJhrqMkEprIwQjAZ9QkyJm6gYQ" />
+
 		<!-- OPTIONAL/EXTRA META -->
 		{for $meta in $metas}
 			<meta name="{$meta.name}" lang="{$meta.lang}" content="{$meta.content}">
