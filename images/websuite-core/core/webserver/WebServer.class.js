@@ -80,18 +80,18 @@ class WebServer {
 		// serve socket.io-File
 		this.app.get("/socket.io.js", (req, res) => {
 			res.header("Content-Type", "application/javascript");
-			res.send(fs.readFileSync(`${global._dir}/node_modules/socket.io-client/dist/socket.io.js`));
+			res.send(fs.readFileSync(`${_dir}/node_modules/socket.io-client/dist/socket.io.js`));
 		});
 
 		// add cp-directive
-		this.app.use("/cp/", serveStatic(`${global._dir}/cp/`));
+		this.app.use("/cp/", serveStatic(`${_dir}/cp/`));
 		this.app.use("/cp/", (req, res) => {
-			res.send(fs.readFileSync(`${global._dir}/cp/index.html`, {encoding: "utf-8"}));
+			res.send(fs.readFileSync(`${_dir}/cp/index.html`, {encoding: "utf-8"}));
 		});
 
 		// add public-directive
-		this.app.use(serveStatic(`${global._dir}/frontend/`));
-		this.app.use(serveStatic("/opt/websuite/data/web/public/"));
+		this.app.use(serveStatic(`${_dir}/frontend/`));
+		this.app.use(serveStatic(`${_dir}/data/web/public/`));
 		this.app.use((req, res) => {
 			const indexPage = frontendIndex.getIndexPage();
 			if(typeof indexPage !== "undefined") {
