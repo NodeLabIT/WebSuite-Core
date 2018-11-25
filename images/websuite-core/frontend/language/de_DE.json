@@ -1,0 +1,20 @@
+{
+	"dashboard": "Startseite",
+	"settings": "Einstellungen",
+	"account-settings": "Einstellungen",
+	"profile": "Profil",
+	"users": "Mitglieder",
+	"userlist": "Mitgliederliste",
+	"imprint": "Impressum",
+	"privacy-policy": "Datenschutzerklärung",
+	"username-whitespace-mismatch": "Dein Nutzername beinhaltet zu viele Leerzeichen",
+	"username-character-mismatch": "Dein Nutzername beinhaltet unerlaubte Zeichen",
+	"username-length-mismatch": "Dein Nutzername ist zu kurz oder zu lang",
+	"email-whitespace-mismatch": "Deine E-Mail-Adresse beinhaltet Leerzeichen",
+	"email-character-mismatch": "Deine E-Mail-Adresse beinhaltet unerlaubte Zeichen",
+	"email-length-mismatch": "Deine E-Mail-Adresse ist zu lang",
+	"username-not-available": "Der angegebene Nutzername ist nicht verfügbar",
+	"email-not-available": "Die angegebene E-Mail-Adresse ist nicht verfügbar",
+	"servererror": "Serverinterner Fehler",
+	"blocked by server": "Die Anfrage wurde vom Server blockiert, da Sie zu viele fehlgeschlagene Anmeldungen hatten. Sollte dies ein Fehler sein, wenden Sie sich an den Betreiber der Webseite."
+}
