@@ -1,3 +1,6 @@
+Dieses Repository ist veraltet! Bitte das neue Repository unter https://gitlab.com/nodelabit/WebSuite-Core/ nutzen!
+Das Projekt ist das gleiche. Zur besseren Integration des Build-Prozesses haben wir von GitHub zu GitLab gewechselt. 
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/05dfdb44e89241e58d7c7f4a779c6eef)](https://www.codacy.com/app/ilouHD/WebSuite-Core?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=NodeLabIT/WebSuite-Core&amp;utm_campaign=Badge_Grade) [![Build Status](https://travis-ci.org/NodeLabIT/WebSuite-Core.svg?branch=development)](https://travis-ci.org/NodeLabIT/WebSuite-Core) [![Version](https://img.shields.io/badge/dynamic/json.svg?label=WebSuite-Core&url=https%3A%2F%2Fraw.githubusercontent.com%2FNodeLabIT%2FWebSuite-Core%2Fdevelopment%2Fpackage.json&query=version&colorB=blue)](https://github.com/NodeLabIT/WebSuite-Core)
 
 # WebSuite
